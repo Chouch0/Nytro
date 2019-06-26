@@ -4,5 +4,5 @@
 	<section>
 		<h1>BUCCHINO PROVINCIALE</h1>
 	</section>
-
+<!--  mme bell stu pesc -->
 <%@include file="footer.html"%>							<!-- Inclusione statica di footer.html" -->
