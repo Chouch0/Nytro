@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"
 	import="nytro.model.AccountBean"%>
 <%
-	AccountBean account = (AccountBean) session.getAttribute("utente");
+	AccountBean account = (AccountBean) session.getAttribute("account");
 	int ruolo=-1;
 	if(account!=null)
 		ruolo = account.getRuolo();
@@ -79,7 +79,7 @@
 							<div class = "menuTendina">
 								<div class = "elementoTendina">
 									<div class ="schedaTendina">
-										<form action="Login" method="post">
+										<form action="../Login" method="post">
 											<input type="text" name="username" placeholder="Username"><br/>
 											<input type="password" name="password" placeholder="Password"><br/>
 											<!-- Il ruolo dell'utente verrà ricavato in modo automatico dal database, per questo motivo non è necessario
@@ -101,7 +101,7 @@
 							</div>
 					<%} else { %>
 						<div class = "menuTendina">	
-							<%=account.getUsername()%>						
+							<b><%=account.getUsername()%></b>				
 							<% if(ruolo==0){			//Admin%>
 								<div class = "elementoTendina"><a href="ListaGiocatori">Lista giocatori</a></div>
 								<div class = "elementoTendina"><a href="ListaCaseEditrici">Lista case editrici</a></div>

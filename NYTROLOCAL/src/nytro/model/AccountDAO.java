@@ -63,7 +63,7 @@ public class AccountDAO {
 		
 		AccountBean bean = new AccountBean();
 		
-		String selectSQL = "SELECT * FROM product WHERE Username = ? AND Password = ?";
+		String selectSQL = "SELECT * FROM account WHERE Username = ? AND Password = ?";
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
@@ -105,7 +105,7 @@ public class AccountDAO {
 		
 		AccountBean bean = new AccountBean();
 		
-		String selectSQL = "SELECT * FROM product WHERE Username = ?";
+		String selectSQL = "SELECT * FROM account WHERE Username = ?";
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
@@ -144,7 +144,7 @@ public class AccountDAO {
 		PreparedStatement preparedStatement = null;
 		
 		
-		String insertSQL = "INSERT INTO product(Username, Password, Email, Email_Recupero, Cellulare, Data, Ora, IP, Ruolo, Img_Profilo) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String insertSQL = "INSERT INTO account(Username, Password, Email, Email_Recupero, Cellulare, Data, Ora, IP, Ruolo, Img_Profilo) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);

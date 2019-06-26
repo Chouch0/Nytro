@@ -24,7 +24,7 @@ public class Login extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		AccountBean account = null;
-		
+		System.out.println(username + " " + password);
 		if (username != null && password != null) {
 			try {
 				account = accountDAO.doRetrieveByUsernamePassword(username, password);
@@ -33,7 +33,7 @@ public class Login extends HttpServlet {
 			}
 		}
 
-		if (account == null) {
+		if (account.getUsername()==null) {						//Controlla che il campo username sia null per indicare che l'utente è assente
 			throw new CustomException("Username e/o password non validi.");
 		}
 		
@@ -43,6 +43,7 @@ public class Login extends HttpServlet {
 		if (dest == null || dest.contains("/Login") || dest.trim().isEmpty()) {
 			dest = ".";
 		}
+		
 		response.sendRedirect(dest);
 	}
 
