@@ -16,8 +16,9 @@ import nytro.model.AccountBean;
 
 @WebServlet("/Login")
 public class Login extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private final AccountDAO utenteDAO = new AccountDAO();
+	
+	private static final long serialVersionUID = 8573498926977710169L;
+	private final AccountDAO accountDAO = new AccountDAO();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
@@ -26,7 +27,7 @@ public class Login extends HttpServlet {
 		
 		if (username != null && password != null) {
 			try {
-				account = utenteDAO.doRetrieveByUsernamePassword(username, password);
+				account = accountDAO.doRetrieveByUsernamePassword(username, password);
 			} catch (SQLException e) {
 				throw new CustomException("Username e/o password vuoti.");
 			}
