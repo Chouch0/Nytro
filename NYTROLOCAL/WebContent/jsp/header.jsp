@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="nytro.model.Utente"%>
+	import="nytro.model.UtenteBean"%>
 <%
-	Utente utente = (Utente) request.getAttribute("utente");
+	UtenteBean utente = (UtenteBean) request.getAttribute("utente");
 	int ruolo=-1;
 	if(utente!=null)
 		ruolo = utente.getRuolo();

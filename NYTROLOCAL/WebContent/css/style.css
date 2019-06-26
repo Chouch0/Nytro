@@ -13,3 +13,17 @@ header a, header a:visited, header a:hover, header a:active, footer a, footer a:
 	color: inherit;							/*Non cambierà colore a seconda della pseudoclasse attiva associata all'ancora*/
 	text-decoration: none;
 }
+
+h1 {
+	text-align:center;
+	color:lime;
+	font-size:2em;
+}
+
+header {
+	color:crimson;
+}
+
+footer {
+	color:#00ffff;
+}
