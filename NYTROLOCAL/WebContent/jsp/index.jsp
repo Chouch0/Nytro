@@ -4,5 +4,5 @@
 	<section>
 		<h1>BUCCHINO PROVINCIALE</h1>
 	</section>
-<!-- IL RATICATE DI GARY E' MORTO E LUI LO VA A TROVARE A LAVANDONIA -->
+
 <%@include file="footer.html"%>							<!-- Inclusione statica di footer.html" -->
