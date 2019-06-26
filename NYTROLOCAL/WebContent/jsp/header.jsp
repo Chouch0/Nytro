@@ -2,10 +2,10 @@
 	pageEncoding="UTF-8"
 	import="nytro.model.AccountBean"%>
 <%
-	AccountBean utente = (AccountBean) request.getAttribute("utente");
+	AccountBean account = (AccountBean) session.getAttribute("utente");
 	int ruolo=-1;
-	if(utente!=null)
-		ruolo = utente.getRuolo();
+	if(account!=null)
+		ruolo = account.getRuolo();
 %>
 <!DOCTYPE html>
 <html>
@@ -43,7 +43,7 @@
 				<li>
 					<a href="jsp/contatti.jsp">Contatti</a>
 				</li>
-				<% if(utente!=null && (ruolo==1)){ %>
+				<% if(account!=null && (ruolo==1)){ %>
 					<li>
 						<a href="Libreria">Libreria</a>
 					</li>
@@ -51,7 +51,7 @@
 						<a href="Friendlist">Friendlist</a>
 					</li>
 				<% } %>
-				<% if(utente!=null && (ruolo==0 || ruolo==1)){ %>
+				<% if(account!=null && (ruolo==0 || ruolo==1)){ %>
 					<li><a>Esplora</a>
 					<div class = "menuTendina">
 					<!-- 
@@ -74,7 +74,7 @@
 				Se l'utente non ha effettuato il login, gli verrà mostrato un format a tale scopo, oppure un link che rimanda ad un format di registrazione.
 				Se l'utente è registrato, a seconda del proprio ruolo, visualizzerà informazioni diverse.
 				-->
-					<%if(utente==null){%>
+					<%if(account==null){%>
 						Login
 							<div class = "menuTendina">
 								<div class = "elementoTendina">
@@ -101,7 +101,7 @@
 							</div>
 					<%} else { %>
 						<div class = "menuTendina">	
-							<%=utente.getUsername()%>						
+							<%=account.getUsername()%>						
 							<% if(ruolo==0){			//Admin%>
 								<div class = "elementoTendina"><a href="ListaGiocatori">Lista giocatori</a></div>
 								<div class = "elementoTendina"><a href="ListaCaseEditrici">Lista case editrici</a></div>

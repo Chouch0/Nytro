@@ -18,7 +18,7 @@ public class AccountDAO {
 		
 		String selectSQL = "SELECT * FROM account ";
 		
-		//Nel caso avessi voluto imporre un ordine
+		//Nel caso avessi voluto imporre un ordine per l'estrazione degli utenti
 		if(order!=null && !order.equals(""))
 			selectSQL += "ORDER BY " + order;
 		
@@ -139,7 +139,7 @@ public class AccountDAO {
 		return bean;
 	}
 
-	public void doSave(AccountBean utente) throws SQLException {
+	public void doSave(AccountBean account) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
@@ -149,16 +149,16 @@ public class AccountDAO {
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
 			
-			preparedStatement.setString(1, utente.getUsername());
-			preparedStatement.setString(2, utente.getPassword());
-			preparedStatement.setString(3, utente.getEmail());
-			preparedStatement.setString(4, utente.getEmailRecupero());
-			preparedStatement.setString(5, utente.getCellulare());
-			preparedStatement.setString(6, utente.getData());
-			preparedStatement.setString(7, utente.getOra());
-			preparedStatement.setString(8, utente.getIp());
-			preparedStatement.setInt(9, utente.getRuolo());
-			preparedStatement.setNull(10, java.sql.Types.BLOB);//blob settata null temporaneamente
+			preparedStatement.setString(1, account.getUsername());
+			preparedStatement.setString(2, account.getPassword());
+			preparedStatement.setString(3, account.getEmail());
+			preparedStatement.setString(4, account.getEmailRecupero());
+			preparedStatement.setString(5, account.getCellulare());
+			preparedStatement.setString(6, account.getData());
+			preparedStatement.setString(7, account.getOra());
+			preparedStatement.setString(8, account.getIp());
+			preparedStatement.setInt(9, account.getRuolo());
+			preparedStatement.setNull(10, java.sql.Types.BLOB);						//blob settata null temporaneamente
 			
 			System.out.println("doSave: " + preparedStatement.toString());
 			preparedStatement.executeUpdate();
