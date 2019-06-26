@@ -41,7 +41,7 @@
 					<a href=".">Home</a>
 				</li>
 				<li>
-					<a href="jsp/contatti.jsp">Contatti</a>
+					<a href="contatti.jsp">Contatti</a>
 				</li>
 				<% if(account!=null && (ruolo==1)){ %>
 					<li>

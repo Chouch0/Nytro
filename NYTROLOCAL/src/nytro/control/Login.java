@@ -15,7 +15,7 @@ import nytro.model.AccountBean;
 
 
 @WebServlet("/Login")
-public class LoginServlet extends HttpServlet {
+public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final AccountDAO utenteDAO = new AccountDAO();
 
