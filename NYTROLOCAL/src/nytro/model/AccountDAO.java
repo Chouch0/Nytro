@@ -8,17 +8,17 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 
-public class UtenteDAO {
+public class AccountDAO {
 
-	public Collection<UtenteBean> doRetrieveAll(String order) throws SQLException {
+	public Collection<AccountBean> doRetrieveAll(String order) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement=null;
 		
-		Collection<UtenteBean> users = new LinkedList<UtenteBean>();
+		Collection<AccountBean> users = new LinkedList<AccountBean>();
 		
 		String selectSQL = "SELECT * FROM account ";
 		
-		//Controllo se order è uguale ad uno degli attributi??
+		//Nel caso avessi voluto imporre un ordine
 		if(order!=null && !order.equals(""))
 			selectSQL += "ORDER BY " + order;
 		
@@ -31,7 +31,7 @@ public class UtenteDAO {
 			ResultSet rs = preparedStatement.executeQuery();
 			
 			while(rs.next()) {				
-				UtenteBean bean = new UtenteBean();
+				AccountBean bean = new AccountBean();
 				bean.setUsername(rs.getString("Username"));
 				bean.setPassword(rs.getString("Password"));
 				bean.setEmail(rs.getString("Email"));
@@ -57,11 +57,11 @@ public class UtenteDAO {
 		return users;
 	}
 
-	public UtenteBean doRetrieveByUsernamePassword(String username, String password) throws SQLException {
+	public AccountBean doRetrieveByUsernamePassword(String username, String password) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		UtenteBean bean = new UtenteBean();
+		AccountBean bean = new AccountBean();
 		
 		String selectSQL = "SELECT * FROM product WHERE Username = ? AND Password = ?";
 		
@@ -98,12 +98,12 @@ public class UtenteDAO {
 		return bean;
 	}
 
-	public UtenteBean doRetrieveByUsername(String username) throws SQLException {
+	public AccountBean doRetrieveByUsername(String username) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		UtenteBean bean = new UtenteBean();
+		AccountBean bean = new AccountBean();
 		
 		String selectSQL = "SELECT * FROM product WHERE Username = ?";
 		
@@ -139,7 +139,7 @@ public class UtenteDAO {
 		return bean;
 	}
 
-	public void doSave(UtenteBean utente) throws SQLException {
+	public void doSave(AccountBean utente) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		

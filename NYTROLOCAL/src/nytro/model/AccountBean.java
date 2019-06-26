@@ -1,6 +1,6 @@
 package nytro.model;
 
-public class UtenteBean {
+public class AccountBean {
 	private String username;
 	private String password;
 	private String email;
@@ -124,7 +124,7 @@ public class UtenteBean {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UtenteBean other = (UtenteBean) obj;
+		AccountBean other = (AccountBean) obj;
 		if (cellulare == null) {
 			if (other.cellulare != null)
 				return false;
@@ -172,7 +172,7 @@ public class UtenteBean {
 
 	@Override
 	public String toString() {
-		return "Utente [username=" + username + ", password=" + password + ", email=" + email + ", emailRecupero="
+		return "Account [username=" + username + ", password=" + password + ", email=" + email + ", emailRecupero="
 				+ emailRecupero + ", cellulare=" + cellulare + ", data=" + data + ", ora=" + ora + ", ip=" + ip
 				+ ", ruolo=" + ruolo + "]";
 	}
