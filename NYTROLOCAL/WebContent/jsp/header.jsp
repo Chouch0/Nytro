@@ -16,18 +16,19 @@
 		<meta name="author" content="Montano Michele, Nocera Sabato, Volpicelli Veronica">
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" >
 		<script src="../js/ricerca.js"></script>
+		<link href="../css/style.css" type="text/css" rel="stylesheet">
 	</head>
 <body>
 	<nav>
 		<div class = "menu">
 			<header>
 			<!-- Logo del sito + Nome del sito-->
-				<a href="."><img src="../img/logo.png" height="50">NYTRO</a>
+				<a href="."><img id="logo" src="../img/logo.png" alt="logo"/>NYTRO</a>
 			</header>
 			<ul>
 				<li>
 					<form action="Ricerca" method="get">
-						<input type="text" name="q" list="ricerca-datalist" placeholder="Ricerca" onkeyup="ricerca(this.value)" value="<c:out value="${param.q}" />">
+						<input type="text" name="q" list="ricerca-datalist" placeholder="Ricerca" onkeyup="ricerca(this.value)"> <!-- value="<c:out value="${param.q}" />" -->
 						<datalist id="ricerca-datalist"></datalist>
 						<!-- 
 						Il tag <datalist> viene utilizzato per fornire la funzione di "autocompletamento" per elementi di input;

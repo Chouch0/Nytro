@@ -1,0 +1,15 @@
+@charset "ISO-8859-1";
+
+img#logo {
+	max-width: 3%;
+	height: auto;
+}
+
+header, footer {
+	font-size: 3em;
+}
+
+header a, header a:visited, header a:hover, header a:active, footer a, footer a:visited, footer a:hover, footer a:active {
+	color: inherit;							/*Non cambierà colore a seconda della pseudoclasse attiva associata all'ancora*/
+	text-decoration: none;
+}
