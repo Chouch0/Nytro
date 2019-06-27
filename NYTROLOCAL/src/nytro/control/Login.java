@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import nytro.model.AccountDAO;
-import nytro.exceptions.CustomException;
+import nytro.exceptions.MyException;
 import nytro.model.AccountBean;
 
 
@@ -29,12 +29,12 @@ public class Login extends HttpServlet {
 			try {
 				account = accountDAO.doRetrieveByUsernamePassword(username, password);
 			} catch (SQLException e) {
-				throw new CustomException("Username e/o password vuoti.");
+				throw new MyException("Username e/o password vuoti.");
 			}
 		}
 
 		if (account.getUsername()==null) {						//Controlla che il campo username sia null per indicare che l'utente è assente
-			throw new CustomException("Username e/o password non validi.");
+			throw new MyException("Username e/o password non validi.");
 		}
 		
 		request.getSession().setAttribute("account", account);

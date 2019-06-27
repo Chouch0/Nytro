@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import nytro.exceptions.CustomException;
+import nytro.exceptions.MyException;
 
 
 @WebServlet("/RegistrazioneForm")
@@ -19,7 +19,7 @@ public class RegistrazioneForm extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		if (request.getSession().getAttribute("account") != null) {
-			throw new CustomException("Utente loggato.");
+			throw new MyException("Utente loggato.");
 		}
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("../jsp/registrazioneForm.jsp");
 		requestDispatcher.forward(request, response);

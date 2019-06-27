@@ -2,15 +2,15 @@ package nytro.exceptions;
 
 import javax.servlet.ServletException;
 
-public class CustomException extends ServletException {
+public class MyException extends ServletException {
 
 	private static final long serialVersionUID = -5995336735427981643L;
 
-	public CustomException() {
+	public MyException() {
 		super();
 	}
 
-	public CustomException(String message) {
+	public MyException(String message) {
 		super(message);
 	}
 

@@ -15,15 +15,15 @@
 		<meta name="description" content="NYTRO">
 		<meta name="author" content="Montano Michele, Nocera Sabato, Volpicelli Veronica">
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" >
-		<script src="../js/ricerca.js"></script>
-		<link href="../css/style.css" type="text/css" rel="stylesheet">
+		<script src="/NYTRO/js/ricerca.js"></script>
+		<link href="/NYTRO/css/style.css" type="text/css" rel="stylesheet">
 	</head>
 <body>
 	<nav>
 		<div class = "menu">
 			<header>
 			<!-- Logo del sito + Nome del sito-->
-				<a href="."><img id="logo" src="../img/logo.png" alt="logo"/>NYTRO</a>
+				<a href="."><img id="logo" src="/NYTRO/img/logo.png" alt="logo"/>NYTRO</a>
 			</header>
 			<ul>
 				<li>
@@ -79,7 +79,7 @@
 							<div class = "menuTendina">
 								<div class = "elementoTendina">
 									<div class ="schedaTendina">
-										<form action="../Login" method="post">
+										<form action="/NYTRO/Login" method="post">
 											<input type="text" name="username" placeholder="Username" required><br/>
 											<input type="password" name="password" placeholder="Password" required><br/>
 											<!-- Il ruolo dell'utente verrà ricavato in modo automatico dal database, per questo motivo non è necessario
@@ -94,7 +94,7 @@
 									per effettuare la registrazione. Quest'ultima jsp rimanderà a RegistrazioneServlet che si occuperà della registrazione
 									effettiva dell'utente all'interno del database.
 									-->
-									<a href="../RegistrazioneForm">
+									<a href="/NYTRO/RegistrazioneForm">
 										Registrazione
 									</a>
 								</div>
@@ -118,7 +118,7 @@
 							<div class = "elementoTendina"><a href="Profilo">Profilo</a></div>	<!-- Rimanda alla servlet per la gestione del profilo dell'utente (cambia a seconda del tipo di utente) -->
 							<div class = "elementoTendina">		<!-- Visualizza un pulsante attraverso cui richiamare la servlet per il Logout -->
 								<div class = "schedaTendina">
-									<form action="../Logout">
+									<form action="/NYTRO/Logout">
 										<input type="submit" value="Logout">
 									</form>
 								</div>
