@@ -4,4 +4,4 @@
 	<section>
 		<h1>Homepage</h1>
 	</section>
-<%@include file="footer.html"%>							<!-- Inclusione statica di footer.html" -->
+<%@include file="footer.html"%>							 <!-- Inclusione statica di footer.html" -->
