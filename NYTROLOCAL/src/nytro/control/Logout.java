@@ -14,11 +14,7 @@ public class Logout extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 		request.getSession().removeAttribute("account");
 
-		String dest = request.getHeader("referer");
-		if (dest == null || dest.contains("/Logout") || dest.trim().isEmpty()) {
-			dest = ".";
-		}
-		response.sendRedirect(dest);
+		response.sendRedirect("/NYTRO/jsp/index.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

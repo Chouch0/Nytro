@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
 
-
 public class AccountDAO {
 
 	public Collection<AccountBean> doRetrieveAll(String order) throws SQLException {
@@ -172,5 +171,69 @@ public class AccountDAO {
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}
 		}
+	}
+
+	public void doUpdate(AccountBean account) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String updateSQL = "UPDATE account SET  Password = ?, Email = ?, Email_Recupero=?, Cellulare=?, Data=current_date(), Ora=current_time(), IP=?, Ruolo=?, Img_Profilo=? WHERE Username = ?";
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+			
+			preparedStatement.setString(1, account.getPassword());
+			preparedStatement.setString(2, account.getEmail());
+			preparedStatement.setString(3, account.getEmailRecupero());
+			preparedStatement.setString(4, account.getCellulare());
+			preparedStatement.setString(5, account.getIp());
+			preparedStatement.setInt(6, account.getRuolo());
+			preparedStatement.setNull(7, java.sql.Types.BLOB);
+			preparedStatement.setString(8, account.getUsername());
+			
+			System.out.println("doUpdate: " + preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
+			
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		
+	}
+
+	public boolean doDelete(AccountBean account) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		int result=0;
+		
+		String deleteSQL="DELETE FROM account WHERE Username = ?";
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(deleteSQL);
+			
+			preparedStatement.setString(1, account.getUsername());
+			
+			System.out.println("doDelete: " + preparedStatement.toString());
+			result=preparedStatement.executeUpdate();
+			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
+			
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return (result != 0);
 	}
 }

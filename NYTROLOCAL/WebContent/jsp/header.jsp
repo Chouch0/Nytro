@@ -103,16 +103,16 @@
 						<div class = "menuTendina">	
 							<b><%=account.getUsername()%></b>				
 							<% if(ruolo==0){			//Admin%>
-								<div class = "elementoTendina"><a href="ListaGiocatori">Lista giocatori</a></div>
-								<div class = "elementoTendina"><a href="ListaCaseEditrici">Lista case editrici</a></div>
+								<div class = "elementoTendina"><a href="/NYTRO/ListaGiocatori">Lista giocatori</a></div>
+								<div class = "elementoTendina"><a href="/NYTRO/ListaCaseEditrici">Lista case editrici</a></div>
 								<hr/>
 							<% } 
 								if(ruolo==1){		//Giocatore %>
-								<div class = "elementoTendina"><a href="Carrello">Carrello</a></div>	<!-- Richiama la servlet responsabile di gestire il carrello -->
+								<div class = "elementoTendina"><a href="/NYTRO/Carrello">Carrello</a></div>	<!-- Richiama la servlet responsabile di gestire il carrello -->
 								<hr/>	
 							<%} 
 								if(ruolo==2){		//Azienda %>
-								<div class = "elementoTendina"><a href="Pubblicazioni">Pubblicazioni</a></div>
+								<div class = "elementoTendina"><a href="/NYTRO/Pubblicazioni">Pubblicazioni</a></div>
 								<hr>
 							<%} %>
 							<div class = "elementoTendina"><a href="Profilo">Profilo</a></div>	<!-- Rimanda alla servlet per la gestione del profilo dell'utente (cambia a seconda del tipo di utente) -->

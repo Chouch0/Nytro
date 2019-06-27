@@ -36,6 +36,18 @@ public class Login extends HttpServlet {
 		if (account.getUsername()==null) {						//Controlla che il campo username sia null per indicare che l'utente è assente
 			throw new MyException("Username e/o password non validi.");
 		}
+
+		try {
+			accountDAO.doUpdate(account);
+		} catch (SQLException e) {
+			throw new MyException("Fallimento aggiornamento informazioni ultimo accesso");
+		}		
+		
+		try {
+			account = accountDAO.doRetrieveByUsernamePassword(username, password);	//per avere le informazioni circa data e ora aggiornate
+		} catch (SQLException e) {
+			throw new MyException("Username e/o password vuoti.");
+		}
 		
 		request.getSession().setAttribute("account", account);
 
