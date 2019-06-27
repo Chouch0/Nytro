@@ -80,8 +80,8 @@
 								<div class = "elementoTendina">
 									<div class ="schedaTendina">
 										<form action="../Login" method="post">
-											<input type="text" name="username" placeholder="Username"><br/>
-											<input type="password" name="password" placeholder="Password"><br/>
+											<input type="text" name="username" placeholder="Username" required><br/>
+											<input type="password" name="password" placeholder="Password" required><br/>
 											<!-- Il ruolo dell'utente verrà ricavato in modo automatico dal database, per questo motivo non è necessario
 											specificarlo ora. -->
 											<input type="submit" value="Login">
@@ -94,7 +94,7 @@
 									per effettuare la registrazione. Quest'ultima jsp rimanderà a RegistrazioneServlet che si occuperà della registrazione
 									effettiva dell'utente all'interno del database.
 									-->
-									<a href="RegistrazioneForm">
+									<a href="../RegistrazioneForm">
 										Registrazione
 									</a>
 								</div>
@@ -118,7 +118,7 @@
 							<div class = "elementoTendina"><a href="Profilo">Profilo</a></div>	<!-- Rimanda alla servlet per la gestione del profilo dell'utente (cambia a seconda del tipo di utente) -->
 							<div class = "elementoTendina">		<!-- Visualizza un pulsante attraverso cui richiamare la servlet per il Logout -->
 								<div class = "schedaTendina">
-									<form action="Logout">
+									<form action="../Logout">
 										<input type="submit" value="Logout">
 									</form>
 								</div>
