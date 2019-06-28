@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
 import="nytro.model.AccountBean, java.util.Collection"%>
 <%
-	Collection<AccountBean> users = (Collection<AccountBean>) session.getAttribute("users");
+	Collection<AccountBean> caseEditrici = (Collection<AccountBean>) session.getAttribute("caseEditrici");
 %>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Contatti"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
 	
-	<form action="/NYTRO/ListaGiocatori" method="get">
+	<form action="/NYTRO/ListaCaseEditrici" method="get">
 	<label>Seleziona un criterio di ordinamento
 	 <select name="order">
 	  <option value="">Nessuno</option>
@@ -18,11 +18,11 @@ import="nytro.model.AccountBean, java.util.Collection"%>
 	<input type="submit" value="Vai"/>
 	</form>
 	
-	<h1>Lista giocatori</h1>
+	<h1>Lista case editrici</h1>
 	
 	<p>
 		<%
-			for(AccountBean x : users){
+			for(AccountBean x : caseEditrici){
 		%>
 			<%=x.toString() %><br/>		
 		<%

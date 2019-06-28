@@ -9,20 +9,26 @@ import java.util.LinkedList;
 
 public class AccountDAO {
 
-	public Collection<AccountBean> doRetrieveAll(String order, String ruolo) throws SQLException {
+	public Collection<AccountBean> doRetrieveAll(String order, int ruolo) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement=null;
 		
 		Collection<AccountBean> users = new LinkedList<AccountBean>();
 		
-		String selectSQL = "SELECT * FROM account ";
+		String selectSQL = "";
 		
-		if(ruolo!=null && !order.equals(""))
-			selectSQL += ""
+		if(ruolo==0)
+			selectSQL += "SELECT DISTINCT * FROM account, amministratore WHERE Ruolo = " + ruolo + " AND account.Username = amministratore.Username ";
+		else if(ruolo==1)
+			selectSQL += "SELECT DISTINCT * FROM account, giocatore WHERE Ruolo = "+ruolo + " AND account.Username = giocatore.Username ";
+		else if(ruolo==2)
+			selectSQL += "SELECT DISTINCT * FROM account, azienda, casa_editrice WHERE Ruolo = "+ruolo + " AND account.Username = azienda.Username AND casa_editrice.ISIN=azienda.ISIN ";
+		else	//seleziona tutti
+			selectSQL = "SELECT DISTINCT * FROM account ";
 		
 		//Nel caso avessi voluto imporre un ordine per l'estrazione degli utenti
 		if(order!=null && !order.equals(""))
-			selectSQL += "ORDER BY " + order;
+			selectSQL += "ORDER BY '" + order+"'";
 		
 		
 		try {
@@ -33,8 +39,10 @@ public class AccountDAO {
 			
 			ResultSet rs = preparedStatement.executeQuery();
 			
-			while(rs.next()) {				
+			while(rs.next()) {
+				
 				AccountBean bean = new AccountBean();
+				
 				bean.setUsername(rs.getString("Username"));
 				bean.setPassword(rs.getString("Password"));
 				bean.setEmail(rs.getString("Email"));
@@ -46,7 +54,29 @@ public class AccountDAO {
 				bean.setRuolo(rs.getInt("Ruolo"));
 				//bean.setUsername(rs.getString("Img_Profilo"));		per la blob
 				
-				users.add(bean);
+				if(ruolo==0) {
+					bean = new AccountBean();	
+					users.add(bean);			//Da sostituire con AmministratoreBean nel caso in cui volessi implementare un'estrazione per tutti gli amministratori
+				}
+				else if(ruolo==1) {
+					GiocatoreBean giocatoreBean = new GiocatoreBean(bean);
+					giocatoreBean.setDataIscrizione(rs.getString("Data_Nascita"));
+					giocatoreBean.setDataNascita(rs.getString("Data_Iscrizione"));
+					giocatoreBean.setGenere(rs.getString("Genere"));
+					users.add(giocatoreBean);
+				}
+				else if(ruolo==2) {
+					CasaEditriceBean casaEditriceBean = new CasaEditriceBean(bean);
+					casaEditriceBean.setISIN(rs.getString("ISIN"));
+					casaEditriceBean.setNomeCasaEditrice(rs.getString("Nome_Casa_Editrice"));
+					casaEditriceBean.setCEO(rs.getString("CEO"));
+					casaEditriceBean.setSitoWeb(rs.getString("Sito_Web"));
+					users.add(casaEditriceBean);
+				}
+				else {
+					users.add(bean);
+				}				
+				
 			}
 		} finally {
 			try {

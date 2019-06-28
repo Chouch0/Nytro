@@ -14,8 +14,8 @@ import nytro.exceptions.MyException;
 import nytro.model.AccountBean;
 import nytro.model.AccountDAO;
 
-@WebServlet("/ListaGiocatori")
-public class ListaGiocatori extends HttpServlet {
+@WebServlet("/ListaCaseEditrici")
+public class ListaCaseEditrici extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final AccountDAO accountDAO = new AccountDAO();
 	
@@ -26,17 +26,17 @@ public class ListaGiocatori extends HttpServlet {
 		
 		String order = request.getParameter("order");
 		
-		Collection<AccountBean> users = null;
+		Collection<AccountBean> caseEditrici = null;
 		
 		try {
-			users = accountDAO.doRetrieveAll(order, 1);
+			caseEditrici = accountDAO.doRetrieveAll(order, 2);
 		} catch (SQLException e) {
 			throw new MyException("Errore estrazione utenti.");
 		}
 		
-		request.getSession().setAttribute("users", users);
+		request.getSession().setAttribute("caseEditrici", caseEditrici);
 
-		request.getRequestDispatcher("jsp/listaGiocatori.jsp").forward(request, response);
+		request.getRequestDispatcher("jsp/listaCaseEditrici.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

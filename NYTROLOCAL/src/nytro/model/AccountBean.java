@@ -172,9 +172,19 @@ public class AccountBean {
 
 	@Override
 	public String toString() {
-		return "Account [username=" + username + ", password=" + password + ", email=" + email + ", emailRecupero="
+		return getClass().getName() + "[username=" + username + ", password=" + password + ", email=" + email + ", emailRecupero="
 				+ emailRecupero + ", cellulare=" + cellulare + ", data=" + data + ", ora=" + ora + ", ip=" + ip
 				+ ", ruolo=" + ruolo + "]";
+	}
+	
+	public AccountBean clone() {
+		try {
+			AccountBean tmp = (AccountBean) super.clone();
+			return tmp;
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 
