@@ -303,4 +303,64 @@ public class AccountDAO {
 		
 		return (result != 0);
 	}
+	
+	public Collection<String> doRetrieveAllFriendsByUsername(String username) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		Collection<String> amici = new LinkedList<String>();
+		
+		String selectSQL = "SELECT DISTINCT * FROM e_nella_friendlist WHERE Possessore = ?";
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, username);
+			
+			System.out.println("doRetrieveAllFriendsByUsername: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				amici.add(rs.getString("amico"));
+			}
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return amici;
+	}
+	
+	public void doAggiungiAmicoFriendlist(AccountBean bean, String futuroAmico) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String selectSQL ="CALL inserisci_amicizia(?, ?)";
+
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, bean.getUsername());
+			preparedStatement.setString(2, futuroAmico);
+			
+			System.out.println("doAggiungiAmicoFriendlist: " + preparedStatement.toString());
+			
+			preparedStatement.executeQuery();
+			connection.commit();
+			
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
 }

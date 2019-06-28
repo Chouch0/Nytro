@@ -5,7 +5,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 	
 %>
 
-<jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Videogiochi"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
+<jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Pubblicazioni"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
 	
 	<form action="/NYTRO/Pubblicazioni" method="get">
 	<label>Seleziona un criterio di ordinamento

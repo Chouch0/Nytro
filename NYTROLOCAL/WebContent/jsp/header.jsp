@@ -45,10 +45,10 @@
 				</li>
 				<% if(account!=null && (ruolo==1)){ %>
 					<li>
-						<a href="Libreria">Libreria</a>
+						<a href="/NYTRO/Libreria">Libreria</a>
 					</li>
 					<li>
-						<a href="Friendlist">Friendlist</a>
+						<a href="/NYTRO/Friendlist">Friendlist</a>
 					</li>
 				<% } %>
 				<% if(account!=null && (ruolo==0 || ruolo==1)){ %>
