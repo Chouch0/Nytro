@@ -2,6 +2,7 @@
 import="nytro.model.AccountBean, java.util.Collection"%>
 <%
 	Collection<AccountBean> caseEditrici = (Collection<AccountBean>) request.getAttribute("caseEditrici");
+	
 %>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Lista Case Editrici"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	

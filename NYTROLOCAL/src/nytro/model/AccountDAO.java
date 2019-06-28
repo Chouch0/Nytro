@@ -28,7 +28,7 @@ public class AccountDAO {
 		
 		//Nel caso avessi voluto imporre un ordine per l'estrazione degli utenti
 		if(order!=null && !order.equals(""))
-			selectSQL += "ORDER BY '" + order+"'";
+			selectSQL += "ORDER BY "+order;
 		
 		
 		try {

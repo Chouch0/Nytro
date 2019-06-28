@@ -34,7 +34,6 @@ public class ListaGiocatori extends HttpServlet {
 			throw new MyException("Errore estrazione utenti.");
 		}
 		
-		request.removeAttribute("users");
 		request.setAttribute("users", users);
 
 		request.getRequestDispatcher("jsp/listaGiocatori.jsp").forward(request, response);

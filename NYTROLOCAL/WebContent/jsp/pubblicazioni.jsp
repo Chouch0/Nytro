@@ -2,10 +2,7 @@
 import="nytro.model.VideogiocoBean, java.util.Collection"%>
 <%
 	Collection<VideogiocoBean> videogiochi = (Collection<VideogiocoBean>) request.getAttribute("videogiochi");
-	if(videogiochi==null){
-		response.sendRedirect("/NYTRO/Pubblicazioni");
-		return ;
-	}
+	
 %>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Videogiochi"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
@@ -18,7 +15,6 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 	  <option value="Titolo">Titolo</option>
 	  <option value="Voto_Medio">Voto medio delle recensioni</option>
 	  <option value="PEGI">PEGI</option>
-	  <option value="ISIN">ISIN</option>
 	</select> 
 	</label>
 	<label>Seleziona la categoria di videogiochi che vuoi visualizzare

@@ -52,7 +52,6 @@ public class Pubblicazioni extends HttpServlet {
 			throw new MyException("Errore estrazione videogiochi.");
 		}
 		
-		request.removeAttribute("videogiochi");
 		request.setAttribute("videogiochi", videogiochi);
 
 		request.getRequestDispatcher("jsp/pubblicazioni.jsp").forward(request, response);

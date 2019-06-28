@@ -34,7 +34,6 @@ public class ListaCaseEditrici extends HttpServlet {
 			throw new MyException("Errore estrazione utenti.");
 		}
 		
-		request.removeAttribute("caseEditrici");
 		request.setAttribute("caseEditrici", caseEditrici);
 
 		request.getRequestDispatcher("jsp/listaCaseEditrici.jsp").forward(request, response);
