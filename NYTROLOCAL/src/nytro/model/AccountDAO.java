@@ -9,7 +9,7 @@ import java.util.LinkedList;
 
 public class AccountDAO {
 
-	public Collection<AccountBean> doRetrieveAll(String order) throws SQLException {
+	public Collection<AccountBean> doRetrieveAll(String order, String ruolo) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement=null;
 		
@@ -17,9 +17,13 @@ public class AccountDAO {
 		
 		String selectSQL = "SELECT * FROM account ";
 		
+		if(ruolo!=null && !order.equals(""))
+			selectSQL += ""
+		
 		//Nel caso avessi voluto imporre un ordine per l'estrazione degli utenti
 		if(order!=null && !order.equals(""))
 			selectSQL += "ORDER BY " + order;
+		
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
