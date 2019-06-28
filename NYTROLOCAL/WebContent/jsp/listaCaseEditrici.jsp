@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
 import="nytro.model.AccountBean, java.util.Collection"%>
 <%
-	Collection<AccountBean> caseEditrici = (Collection<AccountBean>) session.getAttribute("caseEditrici");
+	Collection<AccountBean> caseEditrici = (Collection<AccountBean>) request.getAttribute("caseEditrici");
 %>
 
-<jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Contatti"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
+<jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Lista Case Editrici"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
 	
 	<form action="/NYTRO/ListaCaseEditrici" method="get">
 	<label>Seleziona un criterio di ordinamento

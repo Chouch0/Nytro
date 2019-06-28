@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
 import="nytro.model.AccountBean, java.util.Collection"%>
 <%
-	Collection<AccountBean> users = (Collection<AccountBean>) session.getAttribute("users");
+	Collection<AccountBean> users = (Collection<AccountBean>) request.getAttribute("users");
 %>
 
-<jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Contatti"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
+<jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Lista Giocatori"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
 	
 	<form action="/NYTRO/ListaGiocatori" method="get">
 	<label>Seleziona un criterio di ordinamento
