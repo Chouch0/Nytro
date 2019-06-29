@@ -485,5 +485,99 @@ public class VideogiocoDAO {
 		return (result != 0);
 	}
 	
+	public VideogiocoBean doRetrieveDetailedByCodice(int codice) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement1 = null;
+		PreparedStatement preparedStatement2 = null;
+		PreparedStatement preparedStatement3 = null;		
+		
+		String selectSQL1 = "SELECT DISTINCT * FROM videogioco, a_pagamento WHERE videogioco.Codice=a_pagamento.Codice AND videogioco.Codice=?";
+		String selectSQL2 = "SELECT DISTINCT * FROM videogioco, demo WHERE videogioco.Codice=demo.Codice AND videogioco.Codice=?";
+		String selectSQL3 = "SELECT DISTINCT * FROM videogioco, free_to_play WHERE videogioco.Codice=free_to_play.Codice AND videogioco.Codice=?";
+		
+		VideogiocoPagamentoBean bean1 = new VideogiocoPagamentoBean();
+		VideogiocoDemoBean bean2 = new VideogiocoDemoBean();
+		VideogiocoFreeToPlayBean bean3 = new VideogiocoFreeToPlayBean();
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			
+			preparedStatement1 = connection.prepareStatement(selectSQL1);
+			preparedStatement2 = connection.prepareStatement(selectSQL2);
+			preparedStatement3 = connection.prepareStatement(selectSQL3);
+			
+			preparedStatement1.setInt(1, codice);
+			preparedStatement2.setInt(1, codice);
+			preparedStatement3.setInt(1, codice);
+			
+			System.out.println("doRetrieveDetailedByCodice: " + preparedStatement1.toString()+"\n\t"+preparedStatement2.toString()+"\n\t"+preparedStatement3.toString());
+			
+			ResultSet rs1 = preparedStatement1.executeQuery();
+			ResultSet rs2 = preparedStatement2.executeQuery();
+			ResultSet rs3 = preparedStatement3.executeQuery();
+			
+			while(rs1.next()) {
+				bean1.setCodice(rs1.getInt("Codice"));
+				bean1.setISIN(rs1.getString("ISIN"));
+				bean1.setDataRimozione(rs1.getString("Data_Rimozione"));
+				bean1.setDataRilascio(rs1.getString("Data_Rilascio"));
+				bean1.setTitolo(rs1.getString("Titolo"));
+				bean1.setVotoMedio(rs1.getDouble("Voto_medio"));
+				bean1.setPEGI(rs1.getInt("PEGI"));
+				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
+				bean1.setPrezzo(rs1.getDouble("Prezzo"));
+				bean1.setCopieVendute(rs1.getInt("Copie_Vendute"));
+			}
+			
+			while(rs2.next()) {
+				bean2.setCodice(rs2.getInt("Codice"));
+				bean2.setISIN(rs2.getString("ISIN"));
+				bean2.setDataRimozione(rs2.getString("Data_Rimozione"));
+				bean2.setDataRilascio(rs2.getString("Data_Rilascio"));
+				bean2.setTitolo(rs2.getString("Titolo"));
+				bean2.setVotoMedio(rs2.getDouble("Voto_medio"));
+				bean2.setPEGI(rs2.getInt("PEGI"));
+				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
+				bean2.setCodiceVideogiocoPrincipale(rs2.getInt("Videogioco_Principale"));
+				bean2.setDurata(rs2.getInt("Durata"));
+			}
+			
+			while(rs3.next()) {
+				bean3.setCodice(rs3.getInt("Codice"));
+				bean3.setISIN(rs3.getString("ISIN"));
+				bean3.setDataRimozione(rs3.getString("Data_Rimozione"));
+				bean3.setDataRilascio(rs3.getString("Data_Rilascio"));
+				bean3.setTitolo(rs3.getString("Titolo"));
+				bean3.setVotoMedio(rs3.getDouble("Voto_medio"));
+				bean3.setPEGI(rs3.getInt("PEGI"));
+				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
+				bean3.setModalitaDiGioco(rs3.getString("Modalita_Di_Gioco"));
+			}
+			
+		} finally {
+			try {
+				if(preparedStatement1!=null)
+					preparedStatement1.close();
+				if(preparedStatement2!=null)
+					preparedStatement2.close();
+				if(preparedStatement3!=null)
+					preparedStatement3.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		//Solo uno dei tre avrà ISIN != da null, gli altri due lo avranno NULL
+		if(bean1.getISIN()!=null)
+			return bean1;
+		else if(bean2.getISIN()!=null)
+			return bean2;
+		else if(bean3.getISIN()!=null)
+			return bean3;
+		
+		return null;
+	}
+	
 	
 }
