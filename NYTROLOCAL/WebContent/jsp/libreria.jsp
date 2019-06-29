@@ -26,7 +26,8 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 		<%
 			for(VideogiocoBean x : libreria){
 		%>
-			<%=x.toString() %><br/>		
+			<%=x.toString() %> <form action="/NYTRO/Libreria?cancellaVideogioco=<%=x.getCodice()%>" method="post"> <input type="submit" value="Rimuovi"/></form>
+			<br/>		
 		<%
 			}
 		%>

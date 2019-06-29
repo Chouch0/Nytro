@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import nytro.exceptions.MyException;
 import nytro.model.AccountBean;
-import nytro.model.AccountDAO;
 import nytro.model.VideogiocoBean;
 import nytro.model.VideogiocoDAO;
 
@@ -26,6 +25,16 @@ public class Libreria extends HttpServlet {
 		AccountBean account = (AccountBean) request.getSession().getAttribute("account");
 		if(account.getRuolo()!=1)
 			throw new MyException("Non disponi dei permessi necessari per visualizzare tale risorsa.");
+		
+		String cancellaVideogioco=request.getParameter("cancellaVideogioco");
+		if(cancellaVideogioco!=null && !cancellaVideogioco.equals("")) {
+			int codiceVideogiocoDaCancellare = Integer.parseInt(cancellaVideogioco);
+			try {
+				videogiocoDAO.doDeleteFromLibreria(account.getUsername(), codiceVideogiocoDaCancellare);
+			} catch (SQLException e) {
+				throw new MyException("Errore cancellazione videogioco.");
+			}
+		} 
 		
 		String order = request.getParameter("order");
 		
