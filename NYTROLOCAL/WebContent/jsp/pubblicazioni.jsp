@@ -16,7 +16,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 	  <option value="Voto_Medio">Voto medio delle recensioni</option>
 	  <option value="PEGI">PEGI</option>
 	</select> 
-	</label>
+	</label>	
 	<label>Seleziona la categoria di videogiochi che vuoi visualizzare
 	 <select name="categoria">
 	  <option value="" selected>Nessuno</option>

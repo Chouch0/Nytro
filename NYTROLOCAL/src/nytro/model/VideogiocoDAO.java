@@ -57,6 +57,57 @@ public class VideogiocoDAO {
 		
 		return videogiochi;
 	}
+	
+	public Collection<VideogiocoBean> doRetrieveAllLibreria(String username, String order) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement=null;
+		
+		Collection<VideogiocoBean> videogiochi = new LinkedList<VideogiocoBean>();
+		
+		String selectSQL = "SELECT DISTINCT * FROM account, videogioco, ha_nella_libreria WHERE account.Username = ? AND account.Username=ha_nella_libreria.Username AND videogioco.Codice=ha_nella_libreria.Videogioco ";
+		
+		//Nel caso avessi voluto imporre un ordine per l'estrazione degli utenti
+		if(order!=null && !order.equals(""))
+			selectSQL += " ORDER BY " + order;
+		
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, username);			
+			
+			System.out.println("doRetrieveAllLibreria: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				/*	N.B. La query produce una tabella con più colonne di quelle che effettivamente andiamo ad utilizzare, siamo interessati
+				 * 			solo a quelle che riguardano i videogiochi!*/
+				VideogiocoBean bean = new VideogiocoBean();
+				
+				bean.setCodice(rs.getInt("Codice"));
+				bean.setISIN(rs.getString("ISIN"));
+				bean.setDataRimozione(rs.getString("Data_Rimozione"));
+				bean.setDataRilascio(rs.getString("Data_Rilascio"));
+				bean.setTitolo(rs.getString("Titolo"));
+				bean.setVotoMedio(rs.getDouble("Voto_medio"));
+				bean.setPEGI(rs.getInt("PEGI"));
+				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
+				
+				videogiochi.add(bean);				
+				
+			}
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return videogiochi;
+	}
 
 	public Collection<VideogiocoBean> doRetrieveAllPagamento(String order, String isin) throws SQLException {
 		Connection connection = null;
@@ -387,4 +438,6 @@ public class VideogiocoDAO {
 		
 		return (result != 0);
 	}
+	
+	
 }
