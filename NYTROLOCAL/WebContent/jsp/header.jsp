@@ -52,7 +52,7 @@
 					</li>
 				<% } %>
 				<% if(account!=null && (ruolo==0 || ruolo==1)){ %>
-					<li><a>Esplora</a>
+					<li>Esplora
 					<div class = "menuTendina">
 					<!-- 
 					Il tag <menu> definisce una lista di comandi 
@@ -60,10 +60,10 @@
 					si preoccuperà di caricare in modo adeguato la jsp corrispondente.
 					-->
 						<div class = "elementoTendina">
-							<a href="Catalogo">Catalogo</a>
+							<a href="/NYTRO/Catalogo">Catalogo</a>
 						</div>
 						<div class = "elementoTendina">
-							<a href="CaseEditrici">Case Editrici</a>
+							<a href="/NYTRO/CaseEditrici">Case Editrici</a>
 						</div>
 					</div>
 					</li>		

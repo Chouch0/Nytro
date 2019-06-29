@@ -15,7 +15,10 @@ public class VideogiocoDAO {
 		
 		Collection<VideogiocoBean> videogiochi = new LinkedList<VideogiocoBean>();
 		
-		String selectSQL = "SELECT DISTINCT * FROM videogioco WHERE ISIN='"+isin+"' ";
+		String selectSQL = "SELECT DISTINCT * FROM videogioco ";
+		
+		if(isin!=null && !isin.equals(""))
+			selectSQL +=" WHERE ISIN='"+isin+"'";
 		
 		//Nel caso avessi voluto imporre un ordine per l'estrazione degli utenti
 		if(order!=null && !order.equals(""))
@@ -115,7 +118,10 @@ public class VideogiocoDAO {
 		
 		Collection<VideogiocoBean> videogiochi = new LinkedList<VideogiocoBean>();
 		
-		String selectSQL = "SELECT DISTINCT * FROM videogioco, a_pagamento WHERE videogioco.Codice=a_pagamento.Codice AND ISIN ='"+isin+"' ";
+		String selectSQL = "SELECT DISTINCT * FROM videogioco, a_pagamento WHERE videogioco.Codice=a_pagamento.Codice ";
+		
+		if(isin!=null && !isin.equals(""))
+			selectSQL +=" AND ISIN='"+isin+"'";		
 		
 		//Nel caso avessi voluto imporre un ordine per l'estrazione degli utenti
 		if(order!=null && !order.equals(""))
@@ -166,7 +172,10 @@ public class VideogiocoDAO {
 		
 		Collection<VideogiocoBean> videogiochi = new LinkedList<VideogiocoBean>();
 		
-		String selectSQL = "SELECT DISTINCT * FROM videogioco, demo WHERE videogioco.Codice=demo.Codice AND ISIN ='"+isin+"' ";
+		String selectSQL = "SELECT DISTINCT * FROM videogioco, demo WHERE videogioco.Codice=demo.Codice ";
+		
+		if(isin!=null && !isin.equals(""))
+			selectSQL +=" AND ISIN='"+isin+"'";
 		
 		//Nel caso avessi voluto imporre un ordine per l'estrazione degli utenti
 		if(order!=null && !order.equals(""))
@@ -218,7 +227,10 @@ public class VideogiocoDAO {
 		
 		Collection<VideogiocoBean> videogiochi = new LinkedList<VideogiocoBean>();
 		
-		String selectSQL = "SELECT DISTINCT * FROM videogioco, free_to_play WHERE videogioco.Codice=free_to_play.Codice AND ISIN ='"+isin+"' ";
+		String selectSQL = "SELECT DISTINCT * FROM videogioco, free_to_play WHERE videogioco.Codice=free_to_play.Codice ";
+		
+		if(isin!=null && !isin.equals(""))
+			selectSQL +=" AND ISIN='"+isin+"'";
 		
 		//Nel caso avessi voluto imporre un ordine per l'estrazione degli utenti
 		if(order!=null && !order.equals(""))
@@ -270,7 +282,10 @@ public class VideogiocoDAO {
 		
 		VideogiocoBean bean = new VideogiocoBean();
 		
-		String selectSQL = "SELECT * FROM videogioco WHERE Codice = ? AND ISIN ='"+isin+"' ";
+		String selectSQL = "SELECT * FROM videogioco WHERE Codice = ? ";
+		
+		if(isin!=null && !isin.equals(""))
+			selectSQL +=" AND ISIN='"+isin+"'";
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
