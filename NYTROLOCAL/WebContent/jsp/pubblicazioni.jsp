@@ -34,7 +34,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 		<%
 			for(VideogiocoBean x : videogiochi){
 		%>
-			<%=x.toString() %><br/>		
+			<%=x.toString() %><span class = "buttonLink"><a href="/NYTRO/Videogioco?codiceVideogioco=<%=x.getCodice()%>">Informazioni</a></span><br/>		
 		<%
 			}
 		%>
