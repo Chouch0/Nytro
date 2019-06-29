@@ -55,7 +55,7 @@
 					<li>Esplora
 					<div class = "menuTendina">
 					<!-- 
-					Il tag <menu> definisce una lista di comandi 
+					Il tag <menu> definisce una lista di comandi  
 					Il funzionamento è il seguente: cliccando su "Catalogo" o su "Case Editrici" verrà richiamata la servlet corrispondente, la quale 
 					si preoccuperà di caricare in modo adeguato la jsp corrispondente.
 					-->
