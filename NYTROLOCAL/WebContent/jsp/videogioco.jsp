@@ -10,7 +10,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 	<h1><%=videogiocoDetailed.getTitolo() %></h1>
 	
 	<p>
-		<%=videogiocoDetailed.toString()%>
+		<%=videogiocoDetailed.toString() %>
 	</p>
 	
 <%@include file="footer.html"%>							
