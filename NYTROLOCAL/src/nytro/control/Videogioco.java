@@ -52,7 +52,7 @@ public class Videogioco extends HttpServlet {
 			try {
 				recensioneDAO.doDelete(account.getUsername(), Integer.parseInt(codiceVideogioco));
 			} catch (NumberFormatException | SQLException e) {
-				throw new MyException("Impossibile cancellare recensione");
+				throw new MyException("Impossibile cancellare recensione"); 
 			}
 		}
 		
