@@ -30,7 +30,8 @@
 			</a>
 		</div>
 		<%}else { %>
-			<b><%=account.getUsername()%></b>				
+			<a href="Profilo"><%=account.getUsername()%></a> |
+			<a href="/NYTRO/Logout">Logout</a>			
 		<%} %>
 	</header>
 	<nav>
@@ -50,17 +51,16 @@
 				</li>
 			<% } %>
 			<% if(account!=null && (ruolo==0 || ruolo==1)){ %>
-				<li><a href="#">Esplora</a>
-				<div class = "menuTendina">
+				<li>
+				<div id = "menuEsplora">
+					<a href="#">Esplora</a>
 				<!-- 
 				Il tag <menu> definisce una lista di comandi  
 				Il funzionamento è il seguente: cliccando su "Catalogo" o su "Case Editrici" verrà richiamata la servlet corrispondente, la quale 
 				si preoccuperà di caricare in modo adeguato la jsp corrispondente.
 				-->
-					<div class = "elementoTendina">
+					<div class = "elementoEsplora">
 						<a href="/NYTRO/Catalogo">Catalogo</a>
-					</div>
-					<div class = "elementoTendina">
 						<a href="/NYTRO/ListaCaseEditrici">Case Editrici</a>
 					</div>
 				</div>
@@ -73,9 +73,9 @@
 			Se l'utente è registrato, a seconda del proprio ruolo, visualizzerà informazioni diverse.
 			-->
 				<%if(account==null){%>					
-					<div class = "menuTendina">
+					<div id = "menuLogin">
 						<a href="#">Login</a>
-							<div class = "elementoTendina">
+							<div class = "elementoLogin">
 								<form action="/NYTRO/Login" method="post">
 									<input type="text" name="username" placeholder="Username" required><br/>
 									<input type="password" name="password" placeholder="Password" required><br/>
@@ -94,27 +94,28 @@
 							</div>
 						</div>
 				<%} else { %>
-					<div class = "menuTendina">	
-						<b><%=account.getUsername()%></b>				
+					<div id = "menuUser">	
+						<a href="#"><%=account.getUsername()%></a>
+						<div class = "elementoUser">				
 						<% if(ruolo==0){			//Admin%>
-							<div class = "elementoTendina"><a href="/NYTRO/ListaGiocatori">Lista giocatori</a></div>
-							<div class = "elementoTendina"><a href="/NYTRO/ListaCaseEditrici">Lista case editrici</a></div>
+								<a href="/NYTRO/ListaGiocatori">Lista giocatori</a>
+								<a href="/NYTRO/ListaCaseEditrici">Lista case editrici</a>
 							<hr/>
 						<% } 
 							if(ruolo==1){		//Giocatore %>
-							<div class = "elementoTendina"><a href="/NYTRO/Carrello">Carrello</a></div>	<!-- Richiama la servlet responsabile di gestire il carrello -->
+								<a href="/NYTRO/Carrello">Carrello</a> <!-- Richiama la servlet responsabile di gestire il carrello -->
 							<hr/>	
 						<%} 
 							if(ruolo==2){		//Azienda %>
-							<div class = "elementoTendina"><a href="/NYTRO/Pubblicazioni">Pubblicazioni</a></div>
+								<a href="/NYTRO/Pubblicazioni">Pubblicazioni</a>
 							<hr>
 						<%} %>
-						<div class = "elementoTendina"><a href="Profilo">Profilo</a></div>	<!-- Rimanda alla servlet per la gestione del profilo dell'utente (cambia a seconda del tipo di utente) -->
-						<div class = "elementoTendina">		<!-- Visualizza un pulsante attraverso cui richiamare la servlet per il Logout -->
+						<a href="Profilo">Profilo</a>	<!-- Rimanda alla servlet per la gestione del profilo dell'utente (cambia a seconda del tipo di utente) -->
+								<!-- Visualizza un pulsante attraverso cui richiamare la servlet per il Logout
 							<form action="/NYTRO/Logout">
 								<input type="submit" value="Logout">
-							</form>
-						</div>
+							</form> Non è necessario un form -->
+						<a href="/NYTRO/Logout">Logout</a>
 					</div>
 				<%} %>
 			</li>

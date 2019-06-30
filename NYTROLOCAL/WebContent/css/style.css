@@ -65,16 +65,16 @@ nav li a:hover {
 	background-color: #ddd;
 }
 
-.elementoTendina {
-	display: none;
+.elementoLogin, .elementoEsplora, .elementoUser {
 	position: absolute;
+	display: none;
 	background-color: #f1f1f1;
   	min-width: 160px;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	z-index: 1;
 }
 
-.elementoTendina form input[type=text], input[type=password]{
+.elementoLogin form input[type=text], input[type=password]{
 	width: 100%;
 	box-sizing: border-box;
 	padding: 5px;
@@ -85,7 +85,7 @@ nav li a:hover {
 	font-size: inherit;
 }
 
-.elementoTendina form input[type=button], input[type=submit], input[type=reset] {
+.elementoLogin form input[type=button], input[type=submit], input[type=reset] {
 	border: none;
 	text-decoration: none;
 	display: block;
@@ -103,7 +103,12 @@ nav li a:hover {
 .elementoTendina form input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {	background-color: #ddd;}
 
 .elementoTendina a:hover {background-color: #ddd;}
-.menuTendina:hover .elementoTendina {display: block;}
+
+#menuEsplora:hover .elementoEsplora {display: block;}
+
+#menuLogin:hover .elementoLogin {display: block;}
+
+#menuUser:hover .elementoUser {display: block;}
 
 #ricerca input[type=text]{
 	margin: 10px 0px 0px 0px;
