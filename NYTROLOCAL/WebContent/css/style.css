@@ -50,14 +50,6 @@ footer {
 	text-decoration: none;
 }
 
-.menu form {
-	display: block;
-	color: #666;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-}
-
 .menu li a:hover {
 	background-color: #ddd;
 }
@@ -71,5 +63,47 @@ footer {
 	z-index: 1;
 }
 
+.elementoTendina form input[type=text], input[type=password]{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 5px;
+	color: #666;
+	border:none;
+	border-bottom: 1px solid lightgrey;
+	font-family: inherit;
+	font-size: inherit;
+}
+
+.elementoTendina form input[type=button], input[type=submit], input[type=reset] {
+	border: none;
+	text-decoration: none;
+	display: block;
+	color: #666;
+	padding: 14px 16px;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	width: 100%;
+	font-family: inherit;
+	font-size: inherit;
+	background-color: inherit;
+}
+
+.elementoTendina form input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {	background-color: #ddd;}
+
 .elementoTendina a:hover {background-color: #ddd;}
 .menuTendina:hover .elementoTendina {display: block;}
+
+#ricerca input[type=text]{
+	margin: 10px 0px 0px 0px;
+	padding: 5px 0px 5px 30px;
+	background-color: white;
+	background-image: url('/NYTRO/img/search.png');
+	background-size: 17px;
+	background-position: 4px 4px;
+	background-repeat: no-repeat;
+	border: 1px solid lighrgrey;
+	border-radius: 4px;
+}
+
+

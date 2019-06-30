@@ -27,17 +27,6 @@
 			</header>
 			<ul>
 				<li>
-					<form action="Ricerca" method="get">
-						<input type="text" name="q" list="ricerca-datalist" placeholder="Ricerca" onkeyup="ricerca(this.value)"> <!-- value="<c:out value="${param.q}" />" -->
-						<datalist id="ricerca-datalist"></datalist>
-						<!-- 
-						Il tag <datalist> viene utilizzato per fornire la funzione di "autocompletamento" per elementi di input;
-						mostrerà un menù a tendina con opzioni predefinite a seconda dell'input che usando.	
-						In questo modo otterremo una ricerca-ajax.
-						-->
-					</form>
-				</li>
-				<li>
 					<a href=".">Home</a>
 				</li>
 				<li>
@@ -121,7 +110,18 @@
 							</div>
 						</div>
 					<%} %>
-				</li>	
+				</li>
+				<li>
+					<form action="Ricerca" method="get" id="ricerca">
+						<input type="text" name="q" list="ricerca-datalist" placeholder="Ricerca" onkeyup="ricerca(this.value)"> <!-- value="<c:out value="${param.q}" />" -->
+						<datalist id="ricerca-datalist"></datalist>
+						<!-- 
+						Il tag <datalist> viene utilizzato per fornire la funzione di "autocompletamento" per elementi di input;
+						mostrerà un menù a tendina con opzioni predefinite a seconda dell'input che usando.	
+						In questo modo otterremo una ricerca-ajax.
+						-->
+					</form>
+				</li>
 			</ul>
 		</div>
 	</nav>
