@@ -38,7 +38,7 @@ footer {
 }
 
 .menu li {
-	display: inline;
+	display: inline-block;
 	float: left;
 }
 
@@ -58,9 +58,8 @@ footer {
 	text-decoration: none;
 }
 
-.menuTendina {
-	position: relative;
-	display: inline-block;
+.menu li a:hover {
+	background-color: #ddd;
 }
 
 .elementoTendina {
@@ -72,15 +71,5 @@ footer {
 	z-index: 1;
 }
 
-
 .elementoTendina a:hover {background-color: #ddd;}
 .menuTendina:hover .elementoTendina {display: block;}
-
-
-.schedaTendina form {
-	display: inline-block;
-	color: #666;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-}
