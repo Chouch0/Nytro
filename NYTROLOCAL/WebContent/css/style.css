@@ -1,3 +1,4 @@
+
 @charset "ISO-8859-1";
 
 img#logo {
@@ -28,7 +29,7 @@ footer {
 	color:#00ffff;
 }
 
-.menu ul{ 
+nav ul{ 
 	 list-style-type: none;
 	 margin: 0;
 	 padding: 0;
@@ -37,12 +38,12 @@ footer {
 	 background-color: #f3f3f3;
 }
 
-.menu li {
+nav li {
 	display: inline-block;
 	float: left;
 }
 
-.menu li a {
+nav li a {
 	display: block;
 	color: #666;
 	text-align: center;
@@ -50,7 +51,7 @@ footer {
 	text-decoration: none;
 }
 
-.menu li a:hover {
+nav li a:hover {
 	background-color: #ddd;
 }
 
@@ -105,5 +106,3 @@ footer {
 	border: 1px solid lighrgrey;
 	border-radius: 4px;
 }
-
-
