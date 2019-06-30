@@ -75,7 +75,7 @@
 				Se l'utente è registrato, a seconda del proprio ruolo, visualizzerà informazioni diverse.
 				-->
 					<%if(account==null){%>
-						Login
+						<a>Login</a>
 							<div class = "menuTendina">
 								<div class = "elementoTendina">
 									<div class ="schedaTendina">
