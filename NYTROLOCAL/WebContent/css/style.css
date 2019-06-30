@@ -100,10 +100,6 @@ nav li a:hover {
 	background-color: inherit;
 }
 
-.elementoTendina form input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {	background-color: #ddd;}
-
-.elementoTendina a:hover {background-color: #ddd;}
-
 #menuEsplora:hover .elementoEsplora {display: block;}
 
 #menuLogin:hover .elementoLogin {display: block;}

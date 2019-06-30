@@ -21,7 +21,7 @@
 <body>
 	<header>
 	<!-- Logo del sito + Nome del sito-->
-		<a href="."><img id="logo" src="/NYTRO/img/logo.png" alt="logo"/>NYTRO</a>
+		<a href="/NYTRO/jsp/index.jsp"><img id="logo" src="/NYTRO/img/logo.png" alt="logo"/>NYTRO</a>
 	<div id="opzioni">
 		<%if(account==null){%>					
 			<a href="#">Login</a> | 
