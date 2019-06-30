@@ -27,11 +27,10 @@
 			</header>
 			<ul>
 				<li>
-					<form action="/NYTRO/jsp/index.jsp" method="get"><input type="submit"></form>
-					<a href=".">Home</a>
+					<form action="/NYTRO/jsp/index.jsp" method="get" ><input type="submit" value="Home"></form>
 				</li>
 				<li>
-					<a href="contatti.jsp">Contatti</a>
+					<form action="/NYTRO/jsp/contatti.jsp" method="get" ><input type="submit" value="Contatti"></form>
 				</li>
 				<% if(account!=null && (ruolo==1)){ %>
 					<li>
