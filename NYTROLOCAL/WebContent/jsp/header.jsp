@@ -22,6 +22,16 @@
 	<header>
 	<!-- Logo del sito + Nome del sito-->
 		<a href="."><img id="logo" src="/NYTRO/img/logo.png" alt="logo"/>NYTRO</a>
+	<div id="opzioni">
+		<%if(account==null){%>					
+			<a href="#">Login</a> | 
+			<a href="/NYTRO/RegistrazioneForm">
+				Registrazione
+			</a>
+		</div>
+		<%}else { %>
+			<b><%=account.getUsername()%></b>				
+		<%} %>
 	</header>
 	<nav>
 		<ul>
@@ -101,11 +111,9 @@
 						<%} %>
 						<div class = "elementoTendina"><a href="Profilo">Profilo</a></div>	<!-- Rimanda alla servlet per la gestione del profilo dell'utente (cambia a seconda del tipo di utente) -->
 						<div class = "elementoTendina">		<!-- Visualizza un pulsante attraverso cui richiamare la servlet per il Logout -->
-							<div class = "schedaTendina">
-								<form action="/NYTRO/Logout">
-									<input type="submit" value="Logout">
-								</form>
-							</div>
+							<form action="/NYTRO/Logout">
+								<input type="submit" value="Logout">
+							</form>
 						</div>
 					</div>
 				<%} %>

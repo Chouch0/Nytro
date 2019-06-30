@@ -1,8 +1,11 @@
-
 @charset "ISO-8859-1";
 
+body {
+	font-family: arial, sans-serif;
+}
+
 img#logo {
-	max-width: 3%;
+	max-width: 4%;
 	height: auto;
 }
 
@@ -27,6 +30,13 @@ header {
 
 footer {
 	color:#00ffff;
+}
+
+#opzioni {
+	font-size: 0.25em;
+	color: #666;
+	float: right;
+	margin: 1%;
 }
 
 nav ul{ 
@@ -103,6 +113,6 @@ nav li a:hover {
 	background-size: 17px;
 	background-position: 4px 4px;
 	background-repeat: no-repeat;
-	border: 1px solid lighrgrey;
+	border: 1px solid lightgrey;
 	border-radius: 4px;
 }
