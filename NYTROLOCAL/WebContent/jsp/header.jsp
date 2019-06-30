@@ -41,7 +41,7 @@
 					</li>
 				<% } %>
 				<% if(account!=null && (ruolo==0 || ruolo==1)){ %>
-					<li>Esplora
+					<li><a href="#">Esplora</a>
 					<div class = "menuTendina">
 					<!-- 
 					Il tag <menu> definisce una lista di comandi  
