@@ -21,9 +21,9 @@ import="nytro.model.VideogiocoBean, nytro.model.AccountBean, java.util.Collectio
 		</label>
 		<input type="submit" value="Vai"/>
 	</form>
-	
+	 
 	<h1>Catalogo completo dei videogiochi della casa editrice</h1>
-	
+	 
 	<p>
 		<%
 			for(VideogiocoBean x : catalogoCasaEditrice){
