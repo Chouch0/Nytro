@@ -27,6 +27,7 @@
 			</header>
 			<ul>
 				<li>
+					<form action="/NYTRO/jsp/index.jsp" method="get"><input type="submit"></form>
 					<a href=".">Home</a>
 				</li>
 				<li>
