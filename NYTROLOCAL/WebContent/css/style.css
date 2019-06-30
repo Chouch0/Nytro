@@ -48,6 +48,10 @@ nav ul{
 	 background-color: #f3f3f3;
 }
 
+nav ul li:last-child {
+	float: right;
+}
+
 nav li {
 	display: inline-block;
 	float: left;
@@ -107,7 +111,7 @@ nav li a:hover {
 #menuUser:hover .elementoUser {display: block;}
 
 #ricerca input[type=text]{
-	margin: 10px 0px 0px 0px;
+	margin: 10px 14px 0px 0px;
 	padding: 5px 0px 5px 30px;
 	background-color: white;
 	background-image: url('/NYTRO/img/search.png');
