@@ -37,10 +37,10 @@
 	<nav>
 		<ul>
 			<li>
-				<form action="/NYTRO/jsp/index.jsp" method="get" ><input type="submit" value="Home"></form>
+				<a href="/NYTRO/jsp/index.jsp">Home</a>
 			</li>
 			<li>
-				<form action="/NYTRO/jsp/contatti.jsp" method="get" ><input type="submit" value="Contatti"></form>
+				<a href="/NYTRO/jsp/contatti.jsp">Contatti</a>
 			</li>
 			<% if(account!=null && (ruolo==1)){ %>
 				<li>
