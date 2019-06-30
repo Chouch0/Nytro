@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
-import="nytro.model.AccountBean, java.util.Collection"%>
+import="nytro.model.AccountBean, java.util.Collection, nytro.model.CasaEditriceBean"%>
 <%
 	Collection<AccountBean> caseEditrici = (Collection<AccountBean>) request.getAttribute("caseEditrici");
 	
@@ -24,8 +24,10 @@ import="nytro.model.AccountBean, java.util.Collection"%>
 	<p>
 		<%
 			for(AccountBean x : caseEditrici){
+				CasaEditriceBean tmp = (CasaEditriceBean) x;
+				System.out.println(tmp.getISIN());
 		%>
-			<%=x.toString() %><br/>		
+			<a href="/NYTRO/CatalogoCasaEditrice?isinCasaEditrice=<%=tmp.getISIN()%>"><%=x.toString() %></a><br/>		
 		<%
 			}
 		%>

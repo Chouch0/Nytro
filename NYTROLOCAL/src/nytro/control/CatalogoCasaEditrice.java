@@ -12,31 +12,35 @@ import javax.servlet.http.HttpServletResponse;
 
 import nytro.exceptions.MyException;
 import nytro.model.AccountBean;
-import nytro.model.AccountDAO;
+import nytro.model.VideogiocoBean;
+import nytro.model.VideogiocoDAO;
 
-@WebServlet("/ListaCaseEditrici")
-public class ListaCaseEditrici extends HttpServlet {
+@WebServlet("/CatalogoCasaEditrice")
+public class CatalogoCasaEditrice extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final AccountDAO accountDAO = new AccountDAO();
+	private final VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AccountBean account = (AccountBean) request.getSession().getAttribute("account");
-		if(!(account.getRuolo()==0||account.getRuolo()==1))
+		if(!(account.getRuolo()==1||account.getRuolo()==0))
 			throw new MyException("Non disponi dei permessi necessari per visualizzare tale risorsa.");
 		
 		String order = request.getParameter("order");
+		String isinCasaEditrice = request.getParameter("isinCasaEditrice");
 		
-		Collection<AccountBean> caseEditrici = null;
+		Collection<VideogiocoBean> catalogoCasaEditrice = null;
 		
 		try {
-			caseEditrici = accountDAO.doRetrieveAll(order, 2);
+			catalogoCasaEditrice = videogiocoDAO.doRetrieveAll(order, isinCasaEditrice);
+			
 		} catch (SQLException e) {
-			throw new MyException("Errore estrazione utenti.");
+			throw new MyException("Errore estrazione videogiochi.");
 		}
 		
-		request.setAttribute("caseEditrici", caseEditrici);
+		request.setAttribute("catalogoCasaEditrice", catalogoCasaEditrice);
+		request.setAttribute("isinCasaEditrice", isinCasaEditrice);
 
-		request.getRequestDispatcher("jsp/listaCaseEditrici.jsp").forward(request, response);
+		request.getRequestDispatcher("jsp/catalogoCasaEditrice.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

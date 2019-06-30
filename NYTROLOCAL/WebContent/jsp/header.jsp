@@ -52,7 +52,7 @@
 							<a href="/NYTRO/Catalogo">Catalogo</a>
 						</div>
 						<div class = "elementoTendina">
-							<a href="/NYTRO/CaseEditrici">Case Editrici</a>
+							<a href="/NYTRO/ListaCaseEditrici">Case Editrici</a>
 						</div>
 					</div>
 					</li>		
