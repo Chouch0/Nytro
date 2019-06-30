@@ -74,21 +74,17 @@
 				Se l'utente non ha effettuato il login, gli verrà mostrato un format a tale scopo, oppure un link che rimanda ad un format di registrazione.
 				Se l'utente è registrato, a seconda del proprio ruolo, visualizzerà informazioni diverse.
 				-->
-					<%if(account==null){%>
-						<a>Login</a>
-							<div class = "menuTendina">
+					<%if(account==null){%>					
+						<div class = "menuTendina">
+							<a href="#">Login</a>
 								<div class = "elementoTendina">
-									<div class ="schedaTendina">
-										<form action="/NYTRO/Login" method="post">
-											<input type="text" name="username" placeholder="Username" required><br/>
-											<input type="password" name="password" placeholder="Password" required><br/>
-											<!-- Il ruolo dell'utente verrà ricavato in modo automatico dal database, per questo motivo non è necessario
-											specificarlo ora. -->
-											<input type="submit" value="Login">
-										</form>
-									</div>
-								</div>
-								<div class = "elementoTendina">
+									<form action="/NYTRO/Login" method="post">
+										<input type="text" name="username" placeholder="Username" required><br/>
+										<input type="password" name="password" placeholder="Password" required><br/>
+										<!-- Il ruolo dell'utente verrà ricavato in modo automatico dal database, per questo motivo non è necessario
+										specificarlo ora. -->
+										<input type="submit" value="Login">
+									</form>
 									<!-- 
 									RegistrazioneForm rimanderà a RegistrazioneFormServlet, la quale rimandera alla jsp responsabile dell'input dei campi
 									per effettuare la registrazione. Quest'ultima jsp rimanderà a RegistrazioneServlet che si occuperà della registrazione
@@ -128,4 +124,6 @@
 				</li>	
 			</ul>
 		</div>
-	</nav> 
+	</nav>
+</body>
+</html>
