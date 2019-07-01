@@ -304,14 +304,14 @@ public class AccountDAO {
 		return (result != 0);
 	}
 	
-	public Collection<String> doRetrieveAllFriendsByUsername(String username) throws SQLException {
+	public Collection<AccountBean> doRetrieveAllFriendsByUsername(String username) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<String> amici = new LinkedList<String>();
+		Collection<AccountBean> amici = new LinkedList<AccountBean>();
 		
-		String selectSQL = "SELECT DISTINCT * FROM e_nella_friendlist WHERE Possessore = ?";
+		String selectSQL = "SELECT DISTINCT * FROM e_nella_friendlist, account WHERE e_nella_friendlist.Possessore = ? AND e_nella_friendlist.Amico=account.Username";
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
@@ -323,7 +323,20 @@ public class AccountDAO {
 			ResultSet rs = preparedStatement.executeQuery();
 			
 			while(rs.next()) {
-				amici.add(rs.getString("amico"));
+				AccountBean bean = new AccountBean();
+				
+				bean.setUsername(rs.getString("Username"));
+				bean.setPassword(rs.getString("Password"));
+				bean.setEmail(rs.getString("Email"));
+				bean.setEmailRecupero(rs.getString("Email_Recupero"));
+				bean.setCellulare(rs.getString("Cellulare"));
+				bean.setData(rs.getString("Data"));
+				bean.setOra(rs.getString("Ora"));
+				bean.setIp(rs.getString("IP"));
+				bean.setRuolo(rs.getInt("Ruolo"));
+				//bean.setUsername(rs.getString("Img_Profilo"));
+				
+				amici.add(bean);
 			}
 		} finally {
 			try {

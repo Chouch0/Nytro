@@ -27,7 +27,7 @@ public class Friendlist extends HttpServlet {
 			throw new MyException("Non disponi dei permessi necessari per visualizzare tale risorsa.");
 		
 			
-		Collection<String> amici = null;
+		Collection<AccountBean> amici = null;
 		
 		try {
 			amici = accountDAO.doRetrieveAllFriendsByUsername(account.getUsername());			

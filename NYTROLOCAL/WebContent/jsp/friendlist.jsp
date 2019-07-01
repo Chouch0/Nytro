@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
-import="java.util.Collection"%>
+import="java.util.Collection, nytro.model.AccountBean"%>
 <%
-	Collection<String> amici = (Collection<String>) request.getAttribute("amici");
+	Collection<AccountBean> amici = (Collection<AccountBean>) request.getAttribute("amici");
 %>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Friendlist"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
@@ -10,7 +10,7 @@ import="java.util.Collection"%>
 	
 	<p>
 		<%
-			for(String x : amici){
+			for(AccountBean x : amici){
 		%>
 			<%=x.toString() %><br/>		
 		<%
