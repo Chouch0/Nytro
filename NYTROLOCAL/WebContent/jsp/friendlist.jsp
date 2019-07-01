@@ -12,7 +12,12 @@ import="java.util.Collection, nytro.model.AccountBean"%>
 		<%
 			for(AccountBean x : amici){
 		%>
-			<%=x.toString() %><br/>		
+			<%=x.toString() %> 
+			<form action="/NYTRO/RimuoviFriend" method="post">
+				<input type="hidden" name="eliminatoAmico" value="<%=x.getUsername()%>">
+				<input type="submit" value="Rimuovi">
+			</form>
+			<br/>		
 		<%
 			}
 		%>
@@ -25,5 +30,6 @@ import="java.util.Collection, nytro.model.AccountBean"%>
 		<input type="submit" value="Aggiungi">
 	</label>
 	</form>
+	
 	
 <%@include file="footer.html"%>							

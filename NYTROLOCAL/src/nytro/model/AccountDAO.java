@@ -376,4 +376,31 @@ public class AccountDAO {
 			}
 		}
 	}
+	
+	public void doRimuoviAmicoFriendlist(AccountBean bean, String futuroAmico) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String selectSQL ="CALL cancella_amicizia(?, ?)";
+
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, bean.getUsername());
+			preparedStatement.setString(2, futuroAmico);
+			
+			System.out.println("doRimuoviAmicoFriendlist: " + preparedStatement.toString());
+			
+			preparedStatement.executeQuery();
+			connection.commit();
+			
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
 }
