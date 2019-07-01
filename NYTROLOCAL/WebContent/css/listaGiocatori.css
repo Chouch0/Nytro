@@ -23,8 +23,61 @@ tr:hover {
 	background-color: #ddd;
 }
 
-caption {
-	font-size: 1.5em;
-	font-weight: bold;
-	padding-bottom: 10px;
+#select form input[type=button], input[type=submit], input[type=reset] {
+	width:10%
+}
+
+h1 {
+	text-align: center;
+}
+
+#select form {
+	margin: auto;
+	width: 50%;
+}
+
+#select select {
+	padding: 0px;
+	margin: 0px;
+	font-size: 1.2em;
+	border: 1px solid lightgrey;
+}
+
+#select {
+	color: #666;
+	background-color: #f3f3f3;
+	padding:10px;
+}
+
+#select form input[type=button], #select form input[type=submit], #select form input[type=reset] {
+	border: none;
+	text-decoration: none;
+	display: inline-block;
+	color: #666;
+	padding: 14px 16px;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	width: 10%;
+	font-family: inherit;
+	font-size: inherit;
+	background-color: #ddd;
+	-webkit-transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -ms-transition: all 250ms ease-in-out;
+    -o-transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
+}
+
+#select form input[type=button]:hover, #select form input[type=submit]:hover, #select form input[type=reset]:hover {
+	background-color: #ddd;    
+	-webkit-transform: scale(1.08,1.08);
+    -moz-transform: scale(1.08,1.08);
+    -o-transform: scale(1.08,1.08);
+    -ms-transform: scale(1.08,1.08);
+    transform: scale(1.08,1.08);
+}
+
+#tabella {
+	margin: 10px;
 }
