@@ -1,6 +1,8 @@
 package nytro.model;
 
-public class RecensioneBean {
+import java.io.Serializable;
+
+public class RecensioneBean implements Serializable {
 	
 	private int numRecensione;
 	private int codVideogioco;

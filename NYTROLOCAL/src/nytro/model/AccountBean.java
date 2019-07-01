@@ -1,6 +1,8 @@
 package nytro.model;
 
-public class AccountBean {
+import java.io.Serializable;
+
+public class AccountBean implements Serializable {
 	private String username;
 	private String password;
 	private String email;

@@ -1,6 +1,8 @@
 package nytro.model;
 
-public class GiocatoreBean extends AccountBean{
+import java.io.Serializable;
+
+public class GiocatoreBean extends AccountBean implements Serializable {
 	
 	private String dataNascita;
 	private String dataIscrizione;

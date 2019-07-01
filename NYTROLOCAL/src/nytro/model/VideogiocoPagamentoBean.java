@@ -1,6 +1,8 @@
 package nytro.model;
 
-public class VideogiocoPagamentoBean extends VideogiocoBean{
+import java.io.Serializable;
+
+public class VideogiocoPagamentoBean extends VideogiocoBean implements Serializable {
 	private double prezzo;
 	private int copieVendute;
 	

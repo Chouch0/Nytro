@@ -1,6 +1,8 @@
 package nytro.model;
 
-public class CasaEditriceBean extends AccountBean{
+import java.io.Serializable;
+
+public class CasaEditriceBean extends AccountBean  implements Serializable{
 	private String ISIN;
 	private String nomeCasaEditrice;
 	private String CEO;

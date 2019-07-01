@@ -1,6 +1,8 @@
 package nytro.model;
 
-public class VideogiocoFreeToPlayBean extends VideogiocoBean{
+import java.io.Serializable;
+
+public class VideogiocoFreeToPlayBean extends VideogiocoBean implements Serializable {
 	private String modalitaDiGioco;
 	
 	public String getModalitaDiGioco() {

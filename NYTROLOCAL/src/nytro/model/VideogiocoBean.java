@@ -1,6 +1,8 @@
 package nytro.model;
 
-public class VideogiocoBean {
+import java.io.Serializable;
+
+public class VideogiocoBean implements Serializable {
 	private int codice;
 	private String ISIN;
 	private String dataRilascio;
