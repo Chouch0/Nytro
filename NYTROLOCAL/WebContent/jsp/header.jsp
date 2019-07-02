@@ -25,7 +25,7 @@
 		<a href="/NYTRO/jsp/index.jsp"><img id="logoHeader" src="/NYTRO/img/logo.png" alt="Logo"/><img id="nytro" src="/NYTRO/img/Nytro.png" alt="Nytro"></a>
 		<div id="opzioni">
 			<%if(account==null){%>					
-				<a href="/NYTRO/loginForm">Login</a> | 
+				<a href="/NYTRO/jsp/loginForm.jsp">Login</a> | 
 				<a href="/NYTRO/RegistrazioneForm">Registrazione</a>
 			<%}else { %>
 				<a href="Profilo"><%=account.getUsername()%></a> |
@@ -73,7 +73,7 @@
 			-->
 				<%if(account==null){%>					
 					<div id = "menuLogin">
-						<a href="#" id="login">Login</a>
+						<a href="/NYTRO/jsp/loginForm.jsp" id="login">Login</a>
 							<div class = "elementoLogin">
 								<form action="/NYTRO/Login" method="post">
 									<input type="text" name="username" placeholder="Username" required><br/>

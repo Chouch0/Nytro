@@ -5,19 +5,19 @@
 
 
 <form class="box" name="registrazione" action="/NYTRO/RegistrazioneUtente" method="post"> 
-	<input class="field" name="username" type="text" oninput="validaUsername()" placeholder="Username*"> 
+	<input class="registrazione" name="username" type="text" oninput="validaUsername()" placeholder="Username*"> 
 	<p id="errorUsr"></p>  
-	<input class="field" type="password" name="password" oninput="validaPassword()" placeholder="Password*"> 
-	<input class="field" type="password" name="passwordConferma" oninput="validaPassword()" placeholder="Conferma Password*"> 
+	<input class="registrazione" type="password" name="password" oninput="validaPassword()" placeholder="Password*"> 
+	<input class="registrazione" type="password" name="passwordConferma" oninput="validaPassword()" placeholder="Conferma Password*"> 
 	<p id="errorPssw"></p>
-	<input class="field" type="text" name="email" oninput="validaEmail()" placeholder="Email*">	
+	<input class="registrazione" type="text" name="email" oninput="validaEmail()" placeholder="Email*">	
 	<p id="errorMail"></p>
-	<input class="field" type="text" name="emailRec" oninput="validaEmailRec()" placeholder="Email di recupero*">
+	<input class="registrazione" type="text" name="emailRec" oninput="validaEmailRec()" placeholder="Email di recupero*">
 	<p id="errorMailRec"></p>
-	<input class="field" id="telefono" type="tel" name="phone" oninput="validaTelefono()" placeholder="Cellulare">
+	<input class="registrazione" id="telefono" type="tel" name="phone" oninput="validaTelefono()" placeholder="Cellulare">
 	<p id="errorPhone"></p>
 	<p id="errorSub">Compila tutti i campi</p>	
-	<input type="submit" value="Registrati" id="sub" disabled>		
+	<input type="submit" value="Registrati" class="sub" disabled>		
 </form>
 	
 <script type="text/javascript">

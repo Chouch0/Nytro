@@ -4,6 +4,16 @@ body {
 	font-family: arial, sans-serif;
 }
 
+
+header, footer {
+	font-size: 3em;
+}
+
+header {
+	background-color: #ddd;
+	padding-top: 1%;
+}
+
 #logoHeader {
 	max-width: 6%;
 	height: auto;
@@ -13,7 +23,7 @@ body {
 #logoFooter {
 	max-width: 6%;
 	height: auto;
-	margin-right: 1%;
+	margin-right: 1.5%;
 	float: left;
 }
 
