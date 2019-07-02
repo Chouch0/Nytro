@@ -109,7 +109,7 @@
 								<a href="/NYTRO/Pubblicazioni">Pubblicazioni</a>
 							<hr>
 						<%} %>
-						<a href="Profilo">Profilo</a>	<!-- Rimanda alla servlet per la gestione del profilo dell'utente (cambia a seconda del tipo di utente) -->
+						<a href="/NYTRO/Profilo">Profilo</a>	<!-- Rimanda alla servlet per la gestione del profilo dell'utente (cambia a seconda del tipo di utente) -->
 								<!-- Visualizza un pulsante attraverso cui richiamare la servlet per il Logout
 							<form action="/NYTRO/Logout">
 								<input type="submit" value="Logout">

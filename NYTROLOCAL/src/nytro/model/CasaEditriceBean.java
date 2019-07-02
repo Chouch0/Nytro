@@ -3,10 +3,16 @@ package nytro.model;
 import java.io.Serializable;
 
 public class CasaEditriceBean extends AccountBean  implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private String ISIN;
 	private String nomeCasaEditrice;
 	private String CEO;
 	private String sitoWeb;
+	
+	public CasaEditriceBean() {
+		;
+	}
 	
 	public CasaEditriceBean(AccountBean bean) {
 		this.setUsername(bean.getUsername());

@@ -4,9 +4,14 @@ import java.io.Serializable;
 
 public class GiocatoreBean extends AccountBean implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private String dataNascita;
 	private String dataIscrizione;
 	private String genere;
+	
+	public GiocatoreBean() {
+		;
+	}
 	
 	public GiocatoreBean(AccountBean bean) {
 		this.setUsername(bean.getUsername());
