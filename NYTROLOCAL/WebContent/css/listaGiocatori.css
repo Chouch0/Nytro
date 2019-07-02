@@ -2,10 +2,11 @@
 table {
 	border-collapse: collapse;
 	borer-radius: 4px;
+	width: 100%;
 }
 
 table, th, td {
-  border: 1px solid grey;
+  border-bottom: 1px solid grey;
 }
 
 th {
@@ -13,6 +14,7 @@ th {
 	font-weight: bold;
 	padding: 10px;
 	background-color: #f6f6f6;
+	text-align: left;
 }
 
 td {
@@ -76,8 +78,4 @@ h1 {
     -o-transform: scale(1.08,1.08);
     -ms-transform: scale(1.08,1.08);
     transform: scale(1.08,1.08);
-}
-
-#tabella {
-	margin: 10px;
 }

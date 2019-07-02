@@ -34,5 +34,10 @@ import="nytro.model.VideogiocoBean, nytro.model.AccountBean, java.util.Collectio
 			}
 		%>
 	</p>
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+		$("document").ready(function prova(){
+			$("#esplora").addClass("selected");
+		})
+	</script>
 <%@include file="footer.html"%>							

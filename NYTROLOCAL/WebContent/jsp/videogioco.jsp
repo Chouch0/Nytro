@@ -7,7 +7,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 	
 %>
 
-<jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Videogioco"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
+<jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="<%=videogiocoDetailed.getTitolo() %>"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
 	
 	<h1><%=videogiocoDetailed.getTitolo() %></h1>
 	
@@ -56,5 +56,10 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		</form>
 				
 		<%} %>
-		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+		$("document").ready(function prova(){
+			$("#esplora").addClass("selected");
+		})
+	</script>
 <%@include file="footer.html"%>							

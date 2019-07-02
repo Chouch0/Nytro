@@ -30,6 +30,11 @@ import="java.util.Collection, nytro.model.AccountBean"%>
 		<input type="submit" value="Aggiungi">
 	</label>
 	</form>
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+		$("document").ready(function prova(){
+			$("#friendlist").addClass("selected");
+		})
+	</script>
 	
 <%@include file="footer.html"%>							

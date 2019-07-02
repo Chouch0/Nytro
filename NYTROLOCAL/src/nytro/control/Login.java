@@ -50,13 +50,8 @@ public class Login extends HttpServlet {
 		}
 		
 		request.getSession().setAttribute("account", account);
-
-		String dest = request.getHeader("referer");
-		if (dest == null || dest.contains("/Login") || dest.trim().isEmpty()) {
-			dest = ".";
-		}
-		
-		response.sendRedirect(dest);
+	
+		response.sendRedirect("jsp/index.jsp");
 	}
 
 	

@@ -49,6 +49,10 @@ nav ul{
 	width: 100%;
 }
 
+.selected {
+	background-color: #ddd;
+}
+
 nav ul li:last-child {
 	float: right;
 }
@@ -158,4 +162,8 @@ nav li a:hover {
 	background-repeat: no-repeat;
 	border: 1px solid lightgrey;
 	border-radius: 4px;
+}
+
+#recuperoPassword {
+	display:none;
 }

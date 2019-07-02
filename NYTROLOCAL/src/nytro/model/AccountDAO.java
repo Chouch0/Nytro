@@ -60,8 +60,8 @@ public class AccountDAO {
 				}
 				else if(ruolo==1) {
 					GiocatoreBean giocatoreBean = new GiocatoreBean(bean);
-					giocatoreBean.setDataIscrizione(rs.getString("Data_Nascita"));
-					giocatoreBean.setDataNascita(rs.getString("Data_Iscrizione"));
+					giocatoreBean.setDataIscrizione(rs.getString("Data_Iscrizione"));
+					giocatoreBean.setDataNascita(rs.getString("Data_Nascita"));
 					giocatoreBean.setGenere(rs.getString("Genere"));
 					users.add(giocatoreBean);
 				}
@@ -178,7 +178,7 @@ public class AccountDAO {
 			preparedStatement = connection.prepareStatement(selectSQL);
 			preparedStatement.setString(1, username);
 			
-			System.out.println("doRetrieveByKey: " + preparedStatement.toString());
+			System.out.println("doRetrieveByUsername: " + preparedStatement.toString());
 			
 			ResultSet rs = preparedStatement.executeQuery();
 			

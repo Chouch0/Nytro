@@ -7,6 +7,7 @@
 			<%
 				if (exception != null) {
 					out.flush();
+					exception.getMessage();
 					exception.printStackTrace(response.getWriter());
 				}
 			%>

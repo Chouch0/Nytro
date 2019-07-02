@@ -17,6 +17,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" >
 		<script src="/NYTRO/js/ricerca.js"></script>
 		<link href="/NYTRO/css/style.css" type="text/css" rel="stylesheet">
+		<link rel="icon" href="/NYTRO/img/logo.png">
 	</head>
 <body>
 	<header>
@@ -24,7 +25,7 @@
 		<a href="/NYTRO/jsp/index.jsp"><img id="logo" src="/NYTRO/img/logo.png" alt="logo"/>NYTRO</a>
 		<div id="opzioni">
 			<%if(account==null){%>					
-				<a href="#">Login</a> | 
+				<a href="/NYTRO/LoginForm">Login</a> | 
 				<a href="/NYTRO/RegistrazioneForm">
 					Registrazione
 				</a>
@@ -37,23 +38,23 @@
 	<nav>
 		<ul>
 			<li>
-				<a href="/NYTRO/jsp/index.jsp">Home</a>
+				<a href="/NYTRO/jsp/index.jsp" id="home">Home</a>
 			</li>
 			<li>
-				<a href="/NYTRO/jsp/contatti.jsp">Contatti</a>
+				<a href="/NYTRO/jsp/contatti.jsp" id="contatti">Contatti</a>
 			</li>
 			<% if(account!=null && (ruolo==1)){ %>
 				<li>
-					<a href="/NYTRO/Libreria">Libreria</a>
+					<a href="/NYTRO/Libreria" id="libreria">Libreria</a>
 				</li>
 				<li>
-					<a href="/NYTRO/Friendlist">Friendlist</a>
+					<a href="/NYTRO/Friendlist" id="friendlist">Friendlist</a>
 				</li>
 			<% } %>
 			<% if(account!=null && (ruolo==0 || ruolo==1)){ %>
 				<li>
 				<div id = "menuEsplora">
-					<a href="#">Esplora</a>
+					<a href="#" id="esplora">Esplora</a>
 				<!-- 
 				Il tag <menu> definisce una lista di comandi  
 				Il funzionamento è il seguente: cliccando su "Catalogo" o su "Case Editrici" verrà richiamata la servlet corrispondente, la quale 
@@ -74,7 +75,7 @@
 			-->
 				<%if(account==null){%>					
 					<div id = "menuLogin">
-						<a href="#">Login</a>
+						<a href="#" id="login">Login</a>
 							<div class = "elementoLogin">
 								<form action="/NYTRO/Login" method="post">
 									<input type="text" name="username" placeholder="Username" required><br/>
@@ -95,7 +96,7 @@
 						</div>
 				<%} else { %>
 					<div id = "menuUser">	
-						<a href="#"><%=account.getUsername()%></a>
+						<a href="#" id="user"><%=account.getUsername()%></a>
 						<div class = "elementoUser">				
 						<% if(ruolo==0){			//Admin%>
 								<a href="/NYTRO/ListaGiocatori">Lista giocatori</a>
