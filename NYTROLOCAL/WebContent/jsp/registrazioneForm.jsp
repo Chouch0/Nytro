@@ -3,6 +3,7 @@
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Registrazione"/>	</jsp:include>
 <link href="/NYTRO/css/RegStyle.css" type="text/css" rel="stylesheet">
 
+<h1>Registrazione</h1>
 
 <form class="box" name="registrazione" action="/NYTRO/RegistrazioneUtente" method="post"> 
 	<input class="registrazione" name="username" type="text" oninput="validaUsername()" placeholder="Username*"> 

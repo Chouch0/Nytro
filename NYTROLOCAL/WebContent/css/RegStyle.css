@@ -8,7 +8,7 @@
 	cursor:pointer;
 }
 
-p {
+.box p {
 	color:red;
 	text-align:center;
 	font-size: 0.8em;
