@@ -2,7 +2,6 @@ package nytro.control;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,12 +22,17 @@ public class RecuperaPassword extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
 		String emailRecupero = request.getParameter("emailRecupero");
+		String password = request.getParameter("password");
+		String passwordConferma = request.getParameter("passwordConferma");
 		
 		AccountBean account = null;
 		System.out.println(username);
 		
-		if(username==null || emailRecupero==null || username.equals("") || emailRecupero.equals(""))
+		if(username==null || emailRecupero==null || username.equals("") || emailRecupero.equals("") || password==null || passwordConferma==null || password.equals("") || passwordConferma.equals(""))
 			throw new MyException("Username e/o email di recupero vuota.");
+		
+		if(!password.equals(passwordConferma))
+			throw new MyException("Campo password differente dal campo password conferma.");
 		
 		try {
 			account = accountDAO.doRetrieveByUsername(username);
@@ -40,29 +44,9 @@ public class RecuperaPassword extends HttpServlet {
 			throw new MyException("Account assente");
 
 		if(!account.getEmailRecupero().equals(emailRecupero))
-			throw new MyException("Email di recupero inserita non valida!");
+			throw new MyException("Email di recupero inserita non valida: " + account.getEmailRecupero() +" " + emailRecupero);
 		
-		
-		int leftLimit = 97; // letter 'a'
-        int rightLimit = 122; // letter 'z'
-        int targetStringLength = 9;
-        Random random = new Random();
-        StringBuilder buffer = new StringBuilder(targetStringLength);
-        for (int i = 0; i < targetStringLength; i++) {
-            int randomLimitedInt = leftLimit + (int) 
-              (random.nextFloat() * (rightLimit - leftLimit + 1));
-            
-            if(i%2==0) {
-            	char tmp = (char) randomLimitedInt;
-            	buffer.append(Character.toUpperCase(tmp));
-            } else {
-            	buffer.append((char) randomLimitedInt);
-            }
-            
-        }
-        String generatedString = buffer.toString() + "" + random.nextInt(10);   
-        
-        account.setPassword(generatedString);
+        account.setPassword(password);
 		
 		try {
 			accountDAO.doUpdate(account);
@@ -70,7 +54,7 @@ public class RecuperaPassword extends HttpServlet {
 			throw new MyException("Fallimento cambiamento password");
 		}
 		
-		String message="Impostata password provvisoria: " + generatedString;
+		String message="Password aggiornata con successo.";
 		
 		request.setAttribute("message", message);
 

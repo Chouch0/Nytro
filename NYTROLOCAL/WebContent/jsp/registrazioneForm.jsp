@@ -18,7 +18,7 @@
 	<input class="registrazione" id="telefono" type="tel" name="phone" oninput="validaTelefono()" placeholder="Cellulare">
 	<p id="errorPhone"></p>
 	<p id="errorSub">Compila tutti i campi</p>	
-	<input type="submit" value="Registrati" class="sub" disabled>		
+	<input type="submit" value="Registrati" id="sub" disabled>		
 </form>
 	
 <script type="text/javascript">
@@ -81,7 +81,7 @@
 		} else {
 			inputpw.style.border = borderNo;
 			inputpwconf.style.border = borderNo;
-			document.getElementById("errorPssw").innerHTML = "La password deve contenere almeno una maiuscola e un numero";
+			document.getElementById("errorPssw").innerHTML = "La password deve contenere almeno una maiuscola, un numero e almeno 8 caratteri";
 			passwordOk = false;
 		}
 		checkForm();
