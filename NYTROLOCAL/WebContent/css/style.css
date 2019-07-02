@@ -4,13 +4,22 @@ body {
 	font-family: arial, sans-serif;
 }
 
-img#logo {
-	max-width: 4%;
+#logoHeader {
+	max-width: 6%;
 	height: auto;
+	margin-right: 1%;
 }
 
-header, footer {
-	font-size: 3em;
+#logoFooter {
+	max-width: 6%;
+	height: auto;
+	margin-right: 1%;
+	float: left;
+}
+
+#nytro {
+	max-width:30%;
+	height: auto;
 }
 
 header a, header a:visited, header a:hover, header a:active, footer a, footer a:visited, footer a:hover, footer a:active {
@@ -24,12 +33,12 @@ h1 {
 	font-size:2em;
 }
 
-header {
-	color:crimson;
-}
-
 footer {
-	color:#00ffff;
+	background-color: #ddd;
+	color:#666;
+	font-size: 0.8em;
+	margin-top:1%;
+	padding: 1%;
 }
 
 #opzioni {

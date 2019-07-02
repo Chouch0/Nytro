@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 import="nytro.model.AccountBean"%>
-<jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Login form"/>	</jsp:include>	
+<jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Login"/>	</jsp:include>	
 <%  AccountBean account = (AccountBean) session.getAttribute("account");
 	if(account!=null)
 		response.sendRedirect("jsp/index.jsp");

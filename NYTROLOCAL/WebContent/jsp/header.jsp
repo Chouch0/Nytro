@@ -22,13 +22,11 @@
 <body>
 	<header>
 	<!-- Logo del sito + Nome del sito-->
-		<a href="/NYTRO/jsp/index.jsp"><img id="logo" src="/NYTRO/img/logo.png" alt="logo"/>NYTRO</a>
+		<a href="/NYTRO/jsp/index.jsp"><img id="logoHeader" src="/NYTRO/img/logo.png" alt="Logo"/><img id="nytro" src="/NYTRO/img/Nytro.png" alt="Nytro"></a>
 		<div id="opzioni">
 			<%if(account==null){%>					
-				<a href="/NYTRO/LoginForm">Login</a> | 
-				<a href="/NYTRO/RegistrazioneForm">
-					Registrazione
-				</a>
+				<a href="/NYTRO/loginForm">Login</a> | 
+				<a href="/NYTRO/RegistrazioneForm">Registrazione</a>
 			<%}else { %>
 				<a href="Profilo"><%=account.getUsername()%></a> |
 				<a href="/NYTRO/Logout">Logout</a>			
