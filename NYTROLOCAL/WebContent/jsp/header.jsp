@@ -28,7 +28,7 @@
 				<a href="/NYTRO/jsp/loginForm.jsp">Login</a> | 
 				<a href="/NYTRO/RegistrazioneForm">Registrazione</a>
 			<%}else { %>
-				<a href="Profilo"><%=account.getUsername()%></a> |
+				<a href="/NYTRO/Profilo"><%=account.getUsername()%></a> |
 				<a href="/NYTRO/Logout">Logout</a>			
 			<%} %>
 		</div>
