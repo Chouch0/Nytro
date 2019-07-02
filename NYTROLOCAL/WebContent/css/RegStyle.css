@@ -1,15 +1,10 @@
 @charset "ISO-8859-1";
 
-body{
-	background:#0f292f;
-	margin: 0;
-	padding: 0;
-	font-family: sans-serif;
-}
-
-div{
+p {
 	color:red;
 	text-align:center;
+	font-size: 0.8em;
+	font-style: italic;
 }
 
 h1{
@@ -17,56 +12,53 @@ h1{
 }
 
 .box{
-	width:500px;
+	width:100$
 	padding:40px;
-	position:absolute;
-	top:50%;
-	left:50%;
-	transform:translate(-50%, -50%);	
-	background:#0f292f;
 	text-align:center;
 }
 
 
 .field {
-	border:0;
-	background:none;
-	display:block;
-	margin:20px auto;
-	text-align:center;
-	border:2px solid #14a098;;
-	padding:14px 10px;
-	width: 200px;
-	outline:none;
-	color:#cccccc;
-	border-radius:24px;	
+	margin: 20px auto;
+	padding: 14px 10px;
+	border: 1px solid lightgrey;
+	border-radius: 4px;
+	display: block;
+	width: 400px;
 	transition:0.25s;
 }
 
 .field:focus{
-	width:280px;
+	width:480px;
 	border-color:#cccccc;
 }
 
 #sub{
-	border:0;
-	background:none;
-	display:block;
-	margin:20px auto;
-	text-align:center;
-	border:2px solid #501f3a;
-	padding:14px 40px;
-	outline:none;
-	color:#cccccc;
-	border-radius:24px;	
-	transition:0.25s;
-	cursor:pointer;
+	border: none;
+	text-decoration: none;
+	display: block;
+	color: #666;
+	padding: 14px 16px;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	width: 420px;
+	margin: auto;
+	font-family: inherit;
+	font-size: inherit;
+	background-color: inherit;
+	-webkit-transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -ms-transition: all 250ms ease-in-out;
+    -o-transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
 }
 
 #sub:hover{
-	background-color:#501f3a;
-}
-
-.field::-webkit-input-placeholder { 
-    color:#cccccc;
+	background-color: #ddd;    
+	-webkit-transform: scale(1.08,1.08);
+    -moz-transform: scale(1.08,1.08);
+    -o-transform: scale(1.08,1.08);
+    -ms-transform: scale(1.08,1.08);
+    transform: scale(1.08,1.08);
 }

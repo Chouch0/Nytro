@@ -1,24 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Contatti"/>	</jsp:include>
+<jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Registrazione"/>	</jsp:include>
 <link href="/NYTRO/css/RegStyle.css" type="text/css" rel="stylesheet">
 
 
 <form class="box" name="registrazione" action="/NYTRO/RegistrazioneUtente" method="post"> 
-	<h1>WELCOME TO NYTRO</h1>
-	<input class="field" name="username" type="text" oninput="validaUsername()" placeholder="Username"> 
-	<div id="errorUsr"></div>  
-	<input class="field" type="password" name="password" oninput="validaPassword()" placeholder="Password"> 
-	<input class="field" type="password" name="passwordConferma" oninput="validaPassword()" placeholder="Conferma Password"> 
-	<div id="errorPssw"></div>
-	<input class="field" type="text" name="email" oninput="validaEmail()" placeholder="Email">	
-	<div id="errorMail"></div>
-	<input class="field" type="text" name="emailRec" oninput="validaEmailRec()" placeholder="Email di recupero">
-	<div id="errorMailRec"></div>
-	<input class="field" id="telefono" type="tel" name="phone" oninput="validaTelefono()" placeholder="Phone">
-	<div id="errorPhone"></div>
-	<input type="submit" value="registrati" id="sub" disabled>
-	<div id="errorSub">Compila tutti i campi</div>			
+	<input class="field" name="username" type="text" oninput="validaUsername()" placeholder="Username*"> 
+	<p id="errorUsr"></p>  
+	<input class="field" type="password" name="password" oninput="validaPassword()" placeholder="Password*"> 
+	<input class="field" type="password" name="passwordConferma" oninput="validaPassword()" placeholder="Conferma Password*"> 
+	<p id="errorPssw"></p>
+	<input class="field" type="text" name="email" oninput="validaEmail()" placeholder="Email*">	
+	<p id="errorMail"></p>
+	<input class="field" type="text" name="emailRec" oninput="validaEmailRec()" placeholder="Email di recupero*">
+	<p id="errorMailRec"></p>
+	<input class="field" id="telefono" type="tel" name="phone" oninput="validaTelefono()" placeholder="Cellulare">
+	<p id="errorPhone"></p>
+	<p id="errorSub">Compila tutti i campi</p>	
+	<input type="submit" value="Registrati" id="sub" disabled>		
 </form>
 	
 <script type="text/javascript">
@@ -52,12 +51,12 @@
 			xmlHttpReq.open("GET", "/NYTRO/VerificaUsername?username=" + encodeURIComponent(input.value), true);
 			xmlHttpReq.send();
 		}
-		   else {
+		else {
 			input.style.border = borderNo;
 			document.getElementById("errorUsr").innerHTML = "Attenzione! Deve contenere almeno 6 caratteri";
 			usernameOk = false;
 			checkForm();
-			}
+		}
 	}
 	
 	
