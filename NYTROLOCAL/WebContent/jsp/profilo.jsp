@@ -57,12 +57,12 @@ import="nytro.model.AccountBean"%>
 		if(input.value.match(/^\d{10}$/)) {
 			input.style.border = borderOk;
 			document.getElementById("errorPhone").innerHTML = "";
-			document.getElementById("sub").disabled = "true";
+			document.getElementById("subPhone").disabled = false;
 			phoneOk = true;
 		} else {
 			input.style.border = borderNo;
 			document.getElementById("errorPhone").innerHTML = "Formato sbagliato";
-			document.getElementById("sub").disabled = true;
+			document.getElementById("subPhone").disabled = true;
 			phoneOk = false;
 		}
 		
