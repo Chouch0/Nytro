@@ -8,6 +8,7 @@
 			<img src="https://s2.gaming-cdn.com/images/products/1843/orig/assassins-creed-origins-cover.jpg">
 			<section class="prezzo">Prezzo xxx€</section>
 			<div class="info">
+				<iframe width="100%" height="40%" src="https://www.youtube.com/embed/v4AcyuWYxkA"></iframe>
 				Ciao bellini
 			</div>
 		</div>
@@ -15,6 +16,7 @@
 			<img src="https://s2.gaming-cdn.com/images/products/1843/orig/assassins-creed-origins-cover.jpg">
 			<section class="prezzo">Prezzo xxx€</section>
 			<div class="info">
+				<iframe width="100%" height="40%" src="https://www.youtube.com/embed/v4AcyuWYxkA"></iframe>
 				Ciao bellini
 			</div>
 		</div>
@@ -22,6 +24,7 @@
 			<img src="https://s2.gaming-cdn.com/images/products/1843/orig/assassins-creed-origins-cover.jpg">
 			<section class="prezzo">Prezzo xxx€</section>
 			<div class="info">
+				<iframe width="100%" height="40%" src="https://www.youtube.com/embed/v4AcyuWYxkA"></iframe>
 				Ciao bellini
 			</div>
 		</div>
