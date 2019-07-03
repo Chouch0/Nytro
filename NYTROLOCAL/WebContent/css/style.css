@@ -37,12 +37,6 @@ header a, header a:visited, header a:hover, header a:active, footer a, footer a:
 	text-decoration: none;
 }
 
-h1 {
-	text-align:center;
-	color:lime;
-	font-size:2em;
-}
-
 footer {
 	background-color: #ddd;
 	color:#666;
