@@ -17,8 +17,7 @@
 	<p id="errorMailRec"></p>
 	<input class="registrazione" id="telefono" type="tel" name="phone" oninput="validaTelefono()" onBlur="checkPhoneField()" placeholder="Cellulare">
 	<p id="errorPhone"></p>
-    <input class="registrazione" type="text" id="date" name="bornDate" oninput="validaData()" onBlur="checkData()" placeholder="Data di nascita">
-    <p id="errorDate"></p>
+    <input class="registrazione" type="date" id="date" name="bornDate" placeholder="Data di nascita">
     <input name="genere" type="radio" value="M" style="display:inline">M
     <input name="genere" type="radio" value="F" style="display:inline">F
 	<p id="errorSub">Compila tutti i campi obbligatori</p>	
@@ -150,29 +149,6 @@
 		}
 	}
 	
-	function validaData() {
-		var input = document.forms['registrazione']['bornDate'];
-		if(input.value.match(/^\d{4}-\d{1,2}-\d{1,2}$/)) {
-			input.style.border = borderOK;
-			document.getElementById("errorDate").innerHTML = "";
-			dateOk = true;
-		} else {
-			input.style.border = borderNo;
-			document.getElementById("errorDate").innerHTML = "Formato data sbagliato, il formato giusto è: yyyy-mm-dd";
-			dateOk = false;
-		}
-		checkForm();
-	}
-	
-	function checkData() {
-		var input = document.forms['registrazione']['bornDate'] 
-		if(!dateOk) {
-			document.getElementById("errorDate").innerHTML = "";
-			input.style.border = stdBorder;
-			input.value = null;
-			dateOk = true;
-		}
-	}
 	
 	function checkForm() {
 		if(usernameOk && passwordOk && emailOk && emailRecOk && phoneOk && dateOk) {
