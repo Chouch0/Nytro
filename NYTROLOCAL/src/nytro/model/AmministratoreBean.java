@@ -4,7 +4,10 @@ import java.io.Serializable;
 
 public class AmministratoreBean extends AccountBean implements Serializable{
 	
-	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5937880810280541420L;
 	private String nome;
 	private String cognome;
 	
