@@ -17,11 +17,10 @@
 	<p id="errorMailRec"></p>
 	<input class="registrazione" id="telefono" type="tel" name="phone" oninput="validaTelefono()" onBlur="checkPhoneField()" placeholder="Cellulare">
 	<p id="errorPhone"></p>
-	<input name="genere" type="radio" value="M" style="display:inline">M
+    <input class="registrazione" type="text" id="date" name="bornDate" oninput="validaData()" onBlur="checkData()" placeholder="Data di nascita">
+    <p id="errorDate"></p>
+    <input name="genere" type="radio" value="M" style="display:inline">M
     <input name="genere" type="radio" value="F" style="display:inline">F
-     
-     
-    
 	<p id="errorSub">Compila tutti i campi obbligatori</p>	
 	<input type="submit" value="Registrati" id="sub" disabled>		
 </form>
@@ -34,6 +33,8 @@
 	var passwordOk = false;
 	var emailOk = false;
 	var emailRecOk = false;
+	var phoneOk = true;
+	var dateOk = true;
 	var stdBorder = document.forms['registrazione']['phone'].style.border;
 	
 	function validaUsername() {
@@ -113,11 +114,11 @@
 		if (input.value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
 			input.style.border = borderOk;
 			document.getElementById("errorMailRec").innerHTML = "";
-			emailOk = true;
+			emailRecOk = true;
 		} else {
 			input.style.border = borderNo;
 			document.getElementById("errorMailRec").innerHTML = "Indirizzo mail non valido";
-			emailOk = false;
+			emailRecOk = false;
 		}
 		checkForm();
 	}
@@ -128,7 +129,7 @@
 		if(input.value.match(/^\d{10}$/)) {
 			input.style.border = borderOk;
 			document.getElementById("errorPhone").innerHTML = "";
-			document.getElementById("sub").disabled = "true";
+			document.getElementById("sub").disabled = false;
 			phoneOk = true;
 		} else {
 			input.style.border = borderNo;
@@ -141,15 +142,40 @@
 	
 	function checkPhoneField() {
 		var input = document.forms['registrazione']['phone'];
-		if(phoneOk != true) {
+		if(!phoneOk) {
 			document.getElementById("errorPhone").innerHTML = "";
 			input.style.border = stdBorder;
 			input.value = null;
+			phoneOk = true;
+		}
+	}
+	
+	function validaData() {
+		var input = document.forms['registrazione']['bornDate'];
+		if(input.value.match(/^\d{4}-\d{1,2}-\d{1,2}$/)) {
+			input.style.border = borderOK;
+			document.getElementById("errorDate").innerHTML = "";
+			dateOk = true;
+		} else {
+			input.style.border = borderNo;
+			document.getElementById("errorDate").innerHTML = "Formato data sbagliato, il formato giusto è: yyyy-mm-dd";
+			dateOk = false;
+		}
+		checkForm();
+	}
+	
+	function checkData() {
+		var input = document.forms['registrazione']['bornDate'] 
+		if(!dateOk) {
+			document.getElementById("errorDate").innerHTML = "";
+			input.style.border = stdBorder;
+			input.value = null;
+			dateOk = true;
 		}
 	}
 	
 	function checkForm() {
-		if(usernameOk && passwordOk && emailOk) {
+		if(usernameOk && passwordOk && emailOk && emailRecOk && phoneOk && dateOk) {
 			document.getElementById("sub").disabled = false;
 			document.getElementById("errorSub").innerHTML = "";
 		} else {
