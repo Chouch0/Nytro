@@ -13,6 +13,9 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 	
 	<p>
 		<%=videogiocoDetailed.toString()%>
+		<%if(videogiocoDetailed.getClass().toString()!="VideogiocoPagamentoBean"){ %>
+			<a href="GestoreCarrello?action=addCart&codiceVideogioco=<%=videogiocoDetailed.getCodice()%>">Inserisci nel carrello</a><br/>
+		<%} %>
 	</p>
 	
 	<form action="/NYTRO/Videogioco" method="get">

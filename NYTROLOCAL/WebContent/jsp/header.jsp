@@ -102,7 +102,7 @@
 							<hr/>
 						<% } 
 							if(ruolo==1){		//Giocatore %>
-								<a href="/NYTRO/Carrello">Carrello</a> <!-- Richiama la servlet responsabile di gestire il carrello -->
+								<a href="/NYTRO/jsp/carrello.jsp">Carrello</a> 
 							<hr/>	
 						<%} 
 							if(ruolo==2){		//Azienda %>
