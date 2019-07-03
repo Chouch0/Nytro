@@ -205,7 +205,7 @@ public class AccountDAO {
 		return bean;
 	}
 
-	public void doSave(AccountBean account) throws SQLException {
+	public void doSaveAccount(AccountBean account) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
@@ -226,7 +226,7 @@ public class AccountDAO {
 			preparedStatement.setInt(9, account.getRuolo());
 			preparedStatement.setNull(10, java.sql.Types.BLOB);						//blob settata null temporaneamente
 			
-			System.out.println("doSave: " + preparedStatement.toString());
+			System.out.println("doSaveAccount: " + preparedStatement.toString());
 			preparedStatement.executeUpdate();
 			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
 			
@@ -240,6 +240,76 @@ public class AccountDAO {
 		}
 	}
 
+	public void doSaveGiocatore(GiocatoreBean account) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		
+		String insertSQL = "CALL inserisci_giocatore(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+			
+			preparedStatement.setString(1, account.getUsername());
+			preparedStatement.setString(2, account.getPassword());
+			preparedStatement.setString(3, account.getEmail());
+			preparedStatement.setString(4, account.getEmailRecupero());
+			preparedStatement.setString(5, account.getCellulare());
+			preparedStatement.setString(6, account.getIp());
+			preparedStatement.setNull(7, java.sql.Types.BLOB);						//blob settata null temporaneamente
+			preparedStatement.setString(8, account.getDataNascita());
+			preparedStatement.setString(9, account.getGenere());
+			
+			System.out.println("doSaveGiocatore: " + preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
+			
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+	
+	public void doSaveCasaEditrice(CasaEditriceBean account) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		
+		String insertSQL = "CALL inserisci_casa_editrice(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+			
+			preparedStatement.setString(1, account.getUsername());
+			preparedStatement.setString(2, account.getPassword());
+			preparedStatement.setString(3, account.getEmail());
+			preparedStatement.setString(4, account.getEmailRecupero());
+			preparedStatement.setString(5, account.getCellulare());
+			preparedStatement.setString(6, account.getIp());
+			preparedStatement.setNull(7, java.sql.Types.BLOB);						//blob settata null temporaneamente
+			preparedStatement.setString(8, account.getISIN());
+			preparedStatement.setString(9, account.getNomeCasaEditrice());
+			preparedStatement.setString(10, account.getCEO());
+			preparedStatement.setString(11, account.getSitoWeb());			
+			
+			System.out.println("doSaveCasaEditrice: " + preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
+			
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+	
 	public void doUpdate(AccountBean account) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;

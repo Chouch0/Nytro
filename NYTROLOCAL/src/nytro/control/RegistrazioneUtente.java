@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import nytro.exceptions.MyException;
 import nytro.model.AccountBean;
 import nytro.model.AccountDAO;
+import nytro.model.GiocatoreBean;
 
 @WebServlet("/RegistrazioneUtente")
 public class RegistrazioneUtente extends HttpServlet {
@@ -23,7 +24,7 @@ public class RegistrazioneUtente extends HttpServlet {
 	private final AccountDAO accountDAO = new AccountDAO();
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AccountBean utente = new AccountBean();
+		GiocatoreBean utente = new GiocatoreBean();
 		
 		utente.setUsername(request.getParameter("username"));
 		System.out.println("Questo è lo username : " + request.getParameter("username"));
@@ -33,6 +34,8 @@ public class RegistrazioneUtente extends HttpServlet {
 		utente.setEmailRecupero(request.getParameter("emailRec"));
 		utente.setCellulare(request.getParameter("phone"));
 		utente.setRuolo(1);
+		utente.setGenere("M"); //INSERIRE UN CAMPO DI SCELTA DEL SESSO NEL FORM!
+		utente.setDataNascita("1996-04-22"); //INSERIRE UN CAMPO PER LA DATA DI NASCITA
 		
 		if(utente.getUsername()==null || utente.getUsername().equals("") ||
 				utente.getPassword()==null || utente.getPassword().equals("") ||
@@ -42,17 +45,10 @@ public class RegistrazioneUtente extends HttpServlet {
 			)
 			throw new MyException("Campi vuoti");
 		
-		LocalDate ld = LocalDate.now();
-		java.sql.Date date = java.sql.Date.valueOf(ld);
-		LocalTime lt = LocalTime.now();
-		Time time = Time.valueOf(lt);
-		
-		utente.setData(date.toString());
-		utente.setOra(time.toString());
-		utente.setIp("192.168.48.55");
+		utente.setIp(request.getRemoteAddr());
 		
 		try {
-			accountDAO.doSave(utente);
+			accountDAO.doSaveGiocatore(utente);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/index.jsp");
 			dispatcher.forward(request, response);
 		} catch(SQLException exception) {
