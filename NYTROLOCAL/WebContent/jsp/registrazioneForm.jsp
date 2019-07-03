@@ -15,7 +15,7 @@
 	<p id="errorMail"></p>
 	<input class="registrazione" type="text" name="emailRec" oninput="validaEmailRec()" placeholder="Email di recupero*">
 	<p id="errorMailRec"></p>
-	<input class="registrazione" id="telefono" type="tel" name="phone" oninput="validaTelefono()" placeholder="Cellulare">
+	<input class="registrazione" id="telefono" type="tel" name="phone" oninput="validaTelefono()" onBlur="checkPhoneField()" placeholder="Cellulare">
 	<p id="errorPhone"></p>
 	<p id="errorSub">Compila tutti i campi</p>	
 	<input type="submit" value="Registrati" id="sub" disabled>		
@@ -29,6 +29,7 @@
 	var passwordOk = false;
 	var emailOk = false;
 	var emailRecOk = false;
+	var stdBorder = document.forms['registrazione']['phone'].style.border;
 	
 	function validaUsername() {
 		var ok = "<ok/>";
@@ -131,6 +132,15 @@
 			phoneOk = false;
 		}
 		checkForm();
+	}
+	
+	function checkPhoneField() {
+		var input = document.forms['registrazione']['phone'];
+		if(phoneOk != true) {
+			document.getElementById("errorPhone").innerHTML = "";
+			input.style.border = stdBorder;
+			input.value = "";
+		}
 	}
 	
 	function checkForm() {
