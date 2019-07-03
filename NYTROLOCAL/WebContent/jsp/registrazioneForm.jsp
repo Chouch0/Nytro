@@ -146,6 +146,7 @@
 			input.style.border = stdBorder;
 			input.value = null;
 			phoneOk = true;
+			checkForm();
 		}
 	}
 	

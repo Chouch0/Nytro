@@ -31,7 +31,7 @@ public class RegistrazioneUtente extends HttpServlet {
 		utente.setCellulare(request.getParameter("phone"));
 		utente.setRuolo(1);
 		utente.setGenere(request.getParameter("genere")); 
-		utente.setDataNascita(request.getParameter("bornDate")); //INSERIRE UN CAMPO PER LA DATA DI NASCITA
+		utente.setDataNascita(request.getParameter("bornDate")); 
 		
 		if(utente.getUsername()==null || utente.getUsername().equals("") ||
 				utente.getPassword()==null || utente.getPassword().equals("") ||
