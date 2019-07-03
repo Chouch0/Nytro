@@ -17,7 +17,12 @@
 	<p id="errorMailRec"></p>
 	<input class="registrazione" id="telefono" type="tel" name="phone" oninput="validaTelefono()" onBlur="checkPhoneField()" placeholder="Cellulare">
 	<p id="errorPhone"></p>
-	<p id="errorSub">Compila tutti i campi</p>	
+	<input name="genere" type="radio" value="M" style="display:inline">M
+    <input name="genere" type="radio" value="F" style="display:inline">F
+     
+     
+    
+	<p id="errorSub">Compila tutti i campi obbligatori</p>	
 	<input type="submit" value="Registrati" id="sub" disabled>		
 </form>
 	
@@ -139,7 +144,7 @@
 		if(phoneOk != true) {
 			document.getElementById("errorPhone").innerHTML = "";
 			input.style.border = stdBorder;
-			input.value = "";
+			input.value = null;
 		}
 	}
 	

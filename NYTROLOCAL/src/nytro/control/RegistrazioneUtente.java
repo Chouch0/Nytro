@@ -30,15 +30,13 @@ public class RegistrazioneUtente extends HttpServlet {
 		utente.setEmailRecupero(request.getParameter("emailRec"));
 		utente.setCellulare(request.getParameter("phone"));
 		utente.setRuolo(1);
-		utente.setGenere("M"); //INSERIRE UN CAMPO DI SCELTA DEL SESSO NEL FORM!
+		utente.setGenere(request.getParameter("genere")); 
 		utente.setDataNascita("1996-04-22"); //INSERIRE UN CAMPO PER LA DATA DI NASCITA
 		
 		if(utente.getUsername()==null || utente.getUsername().equals("") ||
 				utente.getPassword()==null || utente.getPassword().equals("") ||
 				utente.getEmail()==null || utente.getEmail().equals("") ||
-				utente.getEmailRecupero()==null || utente.getEmailRecupero().equals("") ||
-				utente.getCellulare()==null || utente.getCellulare().equals("")	
-			)
+				utente.getEmailRecupero()==null || utente.getEmailRecupero().equals(""))
 			throw new MyException("Campi vuoti");
 		
 		utente.setIp(request.getRemoteAddr());
