@@ -461,7 +461,7 @@ public class VideogiocoDAO {
 			
 			preparedStatement.setInt(1, bean.getCodice());
 			
-			System.out.println("doSaveVideogiocoFreToPlay: " + preparedStatement.toString());
+			System.out.println("doDeleteVideogioco: " + preparedStatement.toString());
 			preparedStatement.executeUpdate();
 			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
 			
