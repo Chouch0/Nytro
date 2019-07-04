@@ -52,8 +52,8 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 		var inputPrezzo = document.createElement("input");
 		inputPrezzo.type="number";
 		inputPrezzo.name="aggPrezzo";
-		inputPrezzo.min="0.1";
-		inputPrezzo.step="0.25";
+		inputPrezzo.min="0";
+		inputPrezzo.step="1";
 		inputPrezzo.required = true;
 		
 		container.appendChild(document.createTextNode("Prezzo:"));
@@ -110,6 +110,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 		inputOffline.type="radio";
 		inputOffline.name="aggModalita";
 		inputOffline.value="offline";
+		inputOffline.required = true;
 		
 		container.appendChild(document.createTextNode("Modalità"));
 		container.appendChild(inputOnline);
@@ -128,8 +129,8 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 		<label>Genere: <input type="text" name="aggGenere" placeholder="Genere" required></label>
 		<label><br/>Tipologia:<br/>
 			<input type="radio" name="tipologia" value="aPagamento" onclick="addPagamentoFields()" required> Videogioco a pagamento<br/>
-			<input type="radio" name="tipologia" value="freeToPlay" onclick="addFreeToPlayFields()"> Videogioco free to play<br/>
-			<input type="radio" name="tipologia" value="demo" onclick="addDemoFields()"> Videogioco demo <br/> 
+			<input type="radio" name="tipologia" value="freeToPlay" onclick="addFreeToPlayFields()" required> Videogioco free to play<br/>
+			<input type="radio" name="tipologia" value="demo" onclick="addDemoFields()" required> Videogioco demo <br/> 
 		</label>
 		<div id="aggiungiVideogiocoForm"></div>
 		<input type="submit" value="AggiungiGioco">
