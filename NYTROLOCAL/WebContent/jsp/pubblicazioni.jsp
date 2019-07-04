@@ -39,6 +39,102 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 			}
 		%>
 	</p>
+	
+	<script>
+	prezzo
+	function addPagamentoFields() {
+		var container = document.getElementById("aggiungiVideogiocoForm");
+		//Ripulisco dai vecchi figli
+		while (container.hasChildNodes()) {
+            container.removeChild(container.lastChild);
+        }
+		
+		var inputPrezzo = document.createElement("input");
+		inputPrezzo.type="number";
+		inputPrezzo.name="aggPrezzo";
+		inputPrezzo.min="0.1";
+		inputPrezzo.step="0.25";
+		inputPrezzo.required = true;
+		
+		container.appendChild(document.createTextNode("Prezzo:"));
+		container.appendChild(inputPrezzo);
+		container.appendChild(document.createElement("br"));
+	}
+	 
+	
+	function addDemoFields() {
+		var container = document.getElementById("aggiungiVideogiocoForm");
+		//Ripulisco dai vecchi figli
+		while (container.hasChildNodes()) {
+            container.removeChild(container.lastChild);
+        }
+		
+		var inputCodiceVideogiocoPrincipale = document.createElement("input");
+		inputCodiceVideogiocoPrincipale.type="number";
+		inputCodiceVideogiocoPrincipale.name="aggCodiceVideogiocoPrincipale";
+		inputCodiceVideogiocoPrincipale.min="1";
+		inputCodiceVideogiocoPrincipale.step="1";
+		inputCodiceVideogiocoPrincipale.required = true;
+		
+		var inputDurata = document.createElement("input");
+		inputDurata.type="number";
+		inputDurata.name="aggDurata";
+		inputDurata.min="1";
+		inputDurata.step="1";
+		inputDurata.required = true;
+		
+		container.appendChild(document.createTextNode("Codice videogioco Principale:"));
+		container.appendChild(inputCodiceVideogiocoPrincipale);
+		container.appendChild(document.createElement("br"));
+		
+		container.appendChild(document.createTextNode("Durata:"));
+		container.appendChild(inputDurata);
+		container.appendChild(document.createElement("br"));
+		
+	}
+	
+	function addFreeToPlayFields() {
+		var container = document.getElementById("aggiungiVideogiocoForm");
+		//Ripulisco dai vecchi figli
+		while (container.hasChildNodes()) {
+            container.removeChild(container.lastChild);
+        }
+		
+		var inputOnline = document.createElement("input");
+		inputOnline.type="radio";
+		inputOnline.name="aggModalita";
+		inputOnline.value="online";
+		inputOnline.required = true;
+		
+		var inputOffline = document.createElement("input");
+		inputOffline.type="radio";
+		inputOffline.name="aggModalita";
+		inputOffline.value="offline";
+		
+		container.appendChild(document.createTextNode("Modalità"));
+		container.appendChild(inputOnline);
+		container.appendChild(document.createTextNode("online"));
+		container.appendChild(inputOffline);
+		container.appendChild(document.createTextNode("offline"));
+		container.appendChild(document.createElement("br"));
+	}
+	</script>
+	
+	<h2>Aggiungi videogioco</h2>
+	<form>
+		<input type="hidden" name="aggiungiVideogioco" value="true">
+		<label>Titolo: <input type="text" name="aggTitolo" placeholder="Titolo*" required></label>
+		<label>PEGI: <input type="number" name="aggPegi" min="1" max="18" step="1" required></label>
+		<label>Genere: <input type="text" name="aggGenere" placeholder="Genere" required></label>
+		<label><br/>Tipologia:<br/>
+			<input type="radio" name="tipologia" value="aPagamento" onclick="addPagamentoFields()" required> Videogioco a pagamento<br/>
+			<input type="radio" name="tipologia" value="freeToPlay" onclick="addFreeToPlayFields()"> Videogioco free to play<br/>
+			<input type="radio" name="tipologia" value="demo" onclick="addDemoFields()"> Videogioco demo <br/> 
+		</label>
+		<div id="aggiungiVideogiocoForm"></div>
+		<input type="submit" value="AggiungiGioco">
+	</form>
+	
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
 		$("document").ready(function prova(){
