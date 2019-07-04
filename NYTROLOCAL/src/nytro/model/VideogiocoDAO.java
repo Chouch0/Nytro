@@ -43,7 +43,7 @@ public class VideogiocoDAO {
 				bean.setDataRimozione(rs.getString("Data_Rimozione"));
 				bean.setDataRilascio(rs.getString("Data_Rilascio"));
 				bean.setTitolo(rs.getString("Titolo"));
-				bean.setVotoMedio(rs.getDouble("Voto_medio"));
+				bean.setVotoMedio(rs.getFloat("Voto_medio"));
 				bean.setPEGI(rs.getInt("PEGI"));
 				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
 				
@@ -94,7 +94,7 @@ public class VideogiocoDAO {
 				bean.setDataRimozione(rs.getString("Data_Rimozione"));
 				bean.setDataRilascio(rs.getString("Data_Rilascio"));
 				bean.setTitolo(rs.getString("Titolo"));
-				bean.setVotoMedio(rs.getDouble("Voto_medio"));
+				bean.setVotoMedio(rs.getFloat("Voto_medio"));
 				bean.setPEGI(rs.getInt("PEGI"));
 				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
 				
@@ -146,10 +146,10 @@ public class VideogiocoDAO {
 				bean.setDataRimozione(rs.getString("Data_Rimozione"));
 				bean.setDataRilascio(rs.getString("Data_Rilascio"));
 				bean.setTitolo(rs.getString("Titolo"));
-				bean.setVotoMedio(rs.getDouble("Voto_medio"));
+				bean.setVotoMedio(rs.getFloat("Voto_medio"));
 				bean.setPEGI(rs.getInt("PEGI"));
 				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
-				bean.setPrezzo(rs.getDouble("Prezzo"));
+				bean.setPrezzo(rs.getFloat("Prezzo"));
 				bean.setCopieVendute(rs.getInt("Copie_Vendute"));
 				
 				videogiochi.add(bean);				
@@ -200,7 +200,7 @@ public class VideogiocoDAO {
 				bean.setDataRimozione(rs.getString("Data_Rimozione"));
 				bean.setDataRilascio(rs.getString("Data_Rilascio"));
 				bean.setTitolo(rs.getString("Titolo"));
-				bean.setVotoMedio(rs.getDouble("Voto_medio"));
+				bean.setVotoMedio(rs.getFloat("Voto_medio"));
 				bean.setPEGI(rs.getInt("PEGI"));
 				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
 				
@@ -255,7 +255,7 @@ public class VideogiocoDAO {
 				bean.setDataRimozione(rs.getString("Data_Rimozione"));
 				bean.setDataRilascio(rs.getString("Data_Rilascio"));
 				bean.setTitolo(rs.getString("Titolo"));
-				bean.setVotoMedio(rs.getDouble("Voto_medio"));
+				bean.setVotoMedio(rs.getFloat("Voto_medio"));
 				bean.setPEGI(rs.getInt("PEGI"));
 				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
 				
@@ -303,7 +303,7 @@ public class VideogiocoDAO {
 				bean.setDataRimozione(rs.getString("Data_Rimozione"));
 				bean.setDataRilascio(rs.getString("Data_Rilascio"));
 				bean.setTitolo(rs.getString("Titolo"));
-				bean.setVotoMedio(rs.getDouble("Voto_medio"));
+				bean.setVotoMedio(rs.getFloat("Voto_medio"));
 				bean.setPEGI(rs.getInt("PEGI"));
 				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
 			}
@@ -319,26 +319,25 @@ public class VideogiocoDAO {
 		return bean;
 	}
 
-	public void doSaveVideogioco(VideogiocoBean bean) throws SQLException {
+	public void doSaveVideogiocoPagamento(VideogiocoPagamentoBean bean) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
 		
-		String insertSQL = "INSERT INTO videogioco(Codice, ISIN, Data_Rilascio, Data_Rimozione, Titolo, Voto_Medio, PEGI, Img) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String insertSQL = "CALL inserisci_a_pagamento(?, ?, ?, ?, ?, ?, ?)";
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
 			
-			preparedStatement.setInt(1, bean.getCodice());
-			preparedStatement.setString(2, bean.getISIN());
-			preparedStatement.setString(3, bean.getDataRilascio());
-			preparedStatement.setString(4, bean.getDataRimozione());
-			preparedStatement.setString(5, bean.getTitolo());
-			preparedStatement.setDouble(6, bean.getVotoMedio());
-			preparedStatement.setInt(7, bean.getPEGI());
-			preparedStatement.setNull(8, java.sql.Types.BLOB);						//blob settata null temporaneamente
+			preparedStatement.setString(1, bean.getISIN());
+			preparedStatement.setString(2, bean.getDataRilascio());
+			preparedStatement.setString(3, bean.getTitolo());
+			preparedStatement.setInt(4, bean.getPEGI());
+			preparedStatement.setNull(5, java.sql.Types.BLOB);			
+			preparedStatement.setString(6, "GenereBello"); //DA MODIFICARE ALL'AGGIUNTA DI UN METODO APPROPRIATO
+			preparedStatement.setFloat(7, bean.getPrezzo());			//blob settata null temporaneamente
 			
-			System.out.println("doSaveVideogioco: " + preparedStatement.toString());
+			System.out.println("doSaveVideogiocoPagamento: " + preparedStatement.toString());
 			preparedStatement.executeUpdate();
 			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
 			
@@ -352,6 +351,71 @@ public class VideogiocoDAO {
 		}
 	}
 
+	public void doSaveVideogiocoDemo(VideogiocoDemoBean bean) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		
+		String insertSQL = "CALL inserisci_demo(?, ?, ?, ?, ?, ?, ?, ?)";
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+			
+			preparedStatement.setString(1, bean.getISIN());
+			preparedStatement.setString(2, bean.getDataRilascio());
+			preparedStatement.setString(3, bean.getTitolo());
+			preparedStatement.setInt(4, bean.getPEGI());
+			preparedStatement.setNull(5, java.sql.Types.BLOB);	//blob settata null temporaneamente
+			preparedStatement.setString(6, "GenereBello"); //DA MODIFICARE ALL'AGGIUNTA DI UN METODO APPROPRIATO
+			preparedStatement.setInt(7, bean.getCodiceVideogiocoPrincipale());					
+			preparedStatement.setInt(8, bean.getDurata());
+			
+			System.out.println("doSaveVideogiocoDemo: " + preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
+			
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+
+	public void doSaveVideogiocoFreeToPlay(VideogiocoFreeToPlayBean bean) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		
+		String insertSQL = "CALL inserisci_ftp(?, ?, ?, ?, ?, ?, ?)";
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+			
+			preparedStatement.setString(1, bean.getISIN());
+			preparedStatement.setString(2, bean.getDataRilascio());
+			preparedStatement.setString(3, bean.getTitolo());
+			preparedStatement.setInt(4, bean.getPEGI());
+			preparedStatement.setNull(5, java.sql.Types.BLOB);	//blob settata null temporaneamente
+			preparedStatement.setString(6, "GenereBello"); //DA MODIFICARE ALL'AGGIUNTA DI UN METODO APPROPRIATO
+			preparedStatement.setString(7, bean.getModalitaDiGioco());
+			
+			System.out.println("doSaveVideogiocoFreToPlay: " + preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
+			
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+	
 	public void doUpdate(VideogiocoBean bean) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -524,10 +588,10 @@ public class VideogiocoDAO {
 				bean1.setDataRimozione(rs1.getString("Data_Rimozione"));
 				bean1.setDataRilascio(rs1.getString("Data_Rilascio"));
 				bean1.setTitolo(rs1.getString("Titolo"));
-				bean1.setVotoMedio(rs1.getDouble("Voto_medio"));
+				bean1.setVotoMedio(rs1.getFloat("Voto_medio"));
 				bean1.setPEGI(rs1.getInt("PEGI"));
 				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
-				bean1.setPrezzo(rs1.getDouble("Prezzo"));
+				bean1.setPrezzo(rs1.getFloat("Prezzo"));
 				bean1.setCopieVendute(rs1.getInt("Copie_Vendute"));
 			}
 			
@@ -537,7 +601,7 @@ public class VideogiocoDAO {
 				bean2.setDataRimozione(rs2.getString("Data_Rimozione"));
 				bean2.setDataRilascio(rs2.getString("Data_Rilascio"));
 				bean2.setTitolo(rs2.getString("Titolo"));
-				bean2.setVotoMedio(rs2.getDouble("Voto_medio"));
+				bean2.setVotoMedio(rs2.getFloat("Voto_medio"));
 				bean2.setPEGI(rs2.getInt("PEGI"));
 				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
 				bean2.setCodiceVideogiocoPrincipale(rs2.getInt("Videogioco_Principale"));
@@ -550,7 +614,7 @@ public class VideogiocoDAO {
 				bean3.setDataRimozione(rs3.getString("Data_Rimozione"));
 				bean3.setDataRilascio(rs3.getString("Data_Rilascio"));
 				bean3.setTitolo(rs3.getString("Titolo"));
-				bean3.setVotoMedio(rs3.getDouble("Voto_medio"));
+				bean3.setVotoMedio(rs3.getFloat("Voto_medio"));
 				bean3.setPEGI(rs3.getInt("PEGI"));
 				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
 				bean3.setModalitaDiGioco(rs3.getString("Modalita_Di_Gioco"));

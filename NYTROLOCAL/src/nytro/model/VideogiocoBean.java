@@ -12,7 +12,7 @@ public class VideogiocoBean implements Serializable {
 	private String dataRilascio;
 	private String dataRimozione;
 	private String titolo;
-	private double votoMedio;
+	private float votoMedio;
 	private int PEGI;
 	//necessario inserire blob 
 	public int getCodice() {
@@ -45,10 +45,10 @@ public class VideogiocoBean implements Serializable {
 	public void setTitolo(String titolo) {
 		this.titolo = titolo;
 	}
-	public double getVotoMedio() {
+	public float getVotoMedio() {
 		return votoMedio;
 	}
-	public void setVotoMedio(double votoMedio) {
+	public void setVotoMedio(float votoMedio) {
 		this.votoMedio = votoMedio;
 	}
 	public int getPEGI() {

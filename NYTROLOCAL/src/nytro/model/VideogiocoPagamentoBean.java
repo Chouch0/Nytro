@@ -7,14 +7,14 @@ public class VideogiocoPagamentoBean extends VideogiocoBean implements Serializa
 	 * 
 	 */
 	private static final long serialVersionUID = -2435060264860573516L;
-	private double prezzo;
+	private float prezzo;
 	private int copieVendute;
 	
-	public double getPrezzo() {
+	public float getPrezzo() {
 		return prezzo;
 	}
 
-	public void setPrezzo(double prezzo) {
+	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
 	}
 
