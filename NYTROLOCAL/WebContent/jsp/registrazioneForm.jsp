@@ -23,7 +23,15 @@
 	<p id="errorSub">Compila tutti i campi obbligatori</p>	
 	<input type="submit" value="Registrati" id="sub" disabled>		
 </form>
-	
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- <script>
+$("input[type=date]").each(function() {
+    if  (this.type != 'date' ) $(this).datepicker();
+});
+</script> -->
+
 <script type="text/javascript">
 	
 	var borderOk = '2px solid green';
