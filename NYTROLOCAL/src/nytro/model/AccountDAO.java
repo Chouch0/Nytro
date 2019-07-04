@@ -279,7 +279,7 @@ public class AccountDAO {
 		PreparedStatement preparedStatement = null;
 		
 		
-		String insertSQL = "CALL inserisci_casa_editrice(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String insertSQL = "CALL inserisci_azienda(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);

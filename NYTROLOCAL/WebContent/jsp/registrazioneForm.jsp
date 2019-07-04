@@ -41,7 +41,6 @@ $("input[type=date]").each(function() {
 	var emailOk = false;
 	var emailRecOk = false;
 	var phoneOk = true;
-	var dateOk = true;
 	var stdBorder = document.forms['registrazione']['phone'].style.border;
 	
 	function validaUsername() {
@@ -160,7 +159,7 @@ $("input[type=date]").each(function() {
 	
 	
 	function checkForm() {
-		if(usernameOk && passwordOk && emailOk && emailRecOk && phoneOk && dateOk) {
+		if(usernameOk && passwordOk && emailOk && emailRecOk && phoneOk) {
 			document.getElementById("sub").disabled = false;
 			document.getElementById("errorSub").innerHTML = "";
 		} else {
