@@ -449,6 +449,32 @@ public class VideogiocoDAO {
 			
 	}
 
+	public void doDeleteVideogioco(VideogiocoBean bean) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		
+		String insertSQL = "UPDATE videogioco SET Data_Rimozione = current_date() WHERE codice = ?";
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+			
+			preparedStatement.setInt(1, bean.getCodice());
+			
+			System.out.println("doSaveVideogiocoFreToPlay: " + preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
+			
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+	
 	public boolean doDelete(VideogiocoBean bean, String isin) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -518,6 +544,7 @@ public class VideogiocoDAO {
 		
 		return (result != 0);
 	}
+	
 	
 	public boolean doDeleteFromLibreria(String username, int codiceVideogiocoDaCancellare) throws SQLException {
 		Connection connection = null;
