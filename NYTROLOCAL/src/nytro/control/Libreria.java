@@ -36,6 +36,16 @@ public class Libreria extends HttpServlet {
 			}
 		} 
 		
+		String aggiungiVideogioco=request.getParameter("aggiungiVideogioco");
+		if(aggiungiVideogioco!=null && !aggiungiVideogioco.equals("")) {
+			int codiceVideogiocoDaCancellare = Integer.parseInt(aggiungiVideogioco);
+			try {
+				videogiocoDAO.doSaveToLibreria(account.getUsername(), codiceVideogiocoDaCancellare);
+			} catch (SQLException e) {
+				throw new MyException("Errore cancellazione videogioco.");
+			}
+		}
+		
 		String order = request.getParameter("order");
 		
 		Collection<VideogiocoBean> libreria = null;

@@ -14,10 +14,23 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 	
 	<p>
 		<%=videogiocoDetailed.toString()%>
-		<%if(possibileAggiungereAgliAcquisti!=null && possibileAggiungereAgliAcquisti.equalsIgnoreCase("true") && 
-				videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoPagamentoBean")){ %>
-			<a href="GestoreCarrello?action=addCart&codiceVideogioco=<%=videogiocoDetailed.getCodice()%>">Inserisci nel carrello</a><br/>
-		<%} %>
+		
+		<%
+		if(videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoPagamentoBean")){
+			if(possibileAggiungereAgliAcquisti!=null && possibileAggiungereAgliAcquisti.equalsIgnoreCase("true")){
+				%><a href="GestoreCarrello?action=addCart&codiceVideogioco=<%=videogiocoDetailed.getCodice()%>">Inserisci nel carrello</a><br/><%
+			} else {
+				if(possibileAggiungereAllaLibreria!=null && possibileAggiungereAllaLibreria.equalsIgnoreCase("true")){
+					%><a href="Libreria?aggiungiVideogioco=<%=videogiocoDetailed.getCodice()%>">Inserisci nella libreria</a><br/><%
+				} 
+			}
+		} else {
+			if(possibileAggiungereAllaLibreria!=null && possibileAggiungereAllaLibreria.equalsIgnoreCase("true")){
+				 %><a href="Libreria?aggiungiVideogioco=<%=videogiocoDetailed.getCodice()%>">Inserisci nella libreria</a><br/><%
+			} 			
+		}
+		
+		%>	
 	</p>
 	
 	<form action="/NYTRO/Videogioco" method="get">

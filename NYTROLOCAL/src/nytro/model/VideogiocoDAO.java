@@ -578,6 +578,37 @@ public class VideogiocoDAO {
 		return (result != 0);
 	}
 	
+	public boolean doSaveToLibreria(String username, int codiceVideogiocoDaInserire) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		int result=0;
+		
+		String selectSQL = "CALL inserisci_libreria(?, ?)";
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			
+			preparedStatement.setString(1, username);
+			preparedStatement.setInt(2, codiceVideogiocoDaInserire);
+			
+			System.out.println("doSaveToLibreria: " + preparedStatement.toString());
+			result=preparedStatement.executeUpdate();
+			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
+			
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return (result != 0);
+	}
+	
 	public VideogiocoBean doRetrieveDetailedByCodice(int codice) throws SQLException {
 
 		Connection connection = null;
