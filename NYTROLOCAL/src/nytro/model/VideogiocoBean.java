@@ -3,6 +3,10 @@ package nytro.model;
 import java.io.Serializable;
 
 public class VideogiocoBean implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7010010608149940666L;
 	private int codice;
 	private String ISIN;
 	private String dataRilascio;

@@ -3,6 +3,10 @@ package nytro.model;
 import java.io.Serializable;
 
 public class VideogiocoFreeToPlayBean extends VideogiocoBean implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3963853793315329778L;
 	private String modalitaDiGioco;
 	
 	public String getModalitaDiGioco() {

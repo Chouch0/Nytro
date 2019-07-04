@@ -1,5 +1,6 @@
+<%@page import="nytro.model.VideogiocoPagamentoBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
-import="nytro.model.VideogiocoBean, nytro.model.Cart, java.util.Collection, java.util.List"%>
+import="nytro.model.VideogiocoPagamentoBean, nytro.model.Cart, java.util.Collection, java.util.List"%>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Carrello"/>	</jsp:include>
 
@@ -11,7 +12,7 @@ import="nytro.model.VideogiocoBean, nytro.model.Cart, java.util.Collection, java
 <%if(cart!=null) {%>
 	<h2>Cart</h2>
 	<%
-		List<VideogiocoBean> carrelloVideogiochi = cart.getItems();
+		List<VideogiocoPagamentoBean> carrelloVideogiochi = cart.getItems();
 		if(carrelloVideogiochi.size()>0){
 	%>
 			<a href="GestoreCarrello?action=clearCart">Svuota carrello</a><br/>
@@ -31,7 +32,7 @@ import="nytro.model.VideogiocoBean, nytro.model.Cart, java.util.Collection, java
 		</tr>
 			<%
 				if(carrelloVideogiochi.size()>0){
-					for(VideogiocoBean x:carrelloVideogiochi){
+					for(VideogiocoPagamentoBean x:carrelloVideogiochi){
 			%>
 		<tr>
 			<td><%=x.getTitolo()%></td>
