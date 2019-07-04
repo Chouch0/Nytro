@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -772,6 +773,36 @@ public class VideogiocoDAO {
 		}
 		
 		return ;
+	}
+
+	public static List<String> doGetGenere(VideogiocoBean videogiocoBean) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		List<String> generi = new ArrayList<String>();
+
+		String selectSQL = "SELECT Nome FROM genere WHERE Videogioco = ? ";
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, videogiocoBean.getCodice());
+			
+			System.out.println("doGetGenere: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) 
+				generi.add(rs.getString("Nome"));
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return generi;
 	}
 	
 }

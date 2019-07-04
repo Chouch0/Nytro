@@ -28,7 +28,7 @@ import="nytro.model.VideogiocoBean, nytro.model.AccountBean, java.util.Collectio
 		<%
 			for(VideogiocoBean x : catalogoCasaEditrice){
 		%>
-			<%=x.toString() %><br/>	<span class = "buttonLink"><a href="/NYTRO/Videogioco?codiceVideogioco=<%=x.getCodice()%>">Informazioni</a></span><br/>
+			<%=x.toString() %><%=x.getGenere().toString() %><br/>	<span class = "buttonLink"><a href="/NYTRO/Videogioco?codiceVideogioco=<%=x.getCodice()%>">Informazioni</a></span><br/>
 			<!--  Se utilizzo un bottone non riesco a passare il parametro codice utilizzando lo scriptlet -->	
 		<%
 			}

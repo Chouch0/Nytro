@@ -35,7 +35,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 			for(VideogiocoBean x : catalogo){
 				if(x.getDataRimozione()== null){
 		%>
-			<%=x.toString() %><br/>	<span class = "buttonLink"><a href="/NYTRO/Videogioco?codiceVideogioco=<%=x.getCodice()%>">Informazioni</a></span><br/>
+			<%=x.toString() %><%=x.getGenere().toString() %><br/>	<span class = "buttonLink"><a href="/NYTRO/Videogioco?codiceVideogioco=<%=x.getCodice()%>">Informazioni</a></span><br/>
 			<!--  Se utilizzo un bottone non riesco a passare il parametro codice utilizzando lo scriptlet -->	
 		<%
 				}

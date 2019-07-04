@@ -1,6 +1,8 @@
 package nytro.model;
 
 import java.io.Serializable;
+import java.sql.SQLException;
+import java.util.List;
 
 public class VideogiocoBean implements Serializable {
 	/**
@@ -56,6 +58,9 @@ public class VideogiocoBean implements Serializable {
 	}
 	public void setPEGI(int pEGI) {
 		PEGI = pEGI;
+	}
+	public List<String> getGenere() throws SQLException {
+		return VideogiocoDAO.doGetGenere(this);
 	}
 	@Override
 	public int hashCode() {
