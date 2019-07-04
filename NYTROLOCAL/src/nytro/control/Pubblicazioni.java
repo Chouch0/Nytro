@@ -118,6 +118,16 @@ public class Pubblicazioni extends HttpServlet {
 			}
 		}
 		
+		String cancelVideogioco = request.getParameter("cancelVideogioco");
+		if(cancelVideogioco!=null && !cancelVideogioco.equals("")) {
+			try {
+				VideogiocoBean bean = videogiocoDAO.doRetrieveDetailedByCodice(Integer.parseInt(cancelVideogioco));
+				videogiocoDAO.doDeleteVideogioco(bean);
+			} catch (NumberFormatException | SQLException e) {
+				throw new MyException("Errore cancellazione videogioco");
+			}
+		}
+		
 		
 		String order = request.getParameter("order");
 		String categoria = request.getParameter("categoria");

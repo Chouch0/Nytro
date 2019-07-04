@@ -34,7 +34,11 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 		<%
 			for(VideogiocoBean x : videogiochi){
 		%>
-			<%=x.toString() %><span class = "buttonLink"><a href="/NYTRO/Videogioco?codiceVideogioco=<%=x.getCodice()%>">Informazioni</a></span><br/>		
+			<%=x.toString() %><span class = "buttonLink"><a href="/NYTRO/Videogioco?codiceVideogioco=<%=x.getCodice()%>">Informazioni</a></span>	
+			<%if(x.getDataRimozione()==null) {%>
+				<a href="/NYTRO/Pubblicazioni?cancelVideogioco=<%=x.getCodice()%>">Rimuovi videogioco</a>
+			<%} %>
+			<br/>
 		<%
 			}
 		%>
@@ -122,7 +126,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 	</script>
 	
 	<h2>Aggiungi videogioco</h2>
-	<form>
+	<form action="/NYTRO/Pubblicazioni" method="post">
 		<input type="hidden" name="aggiungiVideogioco" value="true">
 		<label>Titolo: <input type="text" name="aggTitolo" placeholder="Titolo*" required></label>
 		<label>PEGI: <input type="number" name="aggPegi" min="1" max="18" step="1" required></label>
