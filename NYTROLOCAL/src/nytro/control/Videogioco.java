@@ -82,6 +82,30 @@ public class Videogioco extends HttpServlet {
 			throw new MyException("Errore SQL per recensioni");
 		}
 		
+		boolean possibileAggiungereAllaLibreria=false;
+		
+		try {
+			possibileAggiungereAllaLibreria = videogiocoDAO.doRetrieveAppartenenzaAllaLibreria(Integer.parseInt(codiceVideogioco), account.getUsername());
+			System.out.println(possibileAggiungereAllaLibreria);
+		} catch (NumberFormatException | SQLException e) {
+			throw new MyException("Non si sa se si può aggiungere alla libreria");
+		}
+		
+		if(possibileAggiungereAllaLibreria)
+			request.setAttribute("possibileAggiungereAllaLibreria", "true");
+		
+		boolean possibileAggiungereAgliAcquisti=false;
+		
+		try {
+			possibileAggiungereAgliAcquisti = videogiocoDAO.doRetrieveAppartenenzaAgliAcquisti(Integer.parseInt(codiceVideogioco), account.getUsername());
+			System.out.println(possibileAggiungereAgliAcquisti);
+		} catch (NumberFormatException | SQLException e) {
+			throw new MyException("Non si sa se si può aggiungere agli acquisti");
+		}
+		
+		if(possibileAggiungereAgliAcquisti)
+			request.setAttribute("possibileAggiungereAgliAcquisti", "true");
+		
 		request.setAttribute("recensioni", recensioni);
 
 		request.getRequestDispatcher("jsp/videogioco.jsp").forward(request, response);

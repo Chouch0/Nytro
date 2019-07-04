@@ -14,6 +14,7 @@ import nytro.model.AccountBean;
 import nytro.model.Cart;
 import nytro.model.VideogiocoBean;
 import nytro.model.VideogiocoDAO;
+import nytro.model.VideogiocoPagamentoBean;
 
 @WebServlet("/GestoreCarrello")
 public class GestoreCarrello extends HttpServlet {
@@ -41,8 +42,11 @@ public class GestoreCarrello extends HttpServlet {
 			if(action!=null && !action.equals("")) {
 				if(action.equalsIgnoreCase("addCart")) {
 					String codiceVideogioco = request.getParameter("codiceVideogioco");
-					VideogiocoBean videogioco = videogiocoDAO.doRetrieveByCodice(Integer.parseInt(codiceVideogioco), "");
-					if(videogioco!=null) {
+					if(codiceVideogioco==null || codiceVideogioco.equals(""))
+						throw new MyException("Codice videogioco assente");
+					VideogiocoBean tmp = videogiocoDAO.doRetrieveDetailedByCodice(Integer.parseInt(codiceVideogioco));
+					VideogiocoPagamentoBean videogioco = (VideogiocoPagamentoBean) tmp;
+					if(videogioco!=null && !cart.contains(videogioco)){
 						cart.addItem(videogioco);
 						message="Videogioco inserito correttamente nel carrello";
 					} else {
@@ -50,7 +54,10 @@ public class GestoreCarrello extends HttpServlet {
 					}
 				} else if(action.equalsIgnoreCase("deleteCart")) {
 					String codiceVideogioco = request.getParameter("codiceVideogioco");
-					VideogiocoBean videogioco = videogiocoDAO.doRetrieveByCodice(Integer.parseInt(codiceVideogioco), "");
+					if(codiceVideogioco==null || codiceVideogioco.equals(""))
+						throw new MyException("Codice videogioco assente");
+					VideogiocoBean tmp = videogiocoDAO.doRetrieveDetailedByCodice(Integer.parseInt(codiceVideogioco));
+					VideogiocoPagamentoBean videogioco = (VideogiocoPagamentoBean) tmp;
 					if(videogioco!=null) {
 						cart.deleteItem(videogioco);
 						message="Videogioco rimosso correttamente nel carrello";
@@ -61,6 +68,12 @@ public class GestoreCarrello extends HttpServlet {
 					cart.deleteAll();
 					message="Carrello svuotato con successo";
 				} else if (action.equalsIgnoreCase("buy")){
+					String cartaDiPagamento = request.getParameter("cartaDiPagamento");
+					if(cartaDiPagamento==null || cartaDiPagamento.equals(""))
+						throw new MyException("Carta di pagamento assente");
+					
+					videogiocoDAO.doAcquisto(cart.getItems(), account, cartaDiPagamento);
+				
 					cart.deleteAll();
 					message="Acquistato effettuato con successo";
 				}
@@ -71,14 +84,9 @@ public class GestoreCarrello extends HttpServlet {
 		}
 		
 		request.setAttribute("message", message);
-		request.getSession().setAttribute("carrello", cart);				
-		request.setAttribute("cart", cart);
+		request.getSession().setAttribute("carrello", cart);	
 		
-		String dest = request.getHeader("referer");
-		if (dest == null || dest.contains("/Login") || dest.trim().isEmpty()) {
-			dest = ".";
-		}
-		response.sendRedirect(dest);
+		request.getRequestDispatcher("jsp/carrello.jsp").forward(request, response);
 	}
 
 	

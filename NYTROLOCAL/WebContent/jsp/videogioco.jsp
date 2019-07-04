@@ -4,7 +4,8 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 	VideogiocoBean videogiocoDetailed = (VideogiocoBean) request.getAttribute("videogiocoDetailed");
 	Collection<RecensioneBean> recensioni = (Collection<RecensioneBean>) request.getAttribute("recensioni");
 	AccountBean account = (AccountBean) session.getAttribute("account");
-	
+	String possibileAggiungereAllaLibreria = (String) request.getAttribute("possibileAggiungereAllaLibreria");
+	String possibileAggiungereAgliAcquisti = (String) request.getAttribute("possibileAggiungereAgliAcquisti");
 %>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="<%=videogiocoDetailed.getTitolo() %>"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
@@ -13,7 +14,8 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 	
 	<p>
 		<%=videogiocoDetailed.toString()%>
-		<%if(videogiocoDetailed.getClass().toString()!="VideogiocoPagamentoBean"){ %>
+		<%if(possibileAggiungereAgliAcquisti!=null && possibileAggiungereAgliAcquisti.equalsIgnoreCase("true") && 
+				videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoPagamentoBean")){ %>
 			<a href="GestoreCarrello?action=addCart&codiceVideogioco=<%=videogiocoDetailed.getCodice()%>">Inserisci nel carrello</a><br/>
 		<%} %>
 	</p>

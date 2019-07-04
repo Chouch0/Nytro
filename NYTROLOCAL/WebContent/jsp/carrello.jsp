@@ -4,18 +4,23 @@ import="nytro.model.VideogiocoBean, nytro.model.Cart, java.util.Collection, java
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Carrello"/>	</jsp:include>
 
 <%	
-	Cart cart = (Cart) request.getAttribute("cart");
-	String message = (String) request.getParameter("message");
+	Cart cart = (Cart) session.getAttribute("carrello");
+	String message = (String) request.getAttribute("message");
 	
 %>
-
+<%if(cart!=null) {%>
 	<h2>Cart</h2>
 	<%
 		List<VideogiocoBean> carrelloVideogiochi = cart.getItems();
 		if(carrelloVideogiochi.size()>0){
 	%>
-		<a href="GestoreCarrello?action=clearCart">Svuota carrello</a><br/>
-		<a href="GestoreCarrello?action=buy">Effettua l'acquisto</a>
+			<a href="GestoreCarrello?action=clearCart">Svuota carrello</a><br/>
+			
+			<form action="/NYTRO/GestoreCarrello" method="post">
+				<input type="hidden" name="action" value="buy">
+				<label>Inserisci carta di pagamento<input type="text" name="cartaDiPagamento" placeholder="Carta di pagamento*" required></label>
+				<input type="submit" value="Effettua l'acquisto">
+			</form>
 	<%
 		}
 	%>
@@ -53,5 +58,7 @@ import="nytro.model.VideogiocoBean, nytro.model.Cart, java.util.Collection, java
 	<%
 		}
 	%>
-
+<%} else {%>
+	<h4>Carrello vuoto</h4>
+<%} %>
 <%@include file="footer.html"%>	

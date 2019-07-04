@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 public class VideogiocoDAO {
 
@@ -579,5 +580,107 @@ public class VideogiocoDAO {
 		return null;
 	}
 	
+	
+	public boolean doRetrieveAppartenenzaAllaLibreria(int codice, String username) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		int n=0;
+		
+		String selectSQL = "SELECT COUNT(*) FROM ha_nella_libreria WHERE Videogioco = ? AND Username=?";
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, codice);
+			preparedStatement.setString(2, username);
+			
+			System.out.println("doRetrieveAppartenenzaAllaLibreria: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) 
+				n=rs.getInt(1);
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		System.out.println(n);
+		return n==0;
+	}
+	
+	public boolean doRetrieveAppartenenzaAgliAcquisti(int codice, String username) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		int n=0;
+		
+		String selectSQL = "SELECT COUNT(*) FROM acquista WHERE Videogioco = ? AND Username=?";
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, codice);
+			preparedStatement.setString(2, username);
+			
+			System.out.println("doRetrieveAppartenenzaAgliAcquisti: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) 
+				n=rs.getInt(1);
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		System.out.println(n);
+		return n==0;
+	}
+	
+	public void doAcquisto(List<VideogiocoPagamentoBean> carrello, AccountBean account, String cartaDiPagamento) throws SQLException {
+		
+		for(VideogiocoPagamentoBean x : carrello) {
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
+	
+			String selectSQL = "CALL acquista_videogioco(?, ?, ?, ?, ?)";
+			
+			try {
+				connection = DriverManagerConnectionPool.getConnection();
+				preparedStatement = connection.prepareStatement(selectSQL);
+				
+				preparedStatement.setString(1, account.getUsername());
+				preparedStatement.setInt(2, x.getCodice());
+				preparedStatement.setString(3, cartaDiPagamento);
+				preparedStatement.setDouble(4, x.getPrezzo());
+				preparedStatement.setString(5, account.getIp());
+				
+				System.out.println("doAcquisto: " + preparedStatement.toString());
+				
+				preparedStatement.executeQuery();
+
+			} finally {
+				try {
+					if(preparedStatement!=null)
+						preparedStatement.close();
+				} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+					DriverManagerConnectionPool.releaseConnection(connection);
+				}
+			}
+			
+		}
+		
+		return ;
+	}
 	
 }
