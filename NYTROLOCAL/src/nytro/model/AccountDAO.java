@@ -1,11 +1,16 @@
 package nytro.model;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.Part;
 
 public class AccountDAO {
 
@@ -650,5 +655,44 @@ public class AccountDAO {
 		
 		return theUser;
 	}
-
+	
+	public void doUploadImage(Part img, String username) throws SQLException, IOException {
+		InputStream inputStream = null; 
+		 if (img != null) {
+	            // prints out some information for debugging
+	            System.out.println(img.getName());
+	            System.out.println(img.getSize());
+	            System.out.println(img.getContentType());
+	             
+	            // obtains input stream of the upload file
+	            inputStream = img.getInputStream();
+	        }
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+				
+		String insertSQL = "UPDATE account SET Img_Profilo = ? WHERE Username = ?";
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+			
+			 if (inputStream != null) {
+	                // fetches input stream of the upload file for the blob column
+	                preparedStatement.setBlob(1, inputStream);
+	                preparedStatement.setString(2, username);
+	            }		
+			
+			System.out.println("doUploadImage: " + preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
+			
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
 }

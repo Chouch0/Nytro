@@ -2,6 +2,8 @@ package nytro.model;
 
 import java.io.Serializable;
 
+import com.mysql.cj.jdbc.Blob;
+
 public class AccountBean implements Serializable {
 	/**
 	 * 
@@ -16,6 +18,7 @@ public class AccountBean implements Serializable {
 	private String ora;
 	private String ip;
 	private int ruolo;
+	private Blob imgProfilo;
 	
 //Necessario inserire le blob per: 	  Img_Profilo		longblob,
 	

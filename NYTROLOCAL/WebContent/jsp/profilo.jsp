@@ -104,6 +104,10 @@ import="nytro.model.AccountBean"%>
 </form>
 
 <h2>Cambia immagine del profilo</h2>
+<form action="/NYTRO/AggiornaProfilo" method="post" enctype="multipart/form-data">
+<input type="file" name="photo" size="50"/>
+<input type="submit" value="Vai">
+</form>
 
 <%if(account.getRuolo()==0){ %>
 <h2>Cambia nome</h2>

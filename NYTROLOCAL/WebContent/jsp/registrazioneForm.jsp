@@ -5,7 +5,7 @@
 
 <h1>Registrazione</h1>
 
-<form class="box" name="registrazione" action="/NYTRO/RegistrazioneUtente" method="post"> 
+<form class="box" name="registrazione" action="/NYTRO/RegistrazioneUtente" method="post" enctype="multipart/form-data"> 
 	<input class="registrazione" name="username" type="text" oninput="validaUsername()" placeholder="Username*"> 
 	<p id="errorUsr"></p>  
 	<input class="registrazione" type="password" name="password" oninput="validaPassword()" placeholder="Password*"> 
@@ -20,7 +20,8 @@
     <input class="registrazione" type="date" id="date" name="bornDate" placeholder="Data di nascita">
     <input name="genere" type="radio" value="M" style="display:inline">M
     <input name="genere" type="radio" value="F" style="display:inline">F
-	<p id="errorSub">Compila tutti i campi obbligatori</p>	
+	<p id="errorSub">Compila tutti i campi obbligatori</p>
+    <input type="file" name="photo" size="50">
 	<input type="submit" value="Registrati" id="sub" disabled>		
 </form>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

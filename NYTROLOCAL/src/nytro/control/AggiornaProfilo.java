@@ -3,11 +3,14 @@ package nytro.control;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import nytro.exceptions.MyException;
 import nytro.model.AccountBean;
@@ -17,6 +20,7 @@ import nytro.model.CasaEditriceBean;
 import nytro.model.GiocatoreBean;
 
 @WebServlet("/AggiornaProfilo")
+@MultipartConfig(maxFileSize = 16177215)
 public class AggiornaProfilo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	AccountDAO accountDAO = new AccountDAO();       
@@ -103,6 +107,16 @@ public class AggiornaProfilo extends HttpServlet {
 				accountDAO.doUpdateGiocatore(tmp);
 			} catch (SQLException e) {
 				throw new MyException("Fallimento aggiornamento data di nascita");
+			}
+		}
+		
+		Part filePart = request.getPart("photo");
+		if (filePart != null) {
+			try {
+				System.out.println("try");
+				accountDAO.doUploadImage(filePart, account.getUsername());
+			} catch(SQLException exception) {
+				throw new MyException("Fallimento aggiornamento immagine");
 			}
 		}
 		

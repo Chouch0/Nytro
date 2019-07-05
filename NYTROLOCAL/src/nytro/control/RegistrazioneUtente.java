@@ -1,26 +1,31 @@
 package nytro.control;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import nytro.exceptions.MyException;
 import nytro.model.AccountDAO;
 import nytro.model.GiocatoreBean;
 
 @WebServlet("/RegistrazioneUtente")
+@MultipartConfig(maxFileSize = 16177215)
 public class RegistrazioneUtente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final AccountDAO accountDAO = new AccountDAO();
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		GiocatoreBean utente = new GiocatoreBean();
+		InputStream inputStream = null;
 		
 		utente.setUsername(request.getParameter("username"));
 		System.out.println("Questo è lo username : " + request.getParameter("username"));
@@ -40,9 +45,11 @@ public class RegistrazioneUtente extends HttpServlet {
 			throw new MyException("Campi vuoti");
 		
 		utente.setIp(request.getRemoteAddr());
+		Part filePart = request.getPart("photo");
 		
 		try {
 			accountDAO.doSaveGiocatore(utente);
+			accountDAO.doUploadImage(filePart, utente.getUsername());
 			RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/index.jsp");
 			dispatcher.forward(request, response);
 		} catch(SQLException exception) {
