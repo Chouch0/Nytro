@@ -3,6 +3,7 @@ package nytro.model;
 import java.io.InputStream;
 import java.io.Serializable;
 
+import javax.imageio.stream.ImageInputStream;
 import javax.servlet.http.Part;
 
 public class AccountBean implements Serializable {
@@ -187,11 +188,11 @@ public class AccountBean implements Serializable {
 
 	@Override
 	public String toString() {
-		return getClass().getName() + "[username=" + username + ", password=" + password + ", email=" + email + ", emailRecupero="
+		return "AccountBean [username=" + username + ", password=" + password + ", email=" + email + ", emailRecupero="
 				+ emailRecupero + ", cellulare=" + cellulare + ", data=" + data + ", ora=" + ora + ", ip=" + ip
-				+ ", ruolo=" + ruolo + "]";
+				+ ", ruolo=" + ruolo + ", imgProfilo=" + imgProfilo + "]";
 	}
-	
+
 	public AccountBean clone() {
 		try {
 			AccountBean tmp = (AccountBean) super.clone();

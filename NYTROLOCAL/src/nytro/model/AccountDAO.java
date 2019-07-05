@@ -509,7 +509,7 @@ public class AccountDAO {
 				bean.setIp(rs.getString("IP"));
 				bean.setRuolo(rs.getInt("Ruolo"));
 				bean.setImgProfilo(rs.getBinaryStream("Img_Profilo"));
-				
+				System.out.println(""+rs.getBinaryStream("Img_Profilo"));
 				amici.add(bean);
 			}
 		} finally {
