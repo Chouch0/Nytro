@@ -9,9 +9,6 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.Part;
-
 public class AccountDAO {
 
 	public Collection<AccountBean> doRetrieveAll(String order, int ruolo) throws SQLException {
@@ -619,6 +616,7 @@ public class AccountDAO {
 				bean.setOra(rs.getString("Ora"));
 				bean.setIp(rs.getString("IP"));
 				bean.setRuolo(rs.getInt("Ruolo"));
+				bean.setImgProfilo(rs.getBinaryStream("Img_Profilo"));
 				//bean.setUsername(rs.getString("Img_Profilo"));		per la blob
 				
 				if(ruolo==0) {
@@ -657,17 +655,6 @@ public class AccountDAO {
 	}
 	
 	public void doUploadImage(AccountBean account) throws SQLException, IOException {
-		InputStream inputStream = null; 
-		 if (account.getImgProfilo() != null) {
-	            // prints out some information for debugging
-	            System.out.println(account.getImgProfilo().getName());
-	            System.out.println(account.getImgProfilo().getSize());
-	            System.out.println(account.getImgProfilo().getContentType());
-	             
-	            // obtains input stream of the upload file
-	            inputStream = account.getImgProfilo().getInputStream();
-	        }
-		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 				
@@ -676,9 +663,9 @@ public class AccountDAO {
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
 			
-			 if (inputStream != null) {
+			 if (account.getImgProfilo() != null) {
 	                // fetches input stream of the upload file for the blob column
-	                preparedStatement.setBlob(1, inputStream);
+	                preparedStatement.setBlob(1, account.getImgProfilo());
 	                preparedStatement.setString(2, account.getUsername());
 	            }		
 			

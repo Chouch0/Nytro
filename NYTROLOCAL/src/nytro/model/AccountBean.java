@@ -1,5 +1,6 @@
 package nytro.model;
 
+import java.io.InputStream;
 import java.io.Serializable;
 
 import javax.servlet.http.Part;
@@ -18,7 +19,7 @@ public class AccountBean implements Serializable {
 	private String ora;
 	private String ip;
 	private int ruolo;
-	private Part imgProfilo;
+	private InputStream imgProfilo;
 	
 //Necessario inserire le blob per: 	  Img_Profilo		longblob,
 	
@@ -109,11 +110,11 @@ public class AccountBean implements Serializable {
 		this.password=password;
 	}
 
-	public Part getImgProfilo() {
+	public InputStream getImgProfilo() {
 		return imgProfilo;
 	}
 
-	public void setImgProfilo(Part imgProfilo) {
+	public void setImgProfilo(InputStream imgProfilo) {
 		this.imgProfilo = imgProfilo;
 	}
 

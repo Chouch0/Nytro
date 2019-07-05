@@ -45,7 +45,7 @@ public class RegistrazioneUtente extends HttpServlet {
 			throw new MyException("Campi vuoti");
 		
 		utente.setIp(request.getRemoteAddr());
-		utente.setImgProfilo(request.getPart("photo"));
+		utente.setImgProfilo(request.getPart("photo").getInputStream());
 		
 		try {
 			accountDAO.doSaveGiocatore(utente);
