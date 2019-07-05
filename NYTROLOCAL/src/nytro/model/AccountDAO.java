@@ -656,16 +656,16 @@ public class AccountDAO {
 		return theUser;
 	}
 	
-	public void doUploadImage(Part img, String username) throws SQLException, IOException {
+	public void doUploadImage(AccountBean account) throws SQLException, IOException {
 		InputStream inputStream = null; 
-		 if (img != null) {
+		 if (account.getImgProfilo() != null) {
 	            // prints out some information for debugging
-	            System.out.println(img.getName());
-	            System.out.println(img.getSize());
-	            System.out.println(img.getContentType());
+	            System.out.println(account.getImgProfilo().getName());
+	            System.out.println(account.getImgProfilo().getSize());
+	            System.out.println(account.getImgProfilo().getContentType());
 	             
 	            // obtains input stream of the upload file
-	            inputStream = img.getInputStream();
+	            inputStream = account.getImgProfilo().getInputStream();
 	        }
 		
 		Connection connection = null;
@@ -679,7 +679,7 @@ public class AccountDAO {
 			 if (inputStream != null) {
 	                // fetches input stream of the upload file for the blob column
 	                preparedStatement.setBlob(1, inputStream);
-	                preparedStatement.setString(2, username);
+	                preparedStatement.setString(2, account.getUsername());
 	            }		
 			
 			System.out.println("doUploadImage: " + preparedStatement.toString());

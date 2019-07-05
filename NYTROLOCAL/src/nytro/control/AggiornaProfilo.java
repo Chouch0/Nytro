@@ -110,11 +110,10 @@ public class AggiornaProfilo extends HttpServlet {
 			}
 		}
 		
-		Part filePart = request.getPart("photo");
-		if (filePart != null) {
+		account.setImgProfilo(request.getPart("photo"));
+		if (account.getImgProfilo() != null) {
 			try {
-				System.out.println("try");
-				accountDAO.doUploadImage(filePart, account.getUsername());
+				accountDAO.doUploadImage(account);
 			} catch(SQLException exception) {
 				throw new MyException("Fallimento aggiornamento immagine");
 			}

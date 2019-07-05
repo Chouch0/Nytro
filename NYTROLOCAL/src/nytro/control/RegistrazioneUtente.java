@@ -45,11 +45,11 @@ public class RegistrazioneUtente extends HttpServlet {
 			throw new MyException("Campi vuoti");
 		
 		utente.setIp(request.getRemoteAddr());
-		Part filePart = request.getPart("photo");
+		utente.setImgProfilo(request.getPart("photo"));
 		
 		try {
 			accountDAO.doSaveGiocatore(utente);
-			accountDAO.doUploadImage(filePart, utente.getUsername());
+			accountDAO.doUploadImage(utente);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/index.jsp");
 			dispatcher.forward(request, response);
 		} catch(SQLException exception) {

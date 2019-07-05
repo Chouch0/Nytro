@@ -2,7 +2,7 @@ package nytro.model;
 
 import java.io.Serializable;
 
-import com.mysql.cj.jdbc.Blob;
+import javax.servlet.http.Part;
 
 public class AccountBean implements Serializable {
 	/**
@@ -18,7 +18,7 @@ public class AccountBean implements Serializable {
 	private String ora;
 	private String ip;
 	private int ruolo;
-	private Blob imgProfilo;
+	private Part imgProfilo;
 	
 //Necessario inserire le blob per: 	  Img_Profilo		longblob,
 	
@@ -107,6 +107,14 @@ public class AccountBean implements Serializable {
 	
 	public void setPassword(String password) {
 		this.password=password;
+	}
+
+	public Part getImgProfilo() {
+		return imgProfilo;
+	}
+
+	public void setImgProfilo(Part imgProfilo) {
+		this.imgProfilo = imgProfilo;
 	}
 
 	@Override
