@@ -4,10 +4,7 @@ import java.io.Serializable;
 
 public class CasaEditriceBean extends AccountBean  implements Serializable{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6185623636297879647L;
+	
 	private String ISIN;
 	private String nomeCasaEditrice;
 	private String CEO;

@@ -6,10 +6,7 @@ import java.io.Serializable;
 import javax.servlet.http.Part;
 
 public class AccountBean implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -9143873100465034388L;
+	
 	private String username;
 	private String password;
 	private String email;
