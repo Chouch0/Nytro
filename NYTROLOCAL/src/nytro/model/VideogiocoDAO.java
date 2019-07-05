@@ -1,5 +1,6 @@
 package nytro.model;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,7 +47,7 @@ public class VideogiocoDAO {
 				bean.setTitolo(rs.getString("Titolo"));
 				bean.setVotoMedio(rs.getFloat("Voto_medio"));
 				bean.setPEGI(rs.getInt("PEGI"));
-				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
+				rs.getBlob("Img").getBinaryStream();
 				
 				videogiochi.add(bean);				
 				
@@ -97,7 +98,7 @@ public class VideogiocoDAO {
 				bean.setTitolo(rs.getString("Titolo"));
 				bean.setVotoMedio(rs.getFloat("Voto_medio"));
 				bean.setPEGI(rs.getInt("PEGI"));
-				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
+				bean.setImg(rs.getBinaryStream("Img"));
 				
 				videogiochi.add(bean);				
 				
@@ -149,7 +150,7 @@ public class VideogiocoDAO {
 				bean.setTitolo(rs.getString("Titolo"));
 				bean.setVotoMedio(rs.getFloat("Voto_medio"));
 				bean.setPEGI(rs.getInt("PEGI"));
-				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
+				bean.setImg(rs.getBinaryStream("Img"));
 				bean.setPrezzo(rs.getFloat("Prezzo"));
 				bean.setCopieVendute(rs.getInt("Copie_Vendute"));
 				
@@ -203,7 +204,7 @@ public class VideogiocoDAO {
 				bean.setTitolo(rs.getString("Titolo"));
 				bean.setVotoMedio(rs.getFloat("Voto_medio"));
 				bean.setPEGI(rs.getInt("PEGI"));
-				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
+				bean.setImg(rs.getBinaryStream("Img"));
 				
 				bean.setCodiceVideogiocoPrincipale(rs.getInt("Videogioco_Principale"));
 				bean.setDurata(rs.getInt("Durata"));
@@ -258,7 +259,7 @@ public class VideogiocoDAO {
 				bean.setTitolo(rs.getString("Titolo"));
 				bean.setVotoMedio(rs.getFloat("Voto_medio"));
 				bean.setPEGI(rs.getInt("PEGI"));
-				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
+				bean.setImg(rs.getBinaryStream("Img"));
 				
 				bean.setModalitaDiGioco(rs.getString("Modalita_Di_Gioco"));
 				
@@ -306,7 +307,7 @@ public class VideogiocoDAO {
 				bean.setTitolo(rs.getString("Titolo"));
 				bean.setVotoMedio(rs.getFloat("Voto_medio"));
 				bean.setPEGI(rs.getInt("PEGI"));
-				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
+				bean.setImg(rs.getBinaryStream("Img"));
 			}
 		} finally {
 			try {
@@ -334,7 +335,7 @@ public class VideogiocoDAO {
 			preparedStatement.setString(2, bean.getDataRilascio());
 			preparedStatement.setString(3, bean.getTitolo());
 			preparedStatement.setInt(4, bean.getPEGI());
-			preparedStatement.setNull(5, java.sql.Types.BLOB);			
+			preparedStatement.setBlob(5, bean.getImg());			
 			preparedStatement.setString(6, "GenereBello"); //DA MODIFICARE ALL'AGGIUNTA DI UN METODO APPROPRIATO
 			preparedStatement.setFloat(7, bean.getPrezzo());			//blob settata null temporaneamente
 			
@@ -366,7 +367,7 @@ public class VideogiocoDAO {
 			preparedStatement.setString(2, bean.getDataRilascio());
 			preparedStatement.setString(3, bean.getTitolo());
 			preparedStatement.setInt(4, bean.getPEGI());
-			preparedStatement.setNull(5, java.sql.Types.BLOB);	//blob settata null temporaneamente
+			preparedStatement.setBlob(5, bean.getImg());	//blob settata null temporaneamente
 			preparedStatement.setString(6, "GenereBello"); //DA MODIFICARE ALL'AGGIUNTA DI UN METODO APPROPRIATO
 			preparedStatement.setInt(7, bean.getCodiceVideogiocoPrincipale());					
 			preparedStatement.setInt(8, bean.getDurata());
@@ -399,7 +400,7 @@ public class VideogiocoDAO {
 			preparedStatement.setString(2, bean.getDataRilascio());
 			preparedStatement.setString(3, bean.getTitolo());
 			preparedStatement.setInt(4, bean.getPEGI());
-			preparedStatement.setNull(5, java.sql.Types.BLOB);	//blob settata null temporaneamente
+			preparedStatement.setBlob(5, bean.getImg());	
 			preparedStatement.setString(6, "GenereBello"); //DA MODIFICARE ALL'AGGIUNTA DI UN METODO APPROPRIATO
 			preparedStatement.setString(7, bean.getModalitaDiGioco());
 			
@@ -834,6 +835,35 @@ public class VideogiocoDAO {
 		}
 		
 		return generi;
+	}
+	
+	public void doUploadImage(VideogiocoBean bean) throws SQLException, IOException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+				
+		String insertSQL = "UPDATE videogioco SET Img = ? WHERE Codice = ?";
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+			
+			 if (bean.getImg() != null) {
+	                // fetches input stream of the upload file for the blob column
+	                preparedStatement.setBlob(1, bean.getImg());
+	                preparedStatement.setInt(2, bean.getCodice());
+	            }		
+			
+			System.out.println("doUploadImage: " + preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
+			
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
 	}
 	
 }

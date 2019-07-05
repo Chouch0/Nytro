@@ -1,5 +1,6 @@
 package nytro.model;
 
+import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
@@ -13,6 +14,7 @@ public class VideogiocoBean implements Serializable {
 	private String titolo;
 	private float votoMedio;
 	private int PEGI;
+	private InputStream img;
 	//necessario inserire blob 
 	public int getCodice() {
 		return codice;
@@ -55,6 +57,12 @@ public class VideogiocoBean implements Serializable {
 	}
 	public void setPEGI(int pEGI) {
 		PEGI = pEGI;
+	}
+	public InputStream getImg() {
+		return img;
+	}
+	public void setImg(InputStream img) {
+		this.img = img;
 	}
 	public List<String> getGenere() throws SQLException {
 		return VideogiocoDAO.doGetGenere(this);

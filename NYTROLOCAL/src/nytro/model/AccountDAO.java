@@ -54,7 +54,7 @@ public class AccountDAO {
 				bean.setOra(rs.getString("Ora"));
 				bean.setIp(rs.getString("IP"));
 				bean.setRuolo(rs.getInt("Ruolo"));
-				//bean.setUsername(rs.getString("Img_Profilo"));		per la blob
+				bean.setImgProfilo(rs.getBinaryStream("Img_Profilo"));
 				
 				if(ruolo==0) {
 					bean = new AccountBean();	
@@ -120,6 +120,7 @@ public class AccountDAO {
 				bean.setOra(rs.getString("Ora"));
 				bean.setIp(rs.getString("IP"));
 				bean.setRuolo(rs.getInt("Ruolo"));
+				bean.setImgProfilo(rs.getBinaryStream("Img_Profilo"));
 			}
 		} finally {
 			try {
@@ -194,6 +195,7 @@ public class AccountDAO {
 				bean.setOra(rs.getString("Ora"));
 				bean.setIp(rs.getString("IP"));
 				bean.setRuolo(rs.getInt("Ruolo"));
+				bean.setImgProfilo(rs.getBinaryStream("Img_Profilo"));
 			}
 		} finally {
 			try {
@@ -226,7 +228,7 @@ public class AccountDAO {
 			preparedStatement.setString(7, account.getOra());
 			preparedStatement.setString(8, account.getIp());
 			preparedStatement.setInt(9, account.getRuolo());
-			preparedStatement.setNull(10, java.sql.Types.BLOB);						//blob settata null temporaneamente
+			preparedStatement.setBlob(10, account.getImgProfilo());						//blob settata null temporaneamente
 			
 			System.out.println("doSaveAccount: " + preparedStatement.toString());
 			preparedStatement.executeUpdate();
@@ -258,7 +260,7 @@ public class AccountDAO {
 			preparedStatement.setString(4, account.getEmailRecupero());
 			preparedStatement.setString(5, account.getCellulare());
 			preparedStatement.setString(6, account.getIp());
-			preparedStatement.setNull(7, java.sql.Types.BLOB);						//blob settata null temporaneamente
+			preparedStatement.setBlob(7, account.getImgProfilo());						//blob settata null temporaneamente
 			preparedStatement.setString(8, account.getDataNascita());
 			preparedStatement.setString(9, account.getGenere());
 			
@@ -292,7 +294,7 @@ public class AccountDAO {
 			preparedStatement.setString(4, account.getEmailRecupero());
 			preparedStatement.setString(5, account.getCellulare());
 			preparedStatement.setString(6, account.getIp());
-			preparedStatement.setNull(7, java.sql.Types.BLOB);						//blob settata null temporaneamente
+			preparedStatement.setBlob(7, account.getImgProfilo());						//blob settata null temporaneamente
 			preparedStatement.setString(8, account.getISIN());
 			preparedStatement.setString(9, account.getNomeCasaEditrice());
 			preparedStatement.setString(10, account.getCEO());
@@ -328,7 +330,7 @@ public class AccountDAO {
 			preparedStatement.setString(4, account.getCellulare());
 			preparedStatement.setString(5, account.getIp());
 			preparedStatement.setInt(6, account.getRuolo());
-			preparedStatement.setNull(7, java.sql.Types.BLOB);
+			preparedStatement.setBlob(7, account.getImgProfilo());
 			preparedStatement.setString(8, account.getUsername());
 			
 			System.out.println("doUpdate: " + preparedStatement.toString());
@@ -506,7 +508,7 @@ public class AccountDAO {
 				bean.setOra(rs.getString("Ora"));
 				bean.setIp(rs.getString("IP"));
 				bean.setRuolo(rs.getInt("Ruolo"));
-				//bean.setUsername(rs.getString("Img_Profilo"));
+				bean.setImgProfilo(rs.getBinaryStream("Img_Profilo"));
 				
 				amici.add(bean);
 			}
@@ -617,7 +619,6 @@ public class AccountDAO {
 				bean.setIp(rs.getString("IP"));
 				bean.setRuolo(rs.getInt("Ruolo"));
 				bean.setImgProfilo(rs.getBinaryStream("Img_Profilo"));
-				//bean.setUsername(rs.getString("Img_Profilo"));		per la blob
 				
 				if(ruolo==0) {
 					AmministratoreBean tmp = new AmministratoreBean(bean);
