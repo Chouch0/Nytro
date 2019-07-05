@@ -100,6 +100,7 @@
 						<% if(ruolo==0){			//Admin%>
 								<a href="/NYTRO/ListaGiocatori">Lista giocatori</a>
 								<a href="/NYTRO/ListaCaseEditrici">Lista case editrici</a>
+								<a href="/NYTRO/jsp/registrazioneCasaEditrice.jsp">Registra Casa Editrice</a>
 							<hr/>
 						<% } 
 							if(ruolo==1){		//Giocatore %>

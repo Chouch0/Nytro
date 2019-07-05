@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <jsp:include page="header.jsp"></jsp:include>
+<link href="/NYTRO/css/RegStyle.css" type="text/css" rel="stylesheet">
 
 <h1>Registrazione casa editrice</h1>
 
 <form class="box" name="registrazione" action="/NYTRO/RegistrazioneCasaEditrice" method="post">
-	<input class="registrazione" name="nomeCasaEditrice" type="text" placeholder="Nome Azienda*" required>
-	<input class="registrazione" name="ISIN" type="text" placeholder="ISIN*" required>
+	<input class="registrazione" name="nomeCasaEditrice" type="text" placeholder="Nome Azienda*" onblur="checkName()">
+	<input class="registrazione" name="ISIN" type="text" placeholder="ISIN*" oninput="validaISIN()">
 	<p id="errorISIN"></p>
-	<input class="registrazione" name="nomeCEO" type="text" placeholder="Nome CEO*" required>
+	<input class="registrazione" name="nomeCEO" type="text" placeholder="Nome CEO*" onBlur="checkCEO()" required>
 	<input class="registrazione" name="username" type="text" oninput="validaUsername()" placeholder="Username*"> 
 	<p id="errorUsr"></p>  
 	<input class="registrazione" type="password" name="password" oninput="validaPassword()" placeholder="Password*"> 
@@ -20,7 +21,7 @@
 	<p id="errorMailRec"></p>
 	<input class="registrazione" id="telefono" type="tel" name="phone" oninput="validaTelefono()" onBlur="checkPhoneField()" placeholder="Cellulare">
 	<p id="errorPhone"></p>
-	<input class="registrazione" name="sitoWeb" type="text" placeholder="Sito Web*">
+	<input class="registrazione" name="sitoWeb" type="text" placeholder="Sito Web*" onblur="checkSite()" required>
 	
 	<p id="errorSub">Compila tutti i campi obbligatori</p>	
 	<input type="submit" value="Registrati" id="sub" disabled>
@@ -38,6 +39,7 @@ var emailOk = false;
 var emailRecOk = false;
 var phoneOk = true;
 var isinOk = false;
+var nameOk = false;
 var stdBorder = document.forms['registrazione']['phone'].style.border;
 
 function validaUsername() {
@@ -70,6 +72,36 @@ function validaUsername() {
 	}
 }
 
+
+function checkName() {
+	var input = document.forms['registrazione']['nomeCasaEditrice'];
+	if(input.value == "") {
+		input.style.border = borderNo;
+		nameOk = false;
+	} else {
+		input.style.border = borderOk;
+		nameOk = true;
+	}
+	checkForm();
+}
+
+function checkCEO() {
+	var input = document.forms['registrazione']['nomeCEO'];
+	if(input.value == "") {
+		input.style.border = borderNo;
+	} else {
+		input.style.border = borderOk;
+	}
+}
+
+function checkSite() {
+	var input = document.forms['registrazione']['sitoWeb'];
+	if(input.value == "") {
+		input.style.border = borderNo;
+	} else {
+		input.style.border = borderOk;
+	}
+}
 
 function validaISIN() {
 	var input = document.forms['registrazione']['ISIN'];
@@ -172,7 +204,7 @@ function checkPhoneField() {
 
 
 function checkForm() {
-	if(usernameOk && passwordOk && emailOk && emailRecOk && phoneOk) {
+	if(usernameOk && passwordOk && emailOk && emailRecOk && phoneOk && nameOk && isinOk) {
 		document.getElementById("sub").disabled = false;
 		document.getElementById("errorSub").innerHTML = "";
 	} else {
