@@ -38,6 +38,7 @@ public class Login extends HttpServlet {
 		}
 
 		try {
+			account.setIp(request.getRemoteAddr());
 			accountDAO.doUpdate(account);
 		} catch (SQLException e) {
 			throw new MyException("Fallimento aggiornamento informazioni ultimo accesso");
