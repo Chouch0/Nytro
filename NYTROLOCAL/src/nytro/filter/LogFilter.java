@@ -15,16 +15,22 @@ import nytro.model.AccountBean;
 public class LogFilter implements Filter {
 	
 	//private final String[] inaccessibile = {"footer.html", "header.jsp"};
-	private final String[] noRuolo = {"contatti.jsp", "error.jsp", "index.jsp", "loginForm.jsp", "registrazioneForm.jsp"};
-	private final String[] adminRuolo = {"contatti.jsp", "error.jsp", "index.jsp","profilo.jsp", "listaCadeEditrici.jsp", "listaGiocatori.jsp", "registrazioneCasaEditrice.jsp", "videogioco.jsp"};
-	private final String[] giocatoreRuolo = {"contatti.jsp", "error.jsp", "index.jsp","profilo.jsp", "carrello.jsp", "catalogo.jsp", "catalogoCasaEditrice.jsp", "friendlist.jsp", "libreria.jsp", "listaCadeEditrici.jsp", "videogioco.jsp"};
-	private final String[] aziendaRuolo = {"contatti.jsp", "error.jsp", "index.jsp", "profilo.jsp", "catalogoCasaEditrice.jsp", "pubblicazioni.jsp", "videogioco.jsp"};
+	private final String[] noRuolo = {"Login","LoginForm","RecuperaPassword","RegistrazioneForm","RegistrazioneUtente","VerificaUsername","contatti.jsp", "error.jsp", "index.jsp", "loginForm.jsp", "registrazioneForm.jsp"};
+	private final String[] adminRuolo = {"AggiornaProfilo","Catalogo","CatalogoCasaEditrice","ListaCaseEditrici","RegistrazioneCasaEditrice","ListaGiocatori","Logout","Profilo","VerificaUsername","Videogioco","contatti.jsp", "error.jsp", "index.jsp","profilo.jsp", "listaCadeEditrici.jsp", "listaGiocatori.jsp", "registrazioneCasaEditrice.jsp", "videogioco.jsp"};
+	private final String[] giocatoreRuolo = {"AggiornaProfilo","AggiungiFriend","Catalogo","CatalogoCasaEditrice","Friendlist","GestoreCarrello","Libreria","ListaCaseEditrici","Logout","Profilo","RimuoviFriend","VerificaUsername","Videogioco","contatti.jsp", "error.jsp", "index.jsp","profilo.jsp", "carrello.jsp", "catalogo.jsp", "catalogoCasaEditrice.jsp", "friendlist.jsp", "libreria.jsp", "listaCadeEditrici.jsp", "videogioco.jsp"};
+	private final String[] aziendaRuolo = {"AggiornaProfilo","Logout","Profilo","Pubblicazioni","VerificaUsername","Videogioco","contatti.jsp", "error.jsp", "index.jsp", "profilo.jsp", "catalogoCasaEditrice.jsp", "pubblicazioni.jsp", "videogioco.jsp"};
     
 	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		String dest = ((HttpServletRequest) request).getRequestURI();
 		System.out.println("Destinazione (filtro):" + dest);
 		AccountBean account = (AccountBean) ((HttpServletRequest) request).getSession().getAttribute("account");
+		
+		if(dest.contains("/css/") || dest.contains("/js/")|| dest.contains("/img/")) {
+			chain.doFilter(request, response);	
+			return ;
+		}
+			
 		
 		if(account==null || account.getUsername()==null) {
 			System.out.println("Account nullo");
@@ -73,7 +79,7 @@ public class LogFilter implements Filter {
 		}
 		
 		System.out.println("Destinazione (filtro): rindirizzamento ad index.jsp");
-		((HttpServletResponse) response).sendRedirect("index.jsp");
+		((HttpServletResponse) response).sendRedirect("/NYTRO/jsp/index.jsp");
 		//((HttpServletRequest) request).getRequestDispatcher("jsp/index.jsp").forward((HttpServletRequest) request, (HttpServletResponse) response);
 		return ;
 	}
