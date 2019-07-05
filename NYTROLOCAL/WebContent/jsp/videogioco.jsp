@@ -2,6 +2,10 @@
 import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBean, nytro.model.RecensioneBean"%>
 <%
 	VideogiocoBean videogiocoDetailed = (VideogiocoBean) request.getAttribute("videogiocoDetailed");
+	if(videogiocoDetailed==null){
+		response.sendRedirect("Videogioco");
+		return ;
+	}
 	Collection<RecensioneBean> recensioni = (Collection<RecensioneBean>) request.getAttribute("recensioni");
 	AccountBean account = (AccountBean) session.getAttribute("account");
 	String possibileAggiungereAllaLibreria = (String) request.getAttribute("possibileAggiungereAllaLibreria");
