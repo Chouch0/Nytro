@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import nytro.model.AccountDAO;
+import nytro.model.VideogiocoDAO;
 
 /**
  * Servlet implementation class VisualizzaImmagine
@@ -28,8 +29,9 @@ public class VisualizzaImmagine extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = (String) request.getAttribute("id");
-        System.out.println("Id="+id);
+        String id = (String) request.getParameter("id");
+        String codice = (String) request.getParameter("codice");
+        
         if (id != null) {
 	        try {
 	        	AccountDAO dao = new AccountDAO();
@@ -45,8 +47,24 @@ public class VisualizzaImmagine extends HttpServlet {
 	        }catch (SQLException e) {
 	            throw new ServletException("Something failed at SQL/DB level.", e);
 	        }
+        } else if (codice != null) {
+	        try {
+	        	int code = Integer.parseInt(codice);
+	        	VideogiocoDAO dao = new VideogiocoDAO();
+	        	byte[] image = dao.doDisplayImage(code);
+	        	if (image != null) {
+	                response.setContentLength(image.length);
+	                response.getOutputStream().write(image);
+	                response.setContentType("image/jpg");
+	            } else {
+	                response.sendError(HttpServletResponse.SC_NOT_FOUND); // 404.
+	            } 
+	        	response.getOutputStream().close();
+	        }catch (SQLException e) {
+	            throw new ServletException("Something failed at SQL/DB level.", e);
+	        }
         }
-    }
+    }	
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

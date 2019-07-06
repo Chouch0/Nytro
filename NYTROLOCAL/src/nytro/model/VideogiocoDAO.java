@@ -865,5 +865,34 @@ public class VideogiocoDAO {
 			}
 		}
 	}
+	public byte[] doDisplayImage(int codice) throws SQLException, IOException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		byte[] image = null;
+				
+		String insertSQL = "SELECT Img FROM Videogioco WHERE Codice = ?";
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+            preparedStatement.setInt(1, codice);
+			
+			System.out.println("doDisplayImage: " + preparedStatement.toString());
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				image = rs.getBytes("Img");
+			}
+			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
+			
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		return image;	
+	}
 	
 }

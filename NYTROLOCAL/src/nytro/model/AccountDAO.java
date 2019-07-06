@@ -692,8 +692,9 @@ public class AccountDAO {
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
+            preparedStatement.setString(1, username);
 			
-			System.out.println("doUploadImage: " + preparedStatement.toString());
+			System.out.println("doDisplayImage: " + preparedStatement.toString());
 			ResultSet rs = preparedStatement.executeQuery();
 			
 			while(rs.next()) {
