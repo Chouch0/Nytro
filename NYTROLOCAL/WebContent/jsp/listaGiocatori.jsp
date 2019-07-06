@@ -4,11 +4,7 @@ import="nytro.model.AccountBean, java.util.Collection"%>
 <%
 	Collection<AccountBean> users = (Collection<AccountBean>) request.getAttribute("users");
 %>
-<html>
-<head>
-	<link href="/NYTRO/css/listaGiocatori.css" type="text/css" rel="stylesheet">
-</head>
-<body>
+<link href="/NYTRO/css/listaGiocatori.css" type="text/css" rel="stylesheet">
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Lista Giocatori"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
 	<h1>Lista giocatori</h1>
 	<div id="select">
@@ -65,6 +61,4 @@ import="nytro.model.AccountBean, java.util.Collection"%>
 		})
 	</script>
 </div>
-<%@include file="footer.html"%>		
-</body>
-</html>					
+<%@include file="footer.html"%>						

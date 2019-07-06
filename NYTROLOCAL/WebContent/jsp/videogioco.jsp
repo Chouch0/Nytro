@@ -2,14 +2,14 @@
 import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBean, nytro.model.RecensioneBean"%>
 <%
 	VideogiocoBean videogiocoDetailed = (VideogiocoBean) request.getAttribute("videogiocoDetailed");
-	if(videogiocoDetailed==null){
-		response.sendRedirect("Videogioco");
-		return ;
-	}
 	Collection<RecensioneBean> recensioni = (Collection<RecensioneBean>) request.getAttribute("recensioni");
 	AccountBean account = (AccountBean) session.getAttribute("account");
 	String possibileAggiungereAllaLibreria = (String) request.getAttribute("possibileAggiungereAllaLibreria");
 	String possibileAggiungereAgliAcquisti = (String) request.getAttribute("possibileAggiungereAgliAcquisti");
+	if(videogiocoDetailed==null){
+		response.sendRedirect("Videogioco");
+		return ;
+	}
 %>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="<%=videogiocoDetailed.getTitolo() %>"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	

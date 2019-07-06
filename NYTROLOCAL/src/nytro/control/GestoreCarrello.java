@@ -25,8 +25,8 @@ public class GestoreCarrello extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		AccountBean account = (AccountBean) request.getSession().getAttribute("account");
-		if(account.getRuolo()!=1)
-			throw new MyException("Non sei un giocatore, quindi non puoi gestire il tuo carrello.");
+//		if(account.getRuolo()!=1)
+//			throw new MyException("Non sei un giocatore, quindi non puoi gestire il tuo carrello.");
 		
 		Cart cart = (Cart) request.getSession().getAttribute("carrello");
 		

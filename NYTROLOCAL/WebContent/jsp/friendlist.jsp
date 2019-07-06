@@ -10,23 +10,25 @@ import="java.util.Collection, nytro.model.AccountBean"%>
 			
 	<h1>Lista amici</h1>
 	
-	<p>
-		<%
-			for(AccountBean x : amici){
-		%>
-			<%=x.toString()%>
-			<%if (x.getImgProfilo() != null){%>
-					<img src="/NYTRO/image?id=<%= x.getUsername()%>">
-			<%}%>
-			<form action="/NYTRO/RimuoviFriend" method="post">
-				<input type="hidden" name="eliminatoAmico" value="<%=x.getUsername()%>">
-				<input type="submit" value="Rimuovi">
-			</form>
-			<br/>		
-		<%
-			}
-		%>
-	</p>
+	<%if(amici!=null) {%>
+		<p>
+			<%
+				for(AccountBean x : amici){
+			%>
+				<%=x.toString()%>
+				<%if (x.getImgProfilo() != null){%>
+						<img src="/NYTRO/image?id=<%= x.getUsername()%>">
+				<%}%>
+				<form action="/NYTRO/RimuoviFriend" method="post">
+					<input type="hidden" name="eliminatoAmico" value="<%=x.getUsername()%>">
+					<input type="submit" value="Rimuovi">
+				</form>
+				<br/>		
+			<%
+				}
+			%>
+		</p>
+	<%} %>
 	
 	<form action="/NYTRO/AggiungiFriend" method="post">
 	<label>

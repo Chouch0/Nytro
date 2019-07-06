@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 import="nytro.model.AccountBean"%>
 
-<%  AccountBean account = (AccountBean) session.getAttribute("account");
-			
+<%  
+	AccountBean account = (AccountBean) session.getAttribute("account");		
 %>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Profilo"/>	</jsp:include>	
@@ -128,7 +128,7 @@ import="nytro.model.AccountBean"%>
 <h2>Cambia data di nascita</h2>
 <form action="/NYTRO/AggiornaProfilo" method="post">
 <input type="hidden" name="cambiaDataNascita" value="true">
-<label>Anno:</label><input type="number" name="anno" min="1900" max="2019" step="1" required></label>
+<label>Anno:<input type="number" name="anno" min="1900" max="2019" step="1" required></label>
 <label>Mese:<input type="number" name="mese" min="1" max="12" step="1" required></label>
 <label>Giorno:<input type="number" name="giorno" min="1" max="31" step="1" required></label>
 <input type="submit" value="Vai">

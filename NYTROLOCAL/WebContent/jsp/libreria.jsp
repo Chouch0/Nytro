@@ -22,16 +22,18 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 	
 	<h1>Libreria</h1>
 	
-	<p>
-		<%
-			for(VideogiocoBean x : libreria){
-		%>
-			<%=x.toString() %> <form action="/NYTRO/Libreria?cancellaVideogioco=<%=x.getCodice()%>" method="post"> <input type="submit" value="Rimuovi"/></form>
-			<br/>		
-		<%
-			}
-		%>
-	</p>
+	<%if(libreria!=null) {%>
+		<p>
+			<%
+				for(VideogiocoBean x : libreria){
+			%>
+				<%=x.toString() %> <form action="/NYTRO/Libreria?cancellaVideogioco=<%=x.getCodice()%>" method="post"> <input type="submit" value="Rimuovi"/></form>
+				<br/>		
+			<%
+				}
+			%>
+		</p>
+	<%} %>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
 		$("document").ready(function prova(){

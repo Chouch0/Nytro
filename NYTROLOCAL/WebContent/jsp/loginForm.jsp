@@ -3,8 +3,6 @@ import="nytro.model.AccountBean"%>
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Login"/>	</jsp:include>	
 <link href="/NYTRO/css/RegStyle.css" type="text/css" rel="stylesheet">
 <%  AccountBean account = (AccountBean) session.getAttribute("account");
-	if(account!=null)
-		response.sendRedirect("jsp/index.jsp");
 	
 	String message = (String) request.getAttribute("message");
 		

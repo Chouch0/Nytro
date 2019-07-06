@@ -17,9 +17,9 @@ public class RegistrazioneForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getSession().getAttribute("account") != null) {
-			throw new MyException("Utente loggato.");
-		}
+//		if (request.getSession().getAttribute("account") != null) {
+//			throw new MyException("Utente loggato.");
+//		}
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("jsp/registrazioneForm.jsp");
 		requestDispatcher.forward(request, response);
 	}

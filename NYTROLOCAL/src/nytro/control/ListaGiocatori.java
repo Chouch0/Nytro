@@ -21,8 +21,8 @@ public class ListaGiocatori extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AccountBean admin = (AccountBean) request.getSession().getAttribute("account");
-		if(admin.getRuolo()!=0)
-			throw new MyException("Non disponi dei permessi necessari per visualizzare tale risorsa.");
+//		if(admin.getRuolo()!=0)
+//			throw new MyException("Non disponi dei permessi necessari per visualizzare tale risorsa.");
 		
 		String order = request.getParameter("order");
 		

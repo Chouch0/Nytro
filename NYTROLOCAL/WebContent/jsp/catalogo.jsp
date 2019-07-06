@@ -30,18 +30,20 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 	
 	<h1>Catalogo completo videogiochi</h1>
 	
-	<p>
-		<%
-			for(VideogiocoBean x : catalogo){
-				if(x.getDataRimozione()== null){
-		%>
-			<%=x.toString() %><%=x.getGenere().toString() %><br/>	<span class = "buttonLink"><a href="/NYTRO/Videogioco?codiceVideogioco=<%=x.getCodice()%>">Informazioni</a></span><br/>
-			<!--  Se utilizzo un bottone non riesco a passare il parametro codice utilizzando lo scriptlet -->	
-		<%
+	<%if(catalogo!=null){ %>
+		<p>
+			<%
+				for(VideogiocoBean x : catalogo){
+					if(x.getDataRimozione()== null){
+			%>
+				<%=x.toString() %><%=x.getGenere().toString() %><br/>	<span class = "buttonLink"><a href="/NYTRO/Videogioco?codiceVideogioco=<%=x.getCodice()%>">Informazioni</a></span><br/>
+				<!--  Se utilizzo un bottone non riesco a passare il parametro codice utilizzando lo scriptlet -->	
+			<%
+					}
 				}
-			}
-		%>
-	</p>
+			%>
+		</p>
+	<%} %>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
 		$("document").ready(function prova(){

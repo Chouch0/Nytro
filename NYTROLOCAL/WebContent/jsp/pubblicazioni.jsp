@@ -30,22 +30,24 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 	
 	<h1>Lista videogiochi</h1>
 	
-	<p>
-		<%
-			for(VideogiocoBean x : videogiochi){
-		%>
-			<%=x.toString() %><span class = "buttonLink"><a href="/NYTRO/Videogioco?codiceVideogioco=<%=x.getCodice()%>">Informazioni</a></span>	
-			<%if(x.getDataRimozione()==null) {%>
-				<a href="/NYTRO/Pubblicazioni?cancelVideogioco=<%=x.getCodice()%>">Rimuovi videogioco</a>
-			<%} %>
-			<br/>
-		<%
-			}
-		%>
-	</p>
+	<%if(videogiochi!=null){ %>
+		<p>
+			<%
+				for(VideogiocoBean x : videogiochi){
+			%>
+				<%=x.toString() %><span class = "buttonLink"><a href="/NYTRO/Videogioco?codiceVideogioco=<%=x.getCodice()%>">Informazioni</a></span>	
+				<%if(x.getDataRimozione()==null) {%>
+					<a href="/NYTRO/Pubblicazioni?cancelVideogioco=<%=x.getCodice()%>">Rimuovi videogioco</a>
+				<%} %>
+				<br/>
+			<%
+				}
+			%>
+		</p>
+	<%} %>
 	
 	<script>
-	prezzo
+	
 	function addPagamentoFields() {
 		var container = document.getElementById("aggiungiVideogiocoForm");
 		//Ripulisco dai vecchi figli

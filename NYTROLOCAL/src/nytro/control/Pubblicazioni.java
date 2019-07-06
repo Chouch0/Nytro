@@ -29,8 +29,8 @@ public class Pubblicazioni extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AccountBean account = (AccountBean) request.getSession().getAttribute("account");
-		if(account.getRuolo()!=2)
-			throw new MyException("Non disponi dei permessi necessari per visualizzare tale risorsa.");
+//		if(account.getRuolo()!=2)
+//			throw new MyException("Non disponi dei permessi necessari per visualizzare tale risorsa.");
 		
 		String isin=null;
 		try {
