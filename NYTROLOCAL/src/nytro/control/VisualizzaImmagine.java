@@ -28,7 +28,7 @@ public class VisualizzaImmagine extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String imageName = request.getPathInfo().substring(1);
+        String imageName = (String) request.getAttribute("id");
         System.out.println(imageName);
 
         try {
