@@ -14,7 +14,7 @@ import nytro.model.AccountDAO;
 /**
  * Servlet implementation class VisualizzaImmagine
  */
-@WebServlet("/image/*")
+@WebServlet("/image")
 public class VisualizzaImmagine extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -28,21 +28,23 @@ public class VisualizzaImmagine extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String imageName = (String) request.getAttribute("id");
-        System.out.println(imageName);
-
-        try {
-        	AccountDAO dao = new AccountDAO();
-        	byte[] image = dao.doDisplayImage(imageName);
-        	if (image != null) {
-                response.setContentType(getServletContext().getMimeType(imageName));
-                response.setContentLength(image.length);
-                response.getOutputStream().write(image);
-            } else {
-                response.sendError(HttpServletResponse.SC_NOT_FOUND); // 404.
-            } 
-        }catch (SQLException e) {
-            throw new ServletException("Something failed at SQL/DB level.", e);
+        String id = (String) request.getAttribute("id");
+        System.out.println("Id="+id);
+        if (id != null) {
+	        try {
+	        	AccountDAO dao = new AccountDAO();
+	        	byte[] image = dao.doDisplayImage(id);
+	        	if (image != null) {
+	                response.setContentLength(image.length);
+	                response.getOutputStream().write(image);
+	                response.setContentType("image/jpg");
+	            } else {
+	                response.sendError(HttpServletResponse.SC_NOT_FOUND); // 404.
+	            } 
+	        	response.getOutputStream().close();
+	        }catch (SQLException e) {
+	            throw new ServletException("Something failed at SQL/DB level.", e);
+	        }
         }
     }
     
@@ -50,5 +52,4 @@ public class VisualizzaImmagine extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }
