@@ -1,3 +1,5 @@
+<%@page import="org.apache.tomcat.util.codec.binary.Base64"%>
+<%@page import="java.io.OutputStream"%>
 <%@page import="javax.imageio.ImageIO"%>
 <%@page import="java.awt.image.BufferedImage"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
@@ -15,10 +17,9 @@ import="java.util.Collection, nytro.model.AccountBean"%>
 			for(AccountBean x : amici){
 		%>
 			<%=x.toString()+"\n" %> <%
-				if (x.getImgProfilo() != null){
-					BufferedImage img = ImageIO.read(x.getImgProfilo()); 
-					System.out.println("Diverso da null");
-				}%>
+				if (x.getImgProfilo() != null){%>
+					<img src="/NYTRO/images/<%= x.getUsername()%>">
+				<%}%>
 			<form action="/NYTRO/RimuoviFriend" method="post">
 				<input type="hidden" name="eliminatoAmico" value="<%=x.getUsername()%>">
 				<input type="submit" value="Rimuovi">
