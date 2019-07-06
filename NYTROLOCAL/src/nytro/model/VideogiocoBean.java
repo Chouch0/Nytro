@@ -121,13 +121,9 @@ public class VideogiocoBean implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return getClass().getName() + "[codice=" + codice + ", ISIN=" + ISIN + ", dataRilascio=" + dataRilascio
+		return "VideogiocoBean [codice=" + codice + ", ISIN=" + ISIN + ", dataRilascio=" + dataRilascio
 				+ ", dataRimozione=" + dataRimozione + ", titolo=" + titolo + ", votoMedio=" + votoMedio + ", PEGI="
-				+ PEGI + "]";
+				+ PEGI + ", img=" + img + "]";
 	}
-	
-	
-	
-	
 
 }

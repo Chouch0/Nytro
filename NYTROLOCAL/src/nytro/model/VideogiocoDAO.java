@@ -47,7 +47,7 @@ public class VideogiocoDAO {
 				bean.setTitolo(rs.getString("Titolo"));
 				bean.setVotoMedio(rs.getFloat("Voto_medio"));
 				bean.setPEGI(rs.getInt("PEGI"));
-				rs.getBlob("Img").getBinaryStream();
+				bean.setImg(rs.getBinaryStream("Img"));
 				
 				videogiochi.add(bean);				
 				
