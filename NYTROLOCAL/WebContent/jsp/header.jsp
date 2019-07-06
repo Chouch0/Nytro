@@ -101,6 +101,7 @@
 								<a href="/NYTRO/ListaGiocatori">Lista giocatori</a>
 								<a href="/NYTRO/ListaCaseEditrici">Lista case editrici</a>
 								<a href="/NYTRO/jsp/registrazioneCasaEditrice.jsp">Registra Casa Editrice</a>
+								<a href="/NYTRO/jsp/rimozioneAccount.jsp">Rimuovi account</a>
 							<hr/>
 						<% } 
 							if(ruolo==1){		//Giocatore %>

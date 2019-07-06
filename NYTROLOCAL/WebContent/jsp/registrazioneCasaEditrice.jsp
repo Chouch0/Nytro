@@ -24,7 +24,7 @@
 	<input class="registrazione" name="sitoWeb" type="text" placeholder="Sito Web*" onblur="checkSite()" required>
 	
 	<p id="errorSub">Compila tutti i campi obbligatori</p>	
-	<input type="submit" value="Registrati" id="sub" disabled>
+	<input type="submit" value="Registra" id="sub" disabled>
 
 </form>
 
@@ -46,7 +46,7 @@ function validaUsername() {
 	var ok = "<ok/>";
 	var input = document.forms['registrazione']['username'];
 	if (input.value.length >= 6 && input.value.match(/^[0-9a-zA-Z]+$/)) {
-		// verifica se esisten un utente con lo stresso username
+		// verifica se esiste un utente con lo stesso username
 	
 		var xmlHttpReq = new XMLHttpRequest();
 		xmlHttpReq.onreadystatechange = function() {
