@@ -321,7 +321,7 @@ public class VideogiocoDAO {
 		return bean;
 	}
 
-	public void doSaveVideogiocoPagamento(VideogiocoPagamentoBean bean) throws SQLException {
+	public void doSaveVideogiocoPagamento(VideogiocoPagamentoBean bean, String genere) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
@@ -335,9 +335,12 @@ public class VideogiocoDAO {
 			preparedStatement.setString(2, bean.getDataRilascio());
 			preparedStatement.setString(3, bean.getTitolo());
 			preparedStatement.setInt(4, bean.getPEGI());
-			preparedStatement.setNull(5, java.sql.Types.BLOB);			
-			preparedStatement.setString(6, "GenereBello"); //DA MODIFICARE ALL'AGGIUNTA DI UN METODO APPROPRIATO
-			preparedStatement.setFloat(7, bean.getPrezzo());			//blob settata null temporaneamente
+			if(bean.getImg()!=null)
+				preparedStatement.setBlob(5, bean.getImg());
+			else
+				preparedStatement.setNull(5, java.sql.Types.BLOB); 
+			preparedStatement.setString(6, genere); 
+			preparedStatement.setFloat(7, bean.getPrezzo());			
 			
 			System.out.println("doSaveVideogiocoPagamento: " + preparedStatement.toString());
 			preparedStatement.executeUpdate();
@@ -353,7 +356,7 @@ public class VideogiocoDAO {
 		}
 	}
 
-	public void doSaveVideogiocoDemo(VideogiocoDemoBean bean) throws SQLException {
+	public void doSaveVideogiocoDemo(VideogiocoDemoBean bean, String genere) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
@@ -367,8 +370,11 @@ public class VideogiocoDAO {
 			preparedStatement.setString(2, bean.getDataRilascio());
 			preparedStatement.setString(3, bean.getTitolo());
 			preparedStatement.setInt(4, bean.getPEGI());
-			preparedStatement.setNull(5, java.sql.Types.BLOB);	//blob settata null temporaneamente
-			preparedStatement.setString(6, "GenereBello"); //DA MODIFICARE ALL'AGGIUNTA DI UN METODO APPROPRIATO
+			if(bean.getImg()!=null)
+				preparedStatement.setBlob(5, bean.getImg());
+			else
+				preparedStatement.setNull(5, java.sql.Types.BLOB); 	
+			preparedStatement.setString(6, genere); 
 			preparedStatement.setInt(7, bean.getCodiceVideogiocoPrincipale());					
 			preparedStatement.setInt(8, bean.getDurata());
 			
@@ -386,7 +392,7 @@ public class VideogiocoDAO {
 		}
 	}
 
-	public void doSaveVideogiocoFreeToPlay(VideogiocoFreeToPlayBean bean) throws SQLException {
+	public void doSaveVideogiocoFreeToPlay(VideogiocoFreeToPlayBean bean, String genere) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
@@ -400,8 +406,11 @@ public class VideogiocoDAO {
 			preparedStatement.setString(2, bean.getDataRilascio());
 			preparedStatement.setString(3, bean.getTitolo());
 			preparedStatement.setInt(4, bean.getPEGI());
-			preparedStatement.setNull(5, java.sql.Types.BLOB);	
-			preparedStatement.setString(6, "GenereBello"); //DA MODIFICARE ALL'AGGIUNTA DI UN METODO APPROPRIATO
+			if(bean.getImg()!=null)
+				preparedStatement.setBlob(5, bean.getImg());
+			else
+				preparedStatement.setNull(5, java.sql.Types.BLOB); 	
+			preparedStatement.setString(6, genere); 
 			preparedStatement.setString(7, bean.getModalitaDiGioco());
 			
 			System.out.println("doSaveVideogiocoFreeToPlay: " + preparedStatement.toString());
@@ -434,7 +443,8 @@ public class VideogiocoDAO {
 			preparedStatement.setString(4, bean.getTitolo());
 			preparedStatement.setDouble(5, bean.getVotoMedio());
 			preparedStatement.setInt(6, bean.getPEGI());
-			preparedStatement.setNull(7, java.sql.Types.BLOB);		//Aggiornare con blob			preparedStatement.setInt(8, bean.getCodice());
+			preparedStatement.setBlob(7, bean.getImg());		
+			preparedStatement.setInt(8, bean.getCodice());	
 			
 			System.out.println("doUpdate: " + preparedStatement.toString());
 			preparedStatement.executeUpdate();
@@ -650,7 +660,7 @@ public class VideogiocoDAO {
 				bean1.setTitolo(rs1.getString("Titolo"));
 				bean1.setVotoMedio(rs1.getFloat("Voto_medio"));
 				bean1.setPEGI(rs1.getInt("PEGI"));
-				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
+				bean1.setImg(rs1.getBinaryStream("Img"));		
 				bean1.setPrezzo(rs1.getFloat("Prezzo"));
 				bean1.setCopieVendute(rs1.getInt("Copie_Vendute"));
 			}
@@ -663,7 +673,7 @@ public class VideogiocoDAO {
 				bean2.setTitolo(rs2.getString("Titolo"));
 				bean2.setVotoMedio(rs2.getFloat("Voto_medio"));
 				bean2.setPEGI(rs2.getInt("PEGI"));
-				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
+				bean2.setImg(rs2.getBinaryStream("Img"));	
 				bean2.setCodiceVideogiocoPrincipale(rs2.getInt("Videogioco_Principale"));
 				bean2.setDurata(rs2.getInt("Durata"));
 			}
@@ -676,7 +686,7 @@ public class VideogiocoDAO {
 				bean3.setTitolo(rs3.getString("Titolo"));
 				bean3.setVotoMedio(rs3.getFloat("Voto_medio"));
 				bean3.setPEGI(rs3.getInt("PEGI"));
-				//bean.setIMMAGINE DEL VIDEOGIOCO(rs.getString("Img_Profilo"));		per la blob
+				bean3.setImg(rs3.getBinaryStream("Img"));
 				bean3.setModalitaDiGioco(rs3.getString("Modalita_Di_Gioco"));
 			}
 			
@@ -1035,6 +1045,90 @@ public class VideogiocoDAO {
 		System.out.println("\tTerminato: doRetrieveByTitolo");
 		return videogiochi;
 	
+	}
+
+	public void doUpdatePagamento(VideogiocoPagamentoBean tmp) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+				
+		String updateSQL = "UPDATE a_pagamento SET Prezzo = ? WHERE Codice = ?";
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+						
+			preparedStatement.setFloat(1, tmp.getPrezzo());
+			preparedStatement.setInt(2, tmp.getCodice());
+			
+			System.out.println("doUpdatePagamento: " + preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
+			
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+			
+	}
+	
+	public void doUpdateDemo(VideogiocoDemoBean tmp) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+				
+		String updateSQL = "UPDATE demo SET Durata = ? WHERE Codice = ?";
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+						
+			preparedStatement.setFloat(1, tmp.getDurata());
+			preparedStatement.setInt(2, tmp.getCodice());
+			
+			System.out.println("doUpdateDemo: " + preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
+			
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+			
+	}
+	
+	public void doInsertGenere(String genere, VideogiocoBean tmp) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+				
+		String updateSQL = "CALL aggiungi_genere(?, ?)";
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+						
+			preparedStatement.setString(1, genere);
+			preparedStatement.setInt(2, tmp.getCodice());
+			
+			System.out.println("doUpdateDemo: " + preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
+			
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+			
 	}
 	
 }

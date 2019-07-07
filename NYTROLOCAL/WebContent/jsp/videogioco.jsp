@@ -20,20 +20,21 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		<%=videogiocoDetailed.toString()%>
 		
 		<%
-		if(videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoPagamentoBean")){
-			if(possibileAggiungereAgliAcquisti!=null && possibileAggiungereAgliAcquisti.equalsIgnoreCase("true")){
-				%><a href="GestoreCarrello?action=addCart&codiceVideogioco=<%=videogiocoDetailed.getCodice()%>">Inserisci nel carrello</a><br/><%
+		if(account.getRuolo()==1){
+			if(videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoPagamentoBean")){
+				if(possibileAggiungereAgliAcquisti!=null && possibileAggiungereAgliAcquisti.equalsIgnoreCase("true")){
+					%><a href="GestoreCarrello?action=addCart&codiceVideogioco=<%=videogiocoDetailed.getCodice()%>">Inserisci nel carrello</a><br/><%
+				} else {
+					if(possibileAggiungereAllaLibreria!=null && possibileAggiungereAllaLibreria.equalsIgnoreCase("true")){
+						%><a href="Libreria?aggiungiVideogioco=<%=videogiocoDetailed.getCodice()%>">Inserisci nella libreria</a><br/><%
+					} 
+				}
 			} else {
 				if(possibileAggiungereAllaLibreria!=null && possibileAggiungereAllaLibreria.equalsIgnoreCase("true")){
-					%><a href="Libreria?aggiungiVideogioco=<%=videogiocoDetailed.getCodice()%>">Inserisci nella libreria</a><br/><%
-				} 
+					 %><a href="Libreria?aggiungiVideogioco=<%=videogiocoDetailed.getCodice()%>">Inserisci nella libreria</a><br/><%
+				} 			
 			}
-		} else {
-			if(possibileAggiungereAllaLibreria!=null && possibileAggiungereAllaLibreria.equalsIgnoreCase("true")){
-				 %><a href="Libreria?aggiungiVideogioco=<%=videogiocoDetailed.getCodice()%>">Inserisci nella libreria</a><br/><%
-			} 			
 		}
-		
 		%>	
 	</p>
 	
@@ -72,12 +73,54 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		
 		<form action="/NYTRO/Videogioco" method="post">
 		 <input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">		<!-- Mi serve perchè se no perdo il codice del videogioco -->
-		 <textarea rows="4" cols="50" name="commentoRecensione"> </textarea> 
-		 <label>Inserisci voto: <input type="number" name="votoRecensione" min="1" max="5" step="0.25"></label>
+		 <textarea rows="4" cols="50" name="commentoRecensione" required> </textarea> 
+		 <label>Inserisci voto: <input type="number" name="votoRecensione" min="1" max="5" step="0.25" required></label>
 		 <input type="submit" value="Inserisci">
 		</form>
 				
 		<%} %>
+		
+	<%if(account.getRuolo()==2) {%>
+		<h3>Cambia immagine del videogioco</h3>
+		
+		<form action="/NYTRO/Videogioco?codiceVideogioco=<%=videogiocoDetailed.getCodice()%>" method="post" enctype="multipart/form-data">
+		 <input type="hidden" name="cambiaImmagineVideogioco" value="true" required>
+	 	 <input type="file" name="photo" size="50"/>
+		 <input type="submit" value="Vai">
+		</form>
+		
+		<h3>Inserisci genere</h3>
+		
+		<form action="/NYTRO/Videogioco" method="post">
+		 <input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">
+		 <input type="hidden" name="cambiaGenere" value="true">
+	 	 <input type="text" name="newGenere" placeholder="Genere*" required/>
+		 <input type="submit" value="Vai">
+		</form>
+		
+		<%if(videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoPagamentoBean")) {%>
+			<h3>Cambia prezzo</h3>
+		
+			<form action="/NYTRO/Videogioco" method="post">
+			 <input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">
+			 <input type="hidden" name="cambiaPrezzo" value="true">
+		 	 <input type="number" name="newPrezzo" min="0" step="0.01" required/>
+			 <input type="submit" value="Vai">
+			</form>
+		<%} %>
+		
+		<%if(videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoDemoBean")) {%>
+			<h3>Cambia durata</h3>
+		
+			<form action="/NYTRO/Videogioco" method="post">
+			 <input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">
+			 <input type="hidden" name="cambiaDurataDemo" value="true">
+		 	 <input type="number" name="newDurataDemo" min="1" step="1" required/>
+			 <input type="submit" value="Vai">
+			</form>
+		<%} %>
+				
+	<%} %>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
 		$("document").ready(function prova(){

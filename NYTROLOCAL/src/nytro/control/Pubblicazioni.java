@@ -64,12 +64,14 @@ public class Pubblicazioni extends HttpServlet {
 						
 						bean.setTitolo(aggTitolo);
 						bean.setPEGI(Integer.parseInt(aggPegi));
-						bean.setImg(img);
+						if(request.getPart("photo")!=null)
+							bean.setImg(img);
 						bean.setPrezzo(Float.parseFloat(aggPrezzo));
 						
 						try {
-							videogiocoDAO.doSaveVideogiocoPagamento(bean);
-							videogiocoDAO.doUploadImage(bean);
+							videogiocoDAO.doSaveVideogiocoPagamento(bean,aggGenere);
+							while(videogiocoDAO.doRetrieveByCodice(bean.getCodice(), "")==null)
+								;
 						} catch (SQLException e) {
 							throw new MyException("Videogioco a pagamento non salvato con successo");
 						}						
@@ -89,13 +91,15 @@ public class Pubblicazioni extends HttpServlet {
 						
 						bean.setTitolo(aggTitolo);
 						bean.setPEGI(Integer.parseInt(aggPegi));
-						bean.setImg(img);
+						if(request.getPart("photo")!=null)
+							bean.setImg(img);
 						bean.setCodiceVideogiocoPrincipale(Integer.parseInt(aggCodiceVideogiocoPrincipale));
 						bean.setDurata(Integer.parseInt(aggDurata));
 						
 						try {
-							videogiocoDAO.doSaveVideogiocoDemo(bean);
-							videogiocoDAO.doUploadImage(bean);
+							videogiocoDAO.doSaveVideogiocoDemo(bean,aggGenere);
+							while(videogiocoDAO.doRetrieveByCodice(bean.getCodice(), "")==null)
+								;
 						} catch (SQLException e) {
 							throw new MyException("Videogioco demo non salvato con successo");
 						}						
@@ -114,12 +118,14 @@ public class Pubblicazioni extends HttpServlet {
 						
 						bean.setTitolo(aggTitolo);
 						bean.setPEGI(Integer.parseInt(aggPegi));
-						bean.setImg(img);
+						if(request.getPart("photo")!=null)
+							bean.setImg(img);
 						bean.setModalitaDiGioco(aggModalita);	
 						
 						try {
-							videogiocoDAO.doSaveVideogiocoFreeToPlay(bean);
-							videogiocoDAO.doUploadImage(bean);
+							videogiocoDAO.doSaveVideogiocoFreeToPlay(bean,aggGenere);
+							while(videogiocoDAO.doRetrieveByCodice(bean.getCodice(), "")==null)
+								;
 						} catch (SQLException e) {
 							throw new MyException("Videogioco free to play non salvato con successo");
 						}						
@@ -133,6 +139,8 @@ public class Pubblicazioni extends HttpServlet {
 			try {
 				VideogiocoBean bean = videogiocoDAO.doRetrieveDetailedByCodice(Integer.parseInt(cancelVideogioco));
 				videogiocoDAO.doDeleteVideogioco(bean);
+				while(videogiocoDAO.doRetrieveByCodice(bean.getCodice(), "").getDataRimozione()==null)
+					;
 			} catch (NumberFormatException | SQLException e) {
 				throw new MyException("Errore cancellazione videogioco");
 			}
