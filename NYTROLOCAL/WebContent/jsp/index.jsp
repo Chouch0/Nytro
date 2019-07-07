@@ -9,13 +9,14 @@
 <%
 Collection<VideogiocoPagamentoBean> videogiochiPiuAcquistati = (Collection<VideogiocoPagamentoBean>) request.getAttribute("videogiochiPiuAcquistati");
 Collection<VideogiocoBean> videogiochiPiuGiocati = (Collection<VideogiocoBean>) request.getAttribute("videogiochiPiuGiocati");
-List<VideogiocoPagamentoBean> list = new ArrayList<VideogiocoPagamentoBean>(videogiochiPiuAcquistati);
-List<VideogiocoBean> list2 = new ArrayList<VideogiocoBean>(videogiochiPiuGiocati);
 
 if(videogiochiPiuAcquistati==null || videogiochiPiuGiocati==null){
 	response.sendRedirect("/NYTRO/Index");
 	return ;
 }
+List<VideogiocoPagamentoBean> list = new ArrayList<VideogiocoPagamentoBean>(videogiochiPiuAcquistati);
+List<VideogiocoBean> list2 = new ArrayList<VideogiocoBean>(videogiochiPiuGiocati);
+
 %>	
 <div class="evidenza">
 	<h1>In evidenza</h1>
@@ -24,7 +25,7 @@ if(videogiochiPiuAcquistati==null || videogiochiPiuGiocati==null){
 		<section class="prezzo">Prezzo <%=list.get(0).getPrezzo() %>€</section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="https://www.youtube.com/embed/v4AcyuWYxkA"></iframe>
-			<%=list.get(0).toString() %>
+			<%=list.get(0).toString() %><%=list.get(0).getGenere().toString() %>
 		</div>
 	</div>
 	<div id="gioco2">
@@ -32,7 +33,7 @@ if(videogiochiPiuAcquistati==null || videogiochiPiuGiocati==null){
 		<section class="prezzo">Prezzo <%=list.get(1).getPrezzo() %>€</section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="https://www.youtube.com/embed/v4AcyuWYxkA"></iframe>
-			<%=list.get(1).toString() %>
+			<%=list.get(1).toString() %><%=list.get(1).getGenere().toString() %>
 		</div>
 	</div>
 	<div id="gioco3">
@@ -40,7 +41,7 @@ if(videogiochiPiuAcquistati==null || videogiochiPiuGiocati==null){
 		<section class="prezzo">Prezzo <%=list.get(2).getPrezzo() %>€</section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="https://www.youtube.com/embed/v4AcyuWYxkA"></iframe>
-			<%=list.get(2).toString() %>
+			<%=list.get(2).toString() %><%=list.get(2).getGenere().toString() %>
 		</div>
 	</div>
 </div>
@@ -50,21 +51,21 @@ if(videogiochiPiuAcquistati==null || videogiochiPiuGiocati==null){
 		<img src="https://www.mobygames.com/images/covers/l/214323-final-fantasy-xiv-online-windows-front-cover.jpg">
 		<div class="info">
 			<iframe width="100%" height="40%" src="https://www.youtube.com/embed/v4AcyuWYxkA"></iframe>
-			<%=list2.get(0).toString() %>
+			<%=list2.get(0).toString() %><%=list2.get(0).getGenere().toString() %>
 		</div>
 	</div>
 	<div id="gioco5">
 		<img src="https://www.mobygames.com/images/covers/l/214323-final-fantasy-xiv-online-windows-front-cover.jpg">
 		<div class="info">
 			<iframe width="100%" height="40%" src="https://www.youtube.com/embed/v4AcyuWYxkA"></iframe>
-			<%=list2.get(1).toString() %>
+			<%=list2.get(1).toString() %><%=list2.get(1).getGenere().toString() %>
 		</div>
 	</div>
 	<div id="gioco6">
 		<img src="https://www.mobygames.com/images/covers/l/214323-final-fantasy-xiv-online-windows-front-cover.jpg">
 		<div class="info">
 			<iframe width="100%" height="40%" src="https://www.youtube.com/embed/v4AcyuWYxkA"></iframe>
-			<%=list2.get(2).toString() %>
+			<%=list2.get(2).toString() %><%=list2.get(2).getGenere().toString() %>
 		</div>
 	</div>
 </div>
