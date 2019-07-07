@@ -1,16 +1,17 @@
 @charset "ISO-8859-1";
 
 .copertina {
-	height : 100px;
-	width:100px;
+	height : 184px;
+	width: 129px;
 	float: left;
 	margin-right:1%;
 	text-align: center;
 	background-color: #ddd;
+	overflow: hidden;
 }
 
 .copertina img {
-	height:100px;
+	height: 190px;
 }
 
 #lista {
@@ -32,7 +33,7 @@
 	font-size: 0.8em;
 	background-color: #f6f6f6;
 	text-align: left;
-	height: 100px;
+	height: 184px;
 	color: #666;
 }
 
@@ -66,7 +67,7 @@ li a {
 	font-family: inherit;
 	font-size: inherit;
 	background-color: #ddd;
-	height:100px;
+	height:184px;
 }
 
 .gioco form input[type=submit]:hover, .gioco form input[type=reset]:hover, .gioco form input[type=submit]:hover{

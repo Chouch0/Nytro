@@ -21,8 +21,11 @@ List<VideogiocoBean> list2 = new ArrayList<VideogiocoBean>(videogiochiPiuGiocati
 <div class="evidenza">
 	<h1>In evidenza</h1>
 	<div id="gioco1">
-		<img src="https://www.mobygames.com/images/covers/l/214323-final-fantasy-xiv-online-windows-front-cover.jpg">
-		<!-- <img src="/NYTRO/image?codice=<%=list.get(0).getCodice()%> %> -->
+		<%if (list.get(0).getImg() != null){%>
+			<img src="/NYTRO/image?codice=<%=list.get(0).getCodice()%>" alt="<%=list.get(0).getTitolo()%>">
+		<%} else {%>
+			<img src="/NYTRO/img/no-cover.jpg" alt="<%=list.get(0).getTitolo()%>">
+		<%} %>
 		<section class="prezzo"><%=list.get(0).getPrezzo() %>€</section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="https://www.youtube.com/embed/v4AcyuWYxkA"></iframe>
@@ -30,8 +33,11 @@ List<VideogiocoBean> list2 = new ArrayList<VideogiocoBean>(videogiochiPiuGiocati
 		</div>
 	</div>
 	<div id="gioco2">
-		<img src="https://www.mobygames.com/images/covers/l/214323-final-fantasy-xiv-online-windows-front-cover.jpg">
-		<!-- <img src="/NYTRO/image?codice=<%=list.get(1).getCodice()%> %> -->
+		<%if (list.get(1).getImg() != null){%>
+			<img src="/NYTRO/image?codice=<%=list.get(1).getCodice()%>" alt="<%=list.get(0).getTitolo()%>">
+		<%} else {%>
+			<img src="/NYTRO/img/no-cover.jpg" alt="<%=list.get(1).getTitolo()%>">
+		<%} %>
 		<section class="prezzo"><%=list.get(1).getPrezzo() %>€</section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="https://www.youtube.com/embed/v4AcyuWYxkA"></iframe>
@@ -39,8 +45,11 @@ List<VideogiocoBean> list2 = new ArrayList<VideogiocoBean>(videogiochiPiuGiocati
 		</div>
 	</div>
 	<div id="gioco3">
-		<img src="https://www.mobygames.com/images/covers/l/214323-final-fantasy-xiv-online-windows-front-cover.jpg">
-		<!-- <img src="/NYTRO/image?codice=<%=list.get(2).getCodice()%> %> -->
+		<%if (list.get(2).getImg() != null){%>
+			<img src="/NYTRO/image?codice=<%=list.get(2).getCodice()%>" alt="<%=list.get(0).getTitolo()%>">
+		<%} else {%>
+			<img src="/NYTRO/img/no-cover.jpg" alt="<%=list.get(2).getTitolo()%>">
+		<%} %>
 		<section class="prezzo"><%=list.get(2).getPrezzo() %>€</section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="https://www.youtube.com/embed/v4AcyuWYxkA"></iframe>
@@ -51,8 +60,11 @@ List<VideogiocoBean> list2 = new ArrayList<VideogiocoBean>(videogiochiPiuGiocati
 <div class="evidenza">
 	<h1>Giochi del momento</h1>
 	<div id="gioco4">
-		<img src="https://www.mobygames.com/images/covers/l/214323-final-fantasy-xiv-online-windows-front-cover.jpg">
-		<!-- <img src="/NYTRO/image?codice=<%=list2.get(0).getCodice()%> %> -->
+		<%if (list2.get(0).getImg() != null){%>
+			<img src="/NYTRO/image?codice=<%=list2.get(0).getCodice()%>" alt="<%=list.get(0).getTitolo()%>">
+		<%} else {%>
+			<img src="/NYTRO/img/no-cover.jpg" alt="<%=list2.get(0).getTitolo()%>">
+		<%} %>
 		<section class="prezzo"><%if (list2.get(0) instanceof VideogiocoPagamentoBean){
 			VideogiocoPagamentoBean x = (VideogiocoPagamentoBean)list2.get(0);%><%=x.getPrezzo() %>€
 			<%} else { %>FREE <%} %></section>
@@ -62,8 +74,11 @@ List<VideogiocoBean> list2 = new ArrayList<VideogiocoBean>(videogiochiPiuGiocati
 		</div>
 	</div>
 	<div id="gioco5">
-		<img src="https://www.mobygames.com/images/covers/l/214323-final-fantasy-xiv-online-windows-front-cover.jpg">
-		<!-- <img src="/NYTRO/image?codice=<%=list2.get(1).getCodice()%> %> -->
+		<%if (list2.get(0).getImg() != null){%>
+			<img src="/NYTRO/image?codice=<%=list2.get(0).getCodice()%>" alt="<%=list.get(0).getTitolo()%>">
+		<%} else {%>
+			<img src="/NYTRO/img/no-cover.jpg" alt="<%=list2.get(0).getTitolo()%>">
+		<%} %>
 		<section class="prezzo"><%if (list2.get(1) instanceof VideogiocoPagamentoBean){
 			VideogiocoPagamentoBean x = (VideogiocoPagamentoBean)list2.get(1);%><%=x.getPrezzo() %>€
 			<%} else { %>FREE <%} %></section>
@@ -73,8 +88,11 @@ List<VideogiocoBean> list2 = new ArrayList<VideogiocoBean>(videogiochiPiuGiocati
 		</div>
 	</div>
 	<div id="gioco6">
-		<img src="https://www.mobygames.com/images/covers/l/214323-final-fantasy-xiv-online-windows-front-cover.jpg">
-		<!-- <img src="/NYTRO/image?codice=<%=list2.get(2).getCodice()%> %> -->
+		<%if (list2.get(0).getImg() != null){%>
+			<img src="/NYTRO/image?codice=<%=list2.get(0).getCodice()%>" alt="<%=list.get(0).getTitolo()%>">
+		<%} else {%>
+			<img src="/NYTRO/img/no-cover.jpg" alt="<%=list2.get(0).getTitolo()%>">
+		<%} %>
 		<section class="prezzo"><%if (list2.get(2) instanceof VideogiocoPagamentoBean){
 			VideogiocoPagamentoBean x = (VideogiocoPagamentoBean)list2.get(2);%><%=x.getPrezzo() %>€
 			<%} else { %>FREE <%} %></section>
