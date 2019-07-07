@@ -4,6 +4,7 @@
 	width:100%;
 	color: #666;
 	margin: 10px auto;
+	margin-bottom: 5%;
 }
 
 #gioco1, #gioco2, #gioco3, #gioco4, #gioco5, #gioco6 {
@@ -23,6 +24,11 @@ img {
 	position: absolute;
 	bottom: 0;
 	right: 0;
+	background-color: #666;
+	color: #f3f3f3;
+	padding:2%;
+	font-size: 1.5em;
+	opacity: 0.9;
 }
 
 .info {
