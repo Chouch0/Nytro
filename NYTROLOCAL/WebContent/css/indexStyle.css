@@ -6,7 +6,7 @@
 	margin: 10px auto;
 }
 
-#gioco1, #gioco2, #gioco3 {
+#gioco1, #gioco2, #gioco3, #gioco4, #gioco5, #gioco6 {
 	display: inline-block;
 	width: 20%;
 	position: relative;
@@ -36,7 +36,7 @@ img {
     opacity:0;
 }
 
-#gioco1:hover .info, #gioco2:hover .info, #gioco3:hover .info {
+#gioco1:hover .info, #gioco2:hover .info, #gioco3:hover .info,#gioco4:hover .info, #gioco5:hover .info, #gioco6:hover .info {
 	visibility:visible;
     opacity:1;
 	animation: 0.5s slide-up
