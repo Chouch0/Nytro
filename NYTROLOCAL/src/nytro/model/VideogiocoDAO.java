@@ -841,6 +841,37 @@ public class VideogiocoDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 				
+		String insertSQL = "UPDATE videogioco SET Img = ? WHERE ISIN = ? AND data_rilascio = ? AND titolo = ? AND PEGI = ?";
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+			
+			 if (bean.getImg() != null) {
+	                // fetches input stream of the upload file for the blob column
+	                preparedStatement.setBlob(1, bean.getImg());
+	                preparedStatement.setString(2, bean.getISIN());
+	                preparedStatement.setString(3, bean.getDataRilascio());
+	                preparedStatement.setString(4, bean.getTitolo());
+	                preparedStatement.setInt(5, bean.getPEGI());
+	            }		
+			
+			System.out.println("doUploadImage: " + preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
+			
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+	public void doUploadImageByCodice(VideogiocoBean bean) throws SQLException, IOException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+				
 		String insertSQL = "UPDATE videogioco SET Img = ? WHERE Codice = ?";
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
@@ -852,7 +883,7 @@ public class VideogiocoDAO {
 	                preparedStatement.setInt(2, bean.getCodice());
 	            }		
 			
-			System.out.println("doUploadImage: " + preparedStatement.toString());
+			System.out.println("doUploadImageByCodice: " + preparedStatement.toString());
 			preparedStatement.executeUpdate();
 			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
 			
