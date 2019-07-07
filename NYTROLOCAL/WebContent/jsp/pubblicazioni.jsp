@@ -59,7 +59,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 		inputPrezzo.type="number";
 		inputPrezzo.name="aggPrezzo";
 		inputPrezzo.min="0";
-		inputPrezzo.step="1";
+		inputPrezzo.step="0.01";
 		inputPrezzo.required = true;
 		
 		container.appendChild(document.createTextNode("Prezzo:"));
@@ -140,7 +140,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 		</label>
 		<input type="file" name="photo" size="50">
 		<div id="aggiungiVideogiocoForm"></div>
-		<input type="submit" value="AggiungiGioco">
+		<input type="submit" value="Aggiungi">
 	</form>
 	
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
