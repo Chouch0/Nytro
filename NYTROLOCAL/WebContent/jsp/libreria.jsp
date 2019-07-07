@@ -41,7 +41,8 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 			</li>
 			<li class="titolo"><a href="/NYTRO/Videogioco?codiceVideogioco=<%=x.getCodice()%>"><%=x.getTitolo() %></a></li>
 			<li><%=x.getISIN() %></li>
-			<li>Voto: <%=x.getVotoMedio() %></li>	
+			<li>Voto: <%=x.getVotoMedio() %></li>
+			<li><a href="/NYTRO/img/Nytro.png" download>Download</a></li>
 		</div>
 		</ul>	
 			<%
