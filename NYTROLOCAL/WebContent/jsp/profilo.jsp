@@ -105,6 +105,7 @@ import="nytro.model.AccountBean"%>
 
 <h2>Cambia immagine del profilo</h2>
 <form action="/NYTRO/AggiornaProfilo" method="post" enctype="multipart/form-data">
+<input type="hidden" name="voglioCambiarePic" value="true">
 <input type="file" name="photo" size="50"/>
 <input type="submit" value="Vai">
 </form>

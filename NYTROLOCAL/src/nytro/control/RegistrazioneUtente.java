@@ -49,7 +49,9 @@ public class RegistrazioneUtente extends HttpServlet {
 		try {
 			accountDAO.doSaveGiocatore(utente);
 			accountDAO.doUploadImage(utente);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/index.jsp");
+			String message = "Registrazione effettuata con successo";
+			request.setAttribute("message", message);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("Index");
 			dispatcher.forward(request, response);
 		} catch(SQLException exception) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/registrazioneForm.jsp");

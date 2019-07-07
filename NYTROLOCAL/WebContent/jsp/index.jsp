@@ -9,6 +9,7 @@
 <%
 Collection<VideogiocoPagamentoBean> videogiochiPiuAcquistati = (Collection<VideogiocoPagamentoBean>) request.getAttribute("videogiochiPiuAcquistati");
 Collection<VideogiocoBean> videogiochiPiuGiocati = (Collection<VideogiocoBean>) request.getAttribute("videogiochiPiuGiocati");
+String message = (String) request.getAttribute("message");
 
 if(videogiochiPiuAcquistati==null || videogiochiPiuGiocati==null){
 	response.sendRedirect("/NYTRO/Index");
@@ -19,6 +20,9 @@ List<VideogiocoBean> list2 = new ArrayList<VideogiocoBean>(videogiochiPiuGiocati
 
 %>	
 <div class="evidenza">
+	<%if(message!=null && !message.equals("")) {	//Ad esempio per l'avvenuta e corretta registrazione%>
+		<h1><%=message%></h1>
+	<%} %>
 	<h1>In evidenza</h1>
 	<div id="gioco1">
 		<%if (list.get(0).getImg() != null){%>

@@ -110,13 +110,16 @@ public class AggiornaProfilo extends HttpServlet {
 			}
 		}
 		
-		account.setImgProfilo(request.getPart("photo").getInputStream());
-		if (account.getImgProfilo() != null) {
-			try {
-				accountDAO.doUploadImage(account);
-			} catch(SQLException exception) {
-				throw new MyException("Fallimento aggiornamento immagine");
-			}
+		String voglioCambiarePic = request.getParameter("voglioCambiarePic");
+		if(voglioCambiarePic!=null && !voglioCambiarePic.equals("")) {
+			account.setImgProfilo(request.getPart("photo").getInputStream());
+			if (account.getImgProfilo() != null) {
+				try {
+					accountDAO.doUploadImage(account);
+				} catch(SQLException exception) {
+					throw new MyException("Fallimento aggiornamento immagine");
+				}
+			}			
 		}
 		
 		String cambiaGenere = request.getParameter("cambiaGenere");
