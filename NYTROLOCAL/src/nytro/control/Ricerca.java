@@ -1,0 +1,44 @@
+package nytro.control;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import nytro.exceptions.MyException;
+import nytro.model.VideogiocoBean;
+import nytro.model.VideogiocoDAO;
+
+@WebServlet("/Ricerca")
+public class Ricerca extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	private final VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		List<VideogiocoBean> videogiochi;
+		
+		String testoParziale = request.getParameter("testoParziale");
+		if(testoParziale==null || testoParziale.equals(""))
+			throw new MyException("Testo parziale ricerca nullo o vuoto");
+		
+		try {
+			videogiochi = videogiocoDAO.doRetrieveByTitolo(testoParziale);
+		} catch (SQLException e) {
+			throw new MyException("Errore servlet Ricerca");
+		}
+		
+		request.setAttribute("listaVideogiochi", videogiochi);
+		request.getRequestDispatcher("jsp/ricerca.jsp").forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}

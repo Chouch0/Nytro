@@ -1001,4 +1001,40 @@ public class VideogiocoDAO {
 		return videogiochi;
 	}
 	
+	public List<VideogiocoBean> doRetrieveByTitolo(String against) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement=null;
+		
+		List<VideogiocoBean> videogiochi = new LinkedList<VideogiocoBean>();
+		
+		String selectSQL = "SELECT * FROM videogioco";	
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			
+			System.out.println("doRetrieveByTitolo: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				if(rs.getString("Titolo").contains(against)) {
+					VideogiocoBean bean = this.doRetrieveByCodice(rs.getInt("Codice"),"");
+					videogiochi.add(bean);	
+				}			
+				
+			}
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		System.out.println("\tTerminato: doRetrieveByTitolo");
+		return videogiochi;
+	
+	}
+	
 }

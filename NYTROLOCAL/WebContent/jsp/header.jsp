@@ -121,9 +121,10 @@
 					</div>
 				<%} %>
 			</li>
+			<%if(ruolo>=0){%>
 			<li>
 				<form action="Ricerca" method="get" id="ricerca">
-					<input type="text" name="q" list="ricerca-datalist" placeholder="Ricerca" onkeyup="ricerca(this.value)"> <!-- value="<c:out value="${param.q}" />" -->
+					<input type="text" name="testoParziale" list="ricerca-datalist" placeholder="Ricerca" onkeyup="ricerca(this.value)"> <!-- value="<c:out value="${param.q}" />" -->
 					<datalist id="ricerca-datalist"></datalist>
 					<!-- 
 					Il tag <datalist> viene utilizzato per fornire la funzione di "autocompletamento" per elementi di input;
@@ -132,5 +133,6 @@
 					-->
 				</form>
 			</li>
+			<%} %>
 		</ul>
 	</nav>
