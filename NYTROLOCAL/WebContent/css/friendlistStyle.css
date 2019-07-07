@@ -1,0 +1,62 @@
+@charset "ISO-8859-1";
+
+.profilo {
+	height : 100px;
+	float: left;
+	margin-right:1%;
+}
+
+#lista {
+	width: 80%;
+	margin: 10px auto;
+}
+
+#lista ul{ 
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow:visible;
+	background-color: #f3f3f3;
+	width: 100%;
+}
+
+.amico {
+	border-bottom: 1px solid grey;
+	font-size: 0.8em;
+	background-color: #f6f6f6;
+	text-align: left;
+	height: 100px;
+}
+
+ul .amico:hover{
+	background-color: #ddd;
+}
+
+.amico form:last-child{
+	float:right;
+}
+
+.username{
+	font-size: 1.5em;
+	font-weight: bold;
+	padding-top: 1%;
+	cursor: pointer;
+}
+
+.amico form input[type=button], .amico input[type=submit], .amico input[type=reset] {
+	border: none;
+	text-decoration: none;
+	color: #666;
+	padding: 14px 16px;
+	text-align: center;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: inherit;
+	background-color: #ddd;
+	height:100px;
+}
+
+.amico form input[type=button]:hover, .amico form input[type=submit]:hover, .amico form input[type=reset]:hover {
+	background-color: #666;
+	color: #f3f3f3; 
+}

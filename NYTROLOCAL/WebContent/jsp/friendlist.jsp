@@ -7,29 +7,33 @@ import="java.util.Collection, nytro.model.AccountBean"%>
 %>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Friendlist"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
-			
+<link href="/NYTRO/css/friendlistStyle.css" type="text/css" rel="stylesheet">			
+	<div id="lista">
 	<h1>Lista amici</h1>
-	
 	<%if(amici!=null) {%>
-		<p>
-			<%
-				for(AccountBean x : amici){
-			%>
-				<%=x.toString()%>
-				<%if (x.getImgProfilo() != null){%>
-						<img src="/NYTRO/image?id=<%= x.getUsername()%>">
-				<%}%>
-				<form action="/NYTRO/RimuoviFriend" method="post">
-					<input type="hidden" name="eliminatoAmico" value="<%=x.getUsername()%>">
-					<input type="submit" value="Rimuovi">
-				</form>
-				<br/>		
-			<%
-				}
-			%>
-		</p>
-	<%} %>
-	
+		<div id="tabella">
+		<%
+			for(AccountBean x : amici){
+		%>
+		<ul>
+		<div class="amico">
+			<li>
+			<%if (x.getImgProfilo() != null){%>
+					<img src="/NYTRO/image?id=<%= x.getUsername()%>" alt="<%=x.getUsername()%>" class="profilo">
+			<%} else {%>
+					<img src="/NYTRO/img/default-profile.png" alt="<%=x.getUsername()%>" class="profilo">
+			<%} %></li>
+			<li><form action="/NYTRO/RimuoviFriend" method="post">
+				<input type="hidden" name="eliminatoAmico" value="<%=x.getUsername()%>">
+				<input type="submit" value="Rimuovi">
+			</form></li>
+			<li class="username"><%=x.getUsername() %></li>
+			<li><%=x.getData() %> <%=x.getOra() %></li>
+		</div>
+		</ul>
+			<%}
+	} %>
+	</div>
 	<form action="/NYTRO/AggiungiFriend" method="post">
 	<label>
 		Inserisci l'username del giocatore da aggiungere:
@@ -43,5 +47,5 @@ import="java.util.Collection, nytro.model.AccountBean"%>
 			$("#friendlist").addClass("selected");
 		})
 	</script>
-	
+	</div>
 <%@include file="footer.html"%>							
