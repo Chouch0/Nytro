@@ -335,7 +335,7 @@ public class VideogiocoDAO {
 			preparedStatement.setString(2, bean.getDataRilascio());
 			preparedStatement.setString(3, bean.getTitolo());
 			preparedStatement.setInt(4, bean.getPEGI());
-			preparedStatement.setBlob(5, bean.getImg());			
+			preparedStatement.setNull(5, java.sql.Types.BLOB);			
 			preparedStatement.setString(6, "GenereBello"); //DA MODIFICARE ALL'AGGIUNTA DI UN METODO APPROPRIATO
 			preparedStatement.setFloat(7, bean.getPrezzo());			//blob settata null temporaneamente
 			
@@ -367,7 +367,7 @@ public class VideogiocoDAO {
 			preparedStatement.setString(2, bean.getDataRilascio());
 			preparedStatement.setString(3, bean.getTitolo());
 			preparedStatement.setInt(4, bean.getPEGI());
-			preparedStatement.setBlob(5, bean.getImg());	//blob settata null temporaneamente
+			preparedStatement.setNull(5, java.sql.Types.BLOB);	//blob settata null temporaneamente
 			preparedStatement.setString(6, "GenereBello"); //DA MODIFICARE ALL'AGGIUNTA DI UN METODO APPROPRIATO
 			preparedStatement.setInt(7, bean.getCodiceVideogiocoPrincipale());					
 			preparedStatement.setInt(8, bean.getDurata());
@@ -400,7 +400,7 @@ public class VideogiocoDAO {
 			preparedStatement.setString(2, bean.getDataRilascio());
 			preparedStatement.setString(3, bean.getTitolo());
 			preparedStatement.setInt(4, bean.getPEGI());
-			preparedStatement.setBlob(5, bean.getImg());	
+			preparedStatement.setNull(5, java.sql.Types.BLOB);	
 			preparedStatement.setString(6, "GenereBello"); //DA MODIFICARE ALL'AGGIUNTA DI UN METODO APPROPRIATO
 			preparedStatement.setString(7, bean.getModalitaDiGioco());
 			

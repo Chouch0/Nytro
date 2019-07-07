@@ -67,6 +67,7 @@ public class Pubblicazioni extends HttpServlet {
 						
 						try {
 							videogiocoDAO.doSaveVideogiocoPagamento(bean);
+							videogiocoDAO.doUploadImage(bean);
 						} catch (SQLException e) {
 							throw new MyException("Videogioco a pagamento non salvato con successo");
 						}						
@@ -92,6 +93,7 @@ public class Pubblicazioni extends HttpServlet {
 						
 						try {
 							videogiocoDAO.doSaveVideogiocoDemo(bean);
+							videogiocoDAO.doUploadImage(bean);
 						} catch (SQLException e) {
 							throw new MyException("Videogioco demo non salvato con successo");
 						}						
@@ -115,6 +117,7 @@ public class Pubblicazioni extends HttpServlet {
 						
 						try {
 							videogiocoDAO.doSaveVideogiocoFreeToPlay(bean);
+							videogiocoDAO.doUploadImage(bean);
 						} catch (SQLException e) {
 							throw new MyException("Videogioco free to play non salvato con successo");
 						}						
