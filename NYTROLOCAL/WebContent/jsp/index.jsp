@@ -1,7 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="nytro.model.VideogiocoBean, java.util.Collection"%>
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Home"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->
 <link href="/NYTRO/css/indexStyle.css" type="text/css" rel="stylesheet">
+
+<%
+Collection<VideogiocoBean> videogiochiPiuAcquistati = (Collection<VideogiocoBean>) request.getAttribute("videogiochiPiuAcquistati");
+Collection<VideogiocoBean> videogiochiPiuGiocati = (Collection<VideogiocoBean>) request.getAttribute("videogiochiPiuGiocati");
+
+if(videogiochiPiuAcquistati==null || videogiochiPiuGiocati==null){
+	response.sendRedirect("/NYTRO/Index");
+	return ;
+}
+%>	
+
+<h2>Videogiochi più acquistati</h2>
+<%for(VideogiocoBean x : videogiochiPiuAcquistati) {%>
+	<%=x.toString() %><br/>
+<%} %>
+
+<h2>Videogiochi più giocati</h2>
+
+<%for(VideogiocoBean x : videogiochiPiuGiocati) {%>
+	<%=x.toString() %><br/>
+<%} %>
+
+
+	<br/><br/><br/><br/><br/><br/><br/><br/>
+
 	<div class="evidenza">
 		<h1>In evidenza</h1>
 		<div id="gioco1">
