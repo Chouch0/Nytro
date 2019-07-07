@@ -1,0 +1,75 @@
+@charset "ISO-8859-1";
+
+.copertina {
+	height : 100px;
+	width:100px;
+	float: left;
+	margin-right:1%;
+	text-align: center;
+	background-color: #ddd;
+}
+
+.copertina img {
+	height:100px;
+}
+
+#lista {
+	width: 80%;
+	margin: 10px auto;
+}
+
+#lista ul{ 
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow:visible;
+	background-color: #f3f3f3;
+	width: 100%;
+}
+
+.gioco {
+	border-bottom: 1px solid grey;
+	font-size: 0.8em;
+	background-color: #f6f6f6;
+	text-align: left;
+	height: 100px;
+	color: #666;
+}
+
+ul .gioco:hover{
+	background-color: #ddd;
+}
+
+.gioco form:last-child{
+	float:right;
+}
+
+.titolo{
+	font-size: 1.5em;
+	font-weight: bold;
+	padding-top: 1%;
+	padding-bottom: 0.3%;
+}
+
+li a {
+	text-decoration: none;
+	color:inherit;
+}
+
+.gioco form input[type=button], .gioco input[type=submit], .gioco input[type=reset] {
+	border: none;
+	text-decoration: none;
+	color: #666;
+	padding: 14px 16px;
+	text-align: center;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: inherit;
+	background-color: #ddd;
+	height:100px;
+}
+
+.gioco form input[type=submit]:hover, .gioco form input[type=reset]:hover, .gioco form input[type=submit]:hover{
+	background-color: #666;
+	color: #f3f3f3; 
+}

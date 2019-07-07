@@ -6,7 +6,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 %>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Libreria"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
-	
+<link href="/NYTRO/css/libreriaStyle.css" type="text/css" rel="stylesheet">	
 	<form action="/NYTRO/Libreria" method="get">
 	<label>Seleziona un criterio di ordinamento
 	 <select name="order">
@@ -19,21 +19,34 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 	</label>
 	<input type="submit" value="Vai"/>
 	</form>
-	
+	<div id="lista">
 	<h1>Libreria</h1>
-	
 	<%if(libreria!=null) {%>
-		<p>
+		<div id="tabella">
 			<%
 				for(VideogiocoBean x : libreria){
 			%>
-				<%=x.toString() %> <form action="/NYTRO/Libreria?cancellaVideogioco=<%=x.getCodice()%>" method="post"> <input type="submit" value="Rimuovi"/></form>
-				<br/>		
+		<ul>
+		<div class="gioco">
+			<li><div class="copertina">
+			<%if (x.getImg() != null){%>
+					<img src="/NYTRO/image?id=<%= x.getCodice()%>" alt="<%=x.getTitolo()%>">
+			<%} else {%>
+					<img src="/NYTRO/img/default-profile.png" alt="<%=x.getTitolo()%>">
+			<%} %></div></li>
+			<li><form action="/NYTRO/Libreria?cancellaVideogioco=<%=x.getCodice()%>" method="post"> <input type="submit" value="Rimuovi"/></form>
+			</li>
+			<li class="titolo"><a href="/NYTRO/Videogioco?codiceVideogioco=<%=x.getCodice()%>"><%=x.getTitolo() %></a></li>
+			<li><%=x.getISIN() %> <%=x.getVotoMedio() %></li>	
+		</div>
+		</ul>	
 			<%
 				}
 			%>
-		</p>
+		
 	<%} %>
+	</div>
+	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
 		$("document").ready(function prova(){
