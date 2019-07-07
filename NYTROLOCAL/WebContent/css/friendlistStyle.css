@@ -33,6 +33,7 @@
 	background-color: #f6f6f6;
 	text-align: left;
 	height: 100px;
+	color: #666;
 }
 
 ul .amico:hover{
@@ -47,6 +48,7 @@ ul .amico:hover{
 	font-size: 1.5em;
 	font-weight: bold;
 	padding-top: 1%;
+	padding-bottom: 0.3%;
 	cursor: pointer;
 }
 
@@ -63,7 +65,36 @@ ul .amico:hover{
 	height:100px;
 }
 
-.amico form input[type=button]:hover, .amico form input[type=submit]:hover, .amico form input[type=reset]:hover {
+form input[type=button]:hover, .amico form input[type=submit]:hover, .amico form input[type=reset]:hover, #aggiungi form input[type=submit]:hover{
 	background-color: #666;
 	color: #f3f3f3; 
+}
+
+#aggiungi {
+	height: 20%;
+	background-color: #f3f3f3;
+	text-align: right;
+	color: #666;
+}
+
+#aggiungi input[type=text]{
+	background-color: white;
+	border: 1px solid lightgrey;
+	border-radius: 4px;	
+	padding: 5px 0px 5px 5px;
+	margin-left: 1%;
+}
+
+#aggiungi input[type=submit] {
+	border: none;
+	text-decoration: none;
+	color: #666;
+	padding: 11.5px 13.5px;
+	text-align: center;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 0.8;
+	background-color: #ddd;
+	height:100px;
+	margin-left: 1%;
 }

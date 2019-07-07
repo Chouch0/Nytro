@@ -34,6 +34,7 @@ import="java.util.Collection, nytro.model.AccountBean"%>
 			<%}
 	} %>
 	</div>
+	<div id="aggiungi">
 	<form action="/NYTRO/AggiungiFriend" method="post">
 	<label>
 		Inserisci l'username del giocatore da aggiungere:
@@ -47,5 +48,6 @@ import="java.util.Collection, nytro.model.AccountBean"%>
 			$("#friendlist").addClass("selected");
 		})
 	</script>
+	</div>
 	</div>
 <%@include file="footer.html"%>							
