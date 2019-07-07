@@ -65,7 +65,7 @@ ul .amico:hover{
 	height:100px;
 }
 
-form input[type=button]:hover, .amico form input[type=submit]:hover, .amico form input[type=reset]:hover, #aggiungi form input[type=submit]:hover{
+.amico form input[type=button]:hover, .amico form input[type=submit]:hover, .amico form input[type=reset]:hover, #aggiungi form input[type=submit]:hover{
 	background-color: #666;
 	color: #f3f3f3; 
 }

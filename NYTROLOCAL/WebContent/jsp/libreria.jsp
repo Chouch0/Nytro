@@ -9,6 +9,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 <link href="/NYTRO/css/libreriaStyle.css" type="text/css" rel="stylesheet">	
 
 <div id="lista">
+	<h1>Libreria</h1>
 	<div id="ordina">
 	<form action="/NYTRO/Libreria" method="get">
 	<label>Seleziona un criterio di ordinamento
@@ -23,7 +24,6 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 	<input type="submit" value="Vai"/>
 	</form>
 	</div>
-	<h1>Libreria</h1>
 	<%if(libreria!=null) {%>
 		<div id="tabella">
 			<%

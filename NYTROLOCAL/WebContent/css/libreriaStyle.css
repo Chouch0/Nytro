@@ -70,7 +70,29 @@ li a {
 	height:184px;
 }
 
-.gioco form input[type=submit]:hover, .gioco form input[type=reset]:hover, .gioco form input[type=submit]:hover{
+.gioco form input[type=submit]:hover, .gioco form input[type=reset]:hover, .gioco form input[type=submit]:hover, #ordina form input[type=submit]:hover{
 	background-color: #666;
 	color: #f3f3f3; 
+}
+
+#ordina {
+	height: 20%;
+	background-color: #f3f3f3;
+	text-align: right;
+	color: #666;
+	border-bottom: 1px solid grey;
+}
+
+#ordina input[type=submit] {
+	border: none;
+	text-decoration: none;
+	color: #666;
+	padding: 11.5px 30px;
+	text-align: center;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 0.8;
+	background-color: #ddd;
+	height:100px;
+	margin-left: 1%;
 }
