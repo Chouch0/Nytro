@@ -62,7 +62,7 @@ public class Pubblicazioni extends HttpServlet {
 						
 						bean.setTitolo(aggTitolo);
 						bean.setPEGI(Integer.parseInt(aggPegi));
-						bean.setImg(request.getPart("photo").getInputStream());
+						bean.setImg(img);
 						bean.setPrezzo(Float.parseFloat(aggPrezzo));
 						
 						try {
