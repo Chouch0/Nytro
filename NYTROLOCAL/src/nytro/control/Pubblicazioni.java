@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,7 @@ import nytro.model.VideogiocoFreeToPlayBean;
 import nytro.model.VideogiocoPagamentoBean;
 
 @WebServlet("/Pubblicazioni")
+@MultipartConfig(maxFileSize = 16177215)
 public class Pubblicazioni extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final VideogiocoDAO videogiocoDAO = new VideogiocoDAO();

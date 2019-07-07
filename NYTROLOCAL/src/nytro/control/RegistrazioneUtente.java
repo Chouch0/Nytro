@@ -34,7 +34,7 @@ public class RegistrazioneUtente extends HttpServlet {
 		utente.setEmailRecupero(request.getParameter("emailRec"));
 		utente.setCellulare(request.getParameter("phone"));
 		utente.setRuolo(1);
-		utente.setGenere(request.getParameter("genere")); 
+		utente.setGenere(request.getParameter("genere"));
 		utente.setDataNascita(request.getParameter("bornDate")); 
 		
 		if(utente.getUsername()==null || utente.getUsername().equals("") ||
