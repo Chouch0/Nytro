@@ -2,8 +2,15 @@
 
 .profilo {
 	height : 100px;
+	width:100px;
 	float: left;
 	margin-right:1%;
+	text-align: center;
+	background-color: #ddd;
+}
+
+.profilo img {
+	height:100px;
 }
 
 #lista {

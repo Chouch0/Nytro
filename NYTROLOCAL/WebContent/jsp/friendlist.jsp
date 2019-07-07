@@ -17,12 +17,12 @@ import="java.util.Collection, nytro.model.AccountBean"%>
 		%>
 		<ul>
 		<div class="amico">
-			<li>
+			<li><div class="profilo">
 			<%if (x.getImgProfilo() != null){%>
-					<img src="/NYTRO/image?id=<%= x.getUsername()%>" alt="<%=x.getUsername()%>" class="profilo">
+					<img src="/NYTRO/image?id=<%= x.getUsername()%>" alt="<%=x.getUsername()%>">
 			<%} else {%>
-					<img src="/NYTRO/img/default-profile.png" alt="<%=x.getUsername()%>" class="profilo">
-			<%} %></li>
+					<img src="/NYTRO/img/default-profile.png" alt="<%=x.getUsername()%>">
+			<%} %></div></li>
 			<li><form action="/NYTRO/RimuoviFriend" method="post">
 				<input type="hidden" name="eliminatoAmico" value="<%=x.getUsername()%>">
 				<input type="submit" value="Rimuovi">
