@@ -1,6 +1,7 @@
 package nytro.control;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
@@ -45,6 +46,7 @@ public class Pubblicazioni extends HttpServlet {
 			String aggGenere = request.getParameter("aggGenere");
 			String aggTitolo = request.getParameter("aggTitolo");
 			String tipologia = request.getParameter("tipologia");
+			InputStream img = request.getPart("photo").getInputStream();
 			
 			if(tipologia!=null && aggTitolo!=null && aggPegi!=null && aggGenere!=null && 
 					!aggTitolo.equals("") && !aggPegi.equals("") && !aggGenere.equals("")) {
@@ -60,7 +62,8 @@ public class Pubblicazioni extends HttpServlet {
 						
 						bean.setTitolo(aggTitolo);
 						bean.setPEGI(Integer.parseInt(aggPegi));
-						bean.setPrezzo(Float.parseFloat(aggPrezzo));	
+						bean.setImg(request.getPart("photo").getInputStream());
+						bean.setPrezzo(Float.parseFloat(aggPrezzo));
 						
 						try {
 							videogiocoDAO.doSaveVideogiocoPagamento(bean);
@@ -83,6 +86,7 @@ public class Pubblicazioni extends HttpServlet {
 						
 						bean.setTitolo(aggTitolo);
 						bean.setPEGI(Integer.parseInt(aggPegi));
+						bean.setImg(img);
 						bean.setCodiceVideogiocoPrincipale(Integer.parseInt(aggCodiceVideogiocoPrincipale));
 						bean.setDurata(Integer.parseInt(aggDurata));
 						
@@ -106,6 +110,7 @@ public class Pubblicazioni extends HttpServlet {
 						
 						bean.setTitolo(aggTitolo);
 						bean.setPEGI(Integer.parseInt(aggPegi));
+						bean.setImg(img);
 						bean.setModalitaDiGioco(aggModalita);	
 						
 						try {

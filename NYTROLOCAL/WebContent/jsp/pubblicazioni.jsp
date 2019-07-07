@@ -128,16 +128,17 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 	</script>
 	
 	<h2>Aggiungi videogioco</h2>
-	<form action="/NYTRO/Pubblicazioni" method="post">
+	<form action="/NYTRO/Pubblicazioni" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="aggiungiVideogioco" value="true">
 		<label>Titolo: <input type="text" name="aggTitolo" placeholder="Titolo*" required></label>
 		<label>PEGI: <input type="number" name="aggPegi" min="1" max="18" step="1" required></label>
-		<label>Genere: <input type="text" name="aggGenere" placeholder="Genere" required></label>
+		<label>Genere: <input type="text" name="aggGenere" placeholder="Genere*" required></label>
 		<label><br/>Tipologia:<br/>
 			<input type="radio" name="tipologia" value="aPagamento" onclick="addPagamentoFields()" required> Videogioco a pagamento<br/>
 			<input type="radio" name="tipologia" value="freeToPlay" onclick="addFreeToPlayFields()" required> Videogioco free to play<br/>
 			<input type="radio" name="tipologia" value="demo" onclick="addDemoFields()" required> Videogioco demo <br/> 
 		</label>
+		<input type="file" name="photo" size="50">
 		<div id="aggiungiVideogiocoForm"></div>
 		<input type="submit" value="AggiungiGioco">
 	</form>

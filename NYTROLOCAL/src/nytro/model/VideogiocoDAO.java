@@ -404,7 +404,7 @@ public class VideogiocoDAO {
 			preparedStatement.setString(6, "GenereBello"); //DA MODIFICARE ALL'AGGIUNTA DI UN METODO APPROPRIATO
 			preparedStatement.setString(7, bean.getModalitaDiGioco());
 			
-			System.out.println("doSaveVideogiocoFreToPlay: " + preparedStatement.toString());
+			System.out.println("doSaveVideogiocoFreeToPlay: " + preparedStatement.toString());
 			preparedStatement.executeUpdate();
 			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
 			

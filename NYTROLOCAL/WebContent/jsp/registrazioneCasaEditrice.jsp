@@ -5,7 +5,7 @@
 
 <h1>Registrazione casa editrice</h1>
 
-<form class="box" name="registrazione" action="/NYTRO/RegistrazioneCasaEditrice" method="post">
+<form class="box" name="registrazione" action="/NYTRO/RegistrazioneCasaEditrice" method="post" enctype="multipart/form-data">
 	<input class="registrazione" name="nomeCasaEditrice" type="text" placeholder="Nome Azienda*" onblur="checkName()">
 	<input class="registrazione" name="ISIN" type="text" placeholder="ISIN*" oninput="validaISIN()">
 	<p id="errorISIN"></p>
@@ -23,7 +23,8 @@
 	<p id="errorPhone"></p>
 	<input class="registrazione" name="sitoWeb" type="text" placeholder="Sito Web*" onblur="checkSite()" required>
 	
-	<p id="errorSub">Compila tutti i campi obbligatori</p>	
+	<p id="errorSub">Compila tutti i campi obbligatori</p>
+    <input type="file" name="photo" size="50">	
 	<input type="submit" value="Registra" id="sub" disabled>
 
 </form>

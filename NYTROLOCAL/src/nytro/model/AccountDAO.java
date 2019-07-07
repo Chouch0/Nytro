@@ -228,7 +228,7 @@ public class AccountDAO {
 			preparedStatement.setString(7, account.getOra());
 			preparedStatement.setString(8, account.getIp());
 			preparedStatement.setInt(9, account.getRuolo());
-			preparedStatement.setBlob(10, account.getImgProfilo());						//blob settata null temporaneamente
+			preparedStatement.setNull(7, java.sql.Types.BLOB);					//blob settata null temporaneamente
 			
 			System.out.println("doSaveAccount: " + preparedStatement.toString());
 			preparedStatement.executeUpdate();
@@ -260,7 +260,7 @@ public class AccountDAO {
 			preparedStatement.setString(4, account.getEmailRecupero());
 			preparedStatement.setString(5, account.getCellulare());
 			preparedStatement.setString(6, account.getIp());
-			preparedStatement.setBlob(7, account.getImgProfilo());						//blob settata null temporaneamente
+			preparedStatement.setNull(7, java.sql.Types.BLOB);						//blob settata null temporaneamente
 			preparedStatement.setString(8, account.getDataNascita());
 			preparedStatement.setString(9, account.getGenere());
 			
@@ -294,7 +294,7 @@ public class AccountDAO {
 			preparedStatement.setString(4, account.getEmailRecupero());
 			preparedStatement.setString(5, account.getCellulare());
 			preparedStatement.setString(6, account.getIp());
-			preparedStatement.setBlob(7, account.getImgProfilo());						//blob settata null temporaneamente
+			preparedStatement.setNull(7, java.sql.Types.BLOB);					//blob settata null temporaneamente
 			preparedStatement.setString(8, account.getISIN());
 			preparedStatement.setString(9, account.getNomeCasaEditrice());
 			preparedStatement.setString(10, account.getCEO());

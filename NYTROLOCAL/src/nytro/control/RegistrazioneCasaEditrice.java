@@ -35,6 +35,7 @@ public class RegistrazioneCasaEditrice extends HttpServlet {
 		utente.setRuolo(2);
 		utente.setCEO(request.getParameter("nomeCEO"));
 		utente.setISIN(request.getParameter("ISIN"));
+		utente.setImgProfilo(request.getPart("photo").getInputStream());
 		utente.setNomeCasaEditrice(request.getParameter("nomeCasaEditrice"));
 		utente.setSitoWeb(request.getParameter("sitoWeb"));
 		 
@@ -50,6 +51,7 @@ public class RegistrazioneCasaEditrice extends HttpServlet {
 		
 		try {
 			accountDAO.doSaveCasaEditrice(utente);
+			accountDAO.doUploadImage(utente);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/index.jsp");
 			dispatcher.forward(request, response);
 		} catch(SQLException exception) {

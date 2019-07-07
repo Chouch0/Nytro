@@ -25,7 +25,6 @@ public class RegistrazioneUtente extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		GiocatoreBean utente = new GiocatoreBean();
-		InputStream inputStream = null;
 		
 		utente.setUsername(request.getParameter("username"));
 		System.out.println("Questo è lo username : " + request.getParameter("username"));
