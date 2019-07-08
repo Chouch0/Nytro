@@ -551,6 +551,47 @@ public class AccountDAO {
 		}
 	}
 	
+	public AccountBean doRetrieveAmicoFriendlist(AccountBean account, String amico) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String selectSQL = "select * from e_nella_libreria where possessore = ? and amico = ?";
+		AccountBean bean = new AccountBean();
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, account.getUsername());
+			preparedStatement.setString(2, amico);
+			
+			System.out.println("doRetrieveAmicoFriendlist: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {				
+				bean.setUsername(rs.getString("Username"));
+				bean.setPassword(rs.getString("Password"));
+				bean.setEmail(rs.getString("Email"));
+				bean.setEmailRecupero(rs.getString("Email_Recupero"));
+				bean.setCellulare(rs.getString("Cellulare"));
+				bean.setData(rs.getString("Data"));
+				bean.setOra(rs.getString("Ora"));
+				bean.setIp(rs.getString("IP"));
+				bean.setRuolo(rs.getInt("Ruolo"));
+				bean.setImgProfilo(rs.getBinaryStream("Img_Profilo"));
+			}
+			
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return bean;
+	}
+	
 	public void doRimuoviAmicoFriendlist(AccountBean bean, String futuroAmico) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;

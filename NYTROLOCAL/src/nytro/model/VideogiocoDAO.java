@@ -742,6 +742,36 @@ public class VideogiocoDAO {
 		return n==0;
 	}
 	
+	public AccountBean doRetrieveFromLibreria(int codice, String username) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String selectSQL = "SELECT * FROM ha_nella_libreria WHERE Videogioco = ? AND Username=?";
+		AccountBean bean = new AccountBean();
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, codice);
+			preparedStatement.setString(2, username);
+			
+			System.out.println("doRetrieveFromLibreria: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) 
+				bean.setUsername(rs.getString("Username"));
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		return bean;
+	}
+	
 	public boolean doRetrieveAppartenenzaAgliAcquisti(int codice, String username) throws SQLException {
 
 		Connection connection = null;

@@ -31,6 +31,8 @@ public class Libreria extends HttpServlet {
 			int codiceVideogiocoDaCancellare = Integer.parseInt(cancellaVideogioco);
 			try {
 				videogiocoDAO.doDeleteFromLibreria(account.getUsername(), codiceVideogiocoDaCancellare);
+				while(videogiocoDAO.doRetrieveFromLibreria(codiceVideogiocoDaCancellare, account.getUsername()).getUsername()!=null)
+					;
 			} catch (SQLException e) {
 				throw new MyException("Errore cancellazione videogioco.");
 			}
@@ -38,11 +40,13 @@ public class Libreria extends HttpServlet {
 		
 		String aggiungiVideogioco=request.getParameter("aggiungiVideogioco");
 		if(aggiungiVideogioco!=null && !aggiungiVideogioco.equals("")) {
-			int codiceVideogiocoDaCancellare = Integer.parseInt(aggiungiVideogioco);
+			int codiceVideogiocoDaAggiungere = Integer.parseInt(aggiungiVideogioco);
 			try {
-				videogiocoDAO.doSaveToLibreria(account.getUsername(), codiceVideogiocoDaCancellare);
+				videogiocoDAO.doSaveToLibreria(account.getUsername(), codiceVideogiocoDaAggiungere);
+				while(videogiocoDAO.doRetrieveFromLibreria(codiceVideogiocoDaAggiungere, account.getUsername()).getUsername()==null)
+					;
 			} catch (SQLException e) {
-				throw new MyException("Errore cancellazione videogioco.");
+				throw new MyException("Errore inserimento videogioco.");
 			}
 		}
 		
@@ -56,7 +60,6 @@ public class Libreria extends HttpServlet {
 			throw new MyException("Errore estrazione videogiochi.");
 		}
 		
-		request.removeAttribute("libreria");
 		request.setAttribute("libreria", libreria);
 
 		String url = response.encodeURL("jsp/libreria.jsp");
