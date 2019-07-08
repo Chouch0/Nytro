@@ -106,7 +106,7 @@ function checkSite() {
 
 function validaISIN() {
 	var input = document.forms['registrazione']['ISIN'];
-	if(input.value.match(/^\w{12}$/)) {
+	if(/\w{12}/.test(input.value)) {
 		input.style.border = borderOK;
 		document.getElementById("errorISIN").innerHTML = "";
 		isinOk = true;
