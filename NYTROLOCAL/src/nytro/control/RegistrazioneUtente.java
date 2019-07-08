@@ -2,6 +2,7 @@ package nytro.control;
 
 import java.io.IOException;
 import java.io.InputStream;
+
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -28,14 +29,30 @@ public class RegistrazioneUtente extends HttpServlet {
 		
 		utente.setUsername(request.getParameter("username"));
 		System.out.println("Questo è lo username : " + request.getParameter("username"));
+		String phone = request.getParameter("phone");
+		String date = request.getParameter("bornDate");
+		String genere = request.getParameter("genere");
+		if(phone.isEmpty()) {
+			phone = null;
+		}
+		
+		if(date.isEmpty()) {
+			date = null;
+		}
+		
+		if(genere == null || genere.equals("")) {
+			genere = null;
+		}
 		
 		utente.setPassword(request.getParameter("password"));
 		utente.setEmail(request.getParameter("email"));
 		utente.setEmailRecupero(request.getParameter("emailRec"));
-		utente.setCellulare(request.getParameter("phone"));
+		utente.setCellulare(phone);
 		utente.setRuolo(1);
-		utente.setGenere(request.getParameter("genere"));
-		utente.setDataNascita(request.getParameter("bornDate")); 
+		utente.setGenere(genere);
+		utente.setDataNascita(date); 
+		
+		
 		
 		if(utente.getUsername()==null || utente.getUsername().equals("") ||
 				utente.getPassword()==null || utente.getPassword().equals("") ||
