@@ -106,8 +106,8 @@ function checkSite() {
 
 function validaISIN() {
 	var input = document.forms['registrazione']['ISIN'];
-	if(/\w{12}/.test(input.value)) {
-		input.style.border = borderOK;
+	if(/^\w{12}$/.test(input.value)) {
+		input.style.border = borderOk;
 		document.getElementById("errorISIN").innerHTML = "";
 		isinOk = true;
 	} else {
