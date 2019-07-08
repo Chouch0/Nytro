@@ -77,7 +77,7 @@ import="nytro.model.AccountBean"%>
 <h1>Cambia cose</h1>
 
 <h2>Cambia password</h2>
-<form name="cambiamoPassword" action="/NYTRO/AggiornaProfilo" method="post" enctype="multipart/form-data">
+<form name="cambiamoPassword" action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="password" name="cambiaPassword" oninput="validaPassword()" placeholder="Password" required> 
 <input type="password" name="cambiaPasswordConferma" oninput="validaPassword()" placeholder="Conferma Password" required> 
 <p id="errorPssw"></p>
@@ -85,39 +85,39 @@ import="nytro.model.AccountBean"%>
 </form>
 
 <h2>Cambia e-mail</h2>
-<form action="/NYTRO/AggiornaProfilo" method="post" enctype="multipart/form-data">
+<form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="email" name="cambiaEmail" placeholder="e-mail" required>
 <input type="submit" value="Vai">
 </form>
 
 <h2>Cambia e-mail recupero</h2>
-<form action="/NYTRO/AggiornaProfilo" method="post" enctype="multipart/form-data">
+<form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="email" name="cambiaEmailRecupero" placeholder="e-mail recupro" required>
 <input type="submit" value="Vai">
 </form>
 
 <h2>Cambia cellulare</h2>
-<form name="cambiamoTelefono" action="/NYTRO/AggiornaProfilo" method="post" enctype="multipart/form-data">
+<form name="cambiamoTelefono" action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input id="cambiaTelefono" type="tel" name="phone" oninput="validaTelefono()" placeholder="Cellulare">
 <p id="errorPhone"></p>
 <input id="subPhone" type="submit" value="Vai" disabled>
 </form>
 
 <h2>Cambia immagine del profilo</h2>
-<form action="/NYTRO/AggiornaProfilo" method="post" enctype="multipart/form-data">
+<form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="file" name="photo" size="50"/>
 <input type="submit" value="Vai">
 </form>
 
 <%if(account.getRuolo()==0){ %>
 <h2>Cambia nome</h2>
-<form action="/NYTRO/AggiornaProfilo" method="post" enctype="multipart/form-data">
+<form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="text" name="cambiaNome" placeholder="Nome" required>
 <input type="submit" value="Vai">
 </form>
 
 <h2>Cambia cognome</h2>
-<form action="/NYTRO/AggiornaProfilo" method="post" enctype="multipart/form-data">
+<form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="text" name="cambiaCognome" placeholder="Cognome" required>
 <input type="submit" value="Vai">
 </form>
@@ -126,7 +126,7 @@ import="nytro.model.AccountBean"%>
 
 <%if(account.getRuolo()==1){ %>
 <h2>Cambia data di nascita</h2>
-<form action="/NYTRO/AggiornaProfilo" method="post" enctype="multipart/form-data">
+<form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="hidden" name="cambiaDataNascita" value="true">
 <label>Anno:<input type="number" name="anno" min="1900" max="2019" step="1" required></label>
 <label>Mese:<input type="number" name="mese" min="1" max="12" step="1" required></label>
@@ -135,7 +135,7 @@ import="nytro.model.AccountBean"%>
 </form>
 
 <h2>Cambia genere</h2>
-<form action="/NYTRO/AggiornaProfilo" method="post" enctype="multipart/form-data">
+<form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="radio" name="cambiaGenere" value="m" required> Maschile<br>
 <input type="radio" name="cambiaGenere" value="f"> Femminile<br>
 <input type="submit" value="Vai">
@@ -144,22 +144,22 @@ import="nytro.model.AccountBean"%>
 
 <%if(account.getRuolo()==2){ %>
 <h2>Cambia nome casa editrice</h2>
-<form action="/NYTRO/AggiornaProfilo" method="post" enctype="multipart/form-data">
+<form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="text" name="cambiaNomeCasaEditrice" placeholder="Nome casa editrice" required>
 <input type="submit" value="Vai">
 </form>
 
 <h2>Cambia CEO</h2>
-<form action="/NYTRO/AggiornaProfilo" method="post" enctype="multipart/form-data">
+<form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="text" name="cambiaCEO" placeholder="Nome CEO" required>
 <input type="submit" value="Vai">
 </form>
 
 <h2>Cambia sito web</h2>
-<form action="/NYTRO/AggiornaProfilo" method="post" enctype="multipart/form-data">
+<form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="text" name="cambiaSitoWEB" placeholder="Sito web" required>
 <input type="submit" value="Vai">
 </form>
 <%}%>
 
-<%@include file="footer.html"%>							
+<%@include file="footer.jsp"%>						

@@ -23,7 +23,7 @@ import="java.util.Collection, nytro.model.AccountBean"%>
 			<%} else {%>
 					<img src="/NYTRO/img/default-profile.png" alt="<%=x.getUsername()%>">
 			<%} %></div></li>
-			<li><form action="/NYTRO/RimuoviFriend" method="post">
+			<li><form action="<%=response.encodeURL("/NYTRO/Friendlist")%>" method="post">
 				<input type="hidden" name="eliminatoAmico" value="<%=x.getUsername()%>">
 				<input type="submit" value="Rimuovi">
 			</form></li>
@@ -35,7 +35,7 @@ import="java.util.Collection, nytro.model.AccountBean"%>
 	} %>
 	</div>
 	<div id="aggiungi">
-	<form action="/NYTRO/AggiungiFriend" method="post">
+	<form action="<%=response.encodeURL("/NYTRO/Friendlist")%>" method="post">
 	<label>
 		Inserisci l'username del giocatore da aggiungere:
 		<input type="text" name="futuroAmico" placeholder="Username">
@@ -50,4 +50,4 @@ import="java.util.Collection, nytro.model.AccountBean"%>
 	</script>
 	</div>
 	</div>
-<%@include file="footer.html"%>							
+<%@include file="footer.jsp"%>							

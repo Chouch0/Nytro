@@ -19,7 +19,8 @@ public class LoginForm extends HttpServlet {
 //		if (request.getSession().getAttribute("account") != null) {
 //			throw new MyException("Utente loggato.");
 //		}
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("jsp/loginForm.jsp");
+		String url = response.encodeURL("jsp/loginForm.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
 		requestDispatcher.forward(request, response);
 	}
 

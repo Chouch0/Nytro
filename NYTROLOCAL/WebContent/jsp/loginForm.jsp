@@ -8,7 +8,7 @@ import="nytro.model.AccountBean"%>
 		
 %>
 <h1>Login</h1>
-<form action="/NYTRO/Login" method="post">
+<form action="<%=response.encodeURL("/NYTRO/Login")%>" method="post">
 	<input type="text" name="username" placeholder="Username*" class="login" required><br/>
 	<input type="password" name="password" placeholder="Password*" class="login" required><br/>
 	<input type="submit" value="Vai" class="sub">
@@ -81,7 +81,7 @@ import="nytro.model.AccountBean"%>
 </script>
 
 
-<form id="recuperoPassword" name="formRecuperoPassword" action="/NYTRO/RecuperaPassword" method="post">
+<form id="recuperoPassword" name="formRecuperoPassword" action="<%=response.encodeURL("/NYTRO/RecuperaPassword")%>" method="post">
 	<input type="text" name="username" placeholder="Username*" class="login" required> <br/>
 	<input type="password" name="password" placeholder="Password*" oninput="validaPassword()" class="login" required> <br/>
 	<input type="password" name="passwordConferma" placeholder="Password*" oninput="validaPassword()" class="login" required> <br/>	
@@ -105,4 +105,4 @@ import="nytro.model.AccountBean"%>
 
 
 
-<%@include file="footer.html"%>							
+<%@include file="footer.jsp"%>							

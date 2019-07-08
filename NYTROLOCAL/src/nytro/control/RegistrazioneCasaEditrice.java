@@ -52,10 +52,12 @@ public class RegistrazioneCasaEditrice extends HttpServlet {
 		try {
 			accountDAO.doSaveCasaEditrice(utente);
 			accountDAO.doUploadImage(utente);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/index.jsp");
+			String url = response.encodeURL("jsp/index.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 			dispatcher.forward(request, response);
 		} catch(SQLException exception) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/registrazioneCasaEditrice.jsp");
+			String url = response.encodeURL("jsp/registrazioneCasaEditrice.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 			dispatcher.forward(request, response);
 		}
 		

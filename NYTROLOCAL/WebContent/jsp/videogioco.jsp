@@ -7,7 +7,8 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 	String possibileAggiungereAllaLibreria = (String) request.getAttribute("possibileAggiungereAllaLibreria");
 	String possibileAggiungereAgliAcquisti = (String) request.getAttribute("possibileAggiungereAgliAcquisti");
 	if(videogiocoDetailed==null){
-		response.sendRedirect("Videogioco");
+		String url = response.encodeURL("Videogioco");
+		response.sendRedirect(url);
 		return ;
 	}
 %>
@@ -23,22 +24,23 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		if(account.getRuolo()==1){
 			if(videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoPagamentoBean")){
 				if(possibileAggiungereAgliAcquisti!=null && possibileAggiungereAgliAcquisti.equalsIgnoreCase("true")){
-					%><a href="GestoreCarrello?action=addCart&codiceVideogioco=<%=videogiocoDetailed.getCodice()%>">Inserisci nel carrello</a><br/><%
+					String url = response.encodeURL("GestoreCarrello?action=addCart&codiceVideogioco="+videogiocoDetailed.getCodice());
+					%><a href="<%=url%>">Inserisci nel carrello</a><br/><%
 				} else {
 					if(possibileAggiungereAllaLibreria!=null && possibileAggiungereAllaLibreria.equalsIgnoreCase("true")){
-						%><a href="Libreria?aggiungiVideogioco=<%=videogiocoDetailed.getCodice()%>">Inserisci nella libreria</a><br/><%
+						%><a href="<%=response.encodeURL("Libreria?aggiungiVideogioco="+videogiocoDetailed.getCodice())%>">Inserisci nella libreria</a><br/><%
 					} 
 				}
 			} else {
 				if(possibileAggiungereAllaLibreria!=null && possibileAggiungereAllaLibreria.equalsIgnoreCase("true")){
-					 %><a href="Libreria?aggiungiVideogioco=<%=videogiocoDetailed.getCodice()%>">Inserisci nella libreria</a><br/><%
+					 %><a href="<%=response.encodeURL("Libreria?aggiungiVideogioco="+videogiocoDetailed.getCodice())%>">Inserisci nella libreria</a><br/><%
 				} 			
 			}
 		}
 		%>	
 	</p>
 	
-	<form action="/NYTRO/Videogioco" method="get">
+	<form action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="get">
 	<input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">		<!-- Mi serve perchè se no perdo il codice del videogioco -->
 	<label>Seleziona un criterio di ordinamento
 	 <select name="orderRecensioni">
@@ -57,7 +59,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		
 		<%=x.toString()%>
 		<%if(x.getUsername().equals(account.getUsername())) {%>
-			<form action="/NYTRO/Videogioco" method="post">
+			<form action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="post">
 			 <input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">		<!-- Mi serve perchè se no perdo il codice del videogioco -->
 			 <input type="hidden" name="rimuovereRecensione" value="true">
 			 <input type="submit" value="Rimuovi recensione">
@@ -71,7 +73,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 	<%if(account.getRuolo()==1) {%>
 		<h3>Inserisci recensione</h3>
 		
-		<form action="/NYTRO/Videogioco" method="post">
+		<form action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="post">
 		 <input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">		<!-- Mi serve perchè se no perdo il codice del videogioco -->
 		 <textarea rows="4" cols="50" name="commentoRecensione" required> </textarea> 
 		 <label>Inserisci voto: <input type="number" name="votoRecensione" min="1" max="5" step="0.25" required></label>
@@ -83,7 +85,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 	<%if(account.getRuolo()==2) {%>
 		<h3>Cambia immagine del videogioco</h3>
 		
-		<form action="/NYTRO/Videogioco?codiceVideogioco=<%=videogiocoDetailed.getCodice()%>" method="post" enctype="multipart/form-data">
+		<form action="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+videogiocoDetailed.getCodice())%>" method="post" enctype="multipart/form-data">
 		 <input type="hidden" name="cambiaImmagineVideogioco" value="true" required>
 	 	 <input type="file" name="photo" size="50"/>
 		 <input type="submit" value="Vai">
@@ -91,7 +93,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		
 		<h3>Inserisci genere</h3>
 		
-		<form action="/NYTRO/Videogioco" method="post" enctype="multipart/form-data">
+		<form action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="post" enctype="multipart/form-data">
 		 <input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">
 		 <input type="hidden" name="cambiaGenere" value="true">
 	 	 <input type="text" name="newGenere" placeholder="Genere*" required/>
@@ -101,7 +103,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		<%if(videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoPagamentoBean")) {%>
 			<h3>Cambia prezzo</h3>
 		
-			<form action="/NYTRO/Videogioco" method="post" enctype="multipart/form-data">
+			<form action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="post" enctype="multipart/form-data">
 			 <input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">
 			 <input type="hidden" name="cambiaPrezzo" value="true">
 		 	 <input type="number" name="newPrezzo" min="0" step="0.01" required/>
@@ -112,7 +114,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		<%if(videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoDemoBean")) {%>
 			<h3>Cambia durata</h3>
 		
-			<form action="/NYTRO/Videogioco" method="post" enctype="multipart/form-data">
+			<form action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="post" enctype="multipart/form-data">
 			 <input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">
 			 <input type="hidden" name="cambiaDurataDemo" value="true">
 		 	 <input type="number" name="newDurataDemo" min="1" step="1" required/>
@@ -127,4 +129,4 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 			$("#esplora").addClass("selected");
 		})
 	</script>
-<%@include file="footer.html"%>							
+<%@include file="footer.jsp"%>							

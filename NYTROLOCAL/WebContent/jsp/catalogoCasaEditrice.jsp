@@ -8,7 +8,7 @@ import="nytro.model.VideogiocoBean, nytro.model.AccountBean, java.util.Collectio
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Catalogo casa editrice"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
 	
-	<form action="/NYTRO/CatalogoCasaEditrice" method="get">
+	<form action="<%=response.encodeURL("/NYTRO/CatalogoCasaEditrice")%>" method="get">
 		<input type="hidden" name="isinCasaEditrice" value="<%=isinCasaEditrice%>">
 		<label>Seleziona un criterio di ordinamento
 		 <select name="order">
@@ -28,7 +28,7 @@ import="nytro.model.VideogiocoBean, nytro.model.AccountBean, java.util.Collectio
 		<%
 			for(VideogiocoBean x : catalogoCasaEditrice){
 		%>
-			<%=x.toString() %><%=x.getGenere().toString() %><br/>	<span class = "buttonLink"><a href="/NYTRO/Videogioco?codiceVideogioco=<%=x.getCodice()%>">Informazioni</a></span><br/>
+			<%=x.toString() %><%=x.getGenere().toString() %><br/>	<span class = "buttonLink"><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+x.getCodice())%>">Informazioni</a></span><br/>
 			<!--  Se utilizzo un bottone non riesco a passare il parametro codice utilizzando lo scriptlet -->	
 		<%
 			}
@@ -40,4 +40,4 @@ import="nytro.model.VideogiocoBean, nytro.model.AccountBean, java.util.Collectio
 			$("#esplora").addClass("selected");
 		})
 	</script>
-<%@include file="footer.html"%>							
+<%@include file="footer.jsp"%>							

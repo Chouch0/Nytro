@@ -85,8 +85,9 @@ public class GestoreCarrello extends HttpServlet {
 		
 		request.setAttribute("message", message);
 		request.getSession().setAttribute("carrello", cart);	
-		
-		request.getRequestDispatcher("jsp/carrello.jsp").forward(request, response);
+
+		String url = response.encodeURL("jsp/carrello.jsp");
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 
 	

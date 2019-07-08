@@ -27,10 +27,12 @@ public class RimozioneAccount extends HttpServlet {
 		try {
 			AccountBean account = accountDAO.doRetrieveByUsername(username);
 			accountDAO.doDelete(account);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/index.jsp");
+			String url = response.encodeURL("jsp/index.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 			dispatcher.forward(request, response);
 		} catch(SQLException exception) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/NYTRO/jsp/rimozioneAccount.jsp");
+			String url = response.encodeURL("jsp/rimozioneAccount.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 			dispatcher.forward(request, response);
 		}
 		

@@ -36,7 +36,8 @@ public class Profilo extends HttpServlet {
 		else
 			request.getSession().setAttribute("account", account);
 		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("jsp/profilo.jsp");
+		String url = response.encodeURL("jsp/profilo.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
 		requestDispatcher.forward(request, response);
 	}
 

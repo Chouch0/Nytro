@@ -5,7 +5,7 @@
 
 <h1>Registrazione</h1>
 
-<form class="box" name="registrazione" action="/NYTRO/RegistrazioneUtente" method="post" enctype="multipart/form-data"> 
+<form class="box" name="registrazione" action="<%=response.encodeURL("/NYTRO/RegistrazioneUtente")%>" method="post" enctype="multipart/form-data"> 
 	<input class="registrazione" name="username" type="text" oninput="validaUsername()" placeholder="Username*"> 
 	<p id="errorUsr"></p>  
 	<input class="registrazione" type="password" name="password" oninput="validaPassword()" placeholder="Password*"> 
@@ -172,4 +172,4 @@ $("input[type=date]").each(function() {
 	
 </script>
 
-<%@include file="footer.html"%>	
+<%@include file="footer.jsp"%>	

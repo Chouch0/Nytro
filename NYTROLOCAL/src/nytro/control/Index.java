@@ -35,7 +35,8 @@ public class Index extends HttpServlet {
 		request.setAttribute("videogiochiPiuAcquistati", videogiochiPiuAcquistati);
 		request.setAttribute("videogiochiPiuGiocati", videogiochiPiuGiocati);
 
-		request.getRequestDispatcher("jsp/index.jsp").forward(request, response);
+		String url = response.encodeURL("jsp/index.jsp");
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

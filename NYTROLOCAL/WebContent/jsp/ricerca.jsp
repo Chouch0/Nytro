@@ -3,12 +3,13 @@
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Ricerca"/>	</jsp:include>
 
 <section>
+
 <%
 	List<VideogiocoBean> listaVideogiochi = (List<VideogiocoBean>) request.getAttribute("listaVideogiochi");
 	if(listaVideogiochi!=null){
 		for(VideogiocoBean x : listaVideogiochi){
 %>
-	<a href="/NYTRO/Videogioco?codiceVideogioco=<%=x.getCodice()%>"><%=x.toString()%></a><br/>
+	<a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+x.getCodice())%>"><%=x.toString()%></a><br/>
 <%
 		}
 	} else {
@@ -18,4 +19,4 @@
 
 </section>
 
-<%@include file="footer.html"%>							
+<%@include file="footer.jsp"%>						

@@ -36,7 +36,8 @@ public class ListaCaseEditrici extends HttpServlet {
 		
 		request.setAttribute("caseEditrici", caseEditrici);
 
-		request.getRequestDispatcher("jsp/listaCaseEditrici.jsp").forward(request, response);
+		String url = response.encodeURL("jsp/listaCaseEditrici.jsp");
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -58,7 +58,8 @@ public class RecuperaPassword extends HttpServlet {
 		
 		request.setAttribute("message", message);
 
-		request.getRequestDispatcher("jsp/loginForm.jsp").forward(request, response);
+		String url = response.encodeURL("jsp/loginForm.jsp");
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 
 	

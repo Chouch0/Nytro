@@ -20,7 +20,8 @@ public class RegistrazioneForm extends HttpServlet {
 //		if (request.getSession().getAttribute("account") != null) {
 //			throw new MyException("Utente loggato.");
 //		}
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("jsp/registrazioneForm.jsp");
+		String url = response.encodeURL("jsp/registrazioneForm.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
 		requestDispatcher.forward(request, response);
 	}
 

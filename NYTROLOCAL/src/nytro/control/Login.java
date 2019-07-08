@@ -52,7 +52,8 @@ public class Login extends HttpServlet {
 		
 		request.getSession().setAttribute("account", account);
 	
-		response.sendRedirect("jsp/index.jsp");
+		String url = response.encodeURL("jsp/index.jsp");
+		response.sendRedirect(url);
 	}
 
 	

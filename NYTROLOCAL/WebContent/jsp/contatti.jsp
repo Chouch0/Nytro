@@ -29,4 +29,4 @@
 			$("#contatti").addClass("selected");
 		})
 	</script>
-<%@include file="footer.html"%>							<!-- Inclusione statica di footer.html" -->
+<%@include file="footer.jsp"%>							<!-- Inclusione statica di footer.html" -->

@@ -3,7 +3,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 <link href="/NYTRO/css/RegStyle.css" type="text/css" rel="stylesheet">
 
-<form class="box" name="rimozione" action="/NYTRO/RimozioneAccount" method="post">
+<form class="box" name="rimozione" action="<%=response.encodeURL("/NYTRO/RimozioneAccount")%>" method="post">
 	<input type="text" class="registrazione" name="username" required oninput="checkUsername()">
 	<p id="errorUsr"></p>
 	<input type="submit" value="Rimuovi Account" id="sub" disabled>
@@ -57,4 +57,4 @@
 	
 	</script>
 	
-<%@include file="footer.html"%>
+<%@include file="footer.jsp"%>	

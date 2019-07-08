@@ -7,7 +7,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Pubblicazioni"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
 	
-	<form action="/NYTRO/Pubblicazioni" method="get">
+	<form action="<%=response.encodeURL("/NYTRO/Pubblicazioni")%>" method="get">
 	<label>Seleziona un criterio di ordinamento
 	 <select name="order">
 	  <option value="" selected>Nessuno</option>
@@ -35,9 +35,9 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 			<%
 				for(VideogiocoBean x : videogiochi){
 			%>
-				<%=x.toString() %><span class = "buttonLink"><a href="/NYTRO/Videogioco?codiceVideogioco=<%=x.getCodice()%>">Informazioni</a></span>	
+				<%=x.toString() %><span class = "buttonLink"><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+x.getCodice())%>">Informazioni</a></span>	
 				<%if(x.getDataRimozione()==null) {%>
-					<a href="/NYTRO/Pubblicazioni?cancelVideogioco=<%=x.getCodice()%>">Rimuovi videogioco</a>
+					<a href="<%=response.encodeURL("/NYTRO/Pubblicazioni?cancelVideogioco="+x.getCodice())%>">Rimuovi videogioco</a>
 				<%} %>
 				<br/>
 			<%
@@ -128,7 +128,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 	</script>
 	
 	<h2>Aggiungi videogioco</h2>
-	<form action="/NYTRO/Pubblicazioni" method="post" enctype="multipart/form-data">
+	<form action="<%=response.encodeURL("/NYTRO/Pubblicazioni")%>" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="aggiungiVideogioco" value="true">
 		<label>Titolo: <input type="text" name="aggTitolo" placeholder="Titolo*" required></label>
 		<label>PEGI: <input type="number" name="aggPegi" min="1" max="18" step="1" required></label>
@@ -149,4 +149,4 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 			$("#user").addClass("selected");
 		})
 	</script>
-<%@include file="footer.html"%>							
+<%@include file="footer.jsp"%>							

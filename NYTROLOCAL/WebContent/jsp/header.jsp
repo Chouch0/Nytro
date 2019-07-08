@@ -23,31 +23,37 @@
 <body>
 	<header>
 	<!-- Logo del sito + Nome del sito-->
-		<a href="/NYTRO/jsp/index.jsp"><img id="logoHeader" src="/NYTRO/img/logo.png" alt="Logo"/><img id="nytro" src="/NYTRO/img/Nytro.png" alt="Nytro"></a>
+		<a href="<%=response.encodeURL("/NYTRO/jsp/index.jsp")%>"><img id="logoHeader" src="/NYTRO/img/logo.png" alt="Logo"/><img id="nytro" src="/NYTRO/img/Nytro.png" alt="Nytro"></a>
 		<div id="opzioni">
-			<%if(account==null){%>					
-				<a href="/NYTRO/jsp/loginForm.jsp">Login</a> | 
-				<a href="/NYTRO/RegistrazioneForm">Registrazione</a>
-			<%}else { %>
-				<a href="/NYTRO/Profilo"><%=account.getUsername()%></a> |
-				<a href="/NYTRO/Logout">Logout</a>			
+			<%if(account==null){ 
+				String url = response.encodeURL("/NYTRO/jsp/loginForm.jsp");
+				String url2 = response.encodeURL("/NYTRO/RegistrazioneForm");
+			%>					
+				<a href="<%=url%>">Login</a> | 
+				<a href="<%=url2%>">Registrazione</a>
+			<%}else { 
+				String url = response.encodeURL("/NYTRO/Profilo");
+				String url2 = response.encodeURL("/NYTRO/Logout");
+			%>
+				<a href="<%=url%>"><%=account.getUsername()%></a> |
+				<a href="<%=url2%>">Logout</a>			
 			<%} %>
 		</div>
 	</header>
 	<nav>
 		<ul>
 			<li>
-				<a href="/NYTRO/jsp/index.jsp" id="home">Home</a>
+				<a href="<%=response.encodeURL("/NYTRO/jsp/index.jsp")%>" id="home">Home</a>
 			</li>
 			<li>
-				<a href="/NYTRO/jsp/contatti.jsp" id="contatti">Contatti</a>
+				<a href="<%=response.encodeURL("/NYTRO/jsp/contatti.jsp")%>" id="contatti">Contatti</a>
 			</li>
 			<% if(account!=null && (ruolo==1)){ %>
 				<li>
-					<a href="/NYTRO/Libreria" id="libreria">Libreria</a>
+					<a href="<%=response.encodeURL("/NYTRO/Libreria")%>" id="libreria">Libreria</a>
 				</li>
 				<li>
-					<a href="/NYTRO/Friendlist" id="friendlist">Friendlist</a>
+					<a href="<%=response.encodeURL("/NYTRO/Friendlist")%>" id="friendlist">Friendlist</a>
 				</li>
 			<% } %>
 			<% if(account!=null && (ruolo==0 || ruolo==1)){ %>
@@ -60,8 +66,8 @@
 				si preoccuperà di caricare in modo adeguato la jsp corrispondente.
 				-->
 					<div class = "elementoEsplora">
-						<a href="/NYTRO/Catalogo">Catalogo</a>
-						<a href="/NYTRO/ListaCaseEditrici">Case Editrici</a>
+						<a href="<%=response.encodeURL("/NYTRO/Catalogo")%>">Catalogo</a>
+						<a href="<%=response.encodeURL("/NYTRO/ListaCaseEditrici")%>">Case Editrici</a>
 					</div>
 				</div>
 				</li>		
@@ -74,9 +80,9 @@
 			-->
 				<%if(account==null){%>					
 					<div id = "menuLogin">
-						<a href="/NYTRO/jsp/loginForm.jsp" id="login">Login</a>
-							<div class = "elementoLogin">
-								<form action="/NYTRO/Login" method="post">
+						<a href="<%=response.encodeURL("/NYTRO/jsp/loginForm.jsp")%>" id="login">Login</a>
+							<div class = "elementoLogin"> 
+								<form action="<%=response.encodeURL("/NYTRO/Login")%>" method="post">
 									<input type="text" name="username" placeholder="Username" required><br/>
 									<input type="password" name="password" placeholder="Password" required><br/>
 									<!-- Il ruolo dell'utente verrà ricavato in modo automatico dal database, per questo motivo non è necessario
@@ -88,7 +94,7 @@
 								per effettuare la registrazione. Quest'ultima jsp rimanderà a RegistrazioneServlet che si occuperà della registrazione
 								effettiva dell'utente all'interno del database.
 								-->
-								<a href="/NYTRO/RegistrazioneForm">
+								<a href="<%=response.encodeURL("/NYTRO/RegistrazioneForm")%>">
 									Registrazione
 								</a>
 							</div>
@@ -98,32 +104,32 @@
 						<a href="#" id="user"><%=account.getUsername()%></a>
 						<div class = "elementoUser">				
 						<% if(ruolo==0){			//Admin%>
-								<a href="/NYTRO/ListaGiocatori">Lista giocatori</a>
-								<a href="/NYTRO/ListaCaseEditrici">Lista case editrici</a>
-								<a href="/NYTRO/jsp/registrazioneCasaEditrice.jsp">Registra Casa Editrice</a>
-								<a href="/NYTRO/jsp/rimozioneAccount.jsp">Rimuovi account</a>
+								<a href="<%=response.encodeURL("/NYTRO/ListaGiocatori")%>">Lista giocatori</a>
+								<a href="<%=response.encodeURL("/NYTRO/ListaCaseEditrici")%>">Lista case editrici</a>
+								<a href="<%=response.encodeURL("/NYTRO/jsp/registrazioneCasaEditrice.jsp")%>">Registra Casa Editrice</a>
+								<a href="<%=response.encodeURL("/NYTRO/jsp/rimozioneAccount.jsp")%>">Rimuovi account</a>
 							<hr/>
 						<% } 
 							if(ruolo==1){		//Giocatore %>
-								<a href="/NYTRO/jsp/carrello.jsp">Carrello</a> 
+								<a href="<%=response.encodeURL("/NYTRO/jsp/carrello.jsp")%>">Carrello</a> 
 							<hr/>	
 						<%} 
 							if(ruolo==2){		//Azienda %>
-								<a href="/NYTRO/Pubblicazioni">Pubblicazioni</a>
+								<a href="<%=response.encodeURL("/NYTRO/Pubblicazioni")%>">Pubblicazioni</a>
 							<hr>
 						<%} %>
-						<a href="/NYTRO/Profilo">Profilo</a>	<!-- Rimanda alla servlet per la gestione del profilo dell'utente (cambia a seconda del tipo di utente) -->
+						<a href="<%=response.encodeURL("/NYTRO/Profilo")%>">Profilo</a>	<!-- Rimanda alla servlet per la gestione del profilo dell'utente (cambia a seconda del tipo di utente) -->
 								<!-- Visualizza un pulsante attraverso cui richiamare la servlet per il Logout
 							<form action="/NYTRO/Logout">
 								<input type="submit" value="Logout">
 							</form> Non è necessario un form -->
-						<a href="/NYTRO/Logout">Logout</a>
+						<a href="<%=response.encodeURL("/NYTRO/Logout")%>">Logout</a>
 					</div>
 				<%} %>
 			</li>
 			<%if(ruolo>=0){%>
 			<li>
-				<form action="Ricerca" method="get" id="ricerca">
+				<form action="<%=response.encodeURL("Ricerca")%>" method="get" id="ricerca">
 					<input type="text" name="testoParziale" list="ricerca-datalist" placeholder="Ricerca" onkeyup="ricerca(this.value)"> <!-- value="<c:out value="${param.q}" />" -->
 					<datalist id="ricerca-datalist"></datalist>
 					<!-- 

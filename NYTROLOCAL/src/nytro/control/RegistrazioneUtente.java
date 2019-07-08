@@ -51,10 +51,12 @@ public class RegistrazioneUtente extends HttpServlet {
 			accountDAO.doUploadImage(utente);
 			String message = "Registrazione effettuata con successo";
 			request.setAttribute("message", message);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("Index");
+			String url = response.encodeURL("Index");
+			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 			dispatcher.forward(request, response);
 		} catch(SQLException exception) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/registrazioneForm.jsp");
+			String url = response.encodeURL("jsp/registrazioneForm.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 			dispatcher.forward(request, response);
 		}
 			

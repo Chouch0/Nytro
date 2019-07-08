@@ -5,7 +5,7 @@
 
 <h1>Registrazione casa editrice</h1>
 
-<form class="box" name="registrazione" action="/NYTRO/RegistrazioneCasaEditrice" method="post" enctype="multipart/form-data">
+<form class="box" name="registrazione" action="<%=response.encodeURL("/NYTRO/RegistrazioneCasaEditrice")%>" method="post" enctype="multipart/form-data">
 	<input class="registrazione" name="nomeCasaEditrice" type="text" placeholder="Nome Azienda*" onblur="checkName()">
 	<input class="registrazione" name="ISIN" type="text" placeholder="ISIN*" oninput="validaISIN()">
 	<p id="errorISIN"></p>
@@ -238,4 +238,4 @@ function checkForm() {
 
 
 
-<%@include file="footer.html"%>	
+<%@include file="footer.jsp"%>	

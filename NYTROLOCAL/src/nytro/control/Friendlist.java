@@ -26,7 +26,26 @@ public class Friendlist extends HttpServlet {
 //		if(account.getRuolo()!=1)
 //			throw new MyException("Non disponi dei permessi necessari per visualizzare tale risorsa.");
 		
-			
+		
+		String futuroAmico = request.getParameter("futuroAmico");
+		if(futuroAmico!=null && !futuroAmico.equals("")) {
+			try {
+				accountDAO.doAggiungiAmicoFriendlist(account, futuroAmico);
+			} catch (SQLException e) {
+				;
+			}
+		}
+		
+		String eliminatoAmico = request.getParameter("eliminatoAmico");
+		if(eliminatoAmico!=null && !eliminatoAmico.equals("")) {			
+			try {
+				accountDAO.doRimuoviAmicoFriendlist(account, eliminatoAmico);
+			} catch (SQLException e) {
+				;
+			}
+		}
+		
+		
 		Collection<AccountBean> amici = null;
 		
 		try {
@@ -35,9 +54,11 @@ public class Friendlist extends HttpServlet {
 			throw new MyException("Errore estrazione videogiochi.");
 		}
 		
+		request.removeAttribute("amici");
 		request.setAttribute("amici", amici);
 
-		request.getRequestDispatcher("jsp/friendlist.jsp").forward(request, response);
+		String url = response.encodeURL("jsp/friendlist.jsp");
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

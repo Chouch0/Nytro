@@ -12,7 +12,8 @@ Collection<VideogiocoBean> videogiochiPiuGiocati = (Collection<VideogiocoBean>) 
 String message = (String) request.getAttribute("message");
 
 if(videogiochiPiuAcquistati==null || videogiochiPiuGiocati==null){
-	response.sendRedirect("/NYTRO/Index");
+	String url = response.encodeURL("/NYTRO/Index");
+	response.sendRedirect(url);
 	return ;
 }
 List<VideogiocoPagamentoBean> list = new ArrayList<VideogiocoPagamentoBean>(videogiochiPiuAcquistati);
@@ -112,4 +113,4 @@ List<VideogiocoBean> list2 = new ArrayList<VideogiocoBean>(videogiochiPiuGiocati
 		$("#home").addClass("selected");
 	})
 </script>
-<%@include file="footer.html"%>							 <!-- Inclusione statica di footer.html" -->
+<%@include file="footer.jsp"%>							 <!-- Inclusione statica di footer.html" -->

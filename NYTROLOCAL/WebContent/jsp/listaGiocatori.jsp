@@ -8,7 +8,7 @@ import="nytro.model.AccountBean, java.util.Collection"%>
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Lista Giocatori"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
 	<h1>Lista giocatori</h1>
 	<div id="select">
-		<form action="/NYTRO/ListaGiocatori" method="get">
+		<form action="<%=response.encodeURL("/NYTRO/ListaGiocatori")%>" method="get">
 		<label>Seleziona un criterio di ordinamento
 		 <select name="order">
 		  <option value="">Nessuno</option>
@@ -61,4 +61,4 @@ import="nytro.model.AccountBean, java.util.Collection"%>
 		})
 	</script>
 </div>
-<%@include file="footer.html"%>						
+<%@include file="footer.jsp"%>			

@@ -11,7 +11,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 <div id="lista">
 	<h1>Libreria</h1>
 	<div id="ordina">
-	<form action="/NYTRO/Libreria" method="get">
+	<form action="<%=response.encodeURL("/NYTRO/Libreria")%>" method="get">
 	<label>Seleziona un criterio di ordinamento
 	 <select name="order">
 	  <option value="" selected>Nessuno</option>
@@ -38,10 +38,10 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 					<img src="/NYTRO/img/no-cover.jpg" alt="<%=x.getTitolo()%>">
 			<%} %></div></li>			
 			<li><a href="/NYTRO/img/Nytro.png" download><button id="download">Download</button></a></li>
-			<li class="titolo"><a href="/NYTRO/Videogioco?codiceVideogioco=<%=x.getCodice()%>"><%=x.getTitolo() %></a></li>
+			<li class="titolo"><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+x.getCodice())%>"><%=x.getTitolo()%></a></li>
 			<li><%=x.getISIN() %></li>
 			<li>Voto: <%=x.getVotoMedio() %></li>
-			<li><form action="/NYTRO/Libreria?cancellaVideogioco=<%=x.getCodice()%>" method="post"> <input type="submit" value="Rimuovi"/></form>
+			<li><form action="<%=response.encodeURL("/NYTRO/Libreria?cancellaVideogioco="+x.getCodice())%>" method="post"> <input type="submit" value="Rimuovi"/></form>
 			</li>
 		</div>
 		</ul>	
@@ -58,4 +58,4 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 			$("#libreria").addClass("selected");
 		})
 	</script>
-<%@include file="footer.html"%>							
+<%@include file="footer.jsp"%>				

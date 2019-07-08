@@ -36,7 +36,8 @@ public class ListaGiocatori extends HttpServlet {
 		
 		request.setAttribute("users", users);
 
-		request.getRequestDispatcher("jsp/listaGiocatori.jsp").forward(request, response);
+		String url = response.encodeURL("jsp/listaGiocatori.jsp");
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

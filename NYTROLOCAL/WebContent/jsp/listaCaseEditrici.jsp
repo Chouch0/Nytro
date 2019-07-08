@@ -11,7 +11,7 @@ import="nytro.model.AccountBean, java.util.Collection, nytro.model.CasaEditriceB
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Lista Case Editrici"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
 	<h1>Lista case editrici</h1>
 		<div id="select">
-			<form action="/NYTRO/ListaCaseEditrici" method="get">
+			<form action="<%=response.encodeURL("/NYTRO/ListaCaseEditrici")%>" method="get">
 			<label>Seleziona un criterio di ordinamento
 			 <select name="order">
 			  <option value="">Nessuno</option>
@@ -44,7 +44,7 @@ import="nytro.model.AccountBean, java.util.Collection, nytro.model.CasaEditriceB
 						System.out.println(tmp.getISIN());
 				%>
 				<tr>
-					<td><a href="/NYTRO/CatalogoCasaEditrice?isinCasaEditrice=<%=tmp.getISIN()%>"><%=x.getUsername() %></a></td>
+					<td><a href="<%=response.encodeURL("/NYTRO/CatalogoCasaEditrice?isinCasaEditrice="+tmp.getISIN())%>"><%=x.getUsername() %></a></td>
 					<td><%=x.getPassword() %></td>
 					<td><%=x.getEmail() %></td>
 					<td><%=x.getEmailRecupero() %></td>
@@ -71,4 +71,4 @@ import="nytro.model.AccountBean, java.util.Collection, nytro.model.CasaEditriceB
 		})
 	</script>
 	
-<%@include file="footer.html"%>							
+<%@include file="footer.jsp"%>							

@@ -165,7 +165,8 @@ public class AggiornaProfilo extends HttpServlet {
 			}
 		}
 		
-		request.getRequestDispatcher("jsp/profilo.jsp").forward(request,response);
+		String url = response.encodeURL("jsp/profilo.jsp");
+		request.getRequestDispatcher(url).forward(request,response);
 		
 	}
 
