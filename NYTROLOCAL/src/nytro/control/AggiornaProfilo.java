@@ -109,18 +109,16 @@ public class AggiornaProfilo extends HttpServlet {
 				throw new MyException("Fallimento aggiornamento data di nascita");
 			}
 		}
-		
-		String voglioCambiarePic = request.getParameter("voglioCambiarePic");
-		if(voglioCambiarePic!=null && !voglioCambiarePic.equals("")) {
+	
+		if (request.getPart("photo") != null) {
 			account.setImgProfilo(request.getPart("photo").getInputStream());
-			if (account.getImgProfilo() != null) {
-				try {
-					accountDAO.doUploadImage(account);
-				} catch(SQLException exception) {
-					throw new MyException("Fallimento aggiornamento immagine");
-				}
-			}			
-		}
+			try {
+				accountDAO.doUploadImage(account);
+			} catch(SQLException exception) {
+				throw new MyException("Fallimento aggiornamento immagine");
+			}
+		}			
+	
 		
 		String cambiaGenere = request.getParameter("cambiaGenere");
 		if(cambiaGenere!=null && !cambiaGenere.equals("")) {

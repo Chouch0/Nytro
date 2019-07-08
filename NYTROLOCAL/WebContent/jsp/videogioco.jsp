@@ -91,7 +91,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		
 		<h3>Inserisci genere</h3>
 		
-		<form action="/NYTRO/Videogioco" method="post">
+		<form action="/NYTRO/Videogioco" method="post" enctype="multipart/form-data">
 		 <input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">
 		 <input type="hidden" name="cambiaGenere" value="true">
 	 	 <input type="text" name="newGenere" placeholder="Genere*" required/>
@@ -101,7 +101,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		<%if(videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoPagamentoBean")) {%>
 			<h3>Cambia prezzo</h3>
 		
-			<form action="/NYTRO/Videogioco" method="post">
+			<form action="/NYTRO/Videogioco" method="post" enctype="multipart/form-data">
 			 <input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">
 			 <input type="hidden" name="cambiaPrezzo" value="true">
 		 	 <input type="number" name="newPrezzo" min="0" step="0.01" required/>
@@ -112,7 +112,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		<%if(videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoDemoBean")) {%>
 			<h3>Cambia durata</h3>
 		
-			<form action="/NYTRO/Videogioco" method="post">
+			<form action="/NYTRO/Videogioco" method="post" enctype="multipart/form-data">
 			 <input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">
 			 <input type="hidden" name="cambiaDurataDemo" value="true">
 		 	 <input type="number" name="newDurataDemo" min="1" step="1" required/>

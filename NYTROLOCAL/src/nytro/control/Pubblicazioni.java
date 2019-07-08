@@ -48,7 +48,6 @@ public class Pubblicazioni extends HttpServlet {
 			String aggGenere = request.getParameter("aggGenere");
 			String aggTitolo = request.getParameter("aggTitolo");
 			String tipologia = request.getParameter("tipologia");
-			InputStream img = request.getPart("photo").getInputStream();
 			
 			if(tipologia!=null && aggTitolo!=null && aggPegi!=null && aggGenere!=null && 
 					!aggTitolo.equals("") && !aggPegi.equals("") && !aggGenere.equals("")) {
@@ -64,12 +63,14 @@ public class Pubblicazioni extends HttpServlet {
 						
 						bean.setTitolo(aggTitolo);
 						bean.setPEGI(Integer.parseInt(aggPegi));
-						if(request.getPart("photo")!=null)
-							bean.setImg(img);
+						if(request.getPart("photo") != null)
+							bean.setImg(request.getPart("photo").getInputStream());
 						bean.setPrezzo(Float.parseFloat(aggPrezzo));
 						
 						try {
 							videogiocoDAO.doSaveVideogiocoPagamento(bean,aggGenere);
+							if(request.getPart("photo") != null)
+								videogiocoDAO.doUploadImage(bean);
 							while(videogiocoDAO.doRetrieveByCodice(bean.getCodice(), "")==null)
 								;
 						} catch (SQLException e) {
@@ -92,12 +93,14 @@ public class Pubblicazioni extends HttpServlet {
 						bean.setTitolo(aggTitolo);
 						bean.setPEGI(Integer.parseInt(aggPegi));
 						if(request.getPart("photo")!=null)
-							bean.setImg(img);
+							bean.setImg(request.getPart("photo").getInputStream());
 						bean.setCodiceVideogiocoPrincipale(Integer.parseInt(aggCodiceVideogiocoPrincipale));
 						bean.setDurata(Integer.parseInt(aggDurata));
 						
 						try {
 							videogiocoDAO.doSaveVideogiocoDemo(bean,aggGenere);
+							if(request.getPart("photo") != null)
+								videogiocoDAO.doUploadImage(bean);
 							while(videogiocoDAO.doRetrieveByCodice(bean.getCodice(), "")==null)
 								;
 						} catch (SQLException e) {
@@ -119,11 +122,13 @@ public class Pubblicazioni extends HttpServlet {
 						bean.setTitolo(aggTitolo);
 						bean.setPEGI(Integer.parseInt(aggPegi));
 						if(request.getPart("photo")!=null)
-							bean.setImg(img);
+							bean.setImg(request.getPart("photo").getInputStream());
 						bean.setModalitaDiGioco(aggModalita);	
 						
 						try {
 							videogiocoDAO.doSaveVideogiocoFreeToPlay(bean,aggGenere);
+							if(request.getPart("photo") != null)
+								videogiocoDAO.doUploadImage(bean);
 							while(videogiocoDAO.doRetrieveByCodice(bean.getCodice(), "")==null)
 								;
 						} catch (SQLException e) {

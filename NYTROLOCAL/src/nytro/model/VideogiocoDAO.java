@@ -370,10 +370,7 @@ public class VideogiocoDAO {
 			preparedStatement.setString(2, bean.getDataRilascio());
 			preparedStatement.setString(3, bean.getTitolo());
 			preparedStatement.setInt(4, bean.getPEGI());
-			if(bean.getImg()!=null)
-				preparedStatement.setBlob(5, bean.getImg());
-			else
-				preparedStatement.setNull(5, java.sql.Types.BLOB); 	
+			preparedStatement.setNull(5, java.sql.Types.BLOB); 	
 			preparedStatement.setString(6, genere); 
 			preparedStatement.setInt(7, bean.getCodiceVideogiocoPrincipale());					
 			preparedStatement.setInt(8, bean.getDurata());
@@ -406,10 +403,7 @@ public class VideogiocoDAO {
 			preparedStatement.setString(2, bean.getDataRilascio());
 			preparedStatement.setString(3, bean.getTitolo());
 			preparedStatement.setInt(4, bean.getPEGI());
-			if(bean.getImg()!=null)
-				preparedStatement.setBlob(5, bean.getImg());
-			else
-				preparedStatement.setNull(5, java.sql.Types.BLOB); 	
+			preparedStatement.setNull(5, java.sql.Types.BLOB); 	
 			preparedStatement.setString(6, genere); 
 			preparedStatement.setString(7, bean.getModalitaDiGioco());
 			
@@ -1107,7 +1101,7 @@ public class VideogiocoDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 				
-		String updateSQL = "CALL aggiungi_genere(?, ?)";
+		String updateSQL = "INSERT INTO genere (?, ?)";
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
@@ -1116,7 +1110,7 @@ public class VideogiocoDAO {
 			preparedStatement.setString(1, genere);
 			preparedStatement.setInt(2, tmp.getCodice());
 			
-			System.out.println("doUpdateDemo: " + preparedStatement.toString());
+			System.out.println("doInsertGenere: " + preparedStatement.toString());
 			preparedStatement.executeUpdate();
 			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
 			

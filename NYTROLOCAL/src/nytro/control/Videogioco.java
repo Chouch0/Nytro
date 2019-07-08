@@ -51,11 +51,10 @@ public class Videogioco extends HttpServlet {
 		
 		String cambiaImmagineVideogioco = request.getParameter("cambiaImmagineVideogioco");
 		if(cambiaImmagineVideogioco!=null && !cambiaImmagineVideogioco.equals("")) {
-			InputStream img = request.getPart("photo").getInputStream();
-			if(img!=null) {
-				videogiocoDetailed.setImg(img);
+			if(request.getPart("photo") != null) {
+				videogiocoDetailed.setImg(request.getPart("photo").getInputStream());
 				try {
-					videogiocoDAO.doUpdate(videogiocoDetailed);
+					videogiocoDAO.doUploadImageByCodice(videogiocoDetailed);
 				} catch (SQLException e) {
 					throw new MyException("Errore cambiamento immagine videogioco");
 				}				
