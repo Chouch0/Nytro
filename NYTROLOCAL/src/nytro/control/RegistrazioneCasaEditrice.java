@@ -28,10 +28,15 @@ public class RegistrazioneCasaEditrice extends HttpServlet {
 		utente.setUsername(request.getParameter("username"));
 		System.out.println("Questo è lo username : " + request.getParameter("username"));
 		
+		String phone = request.getParameter("phone");
+		if(phone.isEmpty()) {
+			phone = null;
+		}
+		
 		utente.setPassword(request.getParameter("password"));
 		utente.setEmail(request.getParameter("email"));
 		utente.setEmailRecupero(request.getParameter("emailRec"));
-		utente.setCellulare(request.getParameter("phone"));
+		utente.setCellulare(phone);
 		utente.setRuolo(2);
 		utente.setCEO(request.getParameter("nomeCEO"));
 		utente.setISIN(request.getParameter("ISIN"));
