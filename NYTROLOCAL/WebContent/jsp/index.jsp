@@ -78,10 +78,10 @@ List<VideogiocoBean> list2 = new ArrayList<VideogiocoBean>(videogiochiPiuGiocati
 		</div>
 	</div>
 	<div id="gioco5">
-		<%if (list2.get(0).getImg() != null){%>
-			<img src="/NYTRO/image?codice=<%=list2.get(0).getCodice()%>" alt="<%=list.get(0).getTitolo()%>">
+		<%if (list2.get(1).getImg() != null){%>
+			<img src="/NYTRO/image?codice=<%=list2.get(1).getCodice()%>" alt="<%=list.get(0).getTitolo()%>">
 		<%} else {%>
-			<img src="/NYTRO/img/no-cover.jpg" alt="<%=list2.get(0).getTitolo()%>">
+			<img src="/NYTRO/img/no-cover.jpg" alt="<%=list2.get(1).getTitolo()%>">
 		<%} %>
 		<section class="prezzo"><%if (list2.get(1) instanceof VideogiocoPagamentoBean){
 			VideogiocoPagamentoBean x = (VideogiocoPagamentoBean)list2.get(1);%><%=x.getPrezzo() %>€
@@ -92,10 +92,10 @@ List<VideogiocoBean> list2 = new ArrayList<VideogiocoBean>(videogiochiPiuGiocati
 		</div>
 	</div>
 	<div id="gioco6">
-		<%if (list2.get(0).getImg() != null){%>
-			<img src="/NYTRO/image?codice=<%=list2.get(0).getCodice()%>" alt="<%=list.get(0).getTitolo()%>">
+		<%if (list2.get(2).getImg() != null){%>
+			<img src="/NYTRO/image?codice=<%=list2.get(2).getCodice()%>" alt="<%=list.get(0).getTitolo()%>">
 		<%} else {%>
-			<img src="/NYTRO/img/no-cover.jpg" alt="<%=list2.get(0).getTitolo()%>">
+			<img src="/NYTRO/img/no-cover.jpg" alt="<%=list2.get(2).getTitolo()%>">
 		<%} %>
 		<section class="prezzo"><%if (list2.get(2) instanceof VideogiocoPagamentoBean){
 			VideogiocoPagamentoBean x = (VideogiocoPagamentoBean)list2.get(2);%><%=x.getPrezzo() %>€

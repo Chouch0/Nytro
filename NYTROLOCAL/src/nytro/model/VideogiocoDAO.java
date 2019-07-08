@@ -1101,17 +1101,17 @@ public class VideogiocoDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 				
-		String updateSQL = "INSERT INTO genere (?, ?)";
+		String insertSQL = "INSERT INTO genere VALUES (?, ?)";
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(updateSQL);
+			preparedStatement = connection.prepareStatement(insertSQL);
 						
 			preparedStatement.setString(1, genere);
 			preparedStatement.setInt(2, tmp.getCodice());
 			
 			System.out.println("doInsertGenere: " + preparedStatement.toString());
-			preparedStatement.executeUpdate();
+			preparedStatement.executeQuery();
 			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
 			
 		} finally {
