@@ -41,7 +41,7 @@ ul .gioco:hover{
 	background-color: #ddd;
 }
 
-.gioco form:last-child{
+li #download:only-child {
 	float:right;
 }
 
@@ -57,20 +57,20 @@ li a {
 	color:inherit;
 }
 
-.gioco form input[type=button], .gioco input[type=submit], .gioco input[type=reset] {
+#download {
 	border: none;
 	text-decoration: none;
 	color: #666;
 	padding: 14px 16px;
 	text-align: center;
-	cursor: pointer;
 	font-family: inherit;
 	font-size: inherit;
 	background-color: #ddd;
-	height:184px;
+	height: 184px;
+	cursor: pointer;
 }
 
-.gioco form input[type=submit]:hover, .gioco form input[type=reset]:hover, .gioco form input[type=submit]:hover, #ordina form input[type=submit]:hover{
+#download:hover{
 	background-color: #666;
 	color: #f3f3f3; 
 }
@@ -87,7 +87,7 @@ li a {
 	border: none;
 	text-decoration: none;
 	color: #666;
-	padding: 11.5px 30px;
+	padding: 12px 35.5px;
 	text-align: center;
 	cursor: pointer;
 	font-family: inherit;
@@ -95,4 +95,20 @@ li a {
 	background-color: #ddd;
 	height:100px;
 	margin-left: 1%;
+}
+
+.gioco form input[type=button], .gioco input[type=submit], .gioco input[type=reset] {
+	border: none;
+	text-decoration: none;
+	color: #666;
+	padding: 0px;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: inherit;
+	background-color: inherit;
+}
+
+.gioco form input[type=submit]:hover, .gioco form input[type=reset]:hover, .gioco form input[type=submit]:hover, #ordina form input[type=submit]:hover{
+	background-color: #666;
+	color: #f3f3f3; 
 }

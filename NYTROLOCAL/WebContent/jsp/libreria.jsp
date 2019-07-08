@@ -36,13 +36,13 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 					<img src="/NYTRO/image?codice=<%= x.getCodice()%>" alt="<%=x.getTitolo()%>">
 			<%} else {%>
 					<img src="/NYTRO/img/no-cover.jpg" alt="<%=x.getTitolo()%>">
-			<%} %></div></li>
-			<li><form action="/NYTRO/Libreria?cancellaVideogioco=<%=x.getCodice()%>" method="post"> <input type="submit" value="Rimuovi"/></form>
-			</li>
+			<%} %></div></li>			
+			<li><a href="/NYTRO/img/Nytro.png" download><button id="download">Download</button></a></li>
 			<li class="titolo"><a href="/NYTRO/Videogioco?codiceVideogioco=<%=x.getCodice()%>"><%=x.getTitolo() %></a></li>
 			<li><%=x.getISIN() %></li>
 			<li>Voto: <%=x.getVotoMedio() %></li>
-			<li><a href="/NYTRO/img/Nytro.png" download>Download</a></li>
+			<li><form action="/NYTRO/Libreria?cancellaVideogioco=<%=x.getCodice()%>" method="post"> <input type="submit" value="Rimuovi"/></form>
+			</li>
 		</div>
 		</ul>	
 			<%

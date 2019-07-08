@@ -936,7 +936,7 @@ public class VideogiocoDAO {
 		
 		Collection<VideogiocoBean> videogiochi = new LinkedList<VideogiocoBean>();
 		
-		String selectSQL = "select * from a_pagamento order by a_pagamento.copie_vendute DESC LIMIT ?";
+		String selectSQL = "SELECT * FROM a_pagamento ORDER BY a_pagamento.copie_vendute DESC LIMIT ?";
 			
 		
 		try {
@@ -952,8 +952,8 @@ public class VideogiocoDAO {
 			while(rs.next()) {
 				
 				VideogiocoBean bean = this.doRetrieveDetailedByCodice(rs.getInt("codice"));
-				
-				videogiochi.add(bean);				
+				if(bean.getDataRimozione() == null)
+					videogiochi.add(bean);				
 				
 			}
 		} finally {
@@ -990,7 +990,8 @@ public class VideogiocoDAO {
 				
 				VideogiocoBean bean = this.doRetrieveDetailedByCodice(rs.getInt("videogioco"));
 				
-				videogiochi.add(bean);				
+				if(bean.getDataRimozione() == null)
+					videogiochi.add(bean);				
 				
 			}
 		} finally {
