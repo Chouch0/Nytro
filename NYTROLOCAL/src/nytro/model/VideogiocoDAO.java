@@ -1023,7 +1023,7 @@ public class VideogiocoDAO {
 			ResultSet rs = preparedStatement.executeQuery();
 			
 			while(rs.next()) {
-				if(rs.getString("Titolo").contains(against)) {
+				if(rs.getString("Titolo").toLowerCase().contains(against.toLowerCase())) {
 					VideogiocoBean bean = this.doRetrieveByCodice(rs.getInt("Codice"),"");
 					videogiochi.add(bean);	
 				}			
