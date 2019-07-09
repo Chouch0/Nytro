@@ -51,6 +51,16 @@ public class Friendlist extends HttpServlet {
 			throw new MyException("Errore estrazione videogiochi.");
 		}
 		
+		String possessedutoAmici=request.getParameter("possessedutoAmici");
+		if(possessedutoAmici!=null && !possessedutoAmici.equals("")) {
+			try {
+				String codiceVideogioco=request.getParameter("codiceVideogioco");
+				amici = accountDAO.doRetrieveAllFriendsByVideogioco(account, Integer.parseInt(codiceVideogioco));
+			} catch (SQLException e) {
+				throw new MyException("Errore estrazione videogiochi.");
+			}
+		}
+		
 		request.removeAttribute("amici");
 		request.setAttribute("amici", amici);
 

@@ -64,7 +64,7 @@ public class VideogiocoDAO {
 		
 		return videogiochi;
 	}
-	
+
 	public Collection<VideogiocoBean> doRetrieveAllLibreria(String username, String order) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement=null;

@@ -52,6 +52,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 			<li class="titolo"><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+x.getCodice())%>"><%=x.getTitolo()%></a></li>
 			<li><%=x.getISIN() %></li>
 			<li>Voto: <%=x.getVotoMedio() %></li>
+			<li><a href="<%=response.encodeURL("/NYTRO/Friendlist?codiceVideogioco="+x.getCodice()+"&possessedutoAmici=true")%>">Amici possessori</a></li>
 			<li><form action="<%=response.encodeURL("/NYTRO/Libreria?cancellaVideogioco="+x.getCodice())%>" method="post"> <input type="submit" value="Rimuovi"/></form>
 			</li>
 		</div>

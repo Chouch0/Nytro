@@ -525,6 +525,43 @@ public class AccountDAO {
 		
 		return amici;
 	}
+
+	public Collection<AccountBean> doRetrieveAllFriendsByVideogioco(AccountBean account, int codiceVideogioco) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		Collection<AccountBean> amici = new LinkedList<AccountBean>();
+		
+		String selectSQL = "SELECT giocatore.username FROM giocatore, ha_nella_libreria where giocatore.Username=ha_nella_libreria.Username && ha_nella_libreria.videogioco=? && giocatore.username IN (SELECT e_nella_friendlist.Amico from e_nella_friendlist where e_nella_friendlist.Possessore=?)";
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, codiceVideogioco);
+			preparedStatement.setString(2, account.getUsername());
+			
+			System.out.println("doRetrieveAllFriendsByVideogioco: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				String tmp = rs.getString("Username");
+				AccountBean bean = this.doRetrieveByUsername(tmp);
+				amici.add(bean);
+			}
+			connection.commit();
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return amici;
+	}
 	
 	public void doAggiungiAmicoFriendlist(AccountBean bean, String futuroAmico) throws SQLException {
 		Connection connection = null;
