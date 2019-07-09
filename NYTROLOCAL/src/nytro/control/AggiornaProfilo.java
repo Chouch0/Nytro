@@ -97,17 +97,16 @@ public class AggiornaProfilo extends HttpServlet {
 		
 		String cambiaDataNascita = request.getParameter("cambiaDataNascita");
 		if(cambiaDataNascita!=null && !cambiaDataNascita.equals("")) {
-			String anno  = request.getParameter("anno");
-			String mese  = request.getParameter("mese");
-			String giorno  = request.getParameter("giorno");
-			String data = anno+"-"+mese+"-"+giorno;
-			GiocatoreBean tmp = (GiocatoreBean) account;
-			tmp.setDataNascita(data);
-			try {
-				accountDAO.doUpdateGiocatore(tmp);
-			} catch (SQLException e) {
-				throw new MyException("Fallimento aggiornamento data di nascita");
-			}
+			String newDataDiNascita = request.getParameter("newDataDiNascita");
+			if(newDataDiNascita!=null && !newDataDiNascita.equals("")) {
+				GiocatoreBean tmp = (GiocatoreBean) account;
+				tmp.setDataNascita(newDataDiNascita);
+				try {
+					accountDAO.doUpdateGiocatore(tmp);
+				} catch (SQLException e) {
+					throw new MyException("Fallimento aggiornamento data di nascita");
+				}
+			}			
 		}
 	
 		if (request.getPart("photo") != null && request.getPart("photo").getSize() > 0) {

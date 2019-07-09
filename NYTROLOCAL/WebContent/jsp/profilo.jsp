@@ -129,9 +129,7 @@ import="nytro.model.AccountBean, java.util.ArrayList"%>
 <h2>Cambia data di nascita</h2>
 <form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="hidden" name="cambiaDataNascita" value="true">
-<label>Anno:<input type="number" name="anno" min="1900" max="2019" step="1" required></label>
-<label>Mese:<input type="number" name="mese" min="1" max="12" step="1" required></label>
-<label>Giorno:<input type="number" name="giorno" min="1" max="31" step="1" required></label>
+<label>Data di nascita<input type="date" name="newDataDiNascita" min="1900-01-01" max="2032-12-31"></label>
 <input type="submit" value="Vai">
 </form>
 
