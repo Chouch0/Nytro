@@ -63,13 +63,12 @@ public class Pubblicazioni extends HttpServlet {
 						
 						bean.setTitolo(aggTitolo);
 						bean.setPEGI(Integer.parseInt(aggPegi));
-						if(request.getPart("photo") != null)
-							bean.setImg(request.getPart("photo").getInputStream());
+						bean.setImg(request.getPart("photo").getInputStream());
 						bean.setPrezzo(Float.parseFloat(aggPrezzo));
 						
 						try {
 							videogiocoDAO.doSaveVideogiocoPagamento(bean,aggGenere);
-							if(request.getPart("photo") != null)
+							if(request.getPart("photo") != null && request.getPart("photo").getSize() > 0)
 								videogiocoDAO.doUploadImage(bean);
 							while(videogiocoDAO.doRetrieveByCodice(bean.getCodice(), "")==null)
 								;
@@ -92,14 +91,13 @@ public class Pubblicazioni extends HttpServlet {
 						
 						bean.setTitolo(aggTitolo);
 						bean.setPEGI(Integer.parseInt(aggPegi));
-						if(request.getPart("photo")!=null)
-							bean.setImg(request.getPart("photo").getInputStream());
+						bean.setImg(request.getPart("photo").getInputStream());
 						bean.setCodiceVideogiocoPrincipale(Integer.parseInt(aggCodiceVideogiocoPrincipale));
 						bean.setDurata(Integer.parseInt(aggDurata));
 						
 						try {
 							videogiocoDAO.doSaveVideogiocoDemo(bean,aggGenere);
-							if(request.getPart("photo") != null)
+							if(request.getPart("photo") != null && request.getPart("photo").getSize() > 0)
 								videogiocoDAO.doUploadImage(bean);
 							while(videogiocoDAO.doRetrieveByCodice(bean.getCodice(), "")==null)
 								;
@@ -121,13 +119,12 @@ public class Pubblicazioni extends HttpServlet {
 						
 						bean.setTitolo(aggTitolo);
 						bean.setPEGI(Integer.parseInt(aggPegi));
-						if(request.getPart("photo")!=null)
-							bean.setImg(request.getPart("photo").getInputStream());
+						bean.setImg(request.getPart("photo").getInputStream());
 						bean.setModalitaDiGioco(aggModalita);	
 						
 						try {
 							videogiocoDAO.doSaveVideogiocoFreeToPlay(bean,aggGenere);
-							if(request.getPart("photo") != null)
+							if(request.getPart("photo") != null && request.getPart("photo").getSize() > 0)
 								videogiocoDAO.doUploadImage(bean);
 							while(videogiocoDAO.doRetrieveByCodice(bean.getCodice(), "")==null)
 								;

@@ -65,7 +65,8 @@ public class RegistrazioneUtente extends HttpServlet {
 		
 		try {
 			accountDAO.doSaveGiocatore(utente);
-			accountDAO.doUploadImage(utente);
+			if (request.getPart("photo") != null && request.getPart("photo").getSize() > 0)
+				accountDAO.doUploadImage(utente);
 			String message = "Registrazione effettuata con successo";
 			request.setAttribute("message", message);
 			String url = response.encodeURL("Index");

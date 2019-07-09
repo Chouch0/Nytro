@@ -49,7 +49,7 @@ public class Videogioco extends HttpServlet {
 		
 		String cambiaImmagineVideogioco = request.getParameter("cambiaImmagineVideogioco");
 		if(cambiaImmagineVideogioco!=null && !cambiaImmagineVideogioco.equals("")) {
-			if(request.getPart("photo") != null) {
+			if(request.getPart("photo") != null  && request.getPart("photo").getSize() > 0) {
 				videogiocoDetailed.setImg(request.getPart("photo").getInputStream());
 				try {
 					videogiocoDAO.doUploadImageByCodice(videogiocoDetailed);

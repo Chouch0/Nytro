@@ -110,7 +110,7 @@ public class AggiornaProfilo extends HttpServlet {
 			}
 		}
 	
-		if (request.getPart("photo") != null) {
+		if (request.getPart("photo") != null && request.getPart("photo").getSize() > 0) {
 			account.setImgProfilo(request.getPart("photo").getInputStream());
 			try {
 				accountDAO.doUploadImage(account);
