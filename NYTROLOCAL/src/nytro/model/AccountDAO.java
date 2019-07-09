@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -133,6 +134,80 @@ public class AccountDAO {
 		}
 		
 		return bean;
+	}
+	
+	public ArrayList<String> doRetrieveContributoAdmin(String dataInizio, String dataFine) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String selectSQL = "call piattaforma_videogiochi_tsw.calcolo_contributo(?, ?)";
+		ArrayList<String> contributo = new ArrayList<String>();
+		contributo.add("ISIN");
+		contributo.add("Incassi");
+		contributo.add("Contributi_Annuali");
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, dataInizio);
+			preparedStatement.setString(2, dataFine);
+			
+			System.out.println("doRetrieveContributo: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				contributo.add(rs.getString("ISIN"));
+				contributo.add(rs.getString("incassi"));
+				contributo.add(rs.getString("contributi_annuali"));
+			}
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return contributo;
+	}
+	
+	public ArrayList<String> doRetrieveContributoCasaEditrice(String isin, String dataInizio, String dataFine) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String selectSQL = "call piattaforma_videogiochi_tsw.calcolo_contributo(?, ?)";
+		ArrayList<String> contributo = new ArrayList<String>();
+		contributo.add("Incassi");
+		contributo.add("Contributi_Annuali");
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, dataInizio);
+			preparedStatement.setString(2, dataFine);
+			
+			System.out.println("doRetrieveContributo: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				if(rs.getString("ISIN").equalsIgnoreCase(isin)) {
+					contributo.add(rs.getString("incassi"));
+					contributo.add(rs.getString("contributi_annuali"));
+				}				
+			}
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return contributo;
 	}
 	
 	public String doRetrieveIsinByUsername(String username) throws SQLException {

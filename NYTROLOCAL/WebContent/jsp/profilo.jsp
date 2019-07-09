@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-import="nytro.model.AccountBean"%>
+import="nytro.model.AccountBean, java.util.ArrayList"%>
 
 <%  
-	AccountBean account = (AccountBean) session.getAttribute("account");		
+	AccountBean account = (AccountBean) session.getAttribute("account");
+	ArrayList<String> contributo = (ArrayList<String>) request.getAttribute("contributo");
 %>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Profilo"/>	</jsp:include>	
@@ -161,5 +162,61 @@ import="nytro.model.AccountBean"%>
 <input type="submit" value="Vai">
 </form>
 <%}%>
+
+<%if(account.getRuolo()==0){ %>
+<h1>Insights</h1>
+
+<h2>Ricavi piattaforma</h2>
+<form action="<%=response.encodeURL("/NYTRO/Profilo")%>">
+<input type="hidden" name="contributoAnnuale" value="true">
+<label>Data di inizio<input type="date" name="startDate" min="2000-01-01" max="2032-12-31"></label>
+<label>Data di fine<input type="date" name="endDate" min="2000-01-01" max="2032-12-31"></label>
+<input type="submit" value="Vai"/>
+</form>
+
+	<%int i = 0;
+	if(contributo!=null){ %>
+	<p>
+		<%for(String x : contributo) {
+			i++;
+		%>
+			<%=x.toString()%>
+			<%if(i%3==0){ %>
+				<br/>
+			<%} else { %>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<%} %>
+		<%} %>
+	</p>
+	<%} %>
+<%} %>
+
+<%if(account.getRuolo()==2){ %>
+<h1>Insights</h1>
+
+<h2>Contributo casa editrice</h2>
+<form action="<%=response.encodeURL("/NYTRO/Profilo")%>">
+<input type="hidden" name="contributoAnnualeCasaEditrice" value="true">
+<label>Data di inizio<input type="date" name="startDate" min="2000-01-01" max="2032-12-31"></label>
+<label>Data di fine<input type="date" name="endDate" min="2000-01-01" max="2032-12-31"></label>
+<input type="submit" value="Vai"/>
+</form>
+
+	<%int i = 0;
+	if(contributo!=null){ %>
+	<p>
+		<%for(String x : contributo) {
+			i++;
+		%>
+			<%=x.toString()%>
+			<%if(i%2==0){ %>
+				<br/>
+			<%} else { %>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<%} %>
+		<%} %>
+	</p>
+	<%} %>
+<%} %>
 
 <%@include file="footer.jsp"%>						

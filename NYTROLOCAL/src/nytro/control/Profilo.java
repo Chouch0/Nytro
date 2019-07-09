@@ -2,6 +2,7 @@ package nytro.control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import nytro.exceptions.MyException;
 import nytro.model.AccountBean;
 import nytro.model.AccountDAO;
+import nytro.model.CasaEditriceBean;
 
 @WebServlet("/Profilo")
 public class Profilo extends HttpServlet {
@@ -35,6 +37,36 @@ public class Profilo extends HttpServlet {
 			request.getSession().setAttribute("account", detailedAccount);
 		else
 			request.getSession().setAttribute("account", account);
+		
+		
+		ArrayList<String> contributo = null;
+		String contributoAnnuale = request.getParameter("contributoAnnuale");
+		if(contributoAnnuale!=null && !contributoAnnuale.equals("")) {
+			String startDate = request.getParameter("startDate");
+			String endDate = request.getParameter("endDate");
+			if(endDate!=null && startDate!=null && !startDate.equals("") && !endDate.equals("")) {
+				try {
+					contributo=accountDAO.doRetrieveContributoAdmin(startDate, endDate);
+				} catch (SQLException e) {
+					;
+				}
+			}
+			request.setAttribute("contributo", contributo);
+		}
+		
+		String contributoAnnualeCasaEditrice = request.getParameter("contributoAnnualeCasaEditrice");
+		if(contributoAnnualeCasaEditrice!=null && !contributoAnnualeCasaEditrice.equals("")) {
+			String startDate = request.getParameter("startDate");
+			String endDate = request.getParameter("endDate");
+			if(endDate!=null && startDate!=null && !startDate.equals("") && !endDate.equals("")) {
+				try {					
+					contributo=accountDAO.doRetrieveContributoCasaEditrice(accountDAO.doRetrieveIsinByUsername(account.getUsername()), startDate, endDate);
+				} catch (SQLException e) {
+					;
+				}
+			}
+			request.setAttribute("contributo", contributo);
+		}
 		
 		String url = response.encodeURL("jsp/profilo.jsp");
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
