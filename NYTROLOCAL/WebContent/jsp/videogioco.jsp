@@ -54,6 +54,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 	</form>
 	
 	<h2>Recensioni</h2>
+	<p>
 	<%if(recensioni!=null){ 
 		for(RecensioneBean x : recensioni){%>
 		
@@ -69,7 +70,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 	<%	}
 	  }
 	%>
-	
+	</p>
 	<%if(account.getRuolo()==1) {%>
 		<h3>Inserisci recensione</h3>
 		

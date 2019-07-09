@@ -538,7 +538,7 @@ public class AccountDAO {
 			
 			System.out.println("doAggiungiAmicoFriendlist: " + preparedStatement.toString());
 			
-			preparedStatement.executeQuery();
+			preparedStatement.executeUpdate();
 			connection.commit();
 			
 		} finally {
@@ -606,7 +606,7 @@ public class AccountDAO {
 			
 			System.out.println("doRimuoviAmicoFriendlist: " + preparedStatement.toString());
 			
-			preparedStatement.executeQuery();
+			preparedStatement.executeUpdate();
 			connection.commit();
 			
 		} finally {

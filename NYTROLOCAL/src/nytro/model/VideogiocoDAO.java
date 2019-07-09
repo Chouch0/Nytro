@@ -1141,7 +1141,7 @@ public class VideogiocoDAO {
 			preparedStatement.setInt(2, tmp.getCodice());
 			
 			System.out.println("doInsertGenere: " + preparedStatement.toString());
-			preparedStatement.executeQuery();
+			preparedStatement.executeUpdate();
 			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
 			
 		} finally {

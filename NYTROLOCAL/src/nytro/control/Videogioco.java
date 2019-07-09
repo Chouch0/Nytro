@@ -119,6 +119,8 @@ public class Videogioco extends HttpServlet {
 			recensione.setUsername(account.getUsername());
 			try {
 				recensioneDAO.doSave(recensione);
+				while(recensioneDAO.doRetrieveByUsername(recensione.getUsername(),recensione.getCodVideogioco())==null)
+					;
 			} catch (SQLException e) {
 				throw new MyException("Errore inserimento nuova recensione");
 			}

@@ -50,7 +50,45 @@ public class RecensioneDAO {
 		}
 		
 		return recensioni;
-	}
+	}	
+	
+	public RecensioneBean doRetrieveByUsername(String username, int codiceVideogioco) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement=null;
+			
+		String selectSQL = "SELECT * FROM recensione WHERE Username = ? AND Videogioco = ?";
+		RecensioneBean recensione = new RecensioneBean();
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, username);
+			preparedStatement.setInt(2, codiceVideogioco);
+			
+			System.out.println("doRetrieveByUsername: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				
+				recensione.setNumRecensione(rs.getInt("Num_Recensione"));
+				recensione.setCodVideogioco(rs.getInt("Videogioco"));
+				recensione.setUsername(rs.getString("Username"));
+				recensione.setCommento(rs.getString("Commento"));
+				recensione.setVoto(rs.getDouble("Voto"));
+				
+			}
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return recensione;
+	}	
 
 	public void doSave(RecensioneBean recensione) throws SQLException {
 		Connection connection = null;
