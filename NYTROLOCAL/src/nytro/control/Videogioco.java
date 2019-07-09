@@ -151,6 +151,19 @@ public class Videogioco extends HttpServlet {
 			throw new MyException("Errore SQL per recensioni");
 		}
 		
+		String rangeRecensione = request.getParameter("rangeRecensione");
+		if(rangeRecensione!=null && !rangeRecensione.equals("")) {
+			String min = request.getParameter("min");
+			String max = request.getParameter("max");
+			if(min!=null && max!=null && !min.equals("") && !max.equals("")) {
+				try {
+					recensioni = recensioneDAO.doRetrieveAllByRange(videogiocoDetailed.getCodice(), orderRecensioni, Integer.parseInt(min), Integer.parseInt(max));
+				} catch (NumberFormatException | SQLException e) {
+					throw new MyException("Impossibile ricavare recensioni"); 
+				}
+			}			
+		}
+		
 		boolean possibileAggiungereAllaLibreria=false;
 		
 		try {

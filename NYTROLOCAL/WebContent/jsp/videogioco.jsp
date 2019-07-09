@@ -40,23 +40,30 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		%>	
 	</p>
 	
-	<form action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="get">
-	<input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">		<!-- Mi serve perchè se no perdo il codice del videogioco -->
-	<label>Seleziona un criterio di ordinamento
-	 <select name="orderRecensioni">
-	  <option value="" selected>Nessuno</option>
-	  <option value="Num_Recensione">Numero di recensione del videogioco</option>
-	  <option value="Username">Username di chi ha rilasciato la recensione</option>
-	  <option value="Voto">Voto della recensione</option>
-	</select> 
-	</label>	
-	<input type="submit" value="Vai"/>
-	</form>
+	
 	
 	<h2>Recensioni</h2>
 	<p>
 	<%if(recensioni!=null){ 
+	%>
+		<form action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="get">
+		<input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">		<!-- Mi serve perchè se no perdo il codice del videogioco -->
+		<label>Seleziona un criterio di ordinamento
+		 <select name="orderRecensioni">
+		  <option value="" selected>Nessuno</option>
+		  <option value="Num_Recensione">Numero di recensione del videogioco</option>
+		  <option value="Username">Username di chi ha rilasciato la recensione</option>
+		  <option value="Voto">Voto della recensione</option>
+		 </select> 
+		</label>	
+		<input type="hidden" name="rangeRecensione" value="true">
+		 <label>Voto minimo:<input type="number" name="min" min="1" max="5" step="1" value="1" required></label>
+		 <label>Voto massimo:<input type="number" name="max" min="1" max="5" step="1" value="5" required></label>
+		<input type="submit" value="Vai"/>
+		</form>
+	<%	
 		for(RecensioneBean x : recensioni){%>
+		
 		
 		<%=x.toString()%>
 		<%if(x.getUsername().equals(account.getUsername())) {%>

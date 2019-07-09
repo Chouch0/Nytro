@@ -53,6 +53,52 @@ public class RecensioneDAO {
 		return recensioni;
 	}	
 	
+	public Collection<RecensioneBean> doRetrieveAllByRange(int codVideogioco, String order, int min, int max) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement=null;
+		
+		Collection<RecensioneBean> recensioni = new LinkedList<RecensioneBean>();
+		
+		String selectSQL = "SELECT * from videogioco, recensione where videogioco.Codice = recensione.videogioco && videogioco.Codice=? && recensione.voto>=? && recensione.voto<=? ";
+
+		if(order!=null && !order.equals(""))
+			selectSQL += " ORDER BY "+ order;
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, codVideogioco);
+			preparedStatement.setInt(2, min);
+			preparedStatement.setInt(3, max);
+			
+			System.out.println("doRetrieveAllByRange: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				
+				RecensioneBean bean = new RecensioneBean();
+				bean.setNumRecensione(rs.getInt("Num_Recensione"));
+				bean.setCodVideogioco(rs.getInt("Videogioco"));
+				bean.setUsername(rs.getString("Username"));
+				bean.setCommento(rs.getString("Commento"));
+				bean.setVoto(rs.getDouble("Voto"));
+				
+				recensioni.add(bean);
+			}
+			connection.commit();
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return recensioni;
+	}	
+	
 	public RecensioneBean doRetrieveByUsername(String username, int codiceVideogioco) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement=null;
