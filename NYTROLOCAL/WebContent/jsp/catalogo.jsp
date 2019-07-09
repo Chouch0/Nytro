@@ -1,12 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
-import="nytro.model.VideogiocoBean, java.util.Collection"%>
+import="nytro.model.VideogiocoBean, java.util.Collection, java.util.ArrayList"%>
 <%
 	Collection<VideogiocoBean> catalogo = (Collection<VideogiocoBean>) request.getAttribute("catalogo");
+	ArrayList<String> generiPresenti = (ArrayList<String>) request.getAttribute("generiPresenti");
 	
 %>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Catalogo"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
-	
+<link href="/NYTRO/css/libreriaStyle.css" type="text/css" rel="stylesheet">	
+
+	<div id="lista">
+	<h1>Catalogo completo dei videogiochi</h1>
+	<div id="ordina">
 	<form action="<%=response.encodeURL("/NYTRO/Catalogo")%>" method="get">
 	<label>Seleziona un criterio di ordinamento
 	 <select name="order">
@@ -25,25 +30,50 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 	  <option value="Free to play">Free to play</option>
 	</select> 
 	</label>
+	<label>Seleziona il genere dei videogiochi che vuoi visualizzare
+	 <select name="genere">
+	  <option value="" selected>Nessuno</option>
+	  <%if(generiPresenti.size()>0){
+	  		for(String x : generiPresenti) {%>
+	  	<option value="<%=x%>"><%=x %></option>
+	  <%	}
+  		}%>
+	</select> 
+	</label>
 	<input type="submit" value="Vai"/>
 	</form>
-	
-	<h1>Catalogo completo videogiochi</h1>
-	
-	<%if(catalogo!=null){ %>
-		<p>
+	</div>
+	<%if(catalogo!=null) {%>
+		<div id="tabella">
 			<%
 				for(VideogiocoBean x : catalogo){
-					if(x.getDataRimozione()== null){
+					System.out.println("\t\t"+x);
 			%>
-				<%=x.toString() %><%=x.getGenere().toString() %><br/>	<span class = "buttonLink"><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+x.getCodice())%>">Informazioni</a></span><br/>
-				<!--  Se utilizzo un bottone non riesco a passare il parametro codice utilizzando lo scriptlet -->	
+		<ul>
+		<div class="gioco">
+			<li><div class="copertina">
+			<%if (x.getImg() != null){%>
+					<img src="/NYTRO/image?codice=<%= x.getCodice()%>" alt="<%=x.getTitolo()%>">
+			<%} else {%>
+					<img src="/NYTRO/img/no-cover.jpg" alt="<%=x.getTitolo()%>">
+			<%} %></div></li>		
+				
+			<li class="titolo"><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+x.getCodice())%>"><%=x.getTitolo()%></a></li>
+			<li><%=x.getISIN() %></li>
+			<li><%=x.getGenere().toString()%></li>
+			<li>Voto: <%=x.getVotoMedio() %></li>
+			<td>PEGI: <%=x.getPEGI()%></td>
+			<td>Data di rilascio: <%=x.getDataRilascio()%></td>
+
+		</div>
+		</ul>	
 			<%
-					}
 				}
 			%>
-		</p>
 	<%} %>
+	</div>
+</div>
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
 		$("document").ready(function prova(){

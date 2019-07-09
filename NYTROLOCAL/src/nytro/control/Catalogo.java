@@ -2,7 +2,10 @@ package nytro.control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,8 +26,8 @@ public class Catalogo extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AccountBean account = (AccountBean) request.getSession().getAttribute("account");
-//		if(!(account.getRuolo()==1||account.getRuolo()==0))
-//			throw new MyException("Non disponi dei permessi necessari per visualizzare tale risorsa.");
+		
+		ArrayList<String> generiPresenti = new ArrayList<String>();
 		
 		String order = request.getParameter("order");
 		String categoria = request.getParameter("categoria");
@@ -45,7 +48,38 @@ public class Catalogo extends HttpServlet {
 			throw new MyException("Errore estrazione videogiochi.");
 		}
 		
-		request.setAttribute("catalogo", catalogo);
+		Collection<VideogiocoBean> catalogoRichiesto = new LinkedList<VideogiocoBean>();
+		
+		String genere = request.getParameter("genere");
+		if(genere!=null && !genere.equals("")) {
+			for(VideogiocoBean x : catalogo) {
+				try {
+					List<String> tmp = x.getGenere();
+					for(String y : tmp)
+						if(y.toLowerCase().equalsIgnoreCase(genere))
+							catalogoRichiesto.add(x);
+				} catch (SQLException e) {
+					;
+				}
+			}
+		} else {
+			catalogoRichiesto = catalogo;
+		}
+		
+		for(VideogiocoBean x : catalogoRichiesto) {
+			try {
+				List<String> tmp = x.getGenere();
+				for(String y : tmp) {
+					if(!generiPresenti.contains(y.toLowerCase()))
+						generiPresenti.add(y.toLowerCase());
+				}
+			} catch (SQLException e) {
+				;
+			}
+		}
+		
+		request.setAttribute("generiPresenti", generiPresenti);
+		request.setAttribute("catalogo", catalogoRichiesto);
 
 		String url = response.encodeURL("jsp/catalogo.jsp");
 		request.getRequestDispatcher(url).forward(request, response);

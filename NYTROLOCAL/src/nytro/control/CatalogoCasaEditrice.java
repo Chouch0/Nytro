@@ -2,7 +2,10 @@ package nytro.control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,16 +31,49 @@ public class CatalogoCasaEditrice extends HttpServlet {
 		String order = request.getParameter("order");
 		String isinCasaEditrice = request.getParameter("isinCasaEditrice");
 		
+		ArrayList<String> generiPresenti = new ArrayList<String>();
+		
 		Collection<VideogiocoBean> catalogoCasaEditrice = null;
 		
 		try {
-			catalogoCasaEditrice = videogiocoDAO.doRetrieveAll(order, isinCasaEditrice);
-			
+			catalogoCasaEditrice = videogiocoDAO.doRetrieveAll(order, isinCasaEditrice);			
 		} catch (SQLException e) {
 			throw new MyException("Errore estrazione videogiochi.");
 		}
 		
-		request.setAttribute("catalogoCasaEditrice", catalogoCasaEditrice);
+		Collection<VideogiocoBean> catalogoRichiesto = new LinkedList<VideogiocoBean>();
+		
+		String genere = request.getParameter("genere");
+		if(genere!=null && !genere.equals("")) {
+			for(VideogiocoBean x : catalogoCasaEditrice) {
+				try {
+					List<String> tmp = x.getGenere();
+					for(String y : tmp)
+						if(y.toLowerCase().equalsIgnoreCase(genere))
+							catalogoRichiesto.add(x);
+				} catch (SQLException e) {
+					;
+				}
+			}
+		} else {
+			catalogoRichiesto = catalogoCasaEditrice;
+		}
+		
+		for(VideogiocoBean x : catalogoRichiesto) {
+			try {
+				List<String> tmp = x.getGenere();
+				for(String y : tmp) {
+					if(!generiPresenti.contains(y.toLowerCase()))
+						generiPresenti.add(y.toLowerCase());
+				}
+			} catch (SQLException e) {
+				;
+			}
+		}
+		
+		request.setAttribute("generiPresenti", generiPresenti);
+		
+		request.setAttribute("catalogoCasaEditrice", catalogoRichiesto);
 		request.setAttribute("isinCasaEditrice", isinCasaEditrice);
 
 		String url = response.encodeURL("jsp/catalogoCasaEditrice.jsp");
