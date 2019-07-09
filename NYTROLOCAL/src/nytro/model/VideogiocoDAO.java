@@ -340,10 +340,7 @@ public class VideogiocoDAO {
 			preparedStatement.setString(2, bean.getDataRilascio());
 			preparedStatement.setString(3, bean.getTitolo());
 			preparedStatement.setInt(4, bean.getPEGI());
-			if(bean.getImg()!=null)
-				preparedStatement.setBlob(5, bean.getImg());
-			else
-				preparedStatement.setNull(5, java.sql.Types.BLOB); 
+			preparedStatement.setNull(5, java.sql.Types.BLOB); 
 			preparedStatement.setString(6, genere); 
 			preparedStatement.setFloat(7, bean.getPrezzo());		
 			
