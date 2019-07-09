@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
 import="nytro.model.VideogiocoBean, java.util.Collection"%>
 <%
-	Collection<VideogiocoBean> libreria = (Collection<VideogiocoBean>) request.getAttribute("libreria");	
+	Collection<VideogiocoBean> libreria = (Collection<VideogiocoBean>) request.getAttribute("libreria");
+	String libreriaAmicoDaVisualizzare=request.getParameter("libreriaAmicoDaVisualizzare");
 %>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Libreria"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
@@ -11,8 +12,11 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 	<h1>Libreria</h1>
 	<div id="ordina">
 	<form action="<%=response.encodeURL("/NYTRO/Libreria")%>" method="get">
+	 <%if(libreriaAmicoDaVisualizzare!=null && !libreriaAmicoDaVisualizzare.equals("")){ %>
+	 	<input type="hidden" name="libreriaAmicoDaVisualizzare" value="<%=libreriaAmicoDaVisualizzare %>"/>
+	 <%} %>
 	<label>Seleziona un criterio di ordinamento
-	 <select name="order">
+	 <select name="order">	
 	  <option value="" selected>Nessuno</option>
 	  <option value="Data_Rilascio">Data di rilascio</option>
 	  <option value="Titolo">Titolo</option>

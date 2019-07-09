@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import nytro.exceptions.MyException;
 import nytro.model.AccountBean;
+import nytro.model.AccountDAO;
 import nytro.model.VideogiocoBean;
 import nytro.model.VideogiocoDAO;
 
@@ -20,6 +21,7 @@ public class Libreria extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private final VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
+	private final AccountDAO accountDAO = new AccountDAO();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AccountBean account = (AccountBean) request.getSession().getAttribute("account");
@@ -52,6 +54,16 @@ public class Libreria extends HttpServlet {
 			libreria = videogiocoDAO.doRetrieveAllLibreria(account.getUsername(), order);
 		} catch (SQLException e) {
 			throw new MyException("Errore estrazione videogiochi.");
+		}
+		
+		String libreriaAmicoDaVisualizzare=request.getParameter("libreriaAmicoDaVisualizzare");
+		if(libreriaAmicoDaVisualizzare!=null && !libreriaAmicoDaVisualizzare.equals("")) {
+			try {
+				libreria = videogiocoDAO.doRetrieveAllLibreria(libreriaAmicoDaVisualizzare, order);
+				request.setAttribute("libreriaAmicoDaVisualizzare", libreriaAmicoDaVisualizzare);
+			} catch (SQLException e) {
+				throw new MyException("Errore estrazione videogiochi.");
+			}
 		}
 	
 		

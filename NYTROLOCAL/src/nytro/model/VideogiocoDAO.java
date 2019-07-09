@@ -71,7 +71,7 @@ public class VideogiocoDAO {
 		
 		Collection<VideogiocoBean> videogiochi = new LinkedList<VideogiocoBean>();
 		
-		String selectSQL = "SELECT DISTINCT * FROM videogioco, ha_nella_libreria WHERE Username = ? AND Codice=Videogioco;";
+		String selectSQL = "SELECT DISTINCT * FROM videogioco, ha_nella_libreria WHERE Username = ? AND Codice=Videogioco";
 		
 		if(order!=null && !order.equals(""))
 			selectSQL += " ORDER BY " + order;
