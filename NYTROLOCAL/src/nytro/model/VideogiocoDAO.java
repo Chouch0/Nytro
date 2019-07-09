@@ -102,8 +102,6 @@ public class VideogiocoDAO {
 				bean.setTrailer(rs.getString("Trailer"));
 				
 				videogiochi.add(bean);				
-				
-				System.out.println("bean aggiunto: " + rs.getInt("Codice") + rs.getString("Titolo"));
 			}
 			connection.commit();
 		} finally {
@@ -691,7 +689,7 @@ public class VideogiocoDAO {
 				bean3.setModalitaDiGioco(rs3.getString("Modalita_Di_Gioco"));
 				bean3.setTrailer(rs3.getString("Trailer"));
 			}
-			
+			connection.commit();
 		} finally {
 			try {
 				if(preparedStatement1!=null)
@@ -737,6 +735,7 @@ public class VideogiocoDAO {
 			
 			while(rs.next()) 
 				n=rs.getInt(1);
+			connection.commit();
 		} finally {
 			try {
 				if(preparedStatement!=null)
@@ -800,6 +799,7 @@ public class VideogiocoDAO {
 			
 			while(rs.next()) 
 				n=rs.getInt(1);
+			connection.commit();
 		} finally {
 			try {
 				if(preparedStatement!=null)
@@ -832,7 +832,7 @@ public class VideogiocoDAO {
 				
 				System.out.println("doAcquisto: " + preparedStatement.toString());
 				
-				preparedStatement.executeUpdate();
+				preparedStatement.executeQuery();
 
 			} finally {
 				try {
@@ -953,9 +953,7 @@ public class VideogiocoDAO {
 			
 			while(rs.next()) {
 				image = rs.getBytes("Img");
-			}
-			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
-			
+			}							
 		} finally {
 			try {
 				if(preparedStatement!=null)

@@ -40,6 +40,7 @@ public class RecensioneDAO {
 				
 				recensioni.add(bean);
 			}
+			connection.commit();
 		} finally {
 			try {
 				if(preparedStatement!=null)
@@ -114,9 +115,7 @@ public class RecensioneDAO {
 			if(n != 0) {
 				System.out.println("Errore. Recensione gia' rilasciata per questo gioco.");
 				return false;
-			}
-		connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
-		
+			}			
 	} finally {
 		try {
 			if(preparedStatement!=null)
@@ -247,6 +246,4 @@ public class RecensioneDAO {
 		
 		return (result != 0);
 	}
-		
-
 }

@@ -80,7 +80,6 @@ public class AccountDAO {
 				}				
 				
 			}
-			connection.commit();
 		} finally {
 			try {
 				if(preparedStatement!=null)
@@ -157,7 +156,6 @@ public class AccountDAO {
 				
 				isin=rs.getString("ISIN");
 			}
-			connection.commit();
 		} finally {
 			try {
 				if(preparedStatement!=null)
@@ -559,7 +557,7 @@ public class AccountDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		String selectSQL = "select * from e_nella_libreria where possessore = ? and amico = ?";
+		String selectSQL = "SELECT * FROM e_nella_libreria WHERE possessore = ? AND amico = ?";
 		AccountBean bean = new AccountBean();
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
@@ -686,7 +684,6 @@ public class AccountDAO {
 					casaEditriceBean.setSitoWeb(rs.getString("Sito_Web"));
 					theUser=casaEditriceBean;
 				}			
-			connection.commit();	
 			}
 		} finally {
 			try {
@@ -745,8 +742,6 @@ public class AccountDAO {
 			while(rs.next()) {
 				image = rs.getBytes("Img_Profilo");
 			}
-			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
-			
 		} finally {
 			try {
 				if(preparedStatement!=null)
