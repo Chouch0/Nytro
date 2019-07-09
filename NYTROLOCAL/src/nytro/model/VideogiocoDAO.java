@@ -72,7 +72,6 @@ public class VideogiocoDAO {
 		
 		String selectSQL = "SELECT DISTINCT * FROM account, videogioco, ha_nella_libreria WHERE account.Username = ? AND account.Username=ha_nella_libreria.Username AND videogioco.Codice=ha_nella_libreria.Videogioco ";
 		
-		//Nel caso avessi voluto imporre un ordine per l'estrazione degli utenti
 		if(order!=null && !order.equals(""))
 			selectSQL += " ORDER BY " + order;
 		

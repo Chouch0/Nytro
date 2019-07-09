@@ -4,10 +4,7 @@ import java.io.Serializable;
 
 public class GiocatoreBean extends AccountBean implements Serializable {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7844291255236564462L;
+	
 	private String dataNascita;
 	private String dataIscrizione;
 	private String genere;

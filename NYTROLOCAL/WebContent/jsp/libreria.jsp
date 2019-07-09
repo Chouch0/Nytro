@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
 import="nytro.model.VideogiocoBean, java.util.Collection"%>
 <%
-	Collection<VideogiocoBean> libreria = (Collection<VideogiocoBean>) request.getAttribute("libreria");
+	Collection<VideogiocoBean> libreria = (Collection<VideogiocoBean>) session.getAttribute("libreria");
 	
 %>
 
@@ -28,6 +28,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 		<div id="tabella">
 			<%
 				for(VideogiocoBean x : libreria){
+					System.out.println("\t\t"+x);
 			%>
 		<ul>
 		<div class="gioco">

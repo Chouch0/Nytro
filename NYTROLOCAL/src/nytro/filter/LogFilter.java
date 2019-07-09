@@ -23,7 +23,7 @@ public class LogFilter implements Filter {
 	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		String dest = ((HttpServletRequest) request).getRequestURI();
-		System.out.println("Destinazione (filtro):" + dest);
+		System.out.println("(1) Destinazione (filtro):" + dest);
 		AccountBean account = (AccountBean) ((HttpServletRequest) request).getSession().getAttribute("account");
 		
 		if(dest.contains("/css/") || dest.contains("/js/")|| dest.contains("/img/")) {
@@ -78,7 +78,7 @@ public class LogFilter implements Filter {
 			}
 		}
 		
-		System.out.println("Destinazione (filtro): rindirizzamento ad index.jsp");
+		System.out.println("(2) Destinazione (filtro): rindirizzamento ad index.jsp");
 		((HttpServletResponse) response).sendRedirect("/NYTRO/jsp/index.jsp");
 		//((HttpServletRequest) request).getRequestDispatcher("jsp/index.jsp").forward((HttpServletRequest) request, (HttpServletResponse) response);
 		return ;

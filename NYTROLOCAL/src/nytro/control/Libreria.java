@@ -33,6 +33,9 @@ public class Libreria extends HttpServlet {
 				videogiocoDAO.doDeleteFromLibreria(account.getUsername(), codiceVideogiocoDaCancellare);
 				while(videogiocoDAO.doRetrieveFromLibreria(codiceVideogiocoDaCancellare, account.getUsername()).getUsername()!=null)
 					;
+				String url = response.encodeURL("/NYTRO/Libreria");
+				response.sendRedirect(url);
+				return ;
 			} catch (SQLException e) {
 				throw new MyException("Errore cancellazione videogioco.");
 			}
@@ -45,6 +48,9 @@ public class Libreria extends HttpServlet {
 				videogiocoDAO.doSaveToLibreria(account.getUsername(), codiceVideogiocoDaAggiungere);
 				while(videogiocoDAO.doRetrieveFromLibreria(codiceVideogiocoDaAggiungere, account.getUsername()).getUsername()==null)
 					;
+				String url = response.encodeURL("/NYTRO/Libreria");
+				response.sendRedirect(url);
+				return ;
 			} catch (SQLException e) {
 				throw new MyException("Errore inserimento videogioco.");
 			}
@@ -55,12 +61,13 @@ public class Libreria extends HttpServlet {
 		Collection<VideogiocoBean> libreria = null;
 		
 		try {
-			libreria = videogiocoDAO.doRetrieveAllLibreria(account.getUsername(), order);			
+			libreria = videogiocoDAO.doRetrieveAllLibreria(account.getUsername(), order);
 		} catch (SQLException e) {
 			throw new MyException("Errore estrazione videogiochi.");
 		}
-		
-		request.setAttribute("libreria", libreria);
+	
+		request.getSession().removeAttribute("libreria");
+		request.getSession().setAttribute("libreria", libreria);
 
 		String url = response.encodeURL("jsp/libreria.jsp");
 		request.getRequestDispatcher(url).forward(request, response);

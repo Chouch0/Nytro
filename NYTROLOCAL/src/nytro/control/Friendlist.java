@@ -22,10 +22,7 @@ public class Friendlist extends HttpServlet {
 	private final AccountDAO accountDAO = new AccountDAO();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AccountBean account = (AccountBean) request.getSession().getAttribute("account");
-//		if(account.getRuolo()!=1)
-//			throw new MyException("Non disponi dei permessi necessari per visualizzare tale risorsa.");
-		
+		AccountBean account = (AccountBean) request.getSession().getAttribute("account");		
 		
 		String futuroAmico = request.getParameter("futuroAmico");
 		if(futuroAmico!=null && !futuroAmico.equals("")) {
@@ -53,7 +50,7 @@ public class Friendlist extends HttpServlet {
 		Collection<AccountBean> amici = null;
 		
 		try {
-			amici = accountDAO.doRetrieveAllFriendsByUsername(account.getUsername());			
+			amici = accountDAO.doRetrieveAllFriendsByUsername(account.getUsername());		
 		} catch (SQLException e) {
 			throw new MyException("Errore estrazione videogiochi.");
 		}
