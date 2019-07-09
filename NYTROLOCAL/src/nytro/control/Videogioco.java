@@ -101,8 +101,12 @@ public class Videogioco extends HttpServlet {
 		
 		String rimuovereRecensione = request.getParameter("rimuovereRecensione");
 		if(rimuovereRecensione!=null && !rimuovereRecensione.equals("")) {
+			RecensioneBean recensione = new RecensioneBean();
 			try {
+				recensione = recensioneDAO.doRetrieveByUsername(account.getUsername(), Integer.parseInt(codiceVideogioco));
 				recensioneDAO.doDelete(account.getUsername(), Integer.parseInt(codiceVideogioco));
+				while(recensioneDAO.doRetrieveByUsername(recensione.getUsername(),recensione.getCodVideogioco())==null)
+				;
 			} catch (NumberFormatException | SQLException e) {
 				throw new MyException("Impossibile cancellare recensione"); 
 			}
@@ -118,7 +122,10 @@ public class Videogioco extends HttpServlet {
 			recensione.setVoto(Double.parseDouble(votoRecensione));
 			recensione.setUsername(account.getUsername());
 			try {
-				recensioneDAO.doSave(recensione);
+				if(recensioneDAO.doCheck(recensione))
+					recensioneDAO.doSave(recensione);
+				else
+					throw new MyException("Recensione già rilasciata per questo gioco");
 				while(recensioneDAO.doRetrieveByUsername(recensione.getUsername(),recensione.getCodVideogioco())==null)
 					;
 			} catch (SQLException e) {

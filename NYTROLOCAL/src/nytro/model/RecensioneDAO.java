@@ -90,7 +90,44 @@ public class RecensioneDAO {
 		return recensione;
 	}	
 
-	public void doSave(RecensioneBean recensione) throws SQLException {
+	public boolean doCheck(RecensioneBean recensione) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String countSQL = "SELECT COUNT(*) FROM recensione WHERE recensione.videogioco = ? AND recensione.username = ?";
+		int n;
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(countSQL);
+			
+			preparedStatement.setInt(1, recensione.getCodVideogioco());
+			preparedStatement.setString(2, recensione.getUsername());
+
+			ResultSet rs = preparedStatement.executeQuery();
+			rs.next();
+			n = rs.getInt(1);
+			
+			System.out.println("doCount: " + preparedStatement.toString() + n);
+			
+			if(n != 0) {
+				System.out.println("Errore. Recensione gia' rilasciata per questo gioco.");
+				return false;
+			}
+		connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
+		
+	} finally {
+		try {
+			if(preparedStatement!=null)
+				preparedStatement.close();
+		} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+			DriverManagerConnectionPool.releaseConnection(connection);
+		}
+	}
+	return true;
+}
+	
+	public boolean doSave(RecensioneBean recensione) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
@@ -99,7 +136,6 @@ public class RecensioneDAO {
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
-			
 			preparedStatement.setInt(1, recensione.getCodVideogioco());
 			preparedStatement.setString(2, recensione.getUsername());
 			preparedStatement.setString(3, recensione.getCommento());
@@ -117,6 +153,7 @@ public class RecensioneDAO {
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}
 		}
+		return true;
 	}
 
 	public void doUpdate(RecensioneBean recensione) throws SQLException {
@@ -175,7 +212,6 @@ public class RecensioneDAO {
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}
 		}
-		
 		return (result != 0);
 	}
 	
