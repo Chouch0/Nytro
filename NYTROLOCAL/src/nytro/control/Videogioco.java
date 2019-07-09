@@ -122,6 +122,8 @@ public class Videogioco extends HttpServlet {
 			recensione.setVoto(Double.parseDouble(votoRecensione));
 			recensione.setUsername(account.getUsername());
 			try {
+				while(recensioneDAO.doRetrieveByUsername(recensione.getUsername(),recensione.getCodVideogioco())==null)
+					;
 				if(recensioneDAO.doCheck(recensione))
 					recensioneDAO.doSave(recensione);
 				else
