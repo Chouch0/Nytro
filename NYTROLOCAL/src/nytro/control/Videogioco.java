@@ -99,6 +99,16 @@ public class Videogioco extends HttpServlet {
 			}
 		}
 		
+		String cambiaTrailer = request.getParameter("cambiaTrailer");
+		if(cambiaTrailer!=null && !cambiaTrailer.equals("")) {
+			try {
+				videogiocoDetailed.setTrailer(cambiaTrailer);
+				videogiocoDAO.doUpdate(videogiocoDetailed);
+			} catch (SQLException e) {
+				throw new MyException("Errore cambiamento trailer videogioco");
+			}			
+		}
+		
 		String rimuovereRecensione = request.getParameter("rimuovereRecensione");
 		if(rimuovereRecensione!=null && !rimuovereRecensione.equals("")) {
 			RecensioneBean recensione = new RecensioneBean();

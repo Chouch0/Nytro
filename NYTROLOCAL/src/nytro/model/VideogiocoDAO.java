@@ -48,6 +48,7 @@ public class VideogiocoDAO {
 				bean.setVotoMedio(rs.getFloat("Voto_medio"));
 				bean.setPEGI(rs.getInt("PEGI"));
 				bean.setImg(rs.getBinaryStream("Img"));
+				bean.setTrailer(rs.getString("Trailer"));
 				
 				videogiochi.add(bean);				
 				
@@ -98,6 +99,7 @@ public class VideogiocoDAO {
 				bean.setVotoMedio(rs.getFloat("Voto_medio"));
 				bean.setPEGI(rs.getInt("PEGI"));
 				bean.setImg(rs.getBinaryStream("Img"));
+				bean.setTrailer(rs.getString("Trailer"));
 				
 				videogiochi.add(bean);				
 				
@@ -150,6 +152,7 @@ public class VideogiocoDAO {
 				bean.setVotoMedio(rs.getFloat("Voto_medio"));
 				bean.setPEGI(rs.getInt("PEGI"));
 				bean.setImg(rs.getBinaryStream("Img"));
+				bean.setTrailer(rs.getString("Trailer"));
 				bean.setPrezzo(rs.getFloat("Prezzo"));
 				bean.setCopieVendute(rs.getInt("Copie_Vendute"));
 				
@@ -203,6 +206,7 @@ public class VideogiocoDAO {
 				bean.setTitolo(rs.getString("Titolo"));
 				bean.setVotoMedio(rs.getFloat("Voto_medio"));
 				bean.setPEGI(rs.getInt("PEGI"));
+				bean.setTrailer(rs.getString("Trailer"));
 				bean.setImg(rs.getBinaryStream("Img"));
 				
 				bean.setCodiceVideogiocoPrincipale(rs.getInt("Videogioco_Principale"));
@@ -258,6 +262,7 @@ public class VideogiocoDAO {
 				bean.setTitolo(rs.getString("Titolo"));
 				bean.setVotoMedio(rs.getFloat("Voto_medio"));
 				bean.setPEGI(rs.getInt("PEGI"));
+				bean.setTrailer(rs.getString("Trailer"));
 				bean.setImg(rs.getBinaryStream("Img"));
 				
 				bean.setModalitaDiGioco(rs.getString("Modalita_Di_Gioco"));
@@ -307,6 +312,7 @@ public class VideogiocoDAO {
 				bean.setVotoMedio(rs.getFloat("Voto_medio"));
 				bean.setPEGI(rs.getInt("PEGI"));
 				bean.setImg(rs.getBinaryStream("Img"));
+				bean.setTrailer(rs.getString("Trailer"));
 			}
 		} finally {
 			try {
@@ -339,7 +345,7 @@ public class VideogiocoDAO {
 			else
 				preparedStatement.setNull(5, java.sql.Types.BLOB); 
 			preparedStatement.setString(6, genere); 
-			preparedStatement.setFloat(7, bean.getPrezzo());			
+			preparedStatement.setFloat(7, bean.getPrezzo());		
 			
 			System.out.println("doSaveVideogiocoPagamento: " + preparedStatement.toString());
 			preparedStatement.executeUpdate();
@@ -424,7 +430,7 @@ public class VideogiocoDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		String updateSQL = "UPDATE videogioco SET  ISIN = ?, Data_Rilascio = ?, Data_Rimozione = ?, Titolo = ?, Voto_Medio = ?, PEGI = ?, Img = ? WHERE Codice = ?";
+		String updateSQL = "UPDATE videogioco SET  ISIN = ?, Data_Rilascio = ?, Data_Rimozione = ?, Titolo = ?, Voto_Medio = ?, PEGI = ?, Img = ?, Trailer = ? WHERE Codice = ?";
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
@@ -436,8 +442,9 @@ public class VideogiocoDAO {
 			preparedStatement.setString(4, bean.getTitolo());
 			preparedStatement.setDouble(5, bean.getVotoMedio());
 			preparedStatement.setInt(6, bean.getPEGI());
-			preparedStatement.setBlob(7, bean.getImg());		
-			preparedStatement.setInt(8, bean.getCodice());	
+			preparedStatement.setBlob(7, bean.getImg());
+			preparedStatement.setString(8, bean.getTrailer());
+			preparedStatement.setInt(9, bean.getCodice());	
 			
 			System.out.println("doUpdate: " + preparedStatement.toString());
 			preparedStatement.executeUpdate();
@@ -550,7 +557,6 @@ public class VideogiocoDAO {
 		return (result != 0);
 	}
 	
-	
 	public boolean doDeleteFromLibreria(String username, int codiceVideogiocoDaCancellare) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -657,6 +663,7 @@ public class VideogiocoDAO {
 				bean1.setImg(rs1.getBinaryStream("Img"));		
 				bean1.setPrezzo(rs1.getFloat("Prezzo"));
 				bean1.setCopieVendute(rs1.getInt("Copie_Vendute"));
+				bean1.setTrailer(rs1.getString("Trailer"));
 			}
 			
 			while(rs2.next()) {
@@ -670,6 +677,7 @@ public class VideogiocoDAO {
 				bean2.setImg(rs2.getBinaryStream("Img"));	
 				bean2.setCodiceVideogiocoPrincipale(rs2.getInt("Videogioco_Principale"));
 				bean2.setDurata(rs2.getInt("Durata"));
+				bean2.setTrailer(rs2.getString("Trailer"));
 			}
 			
 			while(rs3.next()) {
@@ -682,6 +690,7 @@ public class VideogiocoDAO {
 				bean3.setPEGI(rs3.getInt("PEGI"));
 				bean3.setImg(rs3.getBinaryStream("Img"));
 				bean3.setModalitaDiGioco(rs3.getString("Modalita_Di_Gioco"));
+				bean3.setTrailer(rs3.getString("Trailer"));
 			}
 			
 		} finally {
@@ -707,7 +716,6 @@ public class VideogiocoDAO {
 		
 		return null;
 	}
-	
 	
 	public boolean doRetrieveAppartenenzaAllaLibreria(int codice, String username) throws SQLException {
 

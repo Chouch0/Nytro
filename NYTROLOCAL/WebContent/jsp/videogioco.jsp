@@ -92,7 +92,14 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		 <input type="submit" value="Vai">
 		</form>
 		
-		<h3>Inserisci genere</h3>
+		<h3>Cambia trailer</h3>
+		
+		<form action="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+videogiocoDetailed.getCodice())%>" method="post">
+	 	 <input type="text" name="cambiaTrailer" required placeholder="Trailer*"/>
+		 <input type="submit" value="Vai">
+		</form>
+		
+		<h3>Aggiungi genere</h3>
 		
 		<form action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="post" enctype="multipart/form-data">
 		 <input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">

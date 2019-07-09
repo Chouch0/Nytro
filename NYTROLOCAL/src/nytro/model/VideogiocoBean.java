@@ -15,6 +15,7 @@ public class VideogiocoBean implements Serializable {
 	private float votoMedio;
 	private int PEGI;
 	private InputStream img;
+	private String trailer;
 	//necessario inserire blob 
 	public int getCodice() {
 		return codice;
@@ -119,11 +120,18 @@ public class VideogiocoBean implements Serializable {
 			return false;
 		return true;
 	}
-	@Override
+	
+	public String getTrailer() {
+		return trailer;
+	}
+	public void setTrailer(String trailer) {
+		this.trailer = trailer;
+	}
+	
 	public String toString() {
-		return "VideogiocoBean [codice=" + codice + ", ISIN=" + ISIN + ", dataRilascio=" + dataRilascio
+		return getClass().getName() +"[codice=" + codice + ", ISIN=" + ISIN + ", dataRilascio=" + dataRilascio
 				+ ", dataRimozione=" + dataRimozione + ", titolo=" + titolo + ", votoMedio=" + votoMedio + ", PEGI="
-				+ PEGI + ", img=" + img + "]";
+				+ PEGI + ", img=" + img + ", trailer=" + trailer + "]";
 	}
 
 }
