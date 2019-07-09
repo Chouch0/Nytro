@@ -689,6 +689,7 @@ public class VideogiocoDAO {
 				bean3.setModalitaDiGioco(rs3.getString("Modalita_Di_Gioco"));
 				bean3.setTrailer(rs3.getString("Trailer"));
 			}
+			
 			connection.commit();
 		} finally {
 			try {
