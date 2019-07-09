@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import nytro.exceptions.MyException;
 import nytro.model.AccountBean;
 import nytro.model.AccountDAO;
+import nytro.model.VideogiocoBean;
 import nytro.model.VideogiocoDAO;
 
 @WebServlet("/Profilo")
@@ -67,6 +68,21 @@ public class Profilo extends HttpServlet {
 				}
 			}
 			request.setAttribute("contributo", contributo);
+		}
+		
+		String listaVideogiochiRimossi = request.getParameter("listaVideogiochiRimossi");
+		if(listaVideogiochiRimossi!=null && !listaVideogiochiRimossi.equals("")) {
+			String annoRimozione = request.getParameter("annoRimozione");
+			ArrayList<VideogiocoBean> videogiochiRimossiInAnno = null;
+			if(annoRimozione!=null && annoRimozione!=null && !annoRimozione.equals("") && !annoRimozione.equals("")) {
+				try {					
+					annoRimozione+="-__-__";
+					videogiochiRimossiInAnno = videogiocoDAO.doRetrievePerAnnoDiRimozione(annoRimozione);
+				} catch (SQLException e) {
+					throw new MyException("Errore estrazione videogiochi in un certo anno");
+				}
+			}
+			request.setAttribute("videogiochiRimossiInAnno", videogiochiRimossiInAnno);
 		}
 		
 		try {

@@ -167,8 +167,8 @@ import="nytro.model.AccountBean, java.util.ArrayList, nytro.model.VideogiocoBean
 <h2>Ricavi piattaforma</h2>
 <form action="<%=response.encodeURL("/NYTRO/Profilo")%>">
 <input type="hidden" name="contributoAnnuale" value="true">
-<label>Data di inizio<input type="date" name="startDate" min="2000-01-01" max="2032-12-31"></label>
-<label>Data di fine<input type="date" name="endDate" min="2000-01-01" max="2032-12-31"></label>
+<label>Data di inizio<input type="date" name="startDate" min="2000-01-01" max="2032-12-31"  required></label>
+<label>Data di fine<input type="date" name="endDate" min="2000-01-01" max="2032-12-31"  required></label>
 <input type="submit" value="Vai"/>
 </form>
 
@@ -204,6 +204,20 @@ import="nytro.model.AccountBean, java.util.ArrayList, nytro.model.VideogiocoBean
 <%} %>
 		
 <%} %>
+
+<h2>Videogiochi rimossi in un determinato anno</h2>	
+<form action="<%=response.encodeURL("/NYTRO/Profilo")%>">
+<input type="hidden" name="listaVideogiochiRimossi" value="true">
+<label>Anno di rimozione<input type="number" name="annoRimozione" min="2000" step="1" required></label>
+<input type="submit" value="Vai"/>
+</form>
+
+<%ArrayList<VideogiocoBean> videogiochiRimossiInAnno = (ArrayList<VideogiocoBean>) request.getAttribute("videogiochiRimossiInAnno");
+if(videogiochiRimossiInAnno!=null){
+	for(VideogiocoBean x : videogiochiRimossiInAnno){%>
+	<%=x.toString()%>
+<%}
+} %>
 
 <%if(account.getRuolo()==2){ %>
 <h1>Insights</h1>
