@@ -78,6 +78,7 @@ public class RecensioneDAO {
 				recensione.setVoto(rs.getDouble("Voto"));
 				
 			}
+			connection.commit();
 		} finally {
 			try {
 				if(preparedStatement!=null)
@@ -143,6 +144,7 @@ public class RecensioneDAO {
 			
 			System.out.println("doSave: " + preparedStatement.toString());
 			preparedStatement.executeUpdate();
+			doRetrieveAllByCodice(null, recensione.getCodVideogioco());
 			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
 			
 		} finally {
@@ -231,6 +233,7 @@ public class RecensioneDAO {
 			
 			System.out.println("doDelete: " + preparedStatement.toString());
 			result=preparedStatement.executeUpdate();
+			doRetrieveAllByCodice(null, codVideogioco);
 			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
 			
 		} finally {

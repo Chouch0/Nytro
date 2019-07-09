@@ -28,8 +28,6 @@ public class Friendlist extends HttpServlet {
 		if(futuroAmico!=null && !futuroAmico.equals("")) {
 			try {
 				accountDAO.doAggiungiAmicoFriendlist(account, futuroAmico);
-				while(accountDAO.doRetrieveAmicoFriendlist(account, futuroAmico).getUsername()==null)
-					;				
 			} catch (SQLException e) {
 				;
 			}
@@ -39,8 +37,6 @@ public class Friendlist extends HttpServlet {
 		if(eliminatoAmico!=null && !eliminatoAmico.equals("")) {			
 			try {
 				accountDAO.doRimuoviAmicoFriendlist(account, eliminatoAmico);
-				while(accountDAO.doRetrieveAmicoFriendlist(account, eliminatoAmico).getUsername()!=null)
-					;
 			} catch (SQLException e) {
 				;
 			}

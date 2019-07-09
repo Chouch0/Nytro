@@ -71,7 +71,7 @@ public class VideogiocoDAO {
 		
 		Collection<VideogiocoBean> videogiochi = new LinkedList<VideogiocoBean>();
 		
-		String selectSQL = "SELECT DISTINCT * FROM account, videogioco, ha_nella_libreria WHERE account.Username = ? AND account.Username=ha_nella_libreria.Username AND videogioco.Codice=ha_nella_libreria.Videogioco ";
+		String selectSQL = "SELECT DISTINCT * FROM videogioco, ha_nella_libreria WHERE Username = ? AND Codice=Videogioco;";
 		
 		if(order!=null && !order.equals(""))
 			selectSQL += " ORDER BY " + order;
@@ -103,7 +103,9 @@ public class VideogiocoDAO {
 				
 				videogiochi.add(bean);				
 				
+				System.out.println("bean aggiunto: " + rs.getInt("Codice") + rs.getString("Titolo"));
 			}
+			connection.commit();
 		} finally {
 			try {
 				if(preparedStatement!=null)
@@ -437,7 +439,7 @@ public class VideogiocoDAO {
 			preparedStatement.setString(2, bean.getDataRilascio());
 			preparedStatement.setString(3, bean.getDataRimozione());
 			preparedStatement.setString(4, bean.getTitolo());
-			preparedStatement.setDouble(5, bean.getVotoMedio());
+			preparedStatement.setFloat(5, bean.getVotoMedio());
 			preparedStatement.setInt(6, bean.getPEGI());
 			preparedStatement.setBlob(7, bean.getImg());
 			preparedStatement.setString(8, bean.getTrailer());
@@ -825,12 +827,12 @@ public class VideogiocoDAO {
 				preparedStatement.setString(1, account.getUsername());
 				preparedStatement.setInt(2, x.getCodice());
 				preparedStatement.setString(3, cartaDiPagamento);
-				preparedStatement.setDouble(4, x.getPrezzo());
+				preparedStatement.setFloat(4, x.getPrezzo());
 				preparedStatement.setString(5, account.getIp());
 				
 				System.out.println("doAcquisto: " + preparedStatement.toString());
 				
-				preparedStatement.executeQuery();
+				preparedStatement.executeUpdate();
 
 			} finally {
 				try {

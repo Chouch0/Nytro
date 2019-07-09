@@ -29,8 +29,6 @@ public class Libreria extends HttpServlet {
 			int codiceVideogiocoDaCancellare = Integer.parseInt(cancellaVideogioco);
 			try {
 				videogiocoDAO.doDeleteFromLibreria(account.getUsername(), codiceVideogiocoDaCancellare);
-				while(videogiocoDAO.doRetrieveFromLibreria(codiceVideogiocoDaCancellare, account.getUsername()).getUsername()!=null)
-					;
 			} catch (SQLException e) {
 				throw new MyException("Errore cancellazione videogioco.");
 			}
@@ -41,8 +39,6 @@ public class Libreria extends HttpServlet {
 			int codiceVideogiocoDaAggiungere = Integer.parseInt(aggiungiVideogioco);
 			try {
 				videogiocoDAO.doSaveToLibreria(account.getUsername(), codiceVideogiocoDaAggiungere);
-				while(videogiocoDAO.doRetrieveFromLibreria(codiceVideogiocoDaAggiungere, account.getUsername()).getUsername()==null)
-					;
 			} catch (SQLException e) {
 				throw new MyException("Errore inserimento videogioco.");
 			}
@@ -60,7 +56,7 @@ public class Libreria extends HttpServlet {
 	
 		
 		request.setAttribute("libreria", libreria);
-
+		
 		String url = response.encodeURL("jsp/libreria.jsp");
 		request.getRequestDispatcher(url).forward(request, response);
 	}

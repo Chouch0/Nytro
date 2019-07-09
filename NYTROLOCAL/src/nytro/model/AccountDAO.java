@@ -80,6 +80,7 @@ public class AccountDAO {
 				}				
 				
 			}
+			connection.commit();
 		} finally {
 			try {
 				if(preparedStatement!=null)
@@ -122,6 +123,7 @@ public class AccountDAO {
 				bean.setRuolo(rs.getInt("Ruolo"));
 				bean.setImgProfilo(rs.getBinaryStream("Img_Profilo"));
 			}
+			connection.commit();
 		} finally {
 			try {
 				if(preparedStatement!=null)
@@ -155,6 +157,7 @@ public class AccountDAO {
 				
 				isin=rs.getString("ISIN");
 			}
+			connection.commit();
 		} finally {
 			try {
 				if(preparedStatement!=null)
@@ -197,6 +200,7 @@ public class AccountDAO {
 				bean.setRuolo(rs.getInt("Ruolo"));
 				bean.setImgProfilo(rs.getBinaryStream("Img_Profilo"));
 			}
+			connection.commit();
 		} finally {
 			try {
 				if(preparedStatement!=null)
@@ -509,9 +513,9 @@ public class AccountDAO {
 				bean.setIp(rs.getString("IP"));
 				bean.setRuolo(rs.getInt("Ruolo"));
 				bean.setImgProfilo(rs.getBinaryStream("Img_Profilo"));
-				System.out.println(""+rs.getBinaryStream("Img_Profilo"));
 				amici.add(bean);
 			}
+			connection.commit();
 		} finally {
 			try {
 				if(preparedStatement!=null)
@@ -682,7 +686,7 @@ public class AccountDAO {
 					casaEditriceBean.setSitoWeb(rs.getString("Sito_Web"));
 					theUser=casaEditriceBean;
 				}			
-				
+			connection.commit();	
 			}
 		} finally {
 			try {
