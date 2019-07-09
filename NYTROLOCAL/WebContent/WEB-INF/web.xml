@@ -13,6 +13,6 @@
   </filter>
   <filter-mapping>
     <filter-name>LogFilter</filter-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>/NYTRO/*</url-pattern>
   </filter-mapping>
 </web-app>

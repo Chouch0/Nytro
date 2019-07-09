@@ -23,8 +23,6 @@ public class Libreria extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AccountBean account = (AccountBean) request.getSession().getAttribute("account");
-//		if(account.getRuolo()!=1)
-//			throw new MyException("Non disponi dei permessi necessari per visualizzare tale risorsa.");
 		
 		String cancellaVideogioco=request.getParameter("cancellaVideogioco");
 		if(cancellaVideogioco!=null && !cancellaVideogioco.equals("")) {
@@ -33,9 +31,6 @@ public class Libreria extends HttpServlet {
 				videogiocoDAO.doDeleteFromLibreria(account.getUsername(), codiceVideogiocoDaCancellare);
 				while(videogiocoDAO.doRetrieveFromLibreria(codiceVideogiocoDaCancellare, account.getUsername()).getUsername()!=null)
 					;
-				String url = response.encodeURL("/NYTRO/Libreria");
-				response.sendRedirect(url);
-				return ;
 			} catch (SQLException e) {
 				throw new MyException("Errore cancellazione videogioco.");
 			}
@@ -48,9 +43,6 @@ public class Libreria extends HttpServlet {
 				videogiocoDAO.doSaveToLibreria(account.getUsername(), codiceVideogiocoDaAggiungere);
 				while(videogiocoDAO.doRetrieveFromLibreria(codiceVideogiocoDaAggiungere, account.getUsername()).getUsername()==null)
 					;
-				String url = response.encodeURL("/NYTRO/Libreria");
-				response.sendRedirect(url);
-				return ;
 			} catch (SQLException e) {
 				throw new MyException("Errore inserimento videogioco.");
 			}
@@ -66,8 +58,8 @@ public class Libreria extends HttpServlet {
 			throw new MyException("Errore estrazione videogiochi.");
 		}
 	
-		request.getSession().removeAttribute("libreria");
-		request.getSession().setAttribute("libreria", libreria);
+		
+		request.setAttribute("libreria", libreria);
 
 		String url = response.encodeURL("jsp/libreria.jsp");
 		request.getRequestDispatcher(url).forward(request, response);

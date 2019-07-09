@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
 import="nytro.model.VideogiocoBean, java.util.Collection"%>
 <%
-	Collection<VideogiocoBean> libreria = (Collection<VideogiocoBean>) session.getAttribute("libreria");
-	
+	Collection<VideogiocoBean> libreria = (Collection<VideogiocoBean>) request.getAttribute("libreria");	
 %>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Libreria"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	

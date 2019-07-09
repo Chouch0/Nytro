@@ -567,6 +567,7 @@ public class VideogiocoDAO {
 			preparedStatement.setInt(2, codiceVideogiocoDaCancellare);
 			
 			System.out.println("doDeleteFromLibreria: " + preparedStatement.toString());
+			
 			result=preparedStatement.executeUpdate();
 			connection.commit();													//Perchè auto-commit è false in DriverManagerConnectionPool
 			
