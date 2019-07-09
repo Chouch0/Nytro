@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
-import="nytro.model.VideogiocoBean, java.util.Collection"%>
+import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBean"%>
 <%
 	Collection<VideogiocoBean> libreria = (Collection<VideogiocoBean>) request.getAttribute("libreria");
 	String libreriaAmicoDaVisualizzare=request.getParameter("libreriaAmicoDaVisualizzare");
@@ -9,7 +9,14 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 <link href="/NYTRO/css/libreriaStyle.css" type="text/css" rel="stylesheet">	
 
 <div id="lista">
-	<h1>Libreria</h1>
+	<h1>Libreria - 
+		<%if(libreriaAmicoDaVisualizzare!=null && !libreriaAmicoDaVisualizzare.equals("")) {%>
+			<%=libreriaAmicoDaVisualizzare %>
+		<%} else { 
+			AccountBean account = (AccountBean) request.getSession().getAttribute("account");%>
+			<%=account.getUsername() %>
+		<%} %>
+	</h1>
 	<div id="ordina">
 	<form action="<%=response.encodeURL("/NYTRO/Libreria")%>" method="get">
 	 <%if(libreriaAmicoDaVisualizzare!=null && !libreriaAmicoDaVisualizzare.equals("")){ %>
