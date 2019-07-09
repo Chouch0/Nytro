@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-import="nytro.model.AccountBean, java.util.ArrayList"%>
+import="nytro.model.AccountBean, java.util.ArrayList, nytro.model.VideogiocoBean"%>
 
 <%  
 	AccountBean account = (AccountBean) session.getAttribute("account");
@@ -187,6 +187,22 @@ import="nytro.model.AccountBean, java.util.ArrayList"%>
 		<%} %>
 	</p>
 	<%} %>
+	
+<h2>Videogioco più giocato dalle ragazze</h2>
+<%
+	VideogiocoBean piuGiocatoMaschi = (VideogiocoBean) request.getAttribute("piuGiocatoMaschi");
+	if(piuGiocatoMaschi!=null){
+%>
+	<%=piuGiocatoMaschi.toString()%>
+<%} %>
+<h2>Videogioco più giocato dai ragazzi</h2>	
+<%
+	VideogiocoBean piuGiocatoFemmine = (VideogiocoBean) request.getAttribute("piuGiocatoFemmine");
+	if(piuGiocatoFemmine!=null){
+%>
+	<%=piuGiocatoFemmine.toString()%>
+<%} %>
+		
 <%} %>
 
 <%if(account.getRuolo()==2){ %>

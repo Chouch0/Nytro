@@ -1161,4 +1161,68 @@ public class VideogiocoDAO {
 			
 	}
 	
+	public VideogiocoBean doRetrievePiuGiocatoFemmine() throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		VideogiocoBean bean = null;
+		
+		String selectSQL = "call piattaforma_videogiochi_tsw.videogioco_fem()";
+				
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			
+			System.out.println("doRetrievePiuGiocatoFemmine: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				bean = this.doRetrieveByCodice(rs.getInt("Codice"), "");
+			}
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return bean;
+	}
+	
+	public VideogiocoBean doRetrievePiuGiocatoMaschi() throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		VideogiocoBean bean = null;
+		
+		String selectSQL = "call piattaforma_videogiochi_tsw.videogioco_mas()";
+				
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			
+			System.out.println("doRetrievePiuGiocatoMaschi: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				bean = this.doRetrieveByCodice(rs.getInt("Codice"), "");
+			}
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return bean;
+	}
+	
 }

@@ -14,12 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import nytro.exceptions.MyException;
 import nytro.model.AccountBean;
 import nytro.model.AccountDAO;
-import nytro.model.CasaEditriceBean;
+import nytro.model.VideogiocoDAO;
 
 @WebServlet("/Profilo")
 public class Profilo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final AccountDAO accountDAO = new AccountDAO();
+	private final VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AccountBean account = (AccountBean) request.getSession().getAttribute("account");
@@ -48,7 +49,7 @@ public class Profilo extends HttpServlet {
 				try {
 					contributo=accountDAO.doRetrieveContributoAdmin(startDate, endDate);
 				} catch (SQLException e) {
-					;
+					throw new MyException("Errore estrazione incassi piattaforma");
 				}
 			}
 			request.setAttribute("contributo", contributo);
@@ -62,10 +63,17 @@ public class Profilo extends HttpServlet {
 				try {					
 					contributo=accountDAO.doRetrieveContributoCasaEditrice(accountDAO.doRetrieveIsinByUsername(account.getUsername()), startDate, endDate);
 				} catch (SQLException e) {
-					;
+					throw new MyException("Errore estrazione contributo casa editrice");
 				}
 			}
 			request.setAttribute("contributo", contributo);
+		}
+		
+		try {
+			request.setAttribute("piuGiocatoMaschi", videogiocoDAO.doRetrievePiuGiocatoMaschi());
+			request.setAttribute("piuGiocatoFemmine", videogiocoDAO.doRetrievePiuGiocatoFemmine());
+		} catch (SQLException e) {
+			throw new MyException("Fallimento estrazione videogioco più giocato da maschi/femmine");
 		}
 		
 		String url = response.encodeURL("jsp/profilo.jsp");
