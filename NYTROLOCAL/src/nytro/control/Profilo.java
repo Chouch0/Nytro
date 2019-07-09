@@ -74,7 +74,7 @@ public class Profilo extends HttpServlet {
 		if(listaVideogiochiRimossi!=null && !listaVideogiochiRimossi.equals("")) {
 			String annoRimozione = request.getParameter("annoRimozione");
 			ArrayList<VideogiocoBean> videogiochiRimossiInAnno = null;
-			if(annoRimozione!=null && annoRimozione!=null && !annoRimozione.equals("") && !annoRimozione.equals("")) {
+			if(annoRimozione!=null && annoRimozione!=null) {
 				try {					
 					annoRimozione+="-__-__";
 					videogiochiRimossiInAnno = videogiocoDAO.doRetrievePerAnnoDiRimozione(annoRimozione);
@@ -83,6 +83,36 @@ public class Profilo extends HttpServlet {
 				}
 			}
 			request.setAttribute("videogiochiRimossiInAnno", videogiochiRimossiInAnno);
+		}
+		
+		String rangeEtaGiocatori = request.getParameter("rangeEtaGiocatori");
+		if(rangeEtaGiocatori!=null && !rangeEtaGiocatori.equals("")) {
+			String minEta = request.getParameter("minEta");
+			String maxEta = request.getParameter("maxEta");
+			int n=-1;
+			if(maxEta!=null && minEta!=null && !maxEta.equals("") && !minEta.equals("")) {
+				try {					
+					n=accountDAO.doRetrieveNumeroGiocatori(Integer.parseInt(minEta), Integer.parseInt(maxEta));
+				} catch (SQLException e) {
+					throw new MyException("Errore estrazione numero di giocatori di età compresa tra x e y");
+				}
+			}
+			request.setAttribute("quantiGiocatori", "Numero di giocatori di età compresa tra "+minEta+" e "+maxEta+" risulta essere: "+n);
+		}
+		
+		String rangeEtaGiocatoriVideogioco = request.getParameter("rangeEtaGiocatoriVideogioco");
+		if(rangeEtaGiocatoriVideogioco!=null && !rangeEtaGiocatoriVideogioco.equals("")) {
+			String minEtaVideogioco = request.getParameter("minEtaVideogioco");
+			String maxEtaVideogioco = request.getParameter("maxEtaVideogioco");
+			VideogiocoBean videogiocoPiuGiocatoDa=null;
+			if(maxEtaVideogioco!=null && minEtaVideogioco!=null && !maxEtaVideogioco.equals("") && !minEtaVideogioco.equals("")) {
+				try {					
+					videogiocoPiuGiocatoDa=videogiocoDAO.doRetrieveVideogiocoPiuGiocatoDa(Integer.parseInt(minEtaVideogioco), Integer.parseInt(maxEtaVideogioco));
+				} catch (SQLException e) {
+					throw new MyException("Errore estrazione videogioco più giocato dai giocatori di età compresa tra x e y");
+				}
+			}
+			request.setAttribute("videogiocoPiuGiocatoDa", videogiocoPiuGiocatoDa);
 		}
 		
 		try {

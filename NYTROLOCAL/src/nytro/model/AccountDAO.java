@@ -864,4 +864,39 @@ public class AccountDAO {
 		}
 		return image;	
 	}
+	
+	public int doRetrieveNumeroGiocatori(int min, int max) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		AccountBean bean = new AccountBean();
+		
+		String selectSQL = "SELECT count(*) as Numero_Giocatori FROM giocatore WHERE TIMESTAMPDIFF(year, Data_Nascita, current_date())>=? && TIMESTAMPDIFF(year, Data_Nascita, current_date())<=?";
+		int n=0;
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, min);
+			preparedStatement.setInt(2, max);
+			
+			System.out.println("doRetrieveNumeroGiocatori: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				n = rs.getInt("Numero_Giocatori");
+			}
+			connection.commit();
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return n;
+	}
 }

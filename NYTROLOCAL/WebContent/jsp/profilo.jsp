@@ -202,8 +202,7 @@ import="nytro.model.AccountBean, java.util.ArrayList, nytro.model.VideogiocoBean
 %>
 	<%=piuGiocatoFemmine.toString()%>
 <%} %>
-		
-<%} %>
+
 
 <h2>Videogiochi rimossi in un determinato anno</h2>	
 <form action="<%=response.encodeURL("/NYTRO/Profilo")%>">
@@ -218,6 +217,34 @@ if(videogiochiRimossiInAnno!=null){
 	<%=x.toString()%>
 <%}
 } %>
+
+<h2>Numero di giocatori compreso entro un certo range di età</h2>	
+<form action="<%=response.encodeURL("/NYTRO/Profilo")%>">
+<input type="hidden" name="rangeEtaGiocatori" value="true">
+<label>Età minima:<input type="number" name="minEta" min="0" step="1" required></label>
+<label>Età massima:<input type="number" name="maxEta" min="0" step="1" required></label>
+<input type="submit" value="Vai"/>
+</form>
+
+<%String quantiGiocatori = (String) request.getAttribute("quantiGiocatori");
+if(quantiGiocatori!=null && !quantiGiocatori.equals("")){%>
+	<%=quantiGiocatori %> <!-- Sto passando una stringa complessa, con testo e numero, in modo tale da mantenere minEta e maxEta -->
+<%} %>	
+
+<h2>Videogioco più giocato dai giocatori di età compreso entro un certo range</h2>	
+<form action="<%=response.encodeURL("/NYTRO/Profilo")%>">
+<input type="hidden" name="rangeEtaGiocatoriVideogioco" value="true">
+<label>Età minima:<input type="number" name="minEtaVideogioco" min="0" step="1" required></label>
+<label>Età massima:<input type="number" name="maxEtaVideogioco" min="0" step="1" required></label>
+<input type="submit" value="Vai"/>
+</form>
+
+<%VideogiocoBean videogiocoPiuGiocatoDa = (VideogiocoBean) request.getAttribute("videogiocoPiuGiocatoDa");
+if(videogiocoPiuGiocatoDa!=null){%>
+	<%=videogiocoPiuGiocatoDa.toString() %> 
+<%} %>	
+
+<%} %>
 
 <%if(account.getRuolo()==2){ %>
 <h1>Insights</h1>

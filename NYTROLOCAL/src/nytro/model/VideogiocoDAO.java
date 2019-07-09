@@ -1259,4 +1259,38 @@ public class VideogiocoDAO {
 		return videogiochiRimossiInAnno;
 	}
 	
+	public VideogiocoBean doRetrieveVideogiocoPiuGiocatoDa(int min, int max) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		VideogiocoBean bean = null;
+		
+		String selectSQL = "call piattaforma_videogiochi_tsw.videogioco_eta(?, ?)";
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, min);
+			preparedStatement.setInt(2, max);
+			
+			System.out.println("doRetrieveVideogiocoPiuGiocatoDa: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				bean = this.doRetrieveByCodice(rs.getInt("codice"), "");
+			}
+			connection.commit();
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return bean;
+	}
+	
 }
