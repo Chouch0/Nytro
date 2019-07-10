@@ -1,3 +1,4 @@
+<%@page import="nytro.model.GiocatoreBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 import="nytro.model.AccountBean, java.util.ArrayList, nytro.model.VideogiocoBean"%>
 
@@ -7,110 +8,62 @@ import="nytro.model.AccountBean, java.util.ArrayList, nytro.model.VideogiocoBean
 %>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Profilo"/>	</jsp:include>	
-
-
-<h1><%=account.getUsername() %></h1>
-
-<p>
-	<%=account.toString()%>
-</p>
-
-<script type="text/javascript">
-	
-	var borderOk = '2px solid green';
-	var borderNo = '2px solid red';
-	var passwordOk = false;
-	
-	function validaPassword() {
-		var inputpw = document.forms['cambiamoPassword']['cambiaPassword'];
-		var inputpwconf = document.forms['cambiamoPassword']['cambiaPasswordConferma'];
-		var password = inputpw.value;
-		if (password.length >= 8 && password.toUpperCase() != password
-				&& password.toLowerCase() != password && /[0-9]/.test(password)) {
-			inputpw.style.border = borderOk;
-
-			if (password == inputpwconf.value) {
-				inputpwconf.style.border = borderOk;
-				document.getElementById("errorPssw").innerHTML = "";
-				passwordOk = true;
-			} else {
-				inputpwconf.style.border = borderNo;
-				document.getElementById("errorPssw").innerHTML = "Le due password devono coincidere"
-				passwordOk = false;
-			}
-		} else {
-			inputpw.style.border = borderNo;
-			inputpwconf.style.border = borderNo;
-			document.getElementById("errorPssw").innerHTML = "La password deve contenere almeno una maiuscola, un numero e almeno 8 caratteri";
-			passwordOk = false;
-		}
-		if(passwordOk) {
-			document.getElementById("subPassword").disabled = false;
-		} else {
-			document.getElementById("subPassword").disabled = true;
-		}
-	}
-	
-	var phoneOk=false;
-	
-	function validaTelefono() {
-		var input = document.forms['cambiamoTelefono']['phone'];
-		if(input.value.match(/^\d{10}$/)) {
-			input.style.border = borderOk;
-			document.getElementById("errorPhone").innerHTML = "";
-			document.getElementById("subPhone").disabled = false;
-			phoneOk = true;
-		} else {
-			input.style.border = borderNo;
-			document.getElementById("errorPhone").innerHTML = "Formato sbagliato";
-			document.getElementById("subPhone").disabled = true;
-			phoneOk = false;
-		}
-		
-		if(phoneOk) {
-			document.getElementById("subPhone").disabled = false;
-		} else {
-			document.getElementById("subPhone").disabled = true;
-		}
-	}
-</script>
-
-<h1>Cambia cose</h1>
-
-<h2>Cambia password</h2>
-<form name="cambiamoPassword" action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
+<link href="/NYTRO/css/profiloStyle.css" type="text/css" rel="stylesheet">	
+<div id="informazioniAccount">
+<div id="account">
+	<h1><%=account.getUsername() %></h1>
+	<div id="imgProfilo">
+	<% if(account.getImgProfilo() != null) {%>
+		<img src="/NYTRO/image?id=<%=account.getUsername() %>" alt="<%=account.getUsername()%>">
+	<%} else {%>
+		<img src="/NYTRO/img/default-profile.png" alt="<%=account.getUsername()%>">
+	<%} %>
+	</div>
+	<p class="opzione" onclick='show(document.getElementById("cambiaImg"))'>Cambia immagine del profilo</p>
+	<form id="cambiaImg" action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
+		<input type="file" name="photo" size="50"/>
+		<input type="submit" value="Vai">
+	</form>
+</div>
+<div id="modifiche1">
+<h2 class="opzione" onclick='show(document.getElementById("pwd"))'>Modifica password</h2>
+<p>Per modificare la password dovrai prima inserire quella attuale.</p>
+<form id="pwd" name="cambiamoPassword" action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="password" name="cambiaPassword" oninput="validaPassword()" placeholder="Password" required> 
 <input type="password" name="cambiaPasswordConferma" oninput="validaPassword()" placeholder="Conferma Password" required> 
 <p id="errorPssw"></p>
 <input id="subPassword" type="submit" value="Vai" disabled>
 </form>
 
-<h2>Cambia e-mail</h2>
-<form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
+<h2 class="opzione" onclick='show(document.getElementById("email"))'>Modifica e-mail</h2>
+<p><%=account.getEmail() %></p>
+<form id="email" action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="email" name="cambiaEmail" placeholder="e-mail" required>
 <input type="submit" value="Vai">
 </form>
-
-<h2>Cambia e-mail recupero</h2>
-<form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
+<h2 class="opzione" onclick='show(document.getElementById("emailRec"))'>Modifica e-mail recupero</h2>
+<p><%=account.getEmailRecupero() %></p>
+<form id="emailRec" action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="email" name="cambiaEmailRecupero" placeholder="e-mail recupro" required>
 <input type="submit" value="Vai">
 </form>
-
-<h2>Cambia cellulare</h2>
-<form name="cambiamoTelefono" action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
+</div>
+<div id ="modifiche2">
+<%if(account.getCellulare() != null) {%>
+	<h2 class="opzione" onclick='show(document.getElementById("cell"))'>Modifica cellulare</h2>
+	<p><%=account.getCellulare() %></p>
+<%}else {%>
+	<h2 class="opzione" onclick='show(document.getElementById("cell"))'>Inserisci cellulare</h2>
+	<p>Molte persone hanno un solo livello di protezione dei loro account: la password.<br/>Con la verifica in due passaggi, se un malintenzionato supera il livello della password, dovrà comunque avere il tuo telefono per accedere al tuo account.</p>
+<%} %>
+<form id="cell" name="cambiamoTelefono" action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input id="cambiaTelefono" type="tel" name="phone" oninput="validaTelefono()" placeholder="Cellulare">
 <p id="errorPhone"></p>
 <input id="subPhone" type="submit" value="Vai" disabled>
 </form>
 
-<h2>Cambia immagine del profilo</h2>
-<form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
-<input type="file" name="photo" size="50"/>
-<input type="submit" value="Vai">
-</form>
-
 <%if(account.getRuolo()==0){ %>
+
 <h2>Cambia nome</h2>
 <form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="text" name="cambiaNome" placeholder="Nome" required>
@@ -126,15 +79,21 @@ import="nytro.model.AccountBean, java.util.ArrayList, nytro.model.VideogiocoBean
 <%} %>
 
 <%if(account.getRuolo()==1){ %>
-<h2>Cambia data di nascita</h2>
-<form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
+<% GiocatoreBean x = (GiocatoreBean) account;
+if(x.getDataNascita() == null) {%>
+	<h2 class="opzione" onclick='show(document.getElementById("nascita"))'>Inserisci data di nascita</h2>
+	<p>Inserire la tua data di nascita ti darà la possibilità di accedere a videogiochi soggetti a limiti di età.</p>
+<%}%>
+<form id="nascita" action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="hidden" name="cambiaDataNascita" value="true">
 <label>Data di nascita<input type="date" name="newDataDiNascita" min="1900-01-01" max="2032-12-31"></label>
 <input type="submit" value="Vai">
 </form>
-
-<h2>Cambia genere</h2>
-<form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
+<% if(x.getGenere() == null) {%>
+	<h2 class="opzione" onclick='show(document.getElementById("genere"))'>Inserisci genere</h2>
+	<p>Inserire il tuo genere ci darà la possibilità di consigliarti videogiochi più adatti alle tue esigenze.</p>
+<%}%>
+<form id="genere" action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="radio" name="cambiaGenere" value="m" required> Maschile<br>
 <input type="radio" name="cambiaGenere" value="f"> Femminile<br>
 <input type="submit" value="Vai">
@@ -142,20 +101,20 @@ import="nytro.model.AccountBean, java.util.ArrayList, nytro.model.VideogiocoBean
 <%} %>
 
 <%if(account.getRuolo()==2){ %>
-<h2>Cambia nome casa editrice</h2>
-<form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
+<h2 class="opzione" onclick='show(document.getElementById("casa"))'>Modifica il nome della casa editrice</h2>
+<form id="casa" action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="text" name="cambiaNomeCasaEditrice" placeholder="Nome casa editrice" required>
 <input type="submit" value="Vai">
 </form>
 
-<h2>Cambia CEO</h2>
-<form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
+<h2 class="opzione" onclick='show(document.getElementById("ceo"))'>Modifica CEO</h2>
+<form id="ceo" action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="text" name="cambiaCEO" placeholder="Nome CEO" required>
 <input type="submit" value="Vai">
 </form>
 
-<h2>Cambia sito web</h2>
-<form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
+<h2 class="opzione" onclick='show(document.getElementById("sito"))'>Modifica sito web</h2>
+<form id="sito" action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="text" name="cambiaSitoWEB" placeholder="Sito web" required>
 <input type="submit" value="Vai">
 </form>
@@ -273,5 +232,72 @@ if(videogiocoPiuGiocatoDa!=null){%>
 	</p>
 	<%} %>
 <%} %>
-
+</div>
+</div>
+<script type="text/javascript">
+		
+		var borderOk = '2px solid green';
+		var borderNo = '2px solid red';
+		var passwordOk = false;
+		
+		function validaPassword() {
+			var inputpw = document.forms['cambiamoPassword']['cambiaPassword'];
+			var inputpwconf = document.forms['cambiamoPassword']['cambiaPasswordConferma'];
+			var password = inputpw.value;
+			if (password.length >= 8 && password.toUpperCase() != password
+					&& password.toLowerCase() != password && /[0-9]/.test(password)) {
+				inputpw.style.border = borderOk;
+	
+				if (password == inputpwconf.value) {
+					inputpwconf.style.border = borderOk;
+					document.getElementById("errorPssw").innerHTML = "";
+					passwordOk = true;
+				} else {
+					inputpwconf.style.border = borderNo;
+					document.getElementById("errorPssw").innerHTML = "Le due password devono coincidere"
+					passwordOk = false;
+				}
+			} else {
+				inputpw.style.border = borderNo;
+				inputpwconf.style.border = borderNo;
+				document.getElementById("errorPssw").innerHTML = "La password deve contenere almeno una maiuscola, un numero e almeno 8 caratteri";
+				passwordOk = false;
+			}
+			if(passwordOk) {
+				document.getElementById("subPassword").disabled = false;
+			} else {
+				document.getElementById("subPassword").disabled = true;
+			}
+		}
+		
+		var phoneOk=false;
+		
+		function validaTelefono() {
+			var input = document.forms['cambiamoTelefono']['phone'];
+			if(input.value.match(/^\d{10}$/)) {
+				input.style.border = borderOk;
+				document.getElementById("errorPhone").innerHTML = "";
+				document.getElementById("subPhone").disabled = false;
+				phoneOk = true;
+			} else {
+				input.style.border = borderNo;
+				document.getElementById("errorPhone").innerHTML = "Formato sbagliato";
+				document.getElementById("subPhone").disabled = true;
+				phoneOk = false;
+			}
+			
+			if(phoneOk) {
+				document.getElementById("subPhone").disabled = false;
+			} else {
+				document.getElementById("subPhone").disabled = true;
+			}
+		}
+		
+		function show(elem) {
+			if(elem.style.display == "none")
+				elem.style.display ="block";
+			else
+				elem.style.display ="none";	
+		}
+	</script>
 <%@include file="footer.jsp"%>						

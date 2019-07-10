@@ -1,0 +1,44 @@
+@charset "ISO-8859-1";
+
+#imgProfilo {
+	display: table-cell;
+	width: 180px;
+	height: 180px;
+	padding-right: 2%;
+}
+
+#account img {
+	width: 100%;
+}
+
+#cambiaImg, #pwd, #email, #emailRec, #cell, #nascita, #genere, #casa, #ceo, #sito {
+	display: none;
+}
+
+.opzione {
+	cursor: pointer;
+}
+
+#informazioniAccount {
+	display: table;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+#account {
+	width: 200px;
+	display: table-cell;
+	margin: 0%, 2%, 0%, 2%;
+}
+
+#modifiche1 {
+	width: 35%;
+	display: table-cell;
+	margin: 0%, 2%, 0%, 2%;
+}
+
+#modifiche2 {
+	width: 35%;
+	display: table-cell;
+	margin: 0%, 2%, 0%, 2%;
+}

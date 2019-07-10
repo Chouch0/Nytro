@@ -21,7 +21,7 @@ import nytro.model.CasaEditriceBean;
 @WebServlet("/RegistrazioneCasaEditrice")
 @MultipartConfig(maxFileSize = 16177215)
 public class RegistrazioneCasaEditrice extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -5219907705325033810L;
 	private final AccountDAO accountDAO = new AccountDAO();
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -58,7 +58,8 @@ public class RegistrazioneCasaEditrice extends HttpServlet {
 		
 		try {
 			accountDAO.doSaveCasaEditrice(utente);
-			accountDAO.doUploadImage(utente);
+			if (request.getPart("photo") != null && request.getPart("photo").getSize() > 0)
+				accountDAO.doUploadImage(utente);
 			String url = response.encodeURL("jsp/index.jsp");
 			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 			dispatcher.forward(request, response);
