@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="header.jsp"><jsp:param name="pageTitle" value="Registrazione casa editrice"/></jsp:include>
 <link href="/NYTRO/css/RegStyle.css" type="text/css" rel="stylesheet">
 
 <h1>Registrazione casa editrice</h1>

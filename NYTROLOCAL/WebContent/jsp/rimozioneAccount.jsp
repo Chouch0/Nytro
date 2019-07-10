@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="header.jsp"><jsp:param name="pageTitle" value="Rimozione account"/></jsp:include>
 <link href="/NYTRO/css/RegStyle.css" type="text/css" rel="stylesheet">
 
 <form class="box" name="rimozione" action="<%=response.encodeURL("/NYTRO/RimozioneAccount")%>" method="post">

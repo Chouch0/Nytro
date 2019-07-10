@@ -33,14 +33,19 @@ public class AggiornaProfilo extends HttpServlet {
 		String cambiaPassword = request.getParameter("cambiaPassword");
 		if(!(cambiaPassword==null || cambiaPassword.equals(""))) {
 			String cambiaPasswordConferma = request.getParameter("cambiaPasswordConferma");
-			if(!cambiaPasswordConferma.equals(cambiaPassword))
-				throw new MyException("Password missmatch: "+cambiaPasswordConferma+" "+cambiaPassword);
-			account.setPassword(cambiaPassword);
-			try {
-				accountDAO.doUpdate(account);
-			} catch (SQLException e) {
-				throw new MyException("Fallimento aggiornamento password");
-			}
+			String vecchiaPassword = request.getParameter("vecchiaPassword");
+			if(vecchiaPassword!=null && !cambiaPasswordConferma.equals("") && vecchiaPassword!=null && !cambiaPasswordConferma.equals("")) {
+				if(!cambiaPasswordConferma.equals(cambiaPassword))
+					throw new MyException("Password missmatch: "+cambiaPasswordConferma+" "+cambiaPassword);
+				if(!account.getPassword().equals(vecchiaPassword))
+					throw new MyException("Vecchia password sbagliata");
+				account.setPassword(cambiaPassword);
+				try {
+					accountDAO.doUpdate(account);
+				} catch (SQLException e) {
+					throw new MyException("Fallimento aggiornamento password");
+				}
+			}			
 		}
 		
 		String cambiaEmail = request.getParameter("cambiaEmail");

@@ -29,8 +29,9 @@ import="nytro.model.AccountBean, java.util.ArrayList, nytro.model.VideogiocoBean
 <h2 class="opzione" onclick='show(document.getElementById("pwd"))'>Modifica password</h2>
 <p>Per modificare la password dovrai prima inserire quella attuale.</p>
 <form id="pwd" name="cambiamoPassword" action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
-<input type="password" name="cambiaPassword" oninput="validaPassword()" placeholder="Password" required> 
-<input type="password" name="cambiaPasswordConferma" oninput="validaPassword()" placeholder="Conferma Password" required> 
+<input type="password" name="vecchiaPassword" placeholder="Vecchia password*" required>
+<input type="password" name="cambiaPassword" oninput="validaPassword()" placeholder="Password*" required> 
+<input type="password" name="cambiaPasswordConferma" oninput="validaPassword()" placeholder="Conferma Password*" required> 
 <p id="errorPssw"></p>
 <input id="subPassword" type="submit" value="Vai" disabled>
 </form>
@@ -243,7 +244,9 @@ if(videogiocoPiuGiocatoDa!=null){%>
 		function validaPassword() {
 			var inputpw = document.forms['cambiamoPassword']['cambiaPassword'];
 			var inputpwconf = document.forms['cambiamoPassword']['cambiaPasswordConferma'];
+			
 			var password = inputpw.value;
+			
 			if (password.length >= 8 && password.toUpperCase() != password
 					&& password.toLowerCase() != password && /[0-9]/.test(password)) {
 				inputpw.style.border = borderOk;
