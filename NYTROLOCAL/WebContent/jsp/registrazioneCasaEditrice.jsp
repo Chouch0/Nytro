@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 <jsp:include page="header.jsp"></jsp:include>
 <link href="/NYTRO/css/RegStyle.css" type="text/css" rel="stylesheet">
 
@@ -41,6 +41,7 @@ var emailRecOk = false;
 var phoneOk = true;
 var isinOk = false;
 var nameOk = false;
+var sitoOk = false;
 var stdBorder = document.forms['registrazione']['phone'].style.border;
 
 function validaUsername() {
@@ -57,7 +58,7 @@ function validaUsername() {
 				usernameOk = true;
 			} else if(xmlHttpReq.readyState == 4 && xmlHttpReq.status == 200 && xmlHttpReq.responseText != ok){
 				input.style.border = borderNo;
-				document.getElementById("errorUsr").innerHTML = "Attenzione! Questo Username esiste gi‡.";
+				document.getElementById("errorUsr").innerHTML = "Attenzione! Questo Username esiste gi√†.";
 				usernameOk = false;
 			}
 			checkForm();
@@ -99,9 +100,12 @@ function checkSite() {
 	var input = document.forms['registrazione']['sitoWeb'];
 	if(input.value == "") {
 		input.style.border = borderNo;
+		sitoOk = false;;
 	} else {
 		input.style.border = borderOk;
+		sitoOk = true;
 	}
+	checkForm();
 }
 
 function validaISIN() {
@@ -205,7 +209,7 @@ function checkPhoneField() {
 
 
 function checkForm() {
-	if(usernameOk && passwordOk && emailOk && emailRecOk && phoneOk && nameOk && isinOk) {
+	if(usernameOk && passwordOk && emailOk && emailRecOk && phoneOk && nameOk && isinOk && sitoOk) {
 		document.getElementById("sub").disabled = false;
 		document.getElementById("errorSub").innerHTML = "";
 	} else {
