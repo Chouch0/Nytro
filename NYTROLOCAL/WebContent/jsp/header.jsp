@@ -67,7 +67,7 @@
 				-->
 					<div class = "elementoEsplora">
 						<a href="<%=response.encodeURL("/NYTRO/Catalogo")%>">Catalogo</a>
-						<a href="<%=response.encodeURL("/NYTRO/ListaCaseEditrici")%>">Case Editrici</a>
+						<a href="<%=response.encodeURL("/NYTRO/ElencoCaseEditrici")%>">Elenco Case Editrici</a>
 					</div>
 				</div>
 				</li>		

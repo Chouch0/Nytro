@@ -15,9 +15,9 @@ import="nytro.model.AccountBean, java.util.Collection, nytro.model.CasaEditriceB
 			<label>Seleziona un criterio di ordinamento
 			 <select name="order">
 			  <option value="">Nessuno</option>
-			  <option value="Username">Username</option>
-			  <option value="Data">Data ultimo accesso</option>
-			  <option value="IP">Indirizzo IP</option>
+			  <option value="account.Username">Username</option>
+			  <option value="account.Data">Data ultimo accesso</option>
+			  <option value="account.IP">Indirizzo IP</option>
 			</select> 
 			</label>
 			<input type="submit" value="Vai"/>

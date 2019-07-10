@@ -23,6 +23,7 @@ public class GiocatoreBean extends AccountBean implements Serializable {
 		this.setOra(bean.getOra());
 		this.setIp(bean.getIp());
 		this.setRuolo(bean.getRuolo());
+		this.setImgProfilo(bean.getImgProfilo());
 	}
 	
 	public String getDataNascita() {

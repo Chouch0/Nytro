@@ -31,7 +31,7 @@ public class AccountDAO {
 		
 		//Nel caso avessi voluto imporre un ordine per l'estrazione degli utenti
 		if(order!=null && !order.equals(""))
-			selectSQL += "ORDER BY "+order;
+			selectSQL += " ORDER BY "+order;
 		
 		
 		try {
@@ -58,7 +58,6 @@ public class AccountDAO {
 				bean.setImgProfilo(rs.getBinaryStream("Img_Profilo"));
 				
 				if(ruolo==0) {
-					bean = new AccountBean();	
 					users.add(bean);			//Da sostituire con AmministratoreBean nel caso in cui volessi implementare un'estrazione per tutti gli amministratori
 				}
 				else if(ruolo==1) {
@@ -78,8 +77,7 @@ public class AccountDAO {
 				}
 				else {
 					users.add(bean);
-				}				
-				
+				}					
 			}
 		} finally {
 			try {

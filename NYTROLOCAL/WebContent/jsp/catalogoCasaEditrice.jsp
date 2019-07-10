@@ -11,7 +11,7 @@ import="nytro.model.VideogiocoBean, nytro.model.AccountBean, java.util.Collectio
 <link href="/NYTRO/css/libreriaStyle.css" type="text/css" rel="stylesheet">	
 	
 	<div id="lista">
-	<h1>Catalogo completo dei videogiochi della casa editrice <%=isinCasaEditrice%></h1>
+	<h1>Catalogo completo dei videogiochi della casa editrice: <%=isinCasaEditrice%></h1>
 	<div id="ordina">
 	<form action="<%=response.encodeURL("/NYTRO/CatalogoCasaEditrice")%>" method="get">
 		<input type="hidden" name="isinCasaEditrice" value="<%=isinCasaEditrice%>">
