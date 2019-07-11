@@ -1,3 +1,5 @@
+<%@page import="nytro.model.AmministratoreBean"%>
+<%@page import="nytro.model.CasaEditriceBean"%>
 <%@page import="nytro.model.GiocatoreBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 import="nytro.model.AccountBean, java.util.ArrayList, nytro.model.VideogiocoBean"%>
@@ -63,24 +65,27 @@ import="nytro.model.AccountBean, java.util.ArrayList, nytro.model.VideogiocoBean
 <input id="subPhone" type="submit" value="Vai" disabled>
 </form>
 
-<%if(account.getRuolo()==0){ %>
+<%if(account.getRuolo()==0){ 
+AmministratoreBean x = (AmministratoreBean) account;%>
 
-<h2>Cambia nome</h2>
-<form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
+<h2 class="opzione" onclick='show(document.getElementById("nomeAdmin"))'>Cambia nome</h2>
+<p><%=x.getNome() %></p>
+<form id="nomeAdmin" action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="text" name="cambiaNome" placeholder="Nome" required>
 <input type="submit" value="Vai">
 </form>
 
-<h2>Cambia cognome</h2>
-<form action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
+<h2 class="opzione" onclick='show(document.getElementById("cognome"))'>Cambia cognome</h2>
+<p><%=x.getCognome() %></p>
+<form id="cognome" action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="text" name="cambiaCognome" placeholder="Cognome" required>
 <input type="submit" value="Vai">
 </form>
 
 <%} %>
 
-<%if(account.getRuolo()==1){ %>
-<% GiocatoreBean x = (GiocatoreBean) account;
+<%if(account.getRuolo()==1){
+GiocatoreBean x = (GiocatoreBean) account;
 if(x.getDataNascita() == null) {%>
 	<h2 class="opzione" onclick='show(document.getElementById("nascita"))'>Inserisci data di nascita</h2>
 	<p>Inserire la tua data di nascita ti darà la possibilità di accedere a videogiochi soggetti a limiti di età.</p>
@@ -101,20 +106,24 @@ if(x.getDataNascita() == null) {%>
 </form>
 <%} %>
 
-<%if(account.getRuolo()==2){ %>
+<%if(account.getRuolo()==2){ 
+CasaEditriceBean x = (CasaEditriceBean) account;%>
 <h2 class="opzione" onclick='show(document.getElementById("casa"))'>Modifica il nome della casa editrice</h2>
+<p><%=x.getNomeCasaEditrice() %></p>
 <form id="casa" action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="text" name="cambiaNomeCasaEditrice" placeholder="Nome casa editrice" required>
 <input type="submit" value="Vai">
 </form>
 
 <h2 class="opzione" onclick='show(document.getElementById("ceo"))'>Modifica CEO</h2>
+<p><%=x.getCEO() %></p>
 <form id="ceo" action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="text" name="cambiaCEO" placeholder="Nome CEO" required>
 <input type="submit" value="Vai">
 </form>
 
 <h2 class="opzione" onclick='show(document.getElementById("sito"))'>Modifica sito web</h2>
+<p><%=x.getSitoWeb() %></p>
 <form id="sito" action="<%=response.encodeURL("/NYTRO/AggiornaProfilo")%>" method="post" enctype="multipart/form-data">
 <input type="text" name="cambiaSitoWEB" placeholder="Sito web" required>
 <input type="submit" value="Vai">

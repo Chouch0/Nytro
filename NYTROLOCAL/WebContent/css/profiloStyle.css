@@ -11,7 +11,7 @@
 	width: 100%;
 }
 
-#cambiaImg, #pwd, #email, #emailRec, #cell, #nascita, #genere, #casa, #ceo, #sito {
+#cambiaImg, #pwd, #email, #emailRec, #cell, #nascita, #genere, #casa, #ceo, #sito, #nomeAdmin, #cognome {
 	display: none;
 }
 
