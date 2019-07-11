@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
 import="nytro.model.AccountBean, java.util.Collection, nytro.model.CasaEditriceBean"%>
-<head>
-	<link href="/NYTRO/css/listaGiocatori.css" type="text/css" rel="stylesheet">
-</head>
 <%
 	Collection<AccountBean> caseEditrici = (Collection<AccountBean>) request.getAttribute("caseEditrici");
 	
@@ -10,10 +7,10 @@ import="nytro.model.AccountBean, java.util.Collection, nytro.model.CasaEditriceB
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Elenco Case Editrici"/>	</jsp:include>
 
-<link href="/NYTRO/css/friendlistStyle.css" type="text/css" rel="stylesheet">			
+<link href="/NYTRO/css/caseStyle.css" type="text/css" rel="stylesheet">			
 	<div id="lista">
 	<h1>Elenco case editrici</h1>
-	<div id="select">
+	<div id="aggiungi">
 			<form action="<%=response.encodeURL("/NYTRO/ElencoCaseEditrici")%>" method="get">
 			<label>Seleziona un criterio di ordinamento
 			 <select name="order">
@@ -42,10 +39,7 @@ import="nytro.model.AccountBean, java.util.Collection, nytro.model.CasaEditriceB
 			<li><form action="<%=response.encodeURL("/NYTRO/CatalogoCasaEditrice?isinCasaEditrice="+y.getISIN())%>" method="post">
 				<input type="submit" value="Visualizza catalogo">
 			</form></li>
-			<li class="username"><%=y.getNomeCasaEditrice() %></li>	
-			<li>ISIN: <%=y.getISIN() %></li>		
-			<li>E-mail: <%=x.getEmail() %></li>
-			<li>Telefono: <%=x.getCellulare() %></li>
+			<li class="username"><%=y.getNomeCasaEditrice() %></li>
 			<li>Sito Web: <%=y.getSitoWeb() %></li>
 		</div>
 		</ul>

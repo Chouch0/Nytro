@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
 import="nytro.model.AccountBean, java.util.Collection, nytro.model.CasaEditriceBean"%>
-<head>
-	<link href="/NYTRO/css/listaGiocatori.css" type="text/css" rel="stylesheet">
-</head>
 <%
 	Collection<AccountBean> caseEditrici = (Collection<AccountBean>) request.getAttribute("caseEditrici");
 	
 %>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Lista Case Editrici"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
+	<link href="/NYTRO/css/listaGiocatori.css" type="text/css" rel="stylesheet">
 	<h1>Lista case editrici</h1>
 		<div id="select">
 			<form action="<%=response.encodeURL("/NYTRO/ListaCaseEditrici")%>" method="get">
