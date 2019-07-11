@@ -66,8 +66,11 @@ public class Catalogo extends HttpServlet {
 			catalogoRichiesto = catalogo;
 		}
 		
+		List<String> nome = new ArrayList<String>();
+		
 		for(VideogiocoBean x : catalogoRichiesto) {
 			try {
+				nome.add(videogiocoDAO.doRetrieveCasaByCodice(x.getCodice()));
 				List<String> tmp = x.getGenere();
 				for(String y : tmp) {
 					if(!generiPresenti.contains(y.toLowerCase()))
@@ -80,6 +83,7 @@ public class Catalogo extends HttpServlet {
 		
 		request.setAttribute("generiPresenti", generiPresenti);
 		request.setAttribute("catalogo", catalogoRichiesto);
+		request.setAttribute("nomeCasa", nome);
 
 		String url = response.encodeURL("jsp/catalogo.jsp");
 		request.getRequestDispatcher(url).forward(request, response);

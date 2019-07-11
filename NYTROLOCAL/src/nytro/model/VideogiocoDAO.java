@@ -1224,6 +1224,40 @@ public class VideogiocoDAO {
 		
 		return bean;
 	}
+
+	public String doRetrieveCasaByCodice(int codice) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String nome = null;
+		
+		String selectSQL = "SELECT Nome_Casa_Editrice FROM azienda, videogioco WHERE codice = ? AND videogioco.ISIN = azienda.ISIN ";
+				
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, codice);
+			
+			System.out.println("doRetrieveCasaByCodice: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				nome = rs.getString("Nome_Casa_Editrice");
+			}
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return nome;
+	}
+
 	
 	public ArrayList<VideogiocoBean> doRetrievePerAnnoDiRimozione(String annoRimozione) throws SQLException {
 

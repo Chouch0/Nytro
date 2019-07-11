@@ -1,9 +1,10 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
 import="nytro.model.VideogiocoBean, java.util.Collection, java.util.ArrayList"%>
 <%
 	Collection<VideogiocoBean> catalogo = (Collection<VideogiocoBean>) request.getAttribute("catalogo");
 	ArrayList<String> generiPresenti = (ArrayList<String>) request.getAttribute("generiPresenti");
-	
+	List<String> nomi = (List<String>) request.getAttribute("nomeCasa");
 %>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Catalogo"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
@@ -43,7 +44,8 @@ import="nytro.model.VideogiocoBean, java.util.Collection, java.util.ArrayList"%>
 	<input type="submit" value="Vai"/>
 	</form>
 	</div>
-	<%if(catalogo!=null) {%>
+	<%if(catalogo!=null) {
+		int i = 0;%>
 		<div id="tabella">
 			<%
 				for(VideogiocoBean x : catalogo){
@@ -59,7 +61,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, java.util.ArrayList"%>
 			<%} %></div></li>		
 				
 			<li class="titolo"><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+x.getCodice())%>"><%=x.getTitolo()%></a></li>
-			<li><%=x.getISIN() %></li>
+			<li><%=nomi.get(i) %></li>
 			<li><%=x.getGenere().toString()%></li>
 			<li>Voto: <%=x.getVotoMedio() %></li>
 			<td>PEGI: <%=x.getPEGI()%></td>
@@ -68,6 +70,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, java.util.ArrayList"%>
 		</div>
 		</ul>	
 			<%
+				i++;
 				}
 			%>
 	<%} %>
