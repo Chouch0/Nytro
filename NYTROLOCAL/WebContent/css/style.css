@@ -2,16 +2,20 @@
 
 body {
 	font-family: arial, sans-serif;
+	background-color: #f2f4f6;
 }
 
 
 header, footer {
 	font-size: 3em;
+	margin: -10px;
+	margin-bottom: -17px;
 }
 
 header {
-	background-color: #ddd;
+	background-color: #043d5d;
 	padding-top: 1%;
+	padding-bottom: 0.8%;
 }
 
 #logoHeader {
@@ -38,45 +42,51 @@ header a, header a:visited, header a:hover, header a:active, footer a, footer a:
 }
 
 footer {
-	background-color: #ddd;
-	color:#666;
+	background-color: #043d5d;
+	color:#60a9a6;
 	font-size: 0.8em;
-	margin-top:1%;
 	padding: 1%;
+	height: 100%;
+	padding-bottom: 2%;
 }
 
 #opzioni {
 	font-size: 0.25em;
-	color: #666;
+	color: #60a9a6;
 	float: right;
 	margin: 1%;
 }
-
+nav {
+	margin: -10px;
+}
 nav ul{ 
 	list-style-type: none;
-	margin: 0;
-	padding: 0;
 	overflow:visible;
-	border: 1px solid #e7e7e7;
-	background-color: #f3f3f3;
+	background-color: #60a9a6;
 	width: 100%;
+	margin-bottom: 20px;
 }
 
 .selected {
-	background-color: #ddd;
+	background-color: #c34271;
 }
 
 nav ul li:last-child {
 	float: right;
+	margin-right: 20%;
 }
 
 nav li {
 	display: inline-block;
 }
 
+nav li:first-child {
+	margin-left: 20%;
+}
+
 nav li a {
 	display: block;
-	color: #666;
+	color: #f2f2f2;
 	text-align: center;
 	padding: 14px 16px;
 	text-decoration: none;
@@ -88,7 +98,7 @@ nav li a {
 }
 
 nav li a:hover {
-	background-color: #ddd;    
+	background-color: #c34271;    
 	-webkit-transform: scale(1.15,1.15);
     -moz-transform: scale(1.15,1.15);
     -o-transform: scale(1.15,1.15);
@@ -98,7 +108,7 @@ nav li a:hover {
 
 .elementoLogin, .elementoEsplora, .elementoUser {
 	position: absolute;
-	background-color: #f1f1f1;
+	background-color: #60a9a6;
   	min-width: 160px;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	z-index: 1;
@@ -125,7 +135,7 @@ nav li a:hover {
 	border: none;
 	text-decoration: none;
 	display: block;
-	color: #666;
+	color: #f2f2f2;
 	padding: 14px 16px;
 	text-align: center;
 	text-decoration: none;
@@ -142,7 +152,7 @@ nav li a:hover {
 }
 
 .elementoLogin form input[type=button]:hover, .elementoLogin form input[type=submit]:hover, .elementoLogin form input[type=reset]:hover {
-	background-color: #ddd;    
+	background-color: #c34271;    
 	-webkit-transform: scale(1.08,1.08);
     -moz-transform: scale(1.08,1.08);
     -o-transform: scale(1.08,1.08);
@@ -151,7 +161,7 @@ nav li a:hover {
 }
 
 .elementoLogin a:hover, .elementoEsplora a:hover, .elementoUser a:hover {
-	background-color: #ddd;    
+	background-color: #c34271;    
 	-webkit-transform: scale(1.08,1.08);
     -moz-transform: scale(1.08,1.08);
     -o-transform: scale(1.08,1.08);
