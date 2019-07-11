@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import nytro.model.AccountBean;
+import nytro.model.CasaEditriceBean;
+import nytro.model.GiocatoreBean;
 
 public class LogFilter implements Filter {
 	
@@ -18,7 +20,7 @@ public class LogFilter implements Filter {
 	private final String[] noRuolo = {"Ricerca","RicercaAjax","ricerca.jsp","Index","Login","LoginForm","RecuperaPassword","RegistrazioneForm","RegistrazioneUtente","VerificaUsername","contatti.jsp", "error.jsp", "index.jsp", "loginForm.jsp", "registrazioneForm.jsp", "image"};
 	private final String[] adminRuolo = {"Ricerca","RicercaAjax","ricerca.jsp","Index","AggiornaProfilo","Catalogo","CatalogoCasaEditrice","ListaCaseEditrici","RegistrazioneCasaEditrice", "RimozioneAccount","ListaGiocatori","Logout","Profilo","VerificaUsername","Videogioco","contatti.jsp", "error.jsp", "index.jsp","profilo.jsp", "listaCadeEditrici.jsp", "listaGiocatori.jsp", "registrazioneCasaEditrice.jsp", "rimozioneAccount.jsp","videogioco.jsp", "image"};
 	private final String[] giocatoreRuolo = {"Ricerca","RicercaAjax","ricerca.jsp","Index","AggiornaProfilo","AggiungiFriend","Catalogo","CatalogoCasaEditrice","Friendlist","GestoreCarrello","Libreria","ElencoCaseEditrici","Logout","Profilo","RimuoviFriend","VerificaUsername","Videogioco","contatti.jsp", "error.jsp", "index.jsp","profilo.jsp", "carrello.jsp", "catalogo.jsp", "catalogoCasaEditrice.jsp", "friendlist.jsp", "libreria.jsp", "elencoCadeEditrici.jsp", "videogioco.jsp", "image"};
-	private final String[] aziendaRuolo = {"Ricerca","RicercaAjax","ricerca.jsp","Index","AggiornaProfilo","Logout","Profilo","Pubblicazioni","VerificaUsername","Videogioco","contatti.jsp", "error.jsp", "index.jsp", "profilo.jsp", "catalogoCasaEditrice.jsp", "pubblicazioni.jsp", "videogioco.jsp", "image"};
+	private final String[] aziendaRuolo = {"Ricerca","RicercaAjax","ricerca.jsp","Index","AggiornaProfilo","Logout","Profilo","Catalogo","CatalogoCasaEditrice","Pubblicazioni","VerificaUsername","Videogioco","contatti.jsp", "error.jsp", "index.jsp", "profilo.jsp", "catalogoCasaEditrice.jsp", "pubblicazioni.jsp", "videogioco.jsp", "image"};
     
 	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -56,6 +58,7 @@ public class LogFilter implements Filter {
 					}
 				}
 			} else if(ruolo==1) {
+				request.setAttribute("account", (GiocatoreBean) account);
 				System.out.println("Ruolo: "+ruolo);
 				for(String x : giocatoreRuolo) {
 					System.out.println(dest +" contiene "+x+" ?");
@@ -66,6 +69,7 @@ public class LogFilter implements Filter {
 					}
 				}
 			} else if(ruolo==2) {
+				request.setAttribute("account", (CasaEditriceBean) account);
 				System.out.println("Ruolo: "+ruolo);
 				for(String x : aziendaRuolo) {
 					System.out.println(dest +" contiene "+x+" ?");

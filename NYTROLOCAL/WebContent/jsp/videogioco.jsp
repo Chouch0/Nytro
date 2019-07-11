@@ -1,5 +1,7 @@
+<%@page import="nytro.model.CasaEditriceBean"%>
+<%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
-import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBean, nytro.model.RecensioneBean"%>
+import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBean, nytro.model.RecensioneBean, nytro.model.GiocatoreBean"%>
 <%
 	VideogiocoBean videogiocoDetailed = (VideogiocoBean) request.getAttribute("videogiocoDetailed");
 	Collection<RecensioneBean> recensioni = (Collection<RecensioneBean>) request.getAttribute("recensioni");
@@ -22,10 +24,20 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		
 		<%
 		if(account.getRuolo()==1){
+			GiocatoreBean giocatore = (GiocatoreBean) request.getAttribute("account");
 			if(videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoPagamentoBean")){
 				if(possibileAggiungereAgliAcquisti!=null && possibileAggiungereAgliAcquisti.equalsIgnoreCase("true")){
 					String url = response.encodeURL("GestoreCarrello?action=addCart&codiceVideogioco="+videogiocoDetailed.getCodice());
-					%><a href="<%=url%>">Inserisci nel carrello</a><br/><%
+					if(giocatore.getDataNascita() == null){
+						%><a href="<%=response.encodeURL("/NYTRO/Profilo")%>">E necessario inserire la data di nascita per procedere all'acquisto.</a><%
+					} else {
+						LocalDate data = LocalDate.parse(giocatore.getDataNascita());
+						if (LocalDate.now().getYear() - data.getYear() < 18) {
+						%><p>E necessario avere 18+ anni per procedere all'acquisto.</p> <%
+						} else {
+						%><a href="<%=url%>">Inserisci nel carrello</a><br/><%
+						}
+					}
 				} else {
 					if(possibileAggiungereAllaLibreria!=null && possibileAggiungereAllaLibreria.equalsIgnoreCase("true")){
 						%><a href="<%=response.encodeURL("Libreria?aggiungiVideogioco="+videogiocoDetailed.getCodice())%>">Inserisci nella libreria</a><br/><%
@@ -39,9 +51,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		}
 		%>	
 	</p>
-	
-	
-	
+		
 	<h2>Recensioni</h2>
 	<p>
 	<%if(recensioni!=null){ 
@@ -90,7 +100,9 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 				
 		<%} %>
 		
-	<%if(account.getRuolo()==2) {%>
+	<%if(account.getRuolo()==2) {
+		CasaEditriceBean casa = (CasaEditriceBean) request.getAttribute("account");
+		if (casa.getISIN().equals(videogiocoDetailed.getISIN())){%>
 		<h3>Cambia immagine del videogioco</h3>
 		
 		<form action="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+videogiocoDetailed.getCodice())%>" method="post" enctype="multipart/form-data">
@@ -137,11 +149,11 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 			</form>
 		<%} %>
 				
-	<%} %>
+	<%}} %>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
 		$("document").ready(function prova(){
 			$("#esplora").addClass("selected");
 		})
 	</script>
-<%@include file="footer.jsp"%>							
+<%@include file="footer.jsp"%>

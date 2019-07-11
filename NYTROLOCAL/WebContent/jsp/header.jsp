@@ -56,7 +56,7 @@
 					<a href="<%=response.encodeURL("/NYTRO/Friendlist")%>" id="friendlist">Friendlist</a>
 				</li>
 			<% } %>
-			<% if(account!=null && (ruolo==0 || ruolo==1)){ %>
+			<% if(account!=null && (ruolo==0 || ruolo==1 || ruolo == 2)){ %>
 				<li>
 				<div id = "menuEsplora">
 					<a href="#" id="esplora">Esplora</a>

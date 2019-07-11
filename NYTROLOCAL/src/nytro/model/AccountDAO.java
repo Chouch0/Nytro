@@ -90,7 +90,78 @@ public class AccountDAO {
 		
 		return users;
 	}
-
+	
+	public GiocatoreBean doRetrieveGiocatore(AccountBean bean) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		GiocatoreBean giocatore = new GiocatoreBean(bean);
+		
+		String selectSQL = "SELECT * FROM giocatore WHERE Username = ?";
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, bean.getUsername());
+			
+			System.out.println("doRetrieveGiocatore: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				giocatore.setDataIscrizione(rs.getString("Data_Iscrizione"));
+				giocatore.setDataNascita(rs.getString("Data_Nascita"));
+				giocatore.setGenere(rs.getString("Genere"));
+			}
+			connection.commit();
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return giocatore;
+	}
+	
+	public CasaEditriceBean doRetrieveCasaEditrice(AccountBean bean) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		CasaEditriceBean casa = new CasaEditriceBean(bean);
+		
+		String selectSQL = "SELECT * FROM azienda, casa_editrice WHERE Username = ? AND azienda.ISIN = casa_editrice.ISIN";
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, bean.getUsername());
+			
+			System.out.println("doRetrieveGiocatore: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				casa.setISIN(rs.getString("ISIN"));
+				casa.setNomeCasaEditrice(rs.getString("Nome_Casa_Editrice"));
+				casa.setCEO(rs.getString("CEO"));
+				casa.setSitoWeb(rs.getString("Sito_Web"));
+			}
+			connection.commit();
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return casa;
+	}
+	
 	public AccountBean doRetrieveByUsernamePassword(String username, String password) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;

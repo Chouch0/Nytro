@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import nytro.model.AccountDAO;
+import nytro.model.CasaEditriceBean;
+import nytro.model.GiocatoreBean;
 import nytro.exceptions.MyException;
 import nytro.model.AccountBean;
 
@@ -49,8 +51,29 @@ public class Login extends HttpServlet {
 		} catch (SQLException e) {
 			throw new MyException("Username e/o password vuoti.");
 		}
-		
 		request.getSession().setAttribute("account", account);
+		
+		if(account.getRuolo() == 1) {
+			try {
+				GiocatoreBean x = accountDAO.doRetrieveGiocatore(account);
+				request.removeAttribute("account");
+				request.getSession().setAttribute("account", x);
+				System.out.println("Giocatore settato nella request");
+			} catch (SQLException e) {
+				throw new MyException("Errore giocatore");
+			}
+		}
+		if(account.getRuolo() == 2) {
+			try {
+				CasaEditriceBean x = accountDAO.doRetrieveCasaEditrice(account);
+				request.removeAttribute("account");
+				request.getSession().setAttribute("account", x);
+				System.out.println("Casa editrice settata nella request");
+			} catch (SQLException e) {
+				throw new MyException("Errore casa editrice");
+			}
+		}
+
 	
 		String url = response.encodeURL("jsp/index.jsp");
 		response.sendRedirect(url);
