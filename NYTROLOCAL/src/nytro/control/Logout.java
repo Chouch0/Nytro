@@ -15,7 +15,7 @@ public class Logout extends HttpServlet {
 		request.getSession().removeAttribute("account");
 		request.getSession().invalidate();
 
-		String url = response.encodeURL("/NYTRO/jsp/index.jsp");
+		String url = response.encodeURL("/NYTRO/Index");
 		response.sendRedirect(url);
 	}
 
