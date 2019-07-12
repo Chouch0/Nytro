@@ -4,5 +4,6 @@
 		<section>IVA inclusa nel prezzo (ove applicabile).</section>
 		<p>Prova 1</p>
 	</footer>
+</div>
 </body>
 </html>

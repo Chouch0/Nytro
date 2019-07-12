@@ -36,22 +36,22 @@ import="java.util.Collection, nytro.model.AccountBean"%>
 		</div>
 		</ul>
 			<%}
-	} %>
-	</div>
-	<div id="aggiungi">
-	<form action="<%=response.encodeURL("/NYTRO/Friendlist")%>" method="post">
-	<label>
-		Inserisci l'username del giocatore da aggiungere:
-		<input type="text" name="futuroAmico" placeholder="Username">
-		<input type="submit" value="Aggiungi">
-	</label>
-	</form>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script>
-		$("document").ready(function prova(){
-			$("#friendlist").addClass("selected");
-		})
-	</script>
-	</div>
+		} %>
+		</div>
+		<div id="aggiungi">
+		<form action="<%=response.encodeURL("/NYTRO/Friendlist")%>" method="post">
+		<label>
+			Inserisci l'username del giocatore da aggiungere:
+			<input type="text" name="futuroAmico" placeholder="Username">
+			<input type="submit" value="Aggiungi">
+		</label>
+		</form>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script>
+			$("document").ready(function prova(){
+				$("#friendlist").addClass("selected");
+			})
+		</script>
+		</div>
 	</div>
 <%@include file="footer.jsp"%>							

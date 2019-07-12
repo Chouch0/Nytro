@@ -1,6 +1,6 @@
 @charset "ISO-8859-1";
 
-.profilo {
+.img {
 	height : 100px;
 	width:100px;
 	float: left;
@@ -9,13 +9,20 @@
 	background-color: #ddd;
 }
 
-.profilo img {
+.img img {
 	height:100px;
 }
 
 #lista {
-	width: 80%;
-	margin: 10px auto;
+	margin-left: 15%;
+	margin-right:15%;
+	background-color: #f2f4f6;
+	margin-top: -25px;
+	padding-bottom: 10px;
+}
+
+#lista h1 {
+	padding: 1%;
 }
 
 #lista ul{ 
@@ -27,7 +34,7 @@
 	width: 100%;
 }
 
-.amico {
+.casa {
 	border-bottom: 1px solid grey;
 	font-size: 0.8em;
 	background-color: #f6f6f6;
@@ -36,11 +43,11 @@
 	color: #666;
 }
 
-ul .amico:hover{
+ul .casa:hover{
 	background-color: #ddd;
 }
 
-.amico form:last-child{
+.casa form:last-child{
 	float:right;
 }
 
@@ -52,7 +59,7 @@ ul .amico:hover{
 	cursor: pointer;
 }
 
-.amico form input[type=button], .amico input[type=submit], .amico input[type=reset] {
+.casa form input[type=button], .casa input[type=submit], .casa input[type=reset] {
 	border: none;
 	text-decoration: none;
 	color: #666;
@@ -65,19 +72,19 @@ ul .amico:hover{
 	height:100px;
 }
 
-.amico form input[type=button]:hover, .amico form input[type=submit]:hover, .amico form input[type=reset]:hover, #aggiungi form input[type=submit]:hover{
+.casa form input[type=button]:hover, .casa form input[type=submit]:hover, .casa form input[type=reset]:hover, #ordina form input[type=submit]:hover{
 	background-color: #666;
 	color: #f3f3f3; 
 }
 
-#aggiungi {
+#ordina {
 	height: 20%;
 	background-color: #f3f3f3;
 	text-align: right;
 	color: #666;
 }
 
-#aggiungi input[type=text]{
+#ordina input[type=text]{
 	background-color: white;
 	border: 1px solid lightgrey;
 	border-radius: 4px;	
@@ -85,7 +92,7 @@ ul .amico:hover{
 	margin-left: 1%;
 }
 
-#aggiungi input[type=submit] {
+#ordina input[type=submit] {
 	border: none;
 	text-decoration: none;
 	color: #666;

@@ -21,6 +21,7 @@
 		<link rel="icon" href="/NYTRO/img/logo.png">
 	</head>
 <body>
+<div id="wrapper">
 	<header>
 	<!-- Logo del sito + Nome del sito-->
 		<a href="<%=response.encodeURL("/NYTRO/jsp/index.jsp")%>"><img id="logoHeader" src="/NYTRO/img/logo.png" alt="Logo"/><img id="nytro" src="/NYTRO/img/Nytro.png" alt="Nytro"></a>

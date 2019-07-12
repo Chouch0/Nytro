@@ -1,4 +1,9 @@
 @charset "ISO-8859-1";
+
+header, footer {
+	padding-bottom: 20px;
+}
+
 .evidenza {
 	text-align: center;
 	color: #043d5d;
@@ -8,6 +13,7 @@
 	margin-right: 15%;
 	padding-top: 1%;
 	padding-bottom: 2%;
+	flex: 1;
 }
 
 #gioco1, #gioco2, #gioco3, #gioco4, #gioco5, #gioco6 {
@@ -39,7 +45,7 @@ img {
 	height: 100%;
 	position: absolute;
 	top: 0;
-	background-color: #ddd;    
+	background-color: #c34271;    
 	z-index: 1;
 	visibility:hidden;
     opacity:0;
@@ -52,7 +58,19 @@ img {
     opacity:1;
 	animation: 0.5s slide-up
 }
-
+  
+@media screen and (max-width: 1000px) {
+	.evidenza {
+		margin-right: 10%;
+		margin-left: 10%;
+	}
+}
+@media screen and (max-width: 805px) {
+	.evidenza {
+		margin-right: -10px;
+		margin-left: -10px;
+	}
+}
 @keyframes slide-up {
   from {
     margin-top: 100%;

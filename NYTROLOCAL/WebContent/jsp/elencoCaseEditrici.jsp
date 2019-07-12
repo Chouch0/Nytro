@@ -10,7 +10,7 @@ import="nytro.model.AccountBean, java.util.Collection, nytro.model.CasaEditriceB
 <link href="/NYTRO/css/caseStyle.css" type="text/css" rel="stylesheet">			
 	<div id="lista">
 	<h1>Elenco case editrici</h1>
-	<div id="aggiungi">
+	<div id="ordina">
 			<form action="<%=response.encodeURL("/NYTRO/ElencoCaseEditrici")%>" method="get">
 			<label>Seleziona un criterio di ordinamento
 			 <select name="order">
@@ -28,8 +28,8 @@ import="nytro.model.AccountBean, java.util.Collection, nytro.model.CasaEditriceB
 				CasaEditriceBean y = (CasaEditriceBean) x;
 		%>
 		<ul>
-		<div class="amico">
-			<li><div class="profilo">
+		<div class="casa">
+			<li><div class="img">
 			<%
 			if (x.getImgProfilo() != null){%>
 					<img src="/NYTRO/image?id=<%= x.getUsername()%>" alt="<%=x.getUsername()%>">
@@ -46,5 +46,5 @@ import="nytro.model.AccountBean, java.util.Collection, nytro.model.CasaEditriceB
 			<%}
 	} %>
 	</div>
-
+	</div>
 <%@include file="footer.jsp"%>	
