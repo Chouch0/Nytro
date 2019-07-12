@@ -6,14 +6,35 @@ header, footer {
 
 .evidenza {
 	text-align: center;
-	color: #043d5d;
 	background-color: #f2f4f6;
 	margin: -20px;
-	margin-left: 15%;
-	margin-right: 15%;
 	padding-top: 1%;
 	padding-bottom: 50px;
 	flex: 1;
+}
+
+#welcome {
+	text-align: center;
+	padding: 1%;
+	padding-bottom: 50px;
+	background-color: #f9f8eb;
+	margin: -20px;
+	color: #155e63;
+}
+
+#dispari {
+	background-color: #a7d7c5;
+	color: #155e63;
+}
+
+#pari {
+	background-color: #74b49b;
+	color: #f9f8eb;
+}
+
+#dispari2 {
+	background-color: #155e63;
+	color: #f9f8eb;
 }
 
 #gioco1, #gioco2, #gioco3, #gioco4, #gioco5, #gioco6 {
@@ -45,7 +66,7 @@ img {
 	height: 100%;
 	position: absolute;
 	top: 0;
-	background-color: #c34271;    
+	background-color: #f9f8eb;    
 	z-index: 1;
 	visibility:hidden;
     opacity:0;

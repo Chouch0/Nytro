@@ -23,14 +23,14 @@ import="java.util.Collection, nytro.model.AccountBean"%>
 			<%} else {%>
 					<img src="/NYTRO/img/default-profile.png" alt="<%=x.getUsername()%>">
 			<%} %></div></li>
-			<li><form action="<%=response.encodeURL("/NYTRO/Libreria")%>" method="post">
-				<input type="hidden" name="libreriaAmicoDaVisualizzare" value="<%=x.getUsername()%>">
-				<input type="submit" value="Visualizza libreria">
-			</form></li>
 			<li><form action="<%=response.encodeURL("/NYTRO/Friendlist")%>" method="post">
 				<input type="hidden" name="eliminatoAmico" value="<%=x.getUsername()%>">
 				<input type="submit" value="Rimuovi">
 			</form></li>
+			<li><form action="<%=response.encodeURL("/NYTRO/Libreria")%>" method="post">
+				<input type="hidden" name="libreriaAmicoDaVisualizzare" value="<%=x.getUsername()%>">
+				<input type="submit" value="Visualizza libreria">
+			</form></li>			
 			<li class="username"><%=x.getUsername() %></li>
 			<li><%=x.getData() %> <%=x.getOra() %></li>
 		</div>

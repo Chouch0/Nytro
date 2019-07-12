@@ -9,6 +9,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 <link href="/NYTRO/css/libreriaStyle.css" type="text/css" rel="stylesheet">	
 
 <div id="lista">
+	<div id="pagina">
 	<h1>Libreria - 
 		<%if(libreriaAmicoDaVisualizzare!=null && !libreriaAmicoDaVisualizzare.equals("")) {%>
 			<%=libreriaAmicoDaVisualizzare %>
@@ -17,6 +18,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 			<%=account.getUsername() %>
 		<%} %>
 	</h1>
+	</div>
 	<div id="ordina">
 	<form action="<%=response.encodeURL("/NYTRO/Libreria")%>" method="get">
 	 <%if(libreriaAmicoDaVisualizzare!=null && !libreriaAmicoDaVisualizzare.equals("")){ %>

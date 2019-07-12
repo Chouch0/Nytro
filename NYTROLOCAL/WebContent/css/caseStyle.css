@@ -6,7 +6,7 @@
 	float: left;
 	margin-right:1%;
 	text-align: center;
-	background-color: #ddd;
+	background-color: #ea5b5b;
 }
 
 .img img {
@@ -14,11 +14,11 @@
 }
 
 #lista {
-	margin-left: 15%;
-	margin-right:15%;
-	background-color: #f2f4f6;
+	background-color: #f9f8eb;
+	color: #155e63;	
 	margin-top: -25px;
-	padding-bottom: 10px;
+	flex: 1;
+	text-align: center;
 }
 
 #lista h1 {
@@ -30,21 +30,23 @@
 	margin: 0;
 	padding: 0;
 	overflow:visible;
-	background-color: #f3f3f3;
+	background-color: #74b49b;
+	color: #155e63;
 	width: 100%;
 }
 
 .casa {
 	border-bottom: 1px solid grey;
 	font-size: 0.8em;
-	background-color: #f6f6f6;
+	background-color: #74b49b;
+	color: #f9f8eb;	
 	text-align: left;
 	height: 100px;
-	color: #666;
 }
 
 ul .casa:hover{
-	background-color: #ddd;
+	background-color: #f9f8eb;
+	color: #155e63;
 }
 
 .casa form:last-child{
@@ -62,26 +64,27 @@ ul .casa:hover{
 .casa form input[type=button], .casa input[type=submit], .casa input[type=reset] {
 	border: none;
 	text-decoration: none;
-	color: #666;
+	color: #f9f8eb;
 	padding: 14px 16px;
 	text-align: center;
 	cursor: pointer;
 	font-family: inherit;
 	font-size: inherit;
-	background-color: #ddd;
+	background-color: #b33f3f;
 	height:100px;
 }
 
 .casa form input[type=button]:hover, .casa form input[type=submit]:hover, .casa form input[type=reset]:hover, #ordina form input[type=submit]:hover{
-	background-color: #666;
-	color: #f3f3f3; 
+	background-color: #ea5b5b;
+	color: #f9f8eb; 
 }
 
 #ordina {
 	height: 20%;
-	background-color: #f3f3f3;
+	background-color: #a7d7c5;
+	color: #155e63;
 	text-align: right;
-	color: #666;
+	border-bottom: 1px solid lightgrey;
 }
 
 #ordina input[type=text]{
@@ -95,13 +98,13 @@ ul .casa:hover{
 #ordina input[type=submit] {
 	border: none;
 	text-decoration: none;
-	color: #666;
+	color: #f9f8eb;
 	padding: 12px 61.5px;
 	text-align: center;
 	cursor: pointer;
 	font-family: inherit;
 	font-size: 0.8;
-	background-color: #ddd;
+	background-color: #b33f3f;
 	height:50px;
 	margin-left: 1%;
 }

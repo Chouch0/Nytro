@@ -1,3 +1,4 @@
+<%@page import="nytro.model.AccountBean"%>
 <%@page import="nytro.model.VideogiocoPagamentoBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -10,6 +11,7 @@
 Collection<VideogiocoPagamentoBean> videogiochiPiuAcquistati = (Collection<VideogiocoPagamentoBean>) request.getAttribute("videogiochiPiuAcquistati");
 Collection<VideogiocoBean> videogiochiPiuGiocati = (Collection<VideogiocoBean>) request.getAttribute("videogiochiPiuGiocati");
 String message = (String) request.getAttribute("message");
+AccountBean account = (AccountBean) request.getAttribute("account");
 
 if(videogiochiPiuAcquistati==null || videogiochiPiuGiocati==null){
 	String url = response.encodeURL("/NYTRO/Index");
@@ -20,7 +22,19 @@ List<VideogiocoPagamentoBean> list = new ArrayList<VideogiocoPagamentoBean>(vide
 List<VideogiocoBean> list2 = new ArrayList<VideogiocoBean>(videogiochiPiuGiocati);
 
 %>	
-<div class="evidenza">
+<div id="welcome">
+<%if (account == null) {%>
+	<h1>Entra a far parte della miglior community sui videogame!</h1>
+	<p>Registrati o accedi per giocare ai migliori titoli del momento.</p>
+<%} else if(account != null && account.getRuolo() == 1) {%>
+	<h1>Bentornato <%=account.getUsername() %>!</h1>
+	<p>Dai un'occhiata ai giochi migliori selezionati per te.</p>
+<%} else if(account != null && account.getRuolo() == 2) {%>
+	<h1>Bentornato <%=account.getUsername() %>!</h1>
+	<p>Dai un'occhiata all'andamento dei tuoi giochi sulla piattaforma.</p>
+<%} %>
+</div>
+<div class="evidenza" id="dispari">
 	<%if(message!=null && !message.equals("")) {	//Ad esempio per l'avvenuta e corretta registrazione%>
 		<h1><%=message%></h1>
 	<%} %>
@@ -62,7 +76,7 @@ List<VideogiocoBean> list2 = new ArrayList<VideogiocoBean>(videogiochiPiuGiocati
 		</div>
 	</div>
 </div>
-<div class="evidenza">
+<div class="evidenza" id="pari">
 	<h1>Giochi del momento</h1>
 	<div id="gioco4">
 		<%if (list2.get(0).getImg() != null){%>

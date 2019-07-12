@@ -11,7 +11,9 @@ import="nytro.model.VideogiocoBean, java.util.Collection, java.util.ArrayList"%>
 <link href="/NYTRO/css/libreriaStyle.css" type="text/css" rel="stylesheet">	
 
 	<div id="lista">
+	<div id="pagina">
 	<h1>Catalogo completo dei videogiochi</h1>
+	</div>
 	<div id="ordina">
 	<form action="<%=response.encodeURL("/NYTRO/Catalogo")%>" method="get">
 	<label>Seleziona un criterio di ordinamento
@@ -22,14 +24,14 @@ import="nytro.model.VideogiocoBean, java.util.Collection, java.util.ArrayList"%>
 	  <option value="Voto_Medio">Voto medio delle recensioni</option>
 	  <option value="PEGI">PEGI</option>
 	</select> 
-	</label>	
+	</label><br/>
 	<label>Seleziona la categoria di videogiochi che vuoi visualizzare
 	 <select name="categoria">
 	  <option value="" selected>Nessuno</option>
 	  <option value="A pagamento">A pagamento</option>
 	  <option value="Demo">Demo</option>
 	  <option value="Free to play">Free to play</option>
-	</select> 
+	</select> <br/>
 	</label>
 	<label>Seleziona il genere dei videogiochi che vuoi visualizzare
 	 <select name="genere">
@@ -40,7 +42,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, java.util.ArrayList"%>
 	  <%	}
   		}%>
 	</select> 
-	</label>
+	</label><br/>
 	<input type="submit" value="Vai"/>
 	</form>
 	</div>

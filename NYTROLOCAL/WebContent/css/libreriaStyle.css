@@ -14,10 +14,17 @@
 	height: 190px;
 }
 
+#pagina {
+	text-align: center;
+	padding: 1%;
+	background-color: #f9f8eb;
+	margin: -20px;
+	color: #155e63;	
+}
+
 #lista {
-	margin-left: 15%;
-	margin-right:15%;
-	background-color: #f2f4f6;
+	background-color: #f9f8eb;
+	color: #f9f8eb;
 	margin-top: -25px;
 	flex: 1;
 }
@@ -31,21 +38,28 @@
 	margin: 0;
 	padding: 0;
 	overflow:visible;
-	background-color: #f3f3f3;
+	background-color: #f9f8eb;
+	color: #f9f8eb;
 	width: 100%;
 }
 
 .gioco {
-	border-bottom: 1px solid grey;
+	border-bottom: 1px solid lightgrey;
 	font-size: 0.8em;
-	background-color: #f6f6f6;
+	background-color: #74b49b;
+	color: #f9f8eb;	
 	text-align: left;
 	height: 184px;
-	color: #666;
 }
 
-ul .gioco:hover{
-	background-color: #ddd;
+li a {
+	text-decoration: none;
+	color: #f9f8eb;
+}
+
+ul .gioco:hover, ul .gioco:hover a{
+	background-color: #f9f8eb;
+	color: #155e63;
 }
 
 li #download:only-child {
@@ -59,47 +73,42 @@ li #download:only-child {
 	padding-bottom: 0.3%;
 }
 
-li a {
-	text-decoration: none;
-	color:inherit;
-}
-
 #download {
 	border: none;
 	text-decoration: none;
-	color: #666;
+	color: #f9f8eb;
 	padding: 14px 16px;
 	text-align: center;
 	font-family: inherit;
 	font-size: inherit;
-	background-color: #ddd;
+	background-color: #b33f3f;
 	height: 184px;
 	cursor: pointer;
 }
 
 #download:hover{
-	background-color: #666;
-	color: #f3f3f3; 
+	background-color: #ea5b5b;
+	color: #f9f8eb;
 }
 
 #ordina {
 	height: 20%;
-	background-color: #f3f3f3;
+	background-color: #a7d7c5;
+	color: #155e63;
 	text-align: right;
-	color: #666;
-	border-bottom: 1px solid grey;
+	border-bottom: 1px solid lightgrey;
 }
 
 #ordina input[type=submit] {
 	border: none;
 	text-decoration: none;
-	color: #666;
+	color: #f9f8eb;
 	padding: 12px 35.5px;
 	text-align: center;
 	cursor: pointer;
 	font-family: inherit;
 	font-size: 0.8;
-	background-color: #ddd;
+	background-color: #b33f3f;
 	height:100px;
 	margin-left: 1%;
 }
@@ -116,6 +125,6 @@ li a {
 }
 
 .gioco form input[type=submit]:hover, .gioco form input[type=reset]:hover, .gioco form input[type=submit]:hover, #ordina form input[type=submit]:hover{
-	background-color: #666;
-	color: #f3f3f3; 
+	background-color: #ea5b5b;
+	color: #f9f8eb; 
 }

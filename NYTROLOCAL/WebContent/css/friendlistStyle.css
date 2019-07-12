@@ -14,11 +14,11 @@
 }
 
 #lista {
-	margin-left: 15%;
-	margin-right:15%;
-	background-color: #f2f4f6;
+	background-color: #f9f8eb;
+	color: #155e63;	
 	margin-top: -25px;
 	flex: 1;
+	text-align: center;
 }
 
 #lista h1 {
@@ -30,21 +30,23 @@
 	margin: 0;
 	padding: 0;
 	overflow:visible;
-	background-color: #f3f3f3;
+	background-color: #a7d7c5;
+	color: #155e63;
 	width: 100%;
 }
 
 .amico {
 	border-bottom: 1px solid grey;
 	font-size: 0.8em;
-	background-color: #f6f6f6;
+	background-color: #a7d7c5;
+	color: #155e63;
 	text-align: left;
 	height: 100px;
-	color: #666;
 }
 
 ul .amico:hover{
-	background-color: #ddd;
+	background-color: #74b49b;
+	color: #f9f8eb;
 }
 
 .amico form:last-child{
@@ -62,26 +64,26 @@ ul .amico:hover{
 .amico form input[type=button], .amico input[type=submit], .amico input[type=reset] {
 	border: none;
 	text-decoration: none;
-	color: #666;
+	color: #f9f8eb;
 	padding: 14px 16px;
 	text-align: center;
 	cursor: pointer;
 	font-family: inherit;
 	font-size: inherit;
-	background-color: #ddd;
+	background-color: #b33f3f;
 	height:100px;
 }
 
 .amico form input[type=button]:hover, .amico form input[type=submit]:hover, .amico form input[type=reset]:hover, #aggiungi form input[type=submit]:hover{
-	background-color: #666;
-	color: #f3f3f3; 
+	background-color: #ea5b5b;
+	color: #f9f8eb; 
 }
 
 #aggiungi {
 	height: 20%;
-	background-color: #f3f3f3;
+	background-color: #f9f8eb;
+	color: #155e63;
 	text-align: right;
-	color: #666;
 }
 
 #aggiungi input[type=text]{
@@ -95,13 +97,13 @@ ul .amico:hover{
 #aggiungi input[type=submit] {
 	border: none;
 	text-decoration: none;
-	color: #666;
+	color: #f9f8eb;
 	padding: 11.5px 13.5px;
 	text-align: center;
 	cursor: pointer;
 	font-family: inherit;
 	font-size: 0.8;
-	background-color: #ddd;
+	background-color: #b33f3f;
 	height:100px;
 	margin-left: 1%;
 }
