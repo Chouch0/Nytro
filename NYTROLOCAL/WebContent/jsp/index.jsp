@@ -10,16 +10,21 @@
 <%
 Collection<VideogiocoPagamentoBean> videogiochiPiuAcquistati = (Collection<VideogiocoPagamentoBean>) request.getAttribute("videogiochiPiuAcquistati");
 Collection<VideogiocoBean> videogiochiPiuGiocati = (Collection<VideogiocoBean>) request.getAttribute("videogiochiPiuGiocati");
+Collection<VideogiocoBean> videogiochiPiuVotati = (Collection<VideogiocoBean>) request.getAttribute("videogiochiPiuVotati");
 String message = (String) request.getAttribute("message");
 AccountBean account = (AccountBean) request.getAttribute("account");
 
-if(videogiochiPiuAcquistati==null || videogiochiPiuGiocati==null){
+if(videogiochiPiuAcquistati==null || videogiochiPiuGiocati==null || videogiochiPiuVotati==null){
 	String url = response.encodeURL("/NYTRO/Index");
 	response.sendRedirect(url);
 	return ;
 }
 List<VideogiocoPagamentoBean> list = new ArrayList<VideogiocoPagamentoBean>(videogiochiPiuAcquistati);
 List<VideogiocoBean> list2 = new ArrayList<VideogiocoBean>(videogiochiPiuGiocati);
+List<VideogiocoBean> list3 = new ArrayList<VideogiocoBean>(videogiochiPiuVotati);
+VideogiocoBean videogiocoPiuGiocatoMaschi = (VideogiocoBean) request.getAttribute("videogiocoPiuGiocatoMaschi");
+VideogiocoBean videogiocoPiuGiocatoFemmine = (VideogiocoBean) request.getAttribute("videogiocoPiuGiocatoFemmine");
+VideogiocoBean videogiocoPiuGiocatoGenderless = (VideogiocoBean) request.getAttribute("videogiocoPiuGiocatoGenderless");
 
 %>	
 <div id="welcome">

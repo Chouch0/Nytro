@@ -5,6 +5,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 <%
 	VideogiocoBean videogiocoDetailed = (VideogiocoBean) request.getAttribute("videogiocoDetailed");
 	Collection<RecensioneBean> recensioni = (Collection<RecensioneBean>) request.getAttribute("recensioni");
+	Collection<AccountBean> amici = (Collection<AccountBean>) request.getAttribute("amici");
 	AccountBean account = (AccountBean) session.getAttribute("account");
 	String possibileAggiungereAllaLibreria = (String) request.getAttribute("possibileAggiungereAllaLibreria");
 	String possibileAggiungereAgliAcquisti = (String) request.getAttribute("possibileAggiungereAgliAcquisti");
@@ -51,7 +52,16 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		}
 		%>	
 	</p>
-		
+	
+	
+	<%if(account.getRuolo()==1 && amici!=null){%>
+		<h2>Lista degli amici che posseggono lo stesso gioco</h2>
+		<%for(AccountBean x : amici){%>
+		<%=x.toString()%><br/>		
+	<%} 
+	}%>
+	
+	
 	<h2>Recensioni</h2>
 	<p>
 	<%if(recensioni!=null){ 

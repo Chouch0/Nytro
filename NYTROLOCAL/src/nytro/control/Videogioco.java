@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import nytro.exceptions.MyException;
 import nytro.model.AccountBean;
+import nytro.model.AccountDAO;
 import nytro.model.RecensioneBean;
 import nytro.model.RecensioneDAO;
 import nytro.model.VideogiocoBean;
@@ -28,6 +29,7 @@ public class Videogioco extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
 	private final RecensioneDAO recensioneDAO = new RecensioneDAO();
+	private final AccountDAO accountDAO = new AccountDAO();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AccountBean account = (AccountBean) request.getSession().getAttribute("account");
@@ -188,6 +190,14 @@ public class Videogioco extends HttpServlet {
 		if(possibileAggiungereAgliAcquisti)
 			request.setAttribute("possibileAggiungereAgliAcquisti", "true");
 		
+		Collection<AccountBean> amici = null;
+		
+		try {
+			amici = accountDAO.doRetrieveAllFriendsByVideogioco(account, Integer.parseInt(codiceVideogioco));
+		} catch (SQLException e) {
+			;
+		}
+		
 		try {
 			videogiocoDetailed = videogiocoDAO.doRetrieveDetailedByCodice(Integer.parseInt(codiceVideogioco));
 		} catch (NumberFormatException e) {
@@ -198,6 +208,7 @@ public class Videogioco extends HttpServlet {
 		
 		request.setAttribute("videogiocoDetailed", videogiocoDetailed);
 		request.setAttribute("recensioni", recensioni);
+		request.setAttribute("amici", amici);
 		
 		String url = response.encodeURL("jsp/videogioco.jsp");
 		request.getRequestDispatcher(url).forward(request, response);

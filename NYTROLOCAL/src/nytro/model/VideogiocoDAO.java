@@ -21,7 +21,8 @@ public class VideogiocoDAO {
 		String selectSQL = "SELECT DISTINCT * FROM videogioco ";
 		
 		if(isin!=null && !isin.equals(""))
-			selectSQL +=" WHERE ISIN='"+isin+"'";
+			selectSQL += " WHERE ISIN = ?";
+//			selectSQL +=" WHERE ISIN='"+isin+"'";
 		
 		//Nel caso avessi voluto imporre un ordine per l'estrazione degli utenti
 		if(order!=null && !order.equals(""))
@@ -31,6 +32,9 @@ public class VideogiocoDAO {
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
+			
+			if(isin!=null && !isin.equals(""))
+				preparedStatement.setString(1, isin);
 			
 			System.out.println("doRetrieveAll: " + preparedStatement.toString());
 			
@@ -125,7 +129,8 @@ public class VideogiocoDAO {
 		String selectSQL = "SELECT DISTINCT * FROM videogioco, a_pagamento WHERE videogioco.Codice=a_pagamento.Codice ";
 		
 		if(isin!=null && !isin.equals(""))
-			selectSQL +=" AND ISIN='"+isin+"'";		
+			selectSQL += " WHERE ISIN = ?";
+		//	selectSQL +=" AND ISIN='"+isin+"'";		
 		
 		//Nel caso avessi voluto imporre un ordine per l'estrazione degli utenti
 		if(order!=null && !order.equals(""))
@@ -135,6 +140,9 @@ public class VideogiocoDAO {
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
+			
+			if(isin!=null && !isin.equals(""))
+				preparedStatement.setString(1, isin);
 			
 			System.out.println("doRetrieveAllPagamento: " + preparedStatement.toString());
 			
@@ -1003,6 +1011,44 @@ public class VideogiocoDAO {
 		return videogiochi;
 	}
 	
+	public Collection<VideogiocoBean> doRetrievePiuVotati(int numeroVideogiochi) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement=null;
+		
+		Collection<VideogiocoBean> videogiochi = new LinkedList<VideogiocoBean>();
+		
+		String selectSQL = "SELECT * FROM piattaforma_videogiochi_tsw.videogioco ORDER BY Voto_Medio DESC LIMIT ?";
+			
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			
+			preparedStatement.setInt(1, numeroVideogiochi);
+			
+			System.out.println("doRetrievePiuVotati: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				
+				VideogiocoBean bean = this.doRetrieveDetailedByCodice(rs.getInt("codice"));
+				if(bean.getDataRimozione() == null)
+					videogiochi.add(bean);				
+				
+			}
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return videogiochi;
+	}
+	
 	public Collection<VideogiocoBean> doRetrievePiuGiocati(int numeroVideogiochi) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement=null;
@@ -1175,6 +1221,38 @@ public class VideogiocoDAO {
 			preparedStatement = connection.prepareStatement(selectSQL);
 			
 			System.out.println("doRetrievePiuGiocatoFemmine: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				bean = this.doRetrieveByCodice(rs.getInt("Codice"), "");
+			}
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return bean;
+	}
+	
+	public VideogiocoBean doRetrievePiuGiocatoGenerless() throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		VideogiocoBean bean = null;
+		
+		String selectSQL = "SELECT Codice, COUNT(*) as Numero_Giocatori, SUM(Ore_Di_Gioco) as Ore_Totali FROM videogioco, ha_nella_libreria, giocatore WHERE videogioco.codice = ha_nella_libreria.videogioco AND ha_nella_libreria.username = giocatore.username AND giocatore.genere is null GROUP BY codice ORDER BY SUM(ore_di_gioco) DESC LIMIT 1";
+				
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			
+			System.out.println("doRetrievePiuGiocatoGenerless: " + preparedStatement.toString());
 			
 			ResultSet rs = preparedStatement.executeQuery();
 			
