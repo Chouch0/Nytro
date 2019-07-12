@@ -25,8 +25,8 @@ public class RimozioneAccount extends HttpServlet {
 		String username = request.getParameter("username");
 		AccountBean bean;
 		response.setContentType("text/xml");
-		
-		if(Integer.parseInt(request.getParameter("option")) == 1) {
+		String option = request.getParameter("option");
+		if(option != null && Integer.parseInt(option) == 1) {
 			try {
 				StringBuffer buffer = new StringBuffer();
 				bean = accountDAO.doRetrieveByUsername(username);
@@ -59,10 +59,16 @@ public class RimozioneAccount extends HttpServlet {
 		} else {
 			try {
 				AccountBean account = accountDAO.doRetrieveByUsername(username);
-				accountDAO.doDelete(account);
-				String url = response.encodeURL("jsp/index.jsp");
-				RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-				dispatcher.forward(request, response);
+				if(account.getUsername() == null) {
+					String url = response.encodeURL("jsp/rimozioneAccount.jsp");
+					RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+					dispatcher.forward(request, response);
+				} else {
+					accountDAO.doDelete(account);
+					String url = response.encodeURL("jsp/index.jsp");
+					RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+					dispatcher.forward(request, response);
+				}
 			} catch(SQLException exception) {
 				String url = response.encodeURL("jsp/rimozioneAccount.jsp");
 				RequestDispatcher dispatcher = request.getRequestDispatcher(url);

@@ -6,9 +6,14 @@
 <form class="box" name="rimozione" action="<%=response.encodeURL("/NYTRO/RimozioneAccount")%>" method="post">
 	<input type="text" class="registrazione" name="username" required>
 	<p id="errorUsr"></p>
+	<p id="username" style="color:black"></p>
+	<p id="email" style="color:black"></p>
+	<p id="ruolo" style="color:black"></p>
 	<input type="button" value="Ricerca Account" id="button" onclick="checkUsername()">
-	<input type="submit" value="Rimuovi Account" id="sub" disabled hidden='true'>
+	<input type="submit" value="Rimuovi Account" id="sub" hidden='true' disabled>
+
 </form>
+
 
 	<script>
 	
@@ -27,13 +32,24 @@
 					if(xmlHttpReq.readyState == 4 && xmlHttpReq.status == 200 && xmlHttpReq.responseText == no){					
 						input.style.border = borderNo;
 						document.getElementById("errorUsr").innerHTML = "Questo Account Non Esiste!";
+						document.getElementById("username").innerHTML = "";
+						document.getElementById("email").innerHTML = "";
+						document.getElementById("ruolo").innerHTML = "";
+						document.getElementById("sub").hidden = true;
+						document.getElementById("sub").disabled = true;
 						usernameOk = false;
 					} else if (xmlHttpReq.readyState == 4 && xmlHttpReq.status == 200 && xmlHttpReq.responseText != no) {
 							try {
-								alert(listXML.responseText);
-								var usrn = listXML.getElementsByTagName("<ok>")[0].firstChild.nodeValue;
-								document.getElementById("errorUsr").innerHTML = "Account Trovato!" + usrn;
+								var doc = xmlHttpReq.responseXML;
+								var usrn = doc.getElementsByTagName("username")[0].firstChild.nodeValue;
+								var email = doc.getElementsByTagName("email")[0].firstChild.nodeValue;
+								var ruolo = doc.getElementsByTagName("ruolo")[0].firstChild.nodeValue;
+								document.getElementById("username").innerHTML = "Username: " + usrn;
+								document.getElementById("email").innerHTML = "Email: " + email;
+								document.getElementById("ruolo").innerHTML = "Account: " + ruolo;
+								document.getElementById("errorUsr").innerHTML = "Account Trovato!";
 								document.getElementById("sub").hidden = false;
+								document.getElementById("sub").disabled = false;
 							} catch(e1) {
 								document.getElementById("errorUsr").innerHTML = e1;
 							}
@@ -41,7 +57,7 @@
 							input.style.border = borderOk;
 							usernameOk = true;
 					} 
-					checkForm();
+					
 				} 
 				xmlHttpReq.open("GET", "/NYTRO/RimozioneAccount?username=" + encodeURIComponent(input.value) + "&" + "option=1", true);
 				xmlHttpReq.send();
@@ -49,25 +65,13 @@
 			else {
 				input.style.border = borderNo;
 				document.getElementById("errorUsr").innerHTML = "Attenzione! Deve contenere almeno 6 caratteri";
+				document.getElementById("username").innerHTML = "";
+				document.getElementById("email").innerHTML = "";
+				document.getElementById("ruolo").innerHTML = "";
+				document.getElementById("sub").hidden = true;
+				document.getElementById("sub").disabled = true;
 				usernameOk = false;
-				checkForm();
-			}
-			
-			function displayResults(listXML) {
 				
-			}
-			
-			function deleteAccount() {
-				
-			}
-			
-			
-			function checkForm() {
-				if(usernameOk) {
-					document.getElementById("button").disabled = false; 
-				} else {
-					document.getElementById("button").disabled = true;
-				}
 			}
 
 		}
