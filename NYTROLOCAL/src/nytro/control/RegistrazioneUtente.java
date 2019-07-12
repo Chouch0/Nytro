@@ -2,7 +2,7 @@ package nytro.control;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Date;
+
 import java.sql.SQLException;
 import java.util.Calendar;
 
@@ -59,23 +59,14 @@ public class RegistrazioneUtente extends HttpServlet {
 		if(!phone.matches("^\\d{10}$") || phone.isEmpty()) {
 			phone = null;
 		}
-		
-		int day, month, year;
-		
-		if(date.matches("[0-9]{2}/[0-9]{2}/[0-9]{4}")) {
-			month = Integer.parseInt(date.substring(0, 2));
-			day = Integer.parseInt(date.substring(3, 5));
-			year = Integer.parseInt(date.substring(6,  10));
-			String newDate = "" + year + "-" + month + "-" + day;
-			date = newDate;
-		} else {
-			day = Integer.parseInt(date.substring(8, 10));
-			month = Integer.parseInt(date.substring(5, 7));
-			year = Integer.parseInt(date.substring(0, 4));
-		}
+
 		if(date.length() != 10) {
 			date = null;
 		} else {
+			int day = Integer.parseInt(date.substring(8, 10));
+			int month = Integer.parseInt(date.substring(5, 7));
+			int year = Integer.parseInt(date.substring(0, 4));
+		
 			if(date.isEmpty() || day > 31 ||  month > 12 || year < 1900 || year > Calendar.getInstance().get(Calendar.YEAR)) {
 				date = null;
 			} 

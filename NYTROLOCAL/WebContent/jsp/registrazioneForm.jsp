@@ -29,7 +29,9 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 $("input[type=date]").each(function() {
-    if  (this.type != 'date' ) $(this).datepicker();
+    if  (this.type != 'date' ) $(this).datepicker({
+    	dateFormat:"yy-mm-dd"
+    });
 });
 </script> 
 
