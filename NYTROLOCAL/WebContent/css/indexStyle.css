@@ -1,7 +1,7 @@
 @charset "ISO-8859-1";
 
 header, footer {
-	padding-bottom: 20px;
+	padding-bottom: 18px;
 }
 
 .evidenza {
@@ -12,7 +12,7 @@ header, footer {
 	margin-left: 15%;
 	margin-right: 15%;
 	padding-top: 1%;
-	padding-bottom: 2%;
+	padding-bottom: 50px;
 	flex: 1;
 }
 
