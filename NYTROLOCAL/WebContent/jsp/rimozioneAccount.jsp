@@ -4,9 +4,9 @@
 <link href="/NYTRO/css/RegStyle.css" type="text/css" rel="stylesheet">
 
 <form class="box" name="rimozione" action="<%=response.encodeURL("/NYTRO/RimozioneAccount")%>" method="post">
-	<input type="text" class="registrazione" name="username" required>
+	<input type="text" class="registrazione" name="username" id ="username" required>
 	<p id="errorUsr"></p>
-	<p id="username" style="color:black"></p>
+	<p id="usrn" style="color:black"></p>
 	<p id="email" style="color:black"></p>
 	<p id="ruolo" style="color:black"></p>
 	<input type="button" value="Ricerca Account" id="button" onclick="checkUsername()">
@@ -32,7 +32,7 @@
 					if(xmlHttpReq.readyState == 4 && xmlHttpReq.status == 200 && xmlHttpReq.responseText == no){					
 						input.style.border = borderNo;
 						document.getElementById("errorUsr").innerHTML = "Questo Account Non Esiste!";
-						document.getElementById("username").innerHTML = "";
+						document.getElementById("usrn").innerHTML = "";
 						document.getElementById("email").innerHTML = "";
 						document.getElementById("ruolo").innerHTML = "";
 						document.getElementById("sub").hidden = true;
@@ -44,7 +44,7 @@
 								var usrn = doc.getElementsByTagName("username")[0].firstChild.nodeValue;
 								var email = doc.getElementsByTagName("email")[0].firstChild.nodeValue;
 								var ruolo = doc.getElementsByTagName("ruolo")[0].firstChild.nodeValue;
-								document.getElementById("username").innerHTML = "Username: " + usrn;
+								document.getElementById("usrn").innerHTML = "Username: " + usrn;
 								document.getElementById("email").innerHTML = "Email: " + email;
 								document.getElementById("ruolo").innerHTML = "Account: " + ruolo;
 								document.getElementById("errorUsr").innerHTML = "Account Trovato!";
@@ -65,7 +65,7 @@
 			else {
 				input.style.border = borderNo;
 				document.getElementById("errorUsr").innerHTML = "Attenzione! Deve contenere almeno 6 caratteri";
-				document.getElementById("username").innerHTML = "";
+				document.getElementById("usrn ").innerHTML = "";
 				document.getElementById("email").innerHTML = "";
 				document.getElementById("ruolo").innerHTML = "";
 				document.getElementById("sub").hidden = true;

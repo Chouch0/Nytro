@@ -68,7 +68,7 @@ function validaUsername() {
 	}
 	else {
 		input.style.border = borderNo;
-		document.getElementById("errorUsr").innerHTML = "Attenzione! Deve contenere almeno 6 caratteri";
+		document.getElementById("errorUsr").innerHTML = "Attenzione! Deve contenere almeno 6 caratteri e non può contenere caratteri speciali come: &./_-";
 		usernameOk = false;
 		checkForm();
 	}
