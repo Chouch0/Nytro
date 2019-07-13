@@ -11,6 +11,17 @@
 Collection<VideogiocoPagamentoBean> videogiochiPiuAcquistati = (Collection<VideogiocoPagamentoBean>) request.getAttribute("videogiochiPiuAcquistati");
 Collection<VideogiocoBean> videogiochiPiuGiocati = (Collection<VideogiocoBean>) request.getAttribute("videogiochiPiuGiocati");
 Collection<VideogiocoBean> videogiochiPiuVotati = (Collection<VideogiocoBean>) request.getAttribute("videogiochiPiuVotati");
+
+Collection<VideogiocoBean> videogiochiPiuGiocatiMaschi = (Collection<VideogiocoBean>) request.getAttribute("videogiochiPiuGiocatiMaschi");
+Collection<VideogiocoBean> videogiochiPiuGiocatiFemmine = (Collection<VideogiocoBean>) request.getAttribute("videogiochiPiuGiocatiFemmine");
+Collection<VideogiocoBean> videogiochiPiuGiocatiGenderless = (Collection<VideogiocoBean>) request.getAttribute("videogiochiPiuGiocatiGenderless");
+
+Collection<VideogiocoBean> videogiochiPiuGiocatiFemmineCasaEditrice = (Collection<VideogiocoBean>) request.getAttribute("videogiochiPiuGiocatiFemmineCasaEditrice");
+Collection<VideogiocoBean> videogiochiPiuGiocatiMaschiCasaEditrice = (Collection<VideogiocoBean>) request.getAttribute("videogiochiPiuGiocatiMaschiCasaEditrice");
+Collection<VideogiocoBean> videogiochiPiuGiocatiGenderlessCasaEditrice = (Collection<VideogiocoBean>) request.getAttribute("videogiochiPiuGiocatiGenderlessCasaEditrice");
+Collection<VideogiocoBean> videogiochiPiuVotatiCasaEditrice = (Collection<VideogiocoBean>) request.getAttribute("videogiochiPiuVotatiCasaEditrice");
+Collection<VideogiocoBean> videogiochiPiuGiocatoInGeneraleCasaEditrice = (Collection<VideogiocoBean>) request.getAttribute("videogiochiPiuGiocatoInGeneraleCasaEditrice");
+
 String message = (String) request.getAttribute("message");
 AccountBean account = (AccountBean) request.getAttribute("account");
 
@@ -22,9 +33,6 @@ if(videogiochiPiuAcquistati==null || videogiochiPiuGiocati==null || videogiochiP
 List<VideogiocoPagamentoBean> list = new ArrayList<VideogiocoPagamentoBean>(videogiochiPiuAcquistati);
 List<VideogiocoBean> list2 = new ArrayList<VideogiocoBean>(videogiochiPiuGiocati);
 List<VideogiocoBean> list3 = new ArrayList<VideogiocoBean>(videogiochiPiuVotati);
-VideogiocoBean videogiocoPiuGiocatoMaschi = (VideogiocoBean) request.getAttribute("videogiocoPiuGiocatoMaschi");
-VideogiocoBean videogiocoPiuGiocatoFemmine = (VideogiocoBean) request.getAttribute("videogiocoPiuGiocatoFemmine");
-VideogiocoBean videogiocoPiuGiocatoGenderless = (VideogiocoBean) request.getAttribute("videogiocoPiuGiocatoGenderless");
 
 %>	
 <div id="welcome">

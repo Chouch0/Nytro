@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import nytro.exceptions.MyException;
+import nytro.model.AccountBean;
+import nytro.model.CasaEditriceBean;
 import nytro.model.VideogiocoBean;
 import nytro.model.VideogiocoDAO;
 
@@ -23,17 +25,31 @@ public class Index extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Collection<VideogiocoBean> videogiochiPiuAcquistati, videogiochiPiuGiocati, videogiochiPiuVotati;
-		VideogiocoBean videogiocoPiuGiocatoMaschi, videogiocoPiuGiocatoFemmine, videogiocoPiuGiocatoGenderless;
+		Collection<VideogiocoBean> videogiochiPiuAcquistati, videogiochiPiuGiocati, videogiochiPiuVotati, 
+		videogiochiPiuGiocatiFemmine, videogiochiPiuGiocatiMaschi, videogiochiPiuGiocatiGenderless, 
+		videogiochiPiuGiocatiFemmineCasaEditrice = null, videogiochiPiuGiocatiMaschiCasaEditrice = null , videogiochiPiuGiocatiGenderlessCasaEditrice = null,
+		videogiochiPiuVotatiCasaEditrice = null, videogiochiPiuGiocatoInGeneraleCasaEditrice = null;
 		
 		
 		try {
 			videogiochiPiuAcquistati = videogiocoDAO.doRetrievePiuAcquistati(numeroMaxVideogiochiDaMostrare);
 			videogiochiPiuGiocati = videogiocoDAO.doRetrievePiuGiocati(numeroMaxVideogiochiDaMostrare);
 			videogiochiPiuVotati = videogiocoDAO.doRetrievePiuVotati(numeroMaxVideogiochiDaMostrare);
-			videogiocoPiuGiocatoMaschi = videogiocoDAO.doRetrievePiuGiocatoMaschi();
-			videogiocoPiuGiocatoFemmine = videogiocoDAO.doRetrievePiuGiocatoFemmine();
-			videogiocoPiuGiocatoGenderless = videogiocoDAO.doRetrievePiuGiocatoGenerless();
+			videogiochiPiuGiocatiMaschi = videogiocoDAO.doRetrievePiuGiocatiMaschi(numeroMaxVideogiochiDaMostrare);
+			videogiochiPiuGiocatiFemmine = videogiocoDAO.doRetrievePiuGiocatiFemmine(numeroMaxVideogiochiDaMostrare);
+			videogiochiPiuGiocatiGenderless = videogiocoDAO.doRetrievePiuGiocatiGenderless(numeroMaxVideogiochiDaMostrare);
+			
+			
+			AccountBean account = (AccountBean) request.getSession().getAttribute("account");
+			if(account!=null && account.getRuolo()==2) {
+				CasaEditriceBean casaEditriceBean = (CasaEditriceBean) account; 
+				videogiochiPiuGiocatiFemmineCasaEditrice = videogiocoDAO.doRetrievePiuGiocatiFemmineCasaEditrice(numeroMaxVideogiochiDaMostrare, casaEditriceBean.getISIN());
+				videogiochiPiuGiocatiMaschiCasaEditrice = videogiocoDAO.doRetrievePiuGiocatiMaschiCasaEditrice(numeroMaxVideogiochiDaMostrare, casaEditriceBean.getISIN());
+				videogiochiPiuGiocatiGenderlessCasaEditrice = videogiocoDAO.doRetrievePiuGiocatiGenderlessCasaEditrice(numeroMaxVideogiochiDaMostrare, casaEditriceBean.getISIN());
+				videogiochiPiuVotatiCasaEditrice = videogiocoDAO.doRetrievePiuVotatiCasaEditrice(numeroMaxVideogiochiDaMostrare, casaEditriceBean.getISIN());
+				videogiochiPiuGiocatoInGeneraleCasaEditrice = videogiocoDAO.doRetrievePiuGiocatoInGeneraleCasaEditrice(numeroMaxVideogiochiDaMostrare, casaEditriceBean.getISIN());		
+			}
+			
 		} catch (SQLException e) {
 			throw new MyException("Errore SQL per index");
 		}
@@ -41,9 +57,16 @@ public class Index extends HttpServlet {
 		request.setAttribute("videogiochiPiuAcquistati", videogiochiPiuAcquistati);
 		request.setAttribute("videogiochiPiuGiocati", videogiochiPiuGiocati);
 		request.setAttribute("videogiochiPiuVotati", videogiochiPiuVotati);
-		request.setAttribute("videogiocoPiuGiocatoMaschi", videogiocoPiuGiocatoMaschi);
-		request.setAttribute("videogiocoPiuGiocatoFemmine", videogiocoPiuGiocatoFemmine);
-		request.setAttribute("videogiocoPiuGiocatoGenderless", videogiocoPiuGiocatoGenderless);
+		
+		request.setAttribute("videogiochiPiuGiocatiMaschi", videogiochiPiuGiocatiMaschi);
+		request.setAttribute("videogiochiPiuGiocatiFemmine", videogiochiPiuGiocatiFemmine);
+		request.setAttribute("videogiochiPiuGiocatiGenderless", videogiochiPiuGiocatiGenderless);
+		
+		request.setAttribute("videogiochiPiuGiocatiFemmineCasaEditrice", videogiochiPiuGiocatiFemmineCasaEditrice);
+		request.setAttribute("videogiochiPiuGiocatiMaschiCasaEditrice", videogiochiPiuGiocatiMaschiCasaEditrice);
+		request.setAttribute("videogiochiPiuGiocatiGenderlessCasaEditrice", videogiochiPiuGiocatiGenderlessCasaEditrice);
+		request.setAttribute("videogiochiPiuVotatiCasaEditrice", videogiochiPiuVotatiCasaEditrice);
+		request.setAttribute("videogiochiPiuGiocatoInGeneraleCasaEditrice", videogiochiPiuGiocatoInGeneraleCasaEditrice);
 
 		String url = response.encodeURL("jsp/index.jsp");
 		request.getRequestDispatcher(url).forward(request, response);

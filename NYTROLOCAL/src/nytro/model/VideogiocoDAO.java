@@ -1405,4 +1405,296 @@ public class VideogiocoDAO {
 		return bean;
 	}
 	
+	public Collection<VideogiocoBean> doRetrievePiuGiocatiFemmine(int limit) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		Collection<VideogiocoBean> videogiochi = new LinkedList<VideogiocoBean>();
+		
+		
+		String selectSQL = "SELECT Codice, COUNT(*) as Numero_Giocatrici, SUM(Ore_Di_Gioco) as Ore_Totali FROM videogioco JOIN ha_nella_libreria ON videogioco.codice = ha_nella_libreria.videogioco JOIN giocatore ON ha_nella_libreria.username = giocatore.username WHERE giocatore.genere = 'f' GROUP BY codice ORDER BY SUM(ore_di_gioco) DESC LIMIT ?";
+				
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, limit);
+			
+			
+			System.out.println("doRetrievePiuGiocatiFemmineCasaEditrice: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				VideogiocoBean bean = this.doRetrieveByCodice(rs.getInt("Codice"), "");
+				videogiochi.add(bean);
+			}
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return videogiochi;
+	}
+	
+	public Collection<VideogiocoBean> doRetrievePiuGiocatiMaschi(int limit) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		Collection<VideogiocoBean> videogiochi = new LinkedList<VideogiocoBean>();
+		
+		
+		String selectSQL = "SELECT Codice, COUNT(*) as Numero_Giocatrici, SUM(Ore_Di_Gioco) as Ore_Totali FROM videogioco JOIN ha_nella_libreria ON videogioco.codice = ha_nella_libreria.videogioco JOIN giocatore ON ha_nella_libreria.username = giocatore.username WHERE giocatore.genere = 'm' GROUP BY codice ORDER BY SUM(ore_di_gioco) DESC LIMIT ?";
+				
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, limit);
+			
+			System.out.println("doRetrievePiuGiocatiMaschi: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				VideogiocoBean bean = this.doRetrieveByCodice(rs.getInt("Codice"), "");
+				videogiochi.add(bean);
+			}
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return videogiochi;
+	}
+	
+	public Collection<VideogiocoBean> doRetrievePiuGiocatiGenderless(int limit) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		Collection<VideogiocoBean> videogiochi = new LinkedList<VideogiocoBean>();
+		
+		
+		String selectSQL = "SELECT Codice, COUNT(*) as Numero_Giocatrici, SUM(Ore_Di_Gioco) as Ore_Totali FROM videogioco JOIN ha_nella_libreria ON videogioco.codice = ha_nella_libreria.videogioco JOIN giocatore ON ha_nella_libreria.username = giocatore.username WHERE giocatore.genere is null GROUP BY codice ORDER BY SUM(ore_di_gioco) DESC LIMIT ?";
+				
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, limit);
+			
+			System.out.println("doRetrievePiuGiocatiGenderless: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				VideogiocoBean bean = this.doRetrieveByCodice(rs.getInt("Codice"), "");
+				videogiochi.add(bean);
+			}
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return videogiochi;
+	}
+	
+	public Collection<VideogiocoBean> doRetrievePiuGiocatiFemmineCasaEditrice(int limit, String isin) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		Collection<VideogiocoBean> videogiochi = new LinkedList<VideogiocoBean>();
+		
+		
+		String selectSQL = "SELECT Codice, COUNT(*) as Numero_Giocatrici, SUM(Ore_Di_Gioco) as Ore_Totali FROM videogioco JOIN ha_nella_libreria ON videogioco.codice = ha_nella_libreria.videogioco JOIN giocatore ON ha_nella_libreria.username = giocatore.username WHERE giocatore.genere = 'f' and videogioco.ISIN= ? GROUP BY codice ORDER BY SUM(ore_di_gioco) DESC LIMIT ?";
+				
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, isin);
+			preparedStatement.setInt(2, limit);
+			
+			
+			System.out.println("doRetrievePiuGiocatiFemmineCasaEditrice: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				VideogiocoBean bean = this.doRetrieveByCodice(rs.getInt("Codice"), "");
+				videogiochi.add(bean);
+			}
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return videogiochi;
+	}
+	
+	public Collection<VideogiocoBean> doRetrievePiuGiocatiMaschiCasaEditrice(int limit, String isin) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		Collection<VideogiocoBean> videogiochi = new LinkedList<VideogiocoBean>();
+		
+		
+		String selectSQL = "SELECT Codice, COUNT(*) as Numero_Giocatrici, SUM(Ore_Di_Gioco) as Ore_Totali FROM videogioco JOIN ha_nella_libreria ON videogioco.codice = ha_nella_libreria.videogioco JOIN giocatore ON ha_nella_libreria.username = giocatore.username WHERE giocatore.genere = 'm' and videogioco.ISIN = ? GROUP BY codice ORDER BY SUM(ore_di_gioco) DESC LIMIT ?";
+				
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, isin);
+			preparedStatement.setInt(2, limit);
+			
+			System.out.println("doRetrievePiuGiocatiMaschiCasaEditrice: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				VideogiocoBean bean = this.doRetrieveByCodice(rs.getInt("Codice"), "");
+				videogiochi.add(bean);
+			}
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return videogiochi;
+	}
+	
+	public Collection<VideogiocoBean> doRetrievePiuGiocatiGenderlessCasaEditrice(int limit, String isin) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		Collection<VideogiocoBean> videogiochi = new LinkedList<VideogiocoBean>();
+		
+		
+		String selectSQL = "SELECT Codice, COUNT(*) as Numero_Giocatrici, SUM(Ore_Di_Gioco) as Ore_Totali FROM videogioco JOIN ha_nella_libreria ON videogioco.codice = ha_nella_libreria.videogioco JOIN giocatore ON ha_nella_libreria.username = giocatore.username WHERE giocatore.genere is null and videogioco.ISIN = ? GROUP BY codice ORDER BY SUM(ore_di_gioco) DESC LIMIT ?";
+				
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, isin);
+			preparedStatement.setInt(2, limit);
+			
+			System.out.println("doRetrievePiuGiocatiGenderlessCasaEditrice: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				VideogiocoBean bean = this.doRetrieveByCodice(rs.getInt("Codice"), "");
+				videogiochi.add(bean);
+			}
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return videogiochi;
+	}
+	
+	public Collection<VideogiocoBean> doRetrievePiuVotatiCasaEditrice(int numeroVideogiochi, String isin) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement=null;
+		
+		Collection<VideogiocoBean> videogiochi = new LinkedList<VideogiocoBean>();
+		
+		String selectSQL = "SELECT * FROM piattaforma_videogiochi_tsw.videogioco where isin=? ORDER BY Voto_Medio DESC LIMIT ?";
+			
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			
+			preparedStatement.setString(1, isin);
+			preparedStatement.setInt(2, numeroVideogiochi);
+			
+			System.out.println("doRetrievePiuVotatiCasaEditrice: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				
+				VideogiocoBean bean = this.doRetrieveDetailedByCodice(rs.getInt("codice"));
+				if(bean.getDataRimozione() == null)
+					videogiochi.add(bean);				
+				
+			}
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return videogiochi;
+	}
+	
+	public Collection<VideogiocoBean> doRetrievePiuGiocatoInGeneraleCasaEditrice(int numeroVideogiochi, String isin) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement=null;
+		
+		Collection<VideogiocoBean> videogiochi = new LinkedList<VideogiocoBean>();
+		
+		String selectSQL = "SELECT *, COUNT(*) as Numero_Giocatrici, SUM(Ore_Di_Gioco) as Ore_Totali FROM videogioco JOIN ha_nella_libreria ON videogioco.codice = ha_nella_libreria.videogioco JOIN giocatore ON ha_nella_libreria.username = giocatore.username WHERE videogioco.ISIN = ? GROUP BY codice ORDER BY SUM(ore_di_gioco) DESC LIMIT ?";
+			
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			
+			preparedStatement.setString(1, isin);
+			preparedStatement.setInt(2, numeroVideogiochi);
+			
+			System.out.println("doRetrievePiuGiocatoInGeneraleCasaEditrice: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				
+				VideogiocoBean bean = this.doRetrieveDetailedByCodice(rs.getInt("codice"));
+				if(bean.getDataRimozione() == null)
+					videogiochi.add(bean);				
+				
+			}
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return videogiochi;
+	}
+	
 }
