@@ -62,7 +62,7 @@ public class RegistrazioneCasaEditrice extends HttpServlet {
 		} else usernameOk = true;
 
 		if(password == null || password.equals("") || passwordConf == null || passwordConf.equals("") || !password.equals(passwordConf)
-			|| password.length() < 8 || password.toUpperCase() == password || password.toLowerCase() == password) {
+			|| password.length() < 8 || password.toUpperCase().equals("password") || password.toLowerCase().equals("password")) {
 			passwordOk = false;
 		} else passwordOk = true;
 		
@@ -70,7 +70,7 @@ public class RegistrazioneCasaEditrice extends HttpServlet {
 			emailOk = false;
 		} else emailOk = true;
 		
-		if(!emailRec.matches("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$") || emailRec == null || emailRec == "") {
+		if(!emailRec.matches("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$") || emailRec == null || emailRec.equals("")) {
 			emailRecOk = false;
 		} else emailRecOk = true;
 		
