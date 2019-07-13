@@ -53,3 +53,30 @@ a {
 .prof {
 	width: 20px;
 }
+
+#ordina {
+	height: 20%;
+	background-color: #a7d7c5;
+	color: #155e63;
+	text-align: right;
+	border-bottom: 1px solid lightgrey;
+}
+
+#ordina input[type=submit] {
+	border: none;
+	text-decoration: none;
+	color: #f9f8eb;
+	padding: 12px 35.5px;
+	text-align: center;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 0.8;
+	background-color: #b33f3f;
+	height:50px;
+	margin-left: 1%;
+}
+
+#ordina form input[type=submit]:hover{
+	background-color: #ea5b5b;
+	color: #f9f8eb; 
+}

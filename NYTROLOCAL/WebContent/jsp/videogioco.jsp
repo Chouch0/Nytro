@@ -78,9 +78,11 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 	</div>
 	<div id="recensioni">
 	<h2>Recensioni</h2>
+	<div id="rilasciate">
 	<p>
 	<%if(recensioni!=null){ 
 	%>
+	<div id="ordina">
 		<form action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="get">
 		<input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">		<!-- Mi serve perchè se no perdo il codice del videogioco -->
 		<label>Seleziona un criterio di ordinamento
@@ -96,10 +98,16 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		 <label>Voto massimo:<input type="number" name="max" min="1" max="5" step="1" value="5" required></label>
 		<input type="submit" value="Vai"/>
 		</form>
+	</div>
 	<%	
 		for(RecensioneBean x : recensioni){%>
-		
-		
+		<div class="recensione">
+		<%
+		if(false) { //Ho bisogno di controllare se esiste un'immagine del profilo%>
+				<img src="<%=response.encodeURL("/NYTRO/image?codice="+x.getUsername())%>" alt="<%=x.getUsername()%>" title="<%=x.getUsername()%>">
+			<%}else { %>
+				<img src="/NYTRO/img/default-profile.png" alt="<%=x.getUsername()%>" title="<%=x.getUsername()%>">
+		<%} %>
 		<%=x.toString()%>
 		<%if(x.getUsername().equals(account.getUsername())) {%>
 			<form action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="post">
@@ -108,11 +116,13 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 			 <input type="submit" value="Rimuovi recensione">
 			</form>
 		<%} %>
-		<br/>
+		</div>
 	<%	}
 	  }
 	%>
 	</p>
+	</div>
+	<div id="azioni">
 	<%if(account.getRuolo()==1) {%>
 		<h3>Inserisci recensione</h3>
 		
@@ -175,6 +185,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		<%} %>
 				
 	<%} %>
+	</div>
 	</div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
