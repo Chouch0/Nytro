@@ -129,10 +129,13 @@ CasaEditriceBean x = (CasaEditriceBean) account;%>
 <input type="submit" value="Vai">
 </form>
 <%}%>
-
+</div>
 <%if(account.getRuolo()==0){ %>
+<div id="insights">
+<div id="in">
 <h1>Insights</h1>
-
+</div>
+<div>
 <h2>Ricavi piattaforma</h2>
 <form action="<%=response.encodeURL("/NYTRO/Profilo")%>">
 <input type="hidden" name="contributoAnnuale" value="true">
@@ -156,23 +159,27 @@ CasaEditriceBean x = (CasaEditriceBean) account;%>
 		<%} %>
 	</p>
 	<%} %>
-	
-<h2>Videogioco più giocato dalle ragazze</h2>
+</div>
+<div id ="admin">
+<div>
+<h2>Videogioco più giocato dai ragazzi</h2>
 <%
 	VideogiocoBean piuGiocatoMaschi = (VideogiocoBean) request.getAttribute("piuGiocatoMaschi");
 	if(piuGiocatoMaschi!=null){
 %>
-	<%=piuGiocatoMaschi.toString()%>
+	<p><b><%=piuGiocatoMaschi.getTitolo()%></b></p>
+	<p><%=piuGiocatoMaschi.getGenere().toString().substring(1, piuGiocatoMaschi.getGenere().toString().length()-1) %></p>
 <%} %>
-<h2>Videogioco più giocato dai ragazzi</h2>	
+<h2>Videogioco più giocato dalle ragazze</h2>	
 <%
 	VideogiocoBean piuGiocatoFemmine = (VideogiocoBean) request.getAttribute("piuGiocatoFemmine");
 	if(piuGiocatoFemmine!=null){
 %>
-	<%=piuGiocatoFemmine.toString()%>
+	<p><b><%=piuGiocatoFemmine.getTitolo()%></b></p>
+	<p><%=piuGiocatoFemmine.getGenere().toString().substring(1, piuGiocatoFemmine.getGenere().toString().length()-1) %></p>
 <%} %>
-
-
+</div>
+<div>
 <h2>Videogiochi rimossi in un determinato anno</h2>	
 <form action="<%=response.encodeURL("/NYTRO/Profilo")%>">
 <input type="hidden" name="listaVideogiochiRimossi" value="true">
@@ -198,8 +205,7 @@ if(videogiochiRimossiInAnno!=null){
 <%String quantiGiocatori = (String) request.getAttribute("quantiGiocatori");
 if(quantiGiocatori!=null && !quantiGiocatori.equals("")){%>
 	<%=quantiGiocatori %> <!-- Sto passando una stringa complessa, con testo e numero, in modo tale da mantenere minEta e maxEta -->
-<%} %>	
-
+<%} %>
 <h2>Videogioco più giocato dai giocatori di età compreso entro un certo range</h2>	
 <form action="<%=response.encodeURL("/NYTRO/Profilo")%>">
 <input type="hidden" name="rangeEtaGiocatoriVideogioco" value="true">
@@ -207,17 +213,17 @@ if(quantiGiocatori!=null && !quantiGiocatori.equals("")){%>
 <label>Età massima:<input type="number" name="maxEtaVideogioco" min="0" step="1" required></label>
 <input type="submit" value="Vai"/>
 </form>
-
+	
+</div>
 <%VideogiocoBean videogiocoPiuGiocatoDa = (VideogiocoBean) request.getAttribute("videogiocoPiuGiocatoDa");
 if(videogiocoPiuGiocatoDa!=null){%>
 	<%=videogiocoPiuGiocatoDa.toString() %> 
 <%} %>	
 
 <%} %>
-
+</div>
 <%if(account.getRuolo()==2){ %>
-<h1>Insights</h1>
-
+<div id="insights">
 <h2>Contributo casa editrice</h2>
 <form action="<%=response.encodeURL("/NYTRO/Profilo")%>">
 <input type="hidden" name="contributoAnnualeCasaEditrice" value="true">

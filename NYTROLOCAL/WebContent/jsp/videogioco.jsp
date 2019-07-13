@@ -39,7 +39,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		<h4>Alcuni tuoi amici lo hanno già!</h4>
 		<%for(AccountBean x : amici){%>
 			<%if(x.getImgProfilo()!= null) {%>
-				<img class="prof" src="<%=response.encodeURL("/NYTRO/image?codice="+x.getUsername())%>" alt="<%=x.getUsername()%>" title="<%=x.getUsername()%>">
+				<img class="prof" src="<%=response.encodeURL("/NYTRO/image?id="+x.getUsername())%>" alt="<%=x.getUsername()%>" title="<%=x.getUsername()%>">
 			<%}else { %>
 				<img class="prof" src="/NYTRO/img/default-profile.png" alt="<%=x.getUsername()%>" title="<%=x.getUsername()%>">
 			<%} %>	
@@ -103,8 +103,15 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		for(RecensioneBean x : recensioni){%>
 		<div class="recensione">
 		<div class="identita">
+		<p><b><%=x.getVoto() %> ★</b></p>
 		<h2><%=x.getUsername()%></h2>
-		<p><%=x.getVoto() %> ★</p>
+		<%if(x.getUsername().equals(account.getUsername())) {%>
+			<form action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="post">
+			 <input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">		<!-- Mi serve perchè se no perdo il codice del videogioco -->
+			 <input type="hidden" name="rimuovereRecensione" value="true">
+			 <input type="submit" value="Rimuovi recensione">
+			</form>
+		<%} %>
 		</div>
 		<div class="commento">
 			<p><%if (x.getCommento().length() > 0) {%>
@@ -114,13 +121,6 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 				<%} %>
 			</p>
 		</div>
-		<%if(x.getUsername().equals(account.getUsername())) {%>
-			<form action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="post">
-			 <input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">		<!-- Mi serve perchè se no perdo il codice del videogioco -->
-			 <input type="hidden" name="rimuovereRecensione" value="true">
-			 <input type="submit" value="Rimuovi recensione">
-			</form>
-		<%} %>
 		</div>
 	<%	}
 	  }
@@ -129,13 +129,13 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 	</div>
 	<div id="azioni">
 	<%if(account.getRuolo()==1) {%>
-		<h3>Inserisci recensione</h3>
+		<h3 class="opzione" onclick='show(document.getElementById("insRecensione"))'>Inserisci recensione</h3>
 		
-		<form action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="post">
+		<form id="insRecensione" action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="post">
 		 <input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">		<!-- Mi serve perchè se no perdo il codice del videogioco -->
-		 <textarea rows="4" cols="50" name="commentoRecensione" required> </textarea> 
-		 <label>Inserisci voto: <input type="number" name="votoRecensione" min="1" max="5" step="0.25" required></label>
-		 <input type="submit" value="Inserisci">
+		 <label>Commento (max 200 caratteri):  </label><textarea maxlength="200" rows="4" cols="50" name="commentoRecensione" required> </textarea>
+		 <label>Voto: <input type="number" name="votoRecensione" min="1" max="5" step="0.25" required></label>
+		 <input type="submit" value="Inserisci" id="insert">
 		</form>
 				
 		<%} %>
@@ -143,34 +143,34 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 	<%if(account.getRuolo()==2) {
 		CasaEditriceBean casa = (CasaEditriceBean) request.getAttribute("account");
 		if (casa.getISIN().equals(videogiocoDetailed.getISIN())){%>
-		<h3>Cambia immagine del videogioco</h3>
+		<h3 class="opzione" onclick='show(document.getElementById("cambiaImg"))'>Cambia immagine del videogioco</h3>
 		
-		<form action="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+videogiocoDetailed.getCodice())%>" method="post" enctype="multipart/form-data">
+		<form id="cambiaImg" action="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+videogiocoDetailed.getCodice())%>" method="post" enctype="multipart/form-data">
 		 <input type="hidden" name="cambiaImmagineVideogioco" value="true" required>
 	 	 <input type="file" name="photo" size="50"/>
 		 <input type="submit" value="Vai">
 		</form>
 		
-		<h3>Cambia trailer</h3>
+		<h3 class="opzione" onclick='show(document.getElementById("cambiaTrailer"))'>Cambia trailer</h3>
 		
-		<form action="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+videogiocoDetailed.getCodice())%>" method="post">
+		<form id="cambiaTrailer"action="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+videogiocoDetailed.getCodice())%>" method="post">
 	 	 <input type="text" name="cambiaTrailer" required placeholder="Trailer*"/>
 		 <input type="submit" value="Vai">
 		</form>
 		
-		<h3>Aggiungi genere</h3>
+		<h3 class="opzione" onclick='show(document.getElementById("addGenere"))'>Aggiungi genere</h3>
 		
-		<form action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="post" enctype="multipart/form-data">
+		<form id="addGenere" action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="post" enctype="multipart/form-data">
 		 <input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">
 		 <input type="hidden" name="cambiaGenere" value="true">
 	 	 <input type="text" name="newGenere" placeholder="Genere*" required/>
 		 <input type="submit" value="Vai">
 		</form>
 		
-		<%} if(videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoPagamentoBean")) {%>
-			<h3>Cambia prezzo</h3>
+		<% if(videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoPagamentoBean")) {%>
+			<h3 class="opzione" onclick='show(document.getElementById("cambiaPrezzo"))'>Cambia prezzo</h3>
 		
-			<form action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="post" enctype="multipart/form-data">
+			<form id="cambiaPrezzo" action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="post" enctype="multipart/form-data">
 			 <input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">
 			 <input type="hidden" name="cambiaPrezzo" value="true">
 		 	 <input type="number" name="newPrezzo" min="0" step="0.01" required/>
@@ -179,20 +179,28 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		<%} %>
 		
 		<%if(videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoDemoBean")) {%>
-			<h3>Cambia durata</h3>
+			<h3  class="opzione" onclick='show(document.getElementById("cambiaDurata"))'>Cambia durata</h3>
 		
-			<form action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="post" enctype="multipart/form-data">
+			<form id="cambiaDurata" action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="post" enctype="multipart/form-data">
 			 <input type="hidden" name="codiceVideogioco" value="<%=videogiocoDetailed.getCodice()%>">
 			 <input type="hidden" name="cambiaDurataDemo" value="true">
 		 	 <input type="number" name="newDurataDemo" min="1" step="1" required/>
 			 <input type="submit" value="Vai">
 			</form>
-		<%} %>
-				
+		<%} 
+		}%>		
 	<%} %>
 	</div>
 	</div>
 	</div>
+	<script>
+	function show(elem) {
+		if(elem.style.display == "none")
+			elem.style.display ="block";
+		else
+			elem.style.display ="none";	
+	}
+	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
 		$("document").ready(function prova(){

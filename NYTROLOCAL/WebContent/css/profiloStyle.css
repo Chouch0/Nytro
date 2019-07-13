@@ -21,24 +21,67 @@
 
 #informazioniAccount {
 	display: table;
-	margin-left: 10%;
-	margin-right: 10%;
+	margin-top: -20px;
+	padding-bottom: 50px;
+	flex:1;
 }
 
 #account {
-	width: 200px;
+	width: 30%;
 	display: table-cell;
-	margin: 0%, 2%, 0%, 2%;
+	padding-left: 10%;
 }
 
 #modifiche1 {
 	width: 35%;
 	display: table-cell;
-	margin: 0%, 2%, 0%, 2%;
+	background-color: #a7d7c5;
+	color: #155e63;
+	padding-left: 30px;
 }
 
 #modifiche2 {
-	width: 35%;
+	padding-right: 2%;
 	display: table-cell;
-	margin: 0%, 2%, 0%, 2%;
+	background-color: #a7d7c5;
+	color: #155e63;
+	padding-left: 30px;
+}
+
+#insights {
+	display: table-caption;
+	caption-side: bottom;
+	text-align: center;
+}
+
+#in {	
+	margin-top: -23px;
+	background-color: #74b49b;
+	padding-top: 10px;
+}
+
+#insights div {	
+	padding-bottom: 20px;
+}
+
+#admin {
+	background-color: #a7d7c5;
+	color: #155e63;
+	display: table;
+	width: 100%;
+}
+
+#admin div {
+	padding-left: 10%;
+	display: table-cell;
+	text-align: left;
+}
+
+#admin div:last-child {
+	text-align: right;
+	padding-right: 10%;
+}
+
+#admin div:last-child h2{
+	text-align: left;
 }

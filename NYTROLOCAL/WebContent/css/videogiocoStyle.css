@@ -59,26 +59,64 @@ a {
 	text-align: left;
 	width: 100%;
 	display: table;
+	border-bottom: 1px solid lightgrey;
 }
 
 .identita {
 	display: table-cell;
 	padding-left: 15%;
+	color: #f9f8eb;
+	width: 30%;
+	overflow: hidden;
 }
 
 .commento {
+	background-color: #f9f8eb;
 	display: table-cell;
-	padding-left: 10%;
+	padding-left: 5%;
+}
+
+.commento i {
+	color: #74b49b;
+}
+
+#azioni {
+	padding: 20px;
+	margin-top:-20px;
+	padding-top: 1px;
+	background-color: #a7d7c5;
+	color: #155e63;
+}
+
+#azioni label, #azioni input {
+	vertical-align: top;
+}
+
+#azioni label {
+	margin-left: 20px;
+}
+
+textarea {
+	resize: none;
+	overflow: scroll;
+}
+
+#azioni input[type=number] {
+	width: 50px;
+}
+
+.identita input[type=submit] {
+	width: 100%;
+	margin: 3px;
 }
 
 #ordina {
-	height: 20%;
 	background-color: #a7d7c5;
 	color: #155e63;
 	text-align: right;
 }
 
-#ordina input[type=submit] {
+#ordina input[type=submit], .identita input[type=submit], #insert {
 	border: none;
 	text-decoration: none;
 	color: #f9f8eb;
@@ -92,7 +130,15 @@ a {
 	margin-left: 1%;
 }
 
-#ordina form input[type=submit]:hover{
+#ordina form input[type=submit]:hover, .identita input[type=submit]:hover, #insert:hover{
 	background-color: #ea5b5b;
 	color: #f9f8eb; 
+}
+
+#insRecensione, #cambiaImg, #cambiaTrailer, #addGenere, #cambiaPrezzo, #cambiaDurata {
+	display: none;
+}
+
+.opzione {
+	cursor: pointer;
 }

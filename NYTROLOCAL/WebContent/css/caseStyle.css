@@ -44,7 +44,12 @@
 	height: 100px;
 }
 
-ul .casa:hover{
+.casa a {
+	color: #f9f8eb;
+	text-decoration: none;
+}
+
+ul .casa:hover, ul .casa:hover a{
 	background-color: #f9f8eb;
 	color: #155e63;
 }
@@ -80,7 +85,6 @@ ul .casa:hover{
 }
 
 #ordina {
-	height: 20%;
 	background-color: #a7d7c5;
 	color: #155e63;
 	text-align: right;

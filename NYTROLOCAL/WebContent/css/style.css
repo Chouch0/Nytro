@@ -88,6 +88,12 @@ footer {
 	float: right;
 	margin: 1%;
 }
+
+input, textarea, select {
+	background-color: #f9f8eb;
+	
+}
+
 nav {
 	margin: -10px;
 	position: -webkit-sticky; /* Safari */
