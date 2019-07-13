@@ -354,6 +354,40 @@ public class AccountDAO {
 		
 		return bean;
 	}
+	
+	public AccountBean doRetrieveByIsin(String isin) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		AccountBean bean = new AccountBean();
+		
+		String selectSQL = "SELECT * FROM account, azienda where account.username=azienda.username and azienda.isin=?";
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, isin);
+			
+			System.out.println("doRetrieveByIsin: " + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				bean = this.doRetrieveByUsername(rs.getString("Username"));
+			}
+			connection.commit();
+		} finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			} finally {																//Mi serve un ulteriore livello di try{} finally{ } in quanto se preparedStament.close() genera un'execption, non chiudo la connessione
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
+		return bean;
+	}
 
 	public void doSaveAccount(AccountBean account) throws SQLException {
 		Connection connection = null;

@@ -82,7 +82,7 @@ public class RegistrazioneCasaEditrice extends HttpServlet {
 			photoOk = false;
 		} else photoOk = true;
 		
-		if(usernameOk && passwordOk && emailOk && emailRecOk && nameOk && isinOk && ceoOk && siteOk && photoOk) {
+		if(usernameOk && passwordOk && emailOk && emailRecOk && nameOk && isinOk && ceoOk && siteOk) {
 			utente.setPassword(password);
 			utente.setEmail(email);
 			utente.setEmailRecupero(emailRec);

@@ -12,18 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import nytro.model.AccountBean;
 import nytro.model.AccountDAO;
 
-@WebServlet("/VerificaUsername")
-public class VerificaUsername extends HttpServlet {
+@WebServlet("/VerificaIsin")
+public class VerificaIsin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final AccountDAO accountDAO = new AccountDAO();
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username");
+		String isin = request.getParameter("isin");
 		response.setContentType("text/xml");
 		AccountBean bean;
-		if (username != null && username.length() >= 6 && username.matches("^[0-9a-zA-Z]+$")) {
+		if (isin != null && isin.length() >= 6 && isin.matches("^\\w{12}$")) {
 			try {
-				bean = accountDAO.doRetrieveByUsername(username);
+				bean = accountDAO.doRetrieveByIsin(isin);
 				if(bean.getUsername() == null) {
 					response.getWriter().append("<ok/>");
 					

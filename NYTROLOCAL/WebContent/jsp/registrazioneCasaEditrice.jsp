@@ -110,18 +110,31 @@ function checkSite() {
 
 function validaISIN() {
 	var input = document.forms['registrazione']['ISIN'];
-	if(/^\w{12}$/.test(input.value)) {
-		input.style.border = borderOk;
-		document.getElementById("errorISIN").innerHTML = "";
-		isinOk = true;
+	var ok = "<ok/>";
+	if(/^\w{12}$/.test(input.value)) {		
+		var xmlHttpReq = new XMLHttpRequest();
+		xmlHttpReq.onreadystatechange = function() {
+			if (xmlHttpReq.readyState == 4 && xmlHttpReq.status == 200 && xmlHttpReq.responseText == ok) {
+				input.style.border = borderOk;
+				document.getElementById("errorISIN").innerHTML = "";
+				isinOk  = true;
+			} else if(xmlHttpReq.readyState == 4 && xmlHttpReq.status == 200 && xmlHttpReq.responseText != ok){
+				input.style.border = borderNo;
+				document.getElementById("errorISIN").innerHTML = "Attenzione! Questo ISIN è già utilizzato.";
+				isinOk  = false;
+			}
+			checkForm();
+		} 
+		xmlHttpReq.open("GET", "/NYTRO/VerificaIsin?isin=" + encodeURIComponent(input.value), true);
+		xmlHttpReq.send();
 	} else {
 		input.style.border = borderNo;
 		document.getElementById("errorISIN").innerHTML = "Formato ISIN errato";
 		isinOk = false;
+		checkForm();
 	}
 	checkForm();
 }
-
 
 function validaPassword() {
 	var inputpw = document.forms['registrazione']['password'];
@@ -219,27 +232,6 @@ function checkForm() {
 	
 }	
 
-
-
-
-
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <%@include file="footer.jsp"%>	
