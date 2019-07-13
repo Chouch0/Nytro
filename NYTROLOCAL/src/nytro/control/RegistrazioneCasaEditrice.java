@@ -74,7 +74,7 @@ public class RegistrazioneCasaEditrice extends HttpServlet {
 			emailRecOk = false;
 		} else emailRecOk = true;
 		
-		if(!phone.matches("^\\d{10}$") || phone.isEmpty()) {
+		if(phone!= null && !phone.matches("^\\d{10}$") || phone.isEmpty()) {
 			phone = null;
 		}
 		
