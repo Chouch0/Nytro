@@ -52,6 +52,8 @@
 	display: table-caption;
 	caption-side: bottom;
 	text-align: center;
+	margin-top:-30px;
+	color: #155e63;
 }
 
 #in {	
@@ -71,17 +73,17 @@
 	width: 100%;
 }
 
-#admin div {
+#admin .admin {
 	padding-left: 10%;
 	display: table-cell;
 	text-align: left;
 }
 
-#admin div:last-child {
+#admin .admin:last-child {
 	text-align: right;
 	padding-right: 10%;
 }
 
-#admin div:last-child h2{
+#admin .admin:last-child h2{
 	text-align: left;
 }

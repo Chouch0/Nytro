@@ -135,7 +135,7 @@ CasaEditriceBean x = (CasaEditriceBean) account;%>
 <div id="in">
 <h1>Insights</h1>
 </div>
-<div>
+<div class="admin">
 <h2>Ricavi piattaforma</h2>
 <form action="<%=response.encodeURL("/NYTRO/Profilo")%>">
 <input type="hidden" name="contributoAnnuale" value="true">
@@ -161,7 +161,7 @@ CasaEditriceBean x = (CasaEditriceBean) account;%>
 	<%} %>
 </div>
 <div id ="admin">
-<div>
+<div class="admin">
 <h2>Videogioco più giocato dai ragazzi</h2>
 <%
 	VideogiocoBean piuGiocatoMaschi = (VideogiocoBean) request.getAttribute("piuGiocatoMaschi");
@@ -179,7 +179,7 @@ CasaEditriceBean x = (CasaEditriceBean) account;%>
 	<p><%=piuGiocatoFemmine.getGenere().toString().substring(1, piuGiocatoFemmine.getGenere().toString().length()-1) %></p>
 <%} %>
 </div>
-<div>
+<div class=admin>
 <h2>Videogiochi rimossi in un determinato anno</h2>	
 <form action="<%=response.encodeURL("/NYTRO/Profilo")%>">
 <input type="hidden" name="listaVideogiochiRimossi" value="true">
