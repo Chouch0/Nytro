@@ -109,7 +109,7 @@ public class Pubblicazioni extends HttpServlet {
 				}else if(tipologia.equals("freeToPlay")){
 					String aggModalita = request.getParameter("aggModalita");
 					
-					if(aggModalita!=null && !aggModalita.equals("")) {
+					if(aggModalita!=null && !aggModalita.equals("") && (aggModalita.equals("offline") || aggModalita.equals("online"))) {
 						VideogiocoFreeToPlayBean bean = new VideogiocoFreeToPlayBean();
 						bean.setISIN(isin);
 						
