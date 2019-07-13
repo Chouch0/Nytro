@@ -56,11 +56,11 @@ public class RegistrazioneUtente extends HttpServlet {
 			emailRecOk = false;
 		} else emailRecOk = true;
 		
-		if(!phone.matches("^\\d{10}$") || phone.isEmpty()) {
+		if(phone != null && !phone.matches("^\\d{10}$") || phone != null && phone.isEmpty()) {
 			phone = null;
 		}
 
-		if(date.length() != 10) {
+		if(date != null && date.length() != 10) {
 			date = null;
 		} else {
 			int day = Integer.parseInt(date.substring(8, 10));
@@ -73,15 +73,15 @@ public class RegistrazioneUtente extends HttpServlet {
 		}
 
 		
-		if(genere == null || genere.equals("")) {
+		if(genere != null && genere.equals("")) {
 			genere = null;
 		} 
 		
-		if(request.getPart("photo").getSize() == 0) {
+		if(request.getPart("photo")!= null && request.getPart("photo").getSize() == 0) {
 			photoOk = false;
 		} else photoOk = true;
 		
-		if(usernameOk && passwordOk && emailOk && emailRecOk && photoOk) {
+		if(usernameOk && passwordOk && emailOk && emailRecOk) {
 			utente.setUsername(username);
 			utente.setPassword(password);
 			utente.setEmail(email);
