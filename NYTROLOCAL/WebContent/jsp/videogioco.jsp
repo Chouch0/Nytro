@@ -17,14 +17,25 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 %>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="<%=videogiocoDetailed.getTitolo() %>"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
-	
+<link href="/NYTRO/css/videogiocoStyle.css" type="text/css" rel="stylesheet">
+	<div id="pagina">
 	<h1><%=videogiocoDetailed.getTitolo() %></h1>
-	
+	</div>
+	<div id="informazioni">
+	<div  id="video">
+	<iframe width="100%" height="100%" frameBorder="0" src="<%=videogiocoDetailed.getTrailer()%>"></iframe>
+	</div>
+	<div id="dettagli">
+	<%if(videogiocoDetailed.getImg()!= null) {%>
+		<img src="<%=response.encodeURL("/NYTRO/image?codice="+videogiocoDetailed.getCodice())%>" alt="<%=videogiocoDetailed.getTitolo()%>">
+	<%}else{ %>
+		<img src="/NYTRO/img/no-cover.jpg" alt="<%=videogiocoDetailed.getTitolo()%>">
+	<%} %>
+	<p><%=request.getAttribute("nomeCasaEd") %></p>
 	<p>
 		<%=videogiocoDetailed.toString()%>
-		
-		<%
-		if(account.getRuolo()==1){
+	</p><p>	
+		<%if(account.getRuolo()==1){
 			GiocatoreBean giocatore = (GiocatoreBean) request.getAttribute("account");
 			if(videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoPagamentoBean")){
 				if(possibileAggiungereAgliAcquisti!=null && possibileAggiungereAgliAcquisti.equalsIgnoreCase("true")){
@@ -35,7 +46,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 						LocalDate data = LocalDate.parse(giocatore.getDataNascita());
 						if (LocalDate.now().getYear() - data.getYear() < 18) {
 						%><p>E necessario avere 18+ anni per procedere all'acquisto.</p> <%
-						} 
+						}
 					}else {
 						%><a href="<%=url%>">Inserisci nel carrello</a><br/><%
 						}
@@ -52,14 +63,14 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 			}
 		%>	
 	</p>
-	
-	
+	</div>
+	<div id="recensioni">
 	<%if(account.getRuolo()==1 && amici!=null){%>
 		<h2>Lista degli amici che posseggono lo stesso gioco</h2>
 		<%for(AccountBean x : amici){%>
 		<%=x.toString()%><br/>		
-	<%} 
-	}%>
+	<%} %>
+	<%}%>
 	
 	
 	<h2>Recensioni</h2>
@@ -137,7 +148,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		 <input type="submit" value="Vai">
 		</form>
 		
-		<%if(videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoPagamentoBean")) {%>
+		<%} if(videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoPagamentoBean")) {%>
 			<h3>Cambia prezzo</h3>
 		
 			<form action="<%=response.encodeURL("/NYTRO/Videogioco")%>" method="post" enctype="multipart/form-data">
@@ -159,7 +170,9 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 			</form>
 		<%} %>
 				
-	<%}} %>
+	<%} %>
+	</div>
+	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
 		$("document").ready(function prova(){

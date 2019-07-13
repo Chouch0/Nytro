@@ -1,0 +1,37 @@
+@charset "ISO-8859-1";
+
+#pagina {
+	text-align: center;
+	padding: 1%;
+	background-color: #f9f8eb;
+	margin: -20px;
+	color: #155e63;	
+	padding-top: 10px;
+}
+
+#informazioni {
+	display: table;
+	width: 100%;
+	flex: 1;
+	background-color: #74b49b;
+}
+
+#video {
+	width: 40%;
+	display: table-cell;
+	padding-left: 2px;
+	height: 400px;
+}
+
+#dettagli {
+	display: table-cell;
+    vertical-align:top;
+	padding-right: 2%;
+}
+#dettagli img {
+	height: 400px;
+	float: left;
+}
+#recensioni {
+	display: table-row;
+}

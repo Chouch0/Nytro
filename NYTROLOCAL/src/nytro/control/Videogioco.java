@@ -206,9 +206,17 @@ public class Videogioco extends HttpServlet {
 			throw new MyException("Errore SQL per videogioco");
 		}
 		
+		String casa = videogiocoDetailed.getISIN();
+		try {
+			casa = videogiocoDAO.doRetrieveCasaByCodice(videogiocoDetailed.getCodice());
+		} catch (SQLException e) {
+			throw new MyException("Errore SQL per casa videogioco");
+		}
+		
 		request.setAttribute("videogiocoDetailed", videogiocoDetailed);
 		request.setAttribute("recensioni", recensioni);
 		request.setAttribute("amici", amici);
+		request.setAttribute("nomeCasaEd", casa);
 		
 		String url = response.encodeURL("jsp/videogioco.jsp");
 		request.getRequestDispatcher(url).forward(request, response);
