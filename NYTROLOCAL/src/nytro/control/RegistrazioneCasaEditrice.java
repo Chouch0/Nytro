@@ -99,7 +99,8 @@ public class RegistrazioneCasaEditrice extends HttpServlet {
 			
 			try {
 				accountDAO.doSaveCasaEditrice(utente);
-				accountDAO.doUploadImage(utente);
+				if (request.getPart("photo") != null && request.getPart("photo").getSize() > 0)
+					accountDAO.doUploadImage(utente);
 				String url = response.encodeURL("jsp/index.jsp");
 				RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 				dispatcher.forward(request, response);
