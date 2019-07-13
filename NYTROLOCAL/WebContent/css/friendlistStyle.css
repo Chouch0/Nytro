@@ -13,16 +13,19 @@
 	height:100px;
 }
 
-#lista {
+#pagina {
+	text-align: center;
+	padding: 1%;
 	background-color: #f9f8eb;
+	color: #155e63;	
+}
+
+#lista {
+	background-color: #74b49b;
 	color: #155e63;	
 	margin-top: -25px;
 	flex: 1;
 	text-align: center;
-}
-
-#lista h1 {
-	padding: 1%;
 }
 
 #lista ul{ 
@@ -84,6 +87,16 @@ ul .amico:hover{
 	background-color: #f9f8eb;
 	color: #155e63;
 	text-align: right;
+}
+
+#vuoto {
+	width: 100%;
+	text-align: center;
+	background-color: #a7d7c5;
+	margin-top: -22px;
+	color:#155e63;
+	padding-bottom: 20px;
+	padding-top: 10px;
 }
 
 #aggiungi input[type=text]{

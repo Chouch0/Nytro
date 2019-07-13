@@ -20,17 +20,14 @@
 	background-color: #f9f8eb;
 	margin: -20px;
 	color: #155e63;	
+	padding-top: 30px;
 }
 
 #lista {
-	background-color: #f9f8eb;
+	background-color: #74b49b;
 	color: #f9f8eb;
 	margin-top: -25px;
 	flex: 1;
-}
-
-#lista h1 {
-	padding: 1%;
 }
 
 #lista ul{ 
@@ -71,6 +68,14 @@ li #download:only-child {
 	font-weight: bold;
 	padding-top: 1%;
 	padding-bottom: 0.3%;
+}
+
+#vuoto {
+	width: 100%;
+	text-align: center;
+	background-color: #74b49b;
+	margin-top: -22px;	
+	padding-top: 10px;
 }
 
 #download {

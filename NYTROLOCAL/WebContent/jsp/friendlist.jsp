@@ -9,7 +9,9 @@ import="java.util.Collection, nytro.model.AccountBean"%>
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Friendlist"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
 <link href="/NYTRO/css/friendlistStyle.css" type="text/css" rel="stylesheet">			
 	<div id="lista">
+	<div id="pagina">
 	<h1>Lista amici</h1>
+	</div>
 	<%if(amici!=null) {%>
 		<div id="tabella">
 		<%
@@ -36,7 +38,13 @@ import="java.util.Collection, nytro.model.AccountBean"%>
 		</div>
 		</ul>
 			<%}
-		} %>
+		} %>		
+		<% if(amici.isEmpty()) { %>
+		<div id="vuoto">
+		<h1>Non hai ancora amici nella tua lista.</h1>
+		<p>Aggiungine subito uno!</p>
+		</div>
+		<%} %>
 		</div>
 		<div id="aggiungi">
 		<form action="<%=response.encodeURL("/NYTRO/Friendlist")%>" method="post">

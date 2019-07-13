@@ -36,7 +36,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 	<input type="submit" value="Vai"/>
 	</form>
 	</div>
-	<%if(libreria!=null) {%>
+	<%if(!libreria.isEmpty()) {%>
 		<div id="tabella">
 			<%
 				for(VideogiocoBean x : libreria){
@@ -58,13 +58,18 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 			<li><form action="<%=response.encodeURL("/NYTRO/Libreria?cancellaVideogioco="+x.getCodice())%>" method="post"> <input type="submit" value="Rimuovi"/></form>
 			</li>
 		</div>
-		</ul>	
+		</ul>
+	</div>
 			<%
 				}
 			%>
 		
+	<%} else if(libreria.isEmpty()) { %>
+		<div id="vuoto">
+		<h1>Nessun gioco presente nella libreria.</h1>
+		<p>Cosa aspetti? Sfoglia il catalogo!</p>
+		</div>
 	<%} %>
-	</div>
 </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
