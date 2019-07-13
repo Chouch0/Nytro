@@ -11,7 +11,9 @@ import="nytro.model.VideogiocoBean, nytro.model.AccountBean, java.util.Collectio
 <link href="/NYTRO/css/libreriaStyle.css" type="text/css" rel="stylesheet">	
 	
 	<div id="lista">
+	<div id="pagina">
 	<h1>Catalogo completo dei videogiochi della casa editrice: <%=isinCasaEditrice%></h1>
+	</div>
 	<div id="ordina">
 	<form action="<%=response.encodeURL("/NYTRO/CatalogoCasaEditrice")%>" method="get">
 		<input type="hidden" name="isinCasaEditrice" value="<%=isinCasaEditrice%>">
@@ -53,7 +55,7 @@ import="nytro.model.VideogiocoBean, nytro.model.AccountBean, java.util.Collectio
 			<%} %></div></li>		
 				
 			<li class="titolo"><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+x.getCodice())%>"><%=x.getTitolo()%></a></li>
-			<li><%=x.getISIN() %></li>
+			<li><%= isinCasaEditrice%></li>
 			<li><%=x.getGenere().toString()%></li>
 			<li>Voto: <%=x.getVotoMedio() %></li>
 			<td>PEGI: <%=x.getPEGI()%></td>

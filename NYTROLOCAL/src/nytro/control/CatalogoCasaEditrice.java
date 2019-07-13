@@ -59,9 +59,12 @@ public class CatalogoCasaEditrice extends HttpServlet {
 			catalogoRichiesto = catalogoCasaEditrice;
 		}
 		
+		String nome = isinCasaEditrice;
+		
 		for(VideogiocoBean x : catalogoRichiesto) {
 			try {
 				List<String> tmp = x.getGenere();
+				nome = videogiocoDAO.doRetrieveCasaByCodice(x.getCodice());
 				for(String y : tmp) {
 					if(!generiPresenti.contains(y.toLowerCase()))
 						generiPresenti.add(y.toLowerCase());
@@ -71,10 +74,12 @@ public class CatalogoCasaEditrice extends HttpServlet {
 			}
 		}
 		
+		
 		request.setAttribute("generiPresenti", generiPresenti);
 		
 		request.setAttribute("catalogoCasaEditrice", catalogoRichiesto);
-		request.setAttribute("isinCasaEditrice", isinCasaEditrice);
+		request.removeAttribute("isinCasaEditrice");
+		request.setAttribute("isinCasaEditrice", nome);
 
 		String url = response.encodeURL("jsp/catalogoCasaEditrice.jsp");
 		request.getRequestDispatcher(url).forward(request, response);
