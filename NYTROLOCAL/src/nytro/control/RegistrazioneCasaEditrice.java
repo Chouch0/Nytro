@@ -62,7 +62,7 @@ public class RegistrazioneCasaEditrice extends HttpServlet {
 		} else usernameOk = true;
 
 		if(password == null || password.equals("") || passwordConf == null || passwordConf.equals("") || !password.equals(passwordConf)
-			|| password.length() < 8 || password.toUpperCase().equals(password.toLowerCase())) {
+			|| password.length() < 8 || password.toUpperCase() == password || password.toLowerCase() == password) {
 			passwordOk = false;
 		} else passwordOk = true;
 		

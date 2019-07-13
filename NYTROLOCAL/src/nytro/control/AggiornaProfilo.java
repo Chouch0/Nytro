@@ -31,10 +31,13 @@ public class AggiornaProfilo extends HttpServlet {
 			throw new MyException("Account non loggato");
 		
 		String cambiaPassword = request.getParameter("cambiaPassword");
-		if(!(cambiaPassword==null || cambiaPassword.equals(""))) {
-			String cambiaPasswordConferma = request.getParameter("cambiaPasswordConferma");
-			String vecchiaPassword = request.getParameter("vecchiaPassword");
-			if(vecchiaPassword!=null && !cambiaPasswordConferma.equals("") && vecchiaPassword!=null && !cambiaPasswordConferma.equals("")) {
+		String cambiaPasswordConferma = request.getParameter("cambiaPasswordConferma");
+		String vecchiaPassword = request.getParameter("vecchiaPassword");
+
+		if(!(cambiaPassword==null || cambiaPassword.equals("")) && cambiaPassword.length() >= 8
+			&& cambiaPassword.toUpperCase() != cambiaPassword && cambiaPassword.toLowerCase() != cambiaPassword) {
+			if(vecchiaPassword!=null && !cambiaPasswordConferma.equals("") && !vecchiaPassword.equals("")
+				&& !(cambiaPasswordConferma == null)) {
 				if(!cambiaPasswordConferma.equals(cambiaPassword))
 					throw new MyException("Password missmatch: "+cambiaPasswordConferma+" "+cambiaPassword);
 				if(!account.getPassword().equals(vecchiaPassword))
@@ -49,7 +52,7 @@ public class AggiornaProfilo extends HttpServlet {
 		}
 		
 		String cambiaEmail = request.getParameter("cambiaEmail");
-		if(cambiaEmail!=null && !cambiaEmail.equals("")) {
+		if(cambiaEmail!=null && !cambiaEmail.equals("") && cambiaEmail.matches("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$")) {
 			account.setEmail(cambiaEmail);
 			try {
 				accountDAO.doUpdate(account);
@@ -59,7 +62,7 @@ public class AggiornaProfilo extends HttpServlet {
 		}
 		
 		String cambiaEmailRecupero = request.getParameter("cambiaEmailRecupero");
-		if(cambiaEmailRecupero!=null && !cambiaEmailRecupero.equals("")) {
+		if(cambiaEmailRecupero!=null && !cambiaEmailRecupero.equals("") && cambiaEmailRecupero.matches("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$")) {
 			account.setEmailRecupero(cambiaEmailRecupero);
 			try {
 				accountDAO.doUpdate(account);
@@ -69,7 +72,7 @@ public class AggiornaProfilo extends HttpServlet {
 		}
 		
 		String phone = request.getParameter("phone");
-		if(phone!=null && !phone.equals("")) {
+		if(phone!=null && !phone.equals("") && phone.matches("\\d{10}")) {
 			account.setCellulare(phone);
 			try {
 				accountDAO.doUpdate(account);
