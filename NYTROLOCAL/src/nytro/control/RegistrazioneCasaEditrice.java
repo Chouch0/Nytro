@@ -26,48 +26,94 @@ public class RegistrazioneCasaEditrice extends HttpServlet {
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CasaEditriceBean utente = new CasaEditriceBean();
-		
-		utente.setUsername(request.getParameter("username"));
-		System.out.println("Questo è lo username : " + request.getParameter("username"));
-		
+		String nomeAzienda = request.getParameter("nomeCasaEditrice");
+		String username = request.getParameter("username");
+		String ceo = request.getParameter("nomeCEO");
+		String isin = request.getParameter("ISIN");
+		String password = request.getParameter("password");
+		String passwordConf = request.getParameter("passwordConferma");
+		String email = request.getParameter("email");
+		String emailRec = request.getParameter("emailRec");
 		String phone = request.getParameter("phone");
-		if(phone.isEmpty()) {
+		String website = request.getParameter("sitoWeb");
+		boolean usernameOk, passwordOk, emailOk, emailRecOk, photoOk, nameOk, isinOk, siteOk, ceoOk;
+		
+		utente.setUsername(username);
+		System.out.println("Questo è lo username : " + username);
+		
+		if(nomeAzienda.equals("") || nomeAzienda == null) {
+			nameOk = false;
+		} else nameOk = true;
+		
+		if(!isin.matches("^\\w{12}$") || isin.equals("") || isin == null) {
+			isinOk = false;
+		} else isinOk = true;
+		
+		if(ceo.equals("") || ceo == null) {
+			ceoOk = false;
+		} else ceoOk = true;
+		
+		if(website.equals("") || website == null) {
+			siteOk = false;
+		} else siteOk = true;
+		
+		if(!username.matches("^[0-9a-zA-Z]+$") || username == null || username.equals("") || username.length() < 6) {
+			usernameOk = false;
+		} else usernameOk = true;
+
+		if(password == null || password.equals("") || passwordConf == null || passwordConf.equals("") || !password.equals(passwordConf)
+			|| password.length() < 8 || password.toUpperCase().equals(password.toLowerCase())) {
+			passwordOk = false;
+		} else passwordOk = true;
+		
+		if(!email.matches("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$") || email == null || email.equals("")) {
+			emailOk = false;
+		} else emailOk = true;
+		
+		if(!emailRec.matches("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$") || emailRec == null || emailRec == "") {
+			emailRecOk = false;
+		} else emailRecOk = true;
+		
+		if(!phone.matches("^\\d{10}$") || phone.isEmpty()) {
 			phone = null;
 		}
 		
-		utente.setPassword(request.getParameter("password"));
-		utente.setEmail(request.getParameter("email"));
-		utente.setEmailRecupero(request.getParameter("emailRec"));
-		utente.setCellulare(phone);
-		utente.setRuolo(2);
-		utente.setCEO(request.getParameter("nomeCEO"));
-		utente.setISIN(request.getParameter("ISIN"));
-		utente.setImgProfilo(request.getPart("photo").getInputStream());
-		utente.setNomeCasaEditrice(request.getParameter("nomeCasaEditrice"));
-		utente.setSitoWeb(request.getParameter("sitoWeb"));
-		 
+		if(request.getPart("photo").getSize() == 0 || request.getPart("photo") == null) {
+			photoOk = false;
+		} else photoOk = true;
 		
-		if(utente.getUsername()==null || utente.getUsername().equals("") ||
-				utente.getPassword()==null || utente.getPassword().equals("") ||
-				utente.getEmail()==null || utente.getEmail().equals("") ||
-				utente.getEmailRecupero()==null || utente.getEmailRecupero().equals(""))
-			throw new MyException("Campi vuoti");
-		
-		utente.setIp(request.getRemoteAddr());
-		
-		
-		try {
-			accountDAO.doSaveCasaEditrice(utente);
-			if (request.getPart("photo") != null && request.getPart("photo").getSize() > 0)
+		if(usernameOk && passwordOk && emailOk && emailRecOk && nameOk && isinOk && ceoOk && siteOk && photoOk) {
+			utente.setPassword(password);
+			utente.setEmail(email);
+			utente.setEmailRecupero(emailRec);
+			utente.setCellulare(phone);
+			utente.setRuolo(2);
+			utente.setCEO(ceo);
+			utente.setISIN(isin);
+			utente.setImgProfilo(request.getPart("photo").getInputStream());
+			utente.setNomeCasaEditrice(nomeAzienda);
+			utente.setSitoWeb(website);
+			utente.setIp(request.getRemoteAddr());
+			
+			
+			try {
+				accountDAO.doSaveCasaEditrice(utente);
 				accountDAO.doUploadImage(utente);
-			String url = response.encodeURL("jsp/index.jsp");
-			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-			dispatcher.forward(request, response);
-		} catch(SQLException exception) {
+				String url = response.encodeURL("jsp/index.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+				dispatcher.forward(request, response);
+			} catch(SQLException exception) {
+				String url = response.encodeURL("jsp/registrazioneCasaEditrice.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+				dispatcher.forward(request, response);
+			}
+		} else {
 			String url = response.encodeURL("jsp/registrazioneCasaEditrice.jsp");
 			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 			dispatcher.forward(request, response);
 		}
+		
+
 		
 	}	
 
