@@ -53,6 +53,7 @@ public class RegistrazioneCasaEditrice extends HttpServlet {
 			ceoOk = false;
 		} else ceoOk = true;
 		
+		//if(!website.matches("^(?:http(s)?:\\/\\/)?[\\w.-]+(?:\\.[\\w\\.-]+)+[\\w\\-\\._~:/?#[\\]@!\\$&\\(\\)\\*\\+,;=.]+$") || website.equals("") || website == null) {
 		if(website.equals("") || website == null) {
 			siteOk = false;
 		} else siteOk = true;

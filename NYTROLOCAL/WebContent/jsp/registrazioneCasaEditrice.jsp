@@ -22,6 +22,7 @@
 	<input class="registrazione" id="telefono" type="tel" name="phone" oninput="validaTelefono()" onBlur="checkPhoneField()" placeholder="Cellulare">
 	<p id="errorPhone"></p>
 	<input class="registrazione" name="sitoWeb" type="text" placeholder="Sito Web*" onblur="checkSite()" required>
+	<p id="errorSite"></p>
 	
 	<p id="errorSub">Compila tutti i campi obbligatori</p>
     <input type="file" name="photo" size="50">	
@@ -98,12 +99,16 @@ function checkCEO() {
 
 function checkSite() {
 	var input = document.forms['registrazione']['sitoWeb'];
-	if(input.value == "") {
-		input.style.border = borderNo;
-		sitoOk = false;;
-	} else {
+	
+	if (input.value.match(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&\(\)\*\+,;=.]+$/)) {
+		//https://www.regextester.com/94502
 		input.style.border = borderOk;
+		document.getElementById("errorSite").innerHTML = "";
 		sitoOk = true;
+	} else {
+		input.style.border = borderNo;
+		document.getElementById("errorSite").innerHTML = "Sito web non valido";
+		sitoOk = false;
 	}
 	checkForm();
 }
