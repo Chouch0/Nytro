@@ -39,8 +39,8 @@ import="nytro.model.AccountBean, java.util.Collection, nytro.model.CasaEditriceB
 			<li><form action="<%=response.encodeURL("/NYTRO/CatalogoCasaEditrice?isinCasaEditrice="+y.getISIN())%>" method="post">
 				<input type="submit" value="Visualizza catalogo">
 			</form></li>
-			<li class="username"><%=y.getNomeCasaEditrice() %></li>
-			<li>Sito Web: <%=y.getSitoWeb() %></li>
+			<a href="<%=response.encodeURL("/NYTRO/CatalogoCasaEditrice?isinCasaEditrice="+y.getISIN())%>"><li class="username"><%=y.getNomeCasaEditrice() %></li></a>
+			<li><%=y.getSitoWeb() %></li>
 		</div>
 		</ul>
 			<%}

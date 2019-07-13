@@ -1,5 +1,10 @@
 @charset "ISO-8859-1";
 
+a {
+	text-decoration: none;
+	color: inherit;		
+}
+
 #pagina {
 	text-align: center;
 	padding: 1%;
@@ -13,7 +18,8 @@
 	display: table;
 	width: 100%;
 	flex: 1;
-	background-color: #74b49b;
+	background-color: #a7d7c5;
+	color: #155e63;
 }
 
 #video {
@@ -26,12 +32,24 @@
 #dettagli {
 	display: table-cell;
     vertical-align:top;
-	padding-right: 2%;
-}
-#dettagli img {
+	padding-left: 2%;
+	text-align: center;
 	height: 400px;
-	float: left;
+	overflow: hidden;
+}
+
+#img {
+	height: 400px;
+	float: right;
+	padding-left: 2%;
 }
 #recensioni {
-	display: table-row;
+	text-align: center;
+	display: table-caption;
+	width: 100%;
+	caption-side: bottom;
+}
+
+.prof {
+	width: 20px;
 }

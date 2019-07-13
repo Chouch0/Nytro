@@ -24,7 +24,7 @@
 }
 
 #lista {
-	background-color: #74b49b;
+	background-color: #a7d7c5;
 	color: #f9f8eb;
 	margin-top: -25px;
 	flex: 1;
@@ -75,6 +75,7 @@ li #download:only-child {
 	text-align: center;
 	background-color: #74b49b;
 	padding-top: 10px;
+	padding-bottom: 20px;
 }
 
 #download {

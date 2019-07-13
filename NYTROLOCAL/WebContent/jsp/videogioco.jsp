@@ -27,25 +27,37 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 	</div>
 	<div id="dettagli">
 	<%if(videogiocoDetailed.getImg()!= null) {%>
-		<img src="<%=response.encodeURL("/NYTRO/image?codice="+videogiocoDetailed.getCodice())%>" alt="<%=videogiocoDetailed.getTitolo()%>">
+		<img id="img" src="<%=response.encodeURL("/NYTRO/image?codice="+videogiocoDetailed.getCodice())%>" alt="<%=videogiocoDetailed.getTitolo()%>">
 	<%}else{ %>
-		<img src="/NYTRO/img/no-cover.jpg" alt="<%=videogiocoDetailed.getTitolo()%>">
+		<img id="img" src="/NYTRO/img/no-cover.jpg" alt="<%=videogiocoDetailed.getTitolo()%>">
 	<%} %>
-	<p><%=request.getAttribute("nomeCasaEd") %></p>
-	<p>
-		<%=videogiocoDetailed.toString()%>
-	</p><p>	
+	<a href=<%=response.encodeURL("/NYTRO/CatalogoCasaEditrice?isinCasaEditrice="+videogiocoDetailed.getISIN())%>><h2><%=request.getAttribute("nomeCasaEd") %></h2></a>
+	<p><b>Genere: </b><%=videogiocoDetailed.getGenere().toString().substring(1, (videogiocoDetailed.getGenere().toString().length()-1))%></p><p>	
+	<p><b>Voto: </b><%=videogiocoDetailed.getVotoMedio() %></p>
+	<p><b>PEGI: </b><%=videogiocoDetailed.getPEGI() %></p>
+	<%if(account.getRuolo()==1 && !amici.isEmpty()){%>
+		<h4>Alcuni tuoi amici lo hanno già!</h4>
+		<%for(AccountBean x : amici){%>
+			<%if(x.getImgProfilo()!= null) {%>
+				<img class="prof" src="<%=response.encodeURL("/NYTRO/image?codice="+x.getUsername())%>" alt="<%=x.getUsername()%>" title="<%=x.getUsername()%>">
+			<%}else { %>
+				<img class="prof" src="/NYTRO/img/default-profile.png" alt="<%=x.getUsername()%>" title="<%=x.getUsername()%>">
+			<%} %>	
+		<%} %>
+	<%}%>
+	<p>Rilasciato il <%=videogiocoDetailed.getDataRilascio() %></p>
+	<h2>
 		<%if(account.getRuolo()==1){
 			GiocatoreBean giocatore = (GiocatoreBean) request.getAttribute("account");
 			if(videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoPagamentoBean")){
 				if(possibileAggiungereAgliAcquisti!=null && possibileAggiungereAgliAcquisti.equalsIgnoreCase("true")){
 					String url = response.encodeURL("GestoreCarrello?action=addCart&codiceVideogioco="+videogiocoDetailed.getCodice());
 					if(giocatore.getDataNascita() == null && videogiocoDetailed.getPEGI() >= 18){
-						%><a href="<%=response.encodeURL("/NYTRO/Profilo")%>">E necessario inserire la data di nascita per procedere all'acquisto.</a><%
+						%><a href="<%=response.encodeURL("/NYTRO/Profilo")%>">È necessario inserire la data di nascita per procedere all'acquisto.</a><%
 					} else if(giocatore.getDataNascita()!= null && videogiocoDetailed.getPEGI() >= 18){
 						LocalDate data = LocalDate.parse(giocatore.getDataNascita());
 						if (LocalDate.now().getYear() - data.getYear() < 18) {
-						%><p>E necessario avere 18+ anni per procedere all'acquisto.</p> <%
+						%>È necessario avere 18+ anni per procedere all'acquisto. <%
 						}
 					}else {
 						%><a href="<%=url%>">Inserisci nel carrello</a><br/><%
@@ -61,18 +73,10 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 					 %><a href="<%=response.encodeURL("Libreria?aggiungiVideogioco="+videogiocoDetailed.getCodice())%>">Inserisci nella libreria</a><br/><%
 				} 			
 			}
-		%>	
-	</p>
+		%>
+	</h2>
 	</div>
 	<div id="recensioni">
-	<%if(account.getRuolo()==1 && amici!=null){%>
-		<h2>Lista degli amici che posseggono lo stesso gioco</h2>
-		<%for(AccountBean x : amici){%>
-		<%=x.toString()%><br/>		
-	<%} %>
-	<%}%>
-	
-	
 	<h2>Recensioni</h2>
 	<p>
 	<%if(recensioni!=null){ 
