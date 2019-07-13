@@ -54,12 +54,28 @@ a {
 	width: 20px;
 }
 
+.recensione {
+	background-color: #74b49b;
+	text-align: left;
+	width: 100%;
+	display: table;
+}
+
+.identita {
+	display: table-cell;
+	padding-left: 15%;
+}
+
+.commento {
+	display: table-cell;
+	padding-left: 10%;
+}
+
 #ordina {
 	height: 20%;
 	background-color: #a7d7c5;
 	color: #155e63;
 	text-align: right;
-	border-bottom: 1px solid lightgrey;
 }
 
 #ordina input[type=submit] {

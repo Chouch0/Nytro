@@ -70,6 +70,9 @@ footer {
 
 #ghost {
 	position: relative;
+	bottom: 0;
+	left: 0;
+	right: 0;
 	width: 100%;
 	visibility: hidden;
 	font-size: 0.8em;
