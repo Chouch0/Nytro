@@ -45,7 +45,7 @@ import="nytro.model.VideogiocoPagamentoBean, nytro.model.Cart, nytro.model.Accou
 			<%} %></div></li>
 			<li class="titolo"><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+x.getCodice())%>"><%=x.getTitolo()%></a></li>
 			<li>Prezzo: <%=x.getPrezzo()%></li>
-			<li><a id="download" href="<%=response.encodeURL("GestoreCarrello?action=deleteCart&codiceVideogioco="+x.getCodice())%>">Rimuovi dal carrello</a></li>
+			<li><a href="<%=response.encodeURL("GestoreCarrello?action=deleteCart&codiceVideogioco="+x.getCodice())%>"><button id="rimuovi">Rimuovi dal carrello</button></a></li>
 		</div>
 		</ul>
 		

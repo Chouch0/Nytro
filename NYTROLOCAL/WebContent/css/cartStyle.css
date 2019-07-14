@@ -52,6 +52,7 @@
 	background-color: #f9f8eb;
 	color: #f9f8eb;
 	width: 100%;
+	position:relative;
 }
 
 .gioco {
@@ -73,15 +74,12 @@ ul .gioco:hover, ul .gioco:hover a{
 	color: #f9f8eb;	
 }
 
-li #download:only-child {
-	float:right;
-}
-
 .titolo{
 	font-size: 1.5em;
 	font-weight: bold;
 	padding-top: 1%;
 	padding-bottom: 0.3%;
+	padding-right: 200px;
 }
 
 #vuoto {
@@ -92,22 +90,24 @@ li #download:only-child {
 	padding-bottom: 20px;
 }
 
-#download {
+#rimuovi {
 	border: none;
 	text-decoration: none;
 	color: #f9f8eb;
-	padding-top: 40px;
-	padding: 14px 31.5px;
+	padding: 14px 16px;
 	text-align: center;
 	font-family: inherit;
 	font-size: inherit;
 	background-color: #b33f3f;
-	height: 156px;
+	height: 184px;
 	cursor: pointer;
-	margin-top: -57.5px;
+	width: 176px;
+	position: absolute;
+	right:0;
+	top:0;
 }
 
-#download:hover{
+#rimuovi:hover{
 	background-color: #ea5b5b;
 	color: #f9f8eb;
 }
@@ -117,6 +117,13 @@ li #download:only-child {
 	color: #155e63;
 	text-align: right;
 	border-bottom: 1px solid lightgrey;
+	position: relative;
+	height:50px;
+	padding-right:200px;
+}
+
+#ordina input[type=text] {
+	margin-top: 15px;
 }
 
 #ordina input[type=submit] {
@@ -131,20 +138,20 @@ li #download:only-child {
 	background-color: #b33f3f;
 	height:50px;
 	margin-left: 1%;
+	position: absolute;
+	top:0;
+	right:0;
 }
 
-.gioco form input[type=button], .gioco input[type=submit], .gioco input[type=reset] {
-	border: none;
-	text-decoration: none;
-	color: #155e63;
-	padding: 0px;
-	cursor: pointer;
-	font-family: inherit;
-	font-size: inherit;
-	background-color: inherit;
-}
-
-.gioco form input[type=submit]:hover, .gioco form input[type=reset]:hover, .gioco form input[type=submit]:hover, #ordina form input[type=submit]:hover{
-	background-color: #ea5b5b;
-	color: #f9f8eb; 
+@media screen and (max-width: 1000px) {
+	#pagina {
+	margin-top:1px;
+	padding-top:10px;
+	padding-bottom: 20px;}
+	#ordina{
+	font-size: small;
+	}
+	#ordina input[type=text] {
+		margin-top:0;
+	}
 }
