@@ -99,8 +99,14 @@ li #download:only-child {
 #ordina {
 	background-color: #a7d7c5;
 	color: #155e63;
-	text-align: right;
+	text-align: left;
 	border-bottom: 1px solid lightgrey;
+	position:relative;
+	height: 100px;
+	padding-right: 100px;
+	padding-left: 1%;
+	padding-top: 20px;
+	padding-bottom: 0;
 }
 
 #ordina input[type=submit] {
@@ -113,8 +119,11 @@ li #download:only-child {
 	font-family: inherit;
 	font-size: 0.8;
 	background-color: #b33f3f;
-	height:100px;
+	height:120px;
 	margin-left: 1%;
+	position:absolute;
+	right:0;
+	top:0;
 }
 
 .gioco form input[type=button], .gioco input[type=submit], .gioco input[type=reset] {
@@ -131,4 +140,14 @@ li #download:only-child {
 .gioco form input[type=submit]:hover, .gioco form input[type=reset]:hover, .gioco form input[type=submit]:hover, #ordina form input[type=submit]:hover{
 	background-color: #ea5b5b;
 	color: #f9f8eb; 
+}
+
+@media screen and (max-width: 1000px) {
+	#pagina {
+	margin-top:1px;
+	padding-top:10px;
+	padding-bottom: 20px;}
+	#ordina{
+	font-size: small;
+	}	
 }
