@@ -8,23 +8,39 @@
 	cursor:pointer;
 }
 
-.box p {
-	color:red;
+.box p, #recuperoPassword p {
 	text-align:center;
 	font-size: 0.8em;
 	font-style: italic;
 }
 
-h1{
-	color:#cccccc;
+#pagina {
+	text-align: center;
+	padding: 1%;
+	background-color: #f9f8eb;
+	margin: -20px;
+	color: #155e63;	
+	padding-bottom: 10px;
 }
 
-form {
-	width:100$
-	padding:40px;
+#loginForm, #registrazioneForm {
+	padding-top: 30px;
+	width:100%;
 	text-align:center;
+	background-color: #a7d7c5;
+	color: #155e63;	
+	flex:1;
+	padding-bottom: 20px;
 }
 
+#recuperoPassword {
+	padding-top: 20px;
+	width:100%;
+	text-align:center;
+	background-color: #74b49b;
+	color: #f9f8eb; 
+	padding-bottom: 50px;
+}
 
 .registrazione {
 	margin: 20px auto;
@@ -38,7 +54,7 @@ form {
 
 .registrazione:focus{
 	width:480px;
-	border-color:#cccccc;
+	border-color:#b33f3f;
 }
 
 .login {
@@ -53,23 +69,20 @@ form {
 
 .login:focus{
 	width:480px;
-	border-color:#cccccc;
 }
 
-.sub{
+#sub, .sub{
 	border: none;
 	text-decoration: none;
 	display: block;
-	color: #666;
+	background-color: #b33f3f;
+	color: #f9f8eb;
 	padding: 14px 16px;
 	text-align: center;
 	text-decoration: none;
 	cursor: pointer;
 	width: 420px;
 	margin: auto;
-	font-family: inherit;
-	font-size: inherit;
-	background-color: inherit;
 	-webkit-transition: all 250ms ease-in-out;
     -moz-transition: all 250ms ease-in-out;
     -ms-transition: all 250ms ease-in-out;
@@ -77,8 +90,8 @@ form {
     transition: all 250ms ease-in-out;
 }
 
-.sub:hover{
-	background-color: #ddd;    
+#sub:hover, .sub:hover{
+	background-color: #ea5b5b;    
 	-webkit-transform: scale(1.08,1.08);
     -moz-transform: scale(1.08,1.08);
     -o-transform: scale(1.08,1.08);

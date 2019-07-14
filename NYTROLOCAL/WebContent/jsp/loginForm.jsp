@@ -7,15 +7,33 @@ import="nytro.model.AccountBean"%>
 	String message = (String) request.getAttribute("message");
 		
 %>
+<div id="pagina">
 <h1>Login</h1>
+</div>
+<div id="loginForm">
 <form action="<%=response.encodeURL("/NYTRO/Login")%>" method="post">
 	<input type="text" name="username" placeholder="Username*" class="login" required><br/>
 	<input type="password" name="password" placeholder="Password*" class="login" required><br/>
 	<input type="submit" value="Vai" class="sub">
 	<p id="password" onclick="showFormRecuperoPassword()">Hai dimenticato la password?</p>
 </form>
+</div>
+<div id="recuperoPassword">
+<form name="formRecuperoPassword" action="<%=response.encodeURL("/NYTRO/RecuperaPassword")%>" method="post">
+	<input type="text" name="username" placeholder="Username*" class="login" required> <br/>
+	<input type="password" name="password" placeholder="Password*" oninput="validaPassword()" class="login" required> <br/>
+	<input type="password" name="passwordConferma" placeholder="Password*" oninput="validaPassword()" class="login" required> <br/>	
+	<p id="errorPssw"></p>
+	<input type="text" name="emailRecupero" oninput="validaEmailRec()" placeholder="Email di recupero*" class="login" required>
+	<p id="errorMailRec"></p>
+	<p id="errorSub">Compila tutti i campi</p>	
+	<input type="submit" value="Inoltra" class="sub" id="subID" disabled>
+</form>
+</div>
 
-<br/>
+<%if(message!=null && !message.equals("")) {%>
+	<%=message.toString()%>
+<%} %>
 
 
 <script>
@@ -79,22 +97,6 @@ import="nytro.model.AccountBean"%>
 		checkForm();
 	}
 </script>
-
-
-<form id="recuperoPassword" name="formRecuperoPassword" action="<%=response.encodeURL("/NYTRO/RecuperaPassword")%>" method="post">
-	<input type="text" name="username" placeholder="Username*" class="login" required> <br/>
-	<input type="password" name="password" placeholder="Password*" oninput="validaPassword()" class="login" required> <br/>
-	<input type="password" name="passwordConferma" placeholder="Password*" oninput="validaPassword()" class="login" required> <br/>	
-	<p id="errorPssw"></p>
-	<input type="text" name="emailRecupero" oninput="validaEmailRec()" placeholder="Email di recupero*" class="login" required>
-	<p id="errorMailRec"></p>
-	<p id="errorSub">Compila tutti i campi</p>	
-	<input type="submit" value="Inoltra" class="sub" id="subID" disabled>
-</form>
-
-<%if(message!=null && !message.equals("")) {%>
-	<%=message.toString()%>
-<%} %>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>

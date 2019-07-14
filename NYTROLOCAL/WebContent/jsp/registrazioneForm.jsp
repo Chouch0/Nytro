@@ -2,9 +2,10 @@
 	pageEncoding="UTF-8"%>
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Registrazione"/>	</jsp:include>
 <link href="/NYTRO/css/RegStyle.css" type="text/css" rel="stylesheet">
-
+<div id="pagina">
 <h1>Registrazione</h1>
-
+</div>
+<div id="registrazioneForm">
 <form class="box" name="registrazione" action="<%=response.encodeURL("/NYTRO/RegistrazioneUtente")%>" method="post" enctype="multipart/form-data" > 
 	<input class="registrazione" name="username" type="text" oninput="validaUsername()" placeholder="Username*"> 
 	<p id="errorUsr"></p>  
@@ -17,13 +18,15 @@
 	<p id="errorMailRec"></p>
 	<input class="registrazione" id="telefono" type="tel" name="phone" oninput="validaTelefono()" onBlur="checkPhoneField()" placeholder="Cellulare">
 	<p id="errorPhone"></p>
-    <input class="registrazione" type="date" id="date" name="bornDate" placeholder="Data di nascita">
+    <input class="registrazione" type="date" id="date" name="bornDate" placeholder="Data di nascita">  
     <input name="genere" type="radio" value="M" style="display:inline">M
     <input name="genere" type="radio" value="F" style="display:inline">F
+    <p>Se vuoi, inserisci un'immagine del profilo (max 16MB)</p>  
+    <input type="file" name="photo" size="50"><br/><br/>
 	<p id="errorSub">Compila tutti i campi obbligatori</p>
-    <input type="file" name="photo" size="50">
 	<input type="submit" value="Registrati" id="sub" disabled>		
 </form>
+</div>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
