@@ -111,7 +111,7 @@ if(account != null && account.getRuolo() == 2) {
 	</div>
 	<%} else if (account != null && account.getRuolo() == 2) { %>
 		<h1>I tuoi giochi più giocati dagli utenti</h1>
-	<%if(list4 != null && !list4.isEmpty() && list4.get(0) != null) {%>
+	<%if(list4 != null && list4.size() > 0 && list4.get(0) != null) {%>
 	<div id="gioco1">
 		<%if (list4.get(0) != null && list4.get(0).getImg() != null){%>
 			<img src="/NYTRO/image?codice=<%=list4.get(0).getCodice()%>" alt="<%=list4.get(0).getTitolo()%>">
@@ -123,7 +123,7 @@ if(account != null && account.getRuolo() == 2) {
 			<%=list4.get(0).toString() %><%=list4.get(0).getGenere().toString() %>
 		</div>
 	</div>
-	<%} else if(list4 != null && !list4.isEmpty() && list4.get(1) != null) { %>
+	<%} if(list4 != null && list4.size() > 1 && list4.get(1) != null) { %>
 	<div id="gioco2">
 		<%if (list4.get(1) != null && list4.get(1).getImg() != null){%>
 			<img src="/NYTRO/image?codice=<%=list4.get(1).getCodice()%>" alt="<%=list4.get(0).getTitolo()%>">
@@ -135,7 +135,7 @@ if(account != null && account.getRuolo() == 2) {
 			<%=list4.get(1).toString() %><%=list4.get(1).getGenere().toString() %>
 		</div>
 	</div>
-	<%} else if(list4 != null && !list4.isEmpty() && list4.get(2) != null) { %>
+	<%} if(list4 != null && list4.size() > 2 && list4.get(2) != null) { %>
 	<div id="gioco3">
 		<%if (list4.get(2) != null && list4.get(2).getImg() != null){%>
 			<img src="/NYTRO/image?codice=<%=list4.get(2).getCodice()%>" alt="<%=list4.get(0).getTitolo()%>">
@@ -147,7 +147,7 @@ if(account != null && account.getRuolo() == 2) {
 			<%=list4.get(2).toString() %><%=list4.get(2).getGenere().toString() %>
 		</div>
 	</div>
-	<%} else { %>
+	<%} else if(list4 == null || list4.isEmpty() || list4.size() <= 0) { %>
 		<h1>A quanto pare non sono presenti giochi :(</h1>
 	<%} %>
 	<%} %>
@@ -199,7 +199,7 @@ if(account != null && account.getRuolo() == 2) {
 	</div>
 	<%} else if (account != null && account.getRuolo() == 2) { %>
 			<h1>I tuoi giochi più votati dagli utenti</h1>
-	<%if(list5 != null && !list5.isEmpty() && list5.get(0) != null) {%>
+	<%if(list5 != null && list5.size() > 0 && list5.get(0) != null) {%>
 	<div id="gioco4">
 		<%if (list5.get(0) != null && list5.get(0).getImg() != null){%>
 			<img src="/NYTRO/image?codice=<%=list5.get(0).getCodice()%>" alt="<%=list5.get(0).getTitolo()%>">
@@ -211,7 +211,7 @@ if(account != null && account.getRuolo() == 2) {
 			<%=list5.get(0).toString() %><%=list5.get(0).getGenere().toString() %>
 		</div>
 	</div>
-	<%} else if(list5 != null && !list5.isEmpty() && list5.get(1) != null) { %>
+	<%} if(list5 != null && list5.size() > 1 && list5.get(1) != null) { %>
 	<div id="gioco5">
 		<%if (list5.get(1) != null && list5.get(1).getImg() != null){%>
 			<img src="/NYTRO/image?codice=<%=list5.get(1).getCodice()%>" alt="<%=list5.get(0).getTitolo()%>">
@@ -223,7 +223,7 @@ if(account != null && account.getRuolo() == 2) {
 			<%=list5.get(1).toString() %><%=list5.get(1).getGenere().toString() %>
 		</div>
 	</div>
-	<%} else if(list5 != null && !list5.isEmpty() && list5.get(2) != null) { %>
+	<%} if(list5 != null && list5.size() > 2 && list5.get(2) != null) { %>
 	<div id="gioco6">
 		<%if (list5.get(2) != null && list5.get(2).getImg() != null){%>
 			<img src="/NYTRO/image?codice=<%=list5.get(2).getCodice()%>" alt="<%=list5.get(0).getTitolo()%>">
@@ -235,7 +235,7 @@ if(account != null && account.getRuolo() == 2) {
 			<%=list5.get(2).toString() %><%=list5.get(2).getGenere().toString() %>
 		</div>
 	</div>
-	<%} else { %>
+	<%} else if(list5 == null || list5.isEmpty() || list5.size() <= 0) { %> { %>
 		<h1>A quanto pare non sono presenti giochi :(</h1>
 	<%} %>
 	<%} %>
@@ -419,7 +419,7 @@ if(account != null && account.getRuolo() == 2) {
 	</div>
 	<%} else if (account != null && account.getRuolo() == 2) { %>
 		<h1>Statistiche demografiche</h1>
-	<%if(masCasa != null && !masCasa.isEmpty() && masCasa.get(0) != null) {%>
+	<%if(masCasa != null && masCasa.size() > 0 && masCasa.get(0) != null) {%>
 	<div id="gioco7">
 		<%if (masCasa.get(0) != null && masCasa.get(0).getImg() != null){%>
 			<img src="/NYTRO/image?codice=<%=masCasa.get(0).getCodice()%>" alt="<%=masCasa.get(0).getTitolo()%>">
@@ -431,7 +431,7 @@ if(account != null && account.getRuolo() == 2) {
 			<%=masCasa.get(0).toString() %><%=masCasa.get(0).getGenere().toString() %>
 		</div>
 	</div>
-	<%} else if(femCasa != null && !femCasa.isEmpty() && femCasa.get(0) != null) { %>
+	<%} if(femCasa != null && femCasa.size() > 0 && femCasa.get(0) != null) { %>
 	<div id="gioco8">
 		<%if (femCasa.get(0) != null && femCasa.get(0).getImg() != null){%>
 			<img src="/NYTRO/image?codice=<%=femCasa.get(0).getCodice()%>" alt="<%=femCasa.get(0).getTitolo()%>">
@@ -443,7 +443,7 @@ if(account != null && account.getRuolo() == 2) {
 			<%=femCasa.get(0).toString() %><%=femCasa.get(0).getGenere().toString() %>
 		</div>
 	</div>
-	<%} else if(genCasa != null && !genCasa.isEmpty() && genCasa.get(0) != null) { %>
+	<%} if(genCasa != null && genCasa.size() > 0 && genCasa.get(0) != null) { %>
 	<div id="gioco9">
 		<%if (genCasa.get(0) != null && genCasa.get(0).getImg() != null){%>
 			<img src="/NYTRO/image?codice=<%=genCasa.get(0).getCodice()%>" alt="<%=genCasa.get(0).getTitolo()%>">
@@ -455,7 +455,7 @@ if(account != null && account.getRuolo() == 2) {
 			<%=genCasa.get(0).toString() %><%=genCasa.get(0).getGenere().toString() %>
 		</div>
 	</div>
-	<%} else { %>
+	<%} else if((masCasa == null || masCasa.isEmpty() || masCasa.size() <= 0) && (femCasa == null || femCasa.isEmpty() || femCasa.size() <= 0) && (genCasa == null || genCasa.isEmpty() || genCasa.size() <= 0)) { %>
 		<h1>A quanto pare non sono presenti giochi :(</h1>
 	<%} %>
 	<%} %>
