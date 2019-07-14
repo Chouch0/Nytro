@@ -31,19 +31,21 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 	<h1>Lista videogiochi</h1>
 	
 	<%if(videogiochi!=null){ %>
-		<p>
+		<table>
 			<%
 				for(VideogiocoBean x : videogiochi){
 			%>
-				<%=x.toString() %><span class = "buttonLink"><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+x.getCodice())%>">Informazioni</a></span>	
+			<tr>
+				<td><%=x.toString() %></td>
+				<td><span class = "buttonLink"><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+x.getCodice())%>">Informazioni</a></span></td>	
 				<%if(x.getDataRimozione()==null) {%>
-					<a href="<%=response.encodeURL("/NYTRO/Pubblicazioni?cancelVideogioco="+x.getCodice())%>">Rimuovi videogioco</a>
+					<td><a href="<%=response.encodeURL("/NYTRO/Pubblicazioni?cancelVideogioco="+x.getCodice())%>">Rimuovi videogioco</a></td>
 				<%} %>
-				<br/>
+			</tr>
 			<%
 				}
 			%>
-		</p>
+		</table>
 	<%} %>
 	
 	<script>
