@@ -49,6 +49,7 @@ public class LogFilter implements Filter {
 			int ruolo = account.getRuolo();
 			if(ruolo==0) {
 				System.out.println("Ruolo: "+ruolo);
+				request.setAttribute("account", account);
 				for(String x : adminRuolo) {
 					System.out.println(dest +" contiene "+x+" ?");
 					if(dest.contains(x)){

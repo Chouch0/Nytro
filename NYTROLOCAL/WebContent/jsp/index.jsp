@@ -33,12 +33,29 @@ if(videogiochiPiuAcquistati==null || videogiochiPiuGiocati==null || videogiochiP
 List<VideogiocoPagamentoBean> list = new ArrayList<VideogiocoPagamentoBean>(videogiochiPiuAcquistati);
 List<VideogiocoBean> list2 = new ArrayList<VideogiocoBean>(videogiochiPiuGiocati);
 List<VideogiocoBean> list3 = new ArrayList<VideogiocoBean>(videogiochiPiuVotati);
+List<VideogiocoBean> list4 = null;
+List<VideogiocoBean> list5 = null;
+List<VideogiocoBean> masCasa = null;
+List<VideogiocoBean> femCasa = null;
+List<VideogiocoBean> genCasa = null;
+
+if(account != null && account.getRuolo() == 2) {
+	list4 = new ArrayList<VideogiocoBean>(videogiochiPiuGiocatoInGeneraleCasaEditrice);
+	list5 = new ArrayList<VideogiocoBean>(videogiochiPiuVotatiCasaEditrice);
+}
 
 %>	
 <div id="welcome">
 <%if (account == null) {%>
+	<%if(message!=null && !message.equals("")) {	//Ad esempio per l'avvenuta e corretta registrazione%>
+		<h1><%=message%></h1>
+	<%} else {%>
 	<h1>Entra a far parte della miglior community sui videogame!</h1>
 	<p>Registrati o accedi per giocare ai migliori titoli del momento.</p>
+	<%} %>
+<%} else if(account != null && account.getRuolo() == 0) {%>
+	<h1>Bentornato Amministratore!</h1>
+	<p>Dai un'occhiata all'andamento della tua piattaforma.</p>
 <%} else if(account != null && account.getRuolo() == 1) {%>
 	<h1>Bentornato <%=account.getUsername() %>!</h1>
 	<p>Dai un'occhiata ai giochi migliori selezionati per te.</p>
@@ -48,9 +65,7 @@ List<VideogiocoBean> list3 = new ArrayList<VideogiocoBean>(videogiochiPiuVotati)
 <%} %>
 </div>
 <div class="evidenza" id="dispari">
-	<%if(message!=null && !message.equals("")) {	//Ad esempio per l'avvenuta e corretta registrazione%>
-		<h1><%=message%></h1>
-	<%} %>
+	<% if(account == null || (account!= null && account.getRuolo() == 1)|| (account!= null && account.getRuolo() == 0)) {%>
 	<h1>In evidenza</h1>
 	<div id="gioco1">
 		<%if (list.get(0).getImg() != null){%>
@@ -88,8 +103,51 @@ List<VideogiocoBean> list3 = new ArrayList<VideogiocoBean>(videogiochiPiuVotati)
 			<%=list.get(2).toString() %><%=list.get(2).getGenere().toString() %>
 		</div>
 	</div>
+	<%} else if (account != null && account.getRuolo() == 2) { %>
+		<h1>I tuoi giochi più giocati dagli utenti</h1>
+	<%if(list4 != null && !list4.isEmpty() && list4.get(0) != null) {%>
+	<div id="gioco1">
+		<%if (list4.get(0).getImg() != null){%>
+			<img src="/NYTRO/image?codice=<%=list4.get(0).getCodice()%>" alt="<%=list4.get(0).getTitolo()%>">
+		<%} else {%>
+			<img src="/NYTRO/img/no-cover.jpg" alt="<%=list.get(0).getTitolo()%>">
+		<%} %>
+		<div class="info">
+			<iframe width="100%" height="40%" src="<%=list4.get(0).getTrailer()%>"></iframe>
+			<%=list4.get(0).toString() %><%=list4.get(0).getGenere().toString() %>
+		</div>
+	</div>
+	<%} else if(list4 != null && !list4.isEmpty() && list4.get(1) != null) { %>
+	<div id="gioco2">
+		<%if (list.get(1).getImg() != null){%>
+			<img src="/NYTRO/image?codice=<%=list4.get(1).getCodice()%>" alt="<%=list4.get(0).getTitolo()%>">
+		<%} else {%>
+			<img src="/NYTRO/img/no-cover.jpg" alt="<%=list4.get(1).getTitolo()%>">
+		<%} %>
+		<div class="info">
+			<iframe width="100%" height="40%" src="<%=list.get(1).getTrailer()%>"></iframe>
+			<%=list4.get(1).toString() %><%=list4.get(1).getGenere().toString() %>
+		</div>
+	</div>
+	<%} else if(list4 != null && !list4.isEmpty() && list4.get(2) != null) { %>
+	<div id="gioco3">
+		<%if (list4.get(2).getImg() != null){%>
+			<img src="/NYTRO/image?codice=<%=list4.get(2).getCodice()%>" alt="<%=list4.get(0).getTitolo()%>">
+		<%} else {%>
+			<img src="/NYTRO/img/no-cover.jpg" alt="<%=list4.get(2).getTitolo()%>">
+		<%} %>
+		<div class="info">
+			<iframe width="100%" height="40%" src="<%=list4.get(2).getTrailer()%>"></iframe>
+			<%=list4.get(2).toString() %><%=list4.get(2).getGenere().toString() %>
+		</div>
+	</div>
+	<%} else { %>
+		<h1>A quanto pare non sono presenti giochi :(</h1>
+	<%} %>
+	<%} %>
 </div>
 <div class="evidenza" id="pari">
+<% if(account == null || (account!= null && account.getRuolo() == 1)|| (account!= null && account.getRuolo() == 0)) {%>
 	<h1>Giochi del momento</h1>
 	<div id="gioco4">
 		<%if (list2.get(0).getImg() != null){%>
@@ -133,8 +191,51 @@ List<VideogiocoBean> list3 = new ArrayList<VideogiocoBean>(videogiochiPiuVotati)
 			<%=list2.get(2).toString() %><%=list2.get(2).getGenere().toString() %>
 		</div>
 	</div>
+	<%} else if (account != null && account.getRuolo() == 2) { %>
+			<h1>I tuoi giochi più votati dagli utenti</h1>
+	<%if(list5 != null && !list5.isEmpty() && list5.get(0) != null) {%>
+	<div id="gioco4">
+		<%if (list5.get(0).getImg() != null){%>
+			<img src="/NYTRO/image?codice=<%=list5.get(0).getCodice()%>" alt="<%=list5.get(0).getTitolo()%>">
+		<%} else {%>
+			<img src="/NYTRO/img/no-cover.jpg" alt="<%=list.get(0).getTitolo()%>">
+		<%} %>
+		<div class="info">
+			<iframe width="100%" height="40%" src="<%=list5.get(0).getTrailer()%>"></iframe>
+			<%=list5.get(0).toString() %><%=list5.get(0).getGenere().toString() %>
+		</div>
+	</div>
+	<%} else if(list5 != null && !list5.isEmpty() && list5.get(1) != null) { %>
+	<div id="gioco5">
+		<%if (list.get(1).getImg() != null){%>
+			<img src="/NYTRO/image?codice=<%=list5.get(1).getCodice()%>" alt="<%=list5.get(0).getTitolo()%>">
+		<%} else {%>
+			<img src="/NYTRO/img/no-cover.jpg" alt="<%=list5.get(1).getTitolo()%>">
+		<%} %>
+		<div class="info">
+			<iframe width="100%" height="40%" src="<%=list.get(1).getTrailer()%>"></iframe>
+			<%=list5.get(1).toString() %><%=list5.get(1).getGenere().toString() %>
+		</div>
+	</div>
+	<%} else if(list5 != null && !list5.isEmpty() && list5.get(2) != null) { %>
+	<div id="gioco6">
+		<%if (list5.get(2).getImg() != null){%>
+			<img src="/NYTRO/image?codice=<%=list5.get(2).getCodice()%>" alt="<%=list5.get(0).getTitolo()%>">
+		<%} else {%>
+			<img src="/NYTRO/img/no-cover.jpg" alt="<%=list5.get(2).getTitolo()%>">
+		<%} %>
+		<div class="info">
+			<iframe width="100%" height="40%" src="<%=list5.get(2).getTrailer()%>"></iframe>
+			<%=list5.get(2).toString() %><%=list5.get(2).getGenere().toString() %>
+		</div>
+	</div>
+	<%} else { %>
+		<h1>A quanto pare non sono presenti giochi :(</h1>
+	<%} %>
+	<%} %>
 </div>
 <div class="evidenza" id="dispari2">
+<% if(account == null || (account!= null && account.getRuolo() == 1)|| (account!= null && account.getRuolo() == 0)) {%>
 	<h1>Consigliati per te</h1>
 	<div id="gioco7">
 		<%if (list3.get(0).getImg() != null){%>
@@ -178,6 +279,48 @@ List<VideogiocoBean> list3 = new ArrayList<VideogiocoBean>(videogiochiPiuVotati)
 			<%=list3.get(2).toString() %><%=list3.get(2).getGenere().toString() %>
 		</div>
 	</div>
+	<%} else if (account != null && account.getRuolo() == 2) { %>
+		<h1>I tuoi giochi più votati dagli utenti</h1>
+	<%if(list5 != null && !list5.isEmpty() && list5.get(0) != null) {%>
+	<div id="gioco4">
+		<%if (list5.get(0).getImg() != null){%>
+			<img src="/NYTRO/image?codice=<%=list5.get(0).getCodice()%>" alt="<%=list5.get(0).getTitolo()%>">
+		<%} else {%>
+			<img src="/NYTRO/img/no-cover.jpg" alt="<%=list.get(0).getTitolo()%>">
+		<%} %>
+		<div class="info">
+			<iframe width="100%" height="40%" src="<%=list5.get(0).getTrailer()%>"></iframe>
+			<%=list5.get(0).toString() %><%=list5.get(0).getGenere().toString() %>
+		</div>
+	</div>
+	<%} else if(list5 != null && !list5.isEmpty() && list5.get(1) != null) { %>
+	<div id="gioco5">
+		<%if (list.get(1).getImg() != null){%>
+			<img src="/NYTRO/image?codice=<%=list5.get(1).getCodice()%>" alt="<%=list5.get(0).getTitolo()%>">
+		<%} else {%>
+			<img src="/NYTRO/img/no-cover.jpg" alt="<%=list5.get(1).getTitolo()%>">
+		<%} %>
+		<div class="info">
+			<iframe width="100%" height="40%" src="<%=list.get(1).getTrailer()%>"></iframe>
+			<%=list5.get(1).toString() %><%=list5.get(1).getGenere().toString() %>
+		</div>
+	</div>
+	<%} else if(list5 != null && !list5.isEmpty() && list5.get(2) != null) { %>
+	<div id="gioco6">
+		<%if (list5.get(2).getImg() != null){%>
+			<img src="/NYTRO/image?codice=<%=list5.get(2).getCodice()%>" alt="<%=list5.get(0).getTitolo()%>">
+		<%} else {%>
+			<img src="/NYTRO/img/no-cover.jpg" alt="<%=list5.get(2).getTitolo()%>">
+		<%} %>
+		<div class="info">
+			<iframe width="100%" height="40%" src="<%=list5.get(2).getTrailer()%>"></iframe>
+			<%=list5.get(2).toString() %><%=list5.get(2).getGenere().toString() %>
+		</div>
+	</div>
+	<%} else { %>
+		<h1>A quanto pare non sono presenti giochi :(</h1>
+	<%} %>
+	<%} %>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
