@@ -235,7 +235,7 @@ nav li a:hover {
 	display:none;
 }
 
-#contattiPagina {
+#contattiPagina, #errorePagina {
 	text-align: center;
 	background-color: #f9f8eb;
 	margin: -20px;
@@ -244,13 +244,18 @@ nav li a:hover {
 	padding-bottom: 20px;
 }
 
-#contatti section {
+#contatti section, #errore {
 	background-color: #a7d7c5;
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
 
-#contatti pre {
+#errore {
+	text-align: center;
+	color: #155e63;
+}
+
+#contatti pre, #errore {
 	padding-top: 20px;
 	padding-bottom: 20px;
 	font-size: 1.4em;
