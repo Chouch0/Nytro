@@ -1,3 +1,4 @@
+<%@page import="nytro.model.GiocatoreBean"%>
 <%@page import="nytro.model.AccountBean"%>
 <%@page import="nytro.model.VideogiocoPagamentoBean"%>
 <%@page import="java.util.ArrayList"%>
@@ -35,6 +36,8 @@ List<VideogiocoBean> list2 = new ArrayList<VideogiocoBean>(videogiochiPiuGiocati
 List<VideogiocoBean> list3 = new ArrayList<VideogiocoBean>(videogiochiPiuVotati);
 List<VideogiocoBean> list4 = null;
 List<VideogiocoBean> list5 = null;
+List<VideogiocoBean> mas = new ArrayList<VideogiocoBean>(videogiochiPiuGiocatiMaschi);
+List<VideogiocoBean> fem = new ArrayList<VideogiocoBean>(videogiochiPiuGiocatiFemmine);
 List<VideogiocoBean> masCasa = null;
 List<VideogiocoBean> femCasa = null;
 List<VideogiocoBean> genCasa = null;
@@ -241,6 +244,49 @@ if(account != null && account.getRuolo() == 2) {
 <% if(account == null || (account!= null && account.getRuolo() == 1)|| (account!= null && account.getRuolo() == 0)) {%>
 	<h1>Consigliati per te</h1>
 	<div id="gioco7">
+	<%if (account != null && account.getRuolo() == 1){
+		GiocatoreBean g = (GiocatoreBean) account;	%>
+		<%if (g.getGenere() != null && g.getGenere().equalsIgnoreCase("M") && mas.get(0) != null) {%>
+			<%if (mas.get(0) != null && mas.get(0).getImg() != null){%>
+				<img src="/NYTRO/image?codice=<%=mas.get(0).getCodice()%>" alt="<%=mas.get(0).getTitolo()%>">
+			<%} else {%>
+				<img src="/NYTRO/img/no-cover.jpg" alt="<%=mas.get(0).getTitolo()%>">
+			<%} %>
+			<section class="prezzo"><%if (mas.get(0) instanceof VideogiocoPagamentoBean){
+				VideogiocoPagamentoBean x = (VideogiocoPagamentoBean)mas.get(0);%><%=x.getPrezzo() %>€
+				<%} else { %>FREE <%} %></section>
+			<div class="info">
+				<iframe width="100%" height="40%" src="<%=mas.get(0).getTrailer()%>"></iframe>
+				<%=mas.get(0).toString() %><%=mas.get(0).getGenere().toString() %>
+			</div>
+		<%} else if (g.getGenere() != null && g.getGenere().equalsIgnoreCase("F") && fem.get(0) != null) {%>
+			<%if (fem.get(0) != null && fem.get(0).getImg() != null){%>
+				<img src="/NYTRO/image?codice=<%=fem.get(0).getCodice()%>" alt="<%=fem.get(0).getTitolo()%>">
+			<%} else {%>
+				<img src="/NYTRO/img/no-cover.jpg" alt="<%=fem.get(0).getTitolo()%>">
+			<%} %>
+			<section class="prezzo"><%if (fem.get(0) instanceof VideogiocoPagamentoBean){
+				VideogiocoPagamentoBean x = (VideogiocoPagamentoBean)fem.get(0);%><%=x.getPrezzo() %>€
+				<%} else { %>FREE <%} %></section>
+			<div class="info">
+				<iframe width="100%" height="40%" src="<%=fem.get(0).getTrailer()%>"></iframe>
+				<%=fem.get(0).toString() %><%=fem.get(0).getGenere().toString() %>
+			</div>
+		<%} else { %>	
+			<%if (list3.get(0).getImg() != null){%>
+				<img src="/NYTRO/image?codice=<%=list3.get(0).getCodice()%>" alt="<%=list3.get(0).getTitolo()%>">
+			<%} else {%>
+				<img src="/NYTRO/img/no-cover.jpg" alt="<%=list3.get(0).getTitolo()%>">
+			<%} %>
+			<section class="prezzo"><%if (list3.get(0) instanceof VideogiocoPagamentoBean){
+				VideogiocoPagamentoBean x = (VideogiocoPagamentoBean)list3.get(0);%><%=x.getPrezzo() %>€
+				<%} else { %>FREE <%} %></section>
+			<div class="info">
+				<iframe width="100%" height="40%" src="<%=list3.get(0).getTrailer()%>"></iframe>
+				<%=list3.get(0).toString() %><%=list3.get(0).getGenere().toString() %>
+			</div>
+		<%} %>
+	<%} else { %>	
 		<%if (list3.get(0).getImg() != null){%>
 			<img src="/NYTRO/image?codice=<%=list3.get(0).getCodice()%>" alt="<%=list3.get(0).getTitolo()%>">
 		<%} else {%>
@@ -253,10 +299,54 @@ if(account != null && account.getRuolo() == 2) {
 			<iframe width="100%" height="40%" src="<%=list3.get(0).getTrailer()%>"></iframe>
 			<%=list3.get(0).toString() %><%=list3.get(0).getGenere().toString() %>
 		</div>
+	<%} %>
 	</div>
 	<div id="gioco8">
+		<%if (account != null && account.getRuolo() == 1){
+		GiocatoreBean g = (GiocatoreBean) account;	%>
+		<%if (g.getGenere() != null && g.getGenere().equalsIgnoreCase("M") && mas.get(1) != null) {%>
+			<%if (mas.get(1) != null && mas.get(1).getImg() != null){%>
+				<img src="/NYTRO/image?codice=<%=mas.get(1).getCodice()%>" alt="<%=mas.get(1).getTitolo()%>">
+			<%} else {%>
+				<img src="/NYTRO/img/no-cover.jpg" alt="<%=mas.get(1).getTitolo()%>">
+			<%} %>
+			<section class="prezzo"><%if (mas.get(1) instanceof VideogiocoPagamentoBean){
+				VideogiocoPagamentoBean x = (VideogiocoPagamentoBean)mas.get(1);%><%=x.getPrezzo() %>€
+				<%} else { %>FREE <%} %></section>
+			<div class="info">
+				<iframe width="100%" height="40%" src="<%=mas.get(1).getTrailer()%>"></iframe>
+				<%=mas.get(1).toString() %><%=mas.get(1).getGenere().toString() %>
+			</div>
+		<%} else if (g.getGenere() != null && g.getGenere().equalsIgnoreCase("F") && fem.get(1) != null) {%>
+			<%if (fem.get(1) != null && fem.get(1).getImg() != null){%>
+				<img src="/NYTRO/image?codice=<%=fem.get(1).getCodice()%>" alt="<%=fem.get(1).getTitolo()%>">
+			<%} else {%>
+				<img src="/NYTRO/img/no-cover.jpg" alt="<%=fem.get(1).getTitolo()%>">
+			<%} %>
+			<section class="prezzo"><%if (fem.get(1) instanceof VideogiocoPagamentoBean){
+				VideogiocoPagamentoBean x = (VideogiocoPagamentoBean)fem.get(1);%><%=x.getPrezzo() %>€
+				<%} else { %>FREE <%} %></section>
+			<div class="info">
+				<iframe width="100%" height="40%" src="<%=fem.get(1).getTrailer()%>"></iframe>
+				<%=fem.get(1).toString() %><%=fem.get(1).getGenere().toString() %>
+			</div>
+		<%} else { %>	
+			<%if (list3.get(1).getImg() != null){%>
+				<img src="/NYTRO/image?codice=<%=list3.get(1).getCodice()%>" alt="<%=list3.get(1).getTitolo()%>">
+			<%} else {%>
+				<img src="/NYTRO/img/no-cover.jpg" alt="<%=list3.get(1).getTitolo()%>">
+			<%} %>
+			<section class="prezzo"><%if (list3.get(1) instanceof VideogiocoPagamentoBean){
+				VideogiocoPagamentoBean x = (VideogiocoPagamentoBean)list3.get(1);%><%=x.getPrezzo() %>€
+				<%} else { %>FREE <%} %></section>
+			<div class="info">
+				<iframe width="100%" height="40%" src="<%=list3.get(1).getTrailer()%>"></iframe>
+				<%=list3.get(1).toString() %><%=list3.get(1).getGenere().toString() %>
+			</div>
+		<%} %>
+	<%} else { %>	
 		<%if (list3.get(1).getImg() != null){%>
-			<img src="/NYTRO/image?codice=<%=list3.get(1).getCodice()%>" alt="<%=list3.get(0).getTitolo()%>">
+			<img src="/NYTRO/image?codice=<%=list3.get(1).getCodice()%>" alt="<%=list3.get(1).getTitolo()%>">
 		<%} else {%>
 			<img src="/NYTRO/img/no-cover.jpg" alt="<%=list3.get(1).getTitolo()%>">
 		<%} %>
@@ -267,10 +357,54 @@ if(account != null && account.getRuolo() == 2) {
 			<iframe width="100%" height="40%" src="<%=list3.get(1).getTrailer()%>"></iframe>
 			<%=list3.get(1).toString() %><%=list3.get(1).getGenere().toString() %>
 		</div>
+	<%} %>
 	</div>
 	<div id="gioco9">
+		<%if (account != null && account.getRuolo() == 1){
+		GiocatoreBean g = (GiocatoreBean) account;	%>
+		<%if (g.getGenere() != null && g.getGenere().equalsIgnoreCase("M") && mas.get(2) != null) {%>
+			<%if (mas.get(2) != null && mas.get(2).getImg() != null){%>
+				<img src="/NYTRO/image?codice=<%=mas.get(2).getCodice()%>" alt="<%=mas.get(2).getTitolo()%>">
+			<%} else {%>
+				<img src="/NYTRO/img/no-cover.jpg" alt="<%=mas.get(2).getTitolo()%>">
+			<%} %>
+			<section class="prezzo"><%if (mas.get(2) instanceof VideogiocoPagamentoBean){
+				VideogiocoPagamentoBean x = (VideogiocoPagamentoBean)mas.get(2);%><%=x.getPrezzo() %>€
+				<%} else { %>FREE <%} %></section>
+			<div class="info">
+				<iframe width="100%" height="40%" src="<%=mas.get(2).getTrailer()%>"></iframe>
+				<%=mas.get(2).toString() %><%=mas.get(2).getGenere().toString() %>
+			</div>
+		<%} else if (g.getGenere() != null && g.getGenere().equalsIgnoreCase("F") && fem.get(2) != null) {%>
+			<%if (fem.get(2) != null && fem.get(2).getImg() != null){%>
+				<img src="/NYTRO/image?codice=<%=fem.get(2).getCodice()%>" alt="<%=fem.get(2).getTitolo()%>">
+			<%} else {%>
+				<img src="/NYTRO/img/no-cover.jpg" alt="<%=fem.get(2).getTitolo()%>">
+			<%} %>
+			<section class="prezzo"><%if (fem.get(2) instanceof VideogiocoPagamentoBean){
+				VideogiocoPagamentoBean x = (VideogiocoPagamentoBean)fem.get(2);%><%=x.getPrezzo() %>€
+				<%} else { %>FREE <%} %></section>
+			<div class="info">
+				<iframe width="100%" height="40%" src="<%=fem.get(2).getTrailer()%>"></iframe>
+				<%=fem.get(2).toString() %><%=fem.get(2).getGenere().toString() %>
+			</div>
+		<%} else { %>	
+			<%if (list3.get(2).getImg() != null){%>
+				<img src="/NYTRO/image?codice=<%=list3.get(2).getCodice()%>" alt="<%=list3.get(2).getTitolo()%>">
+			<%} else {%>
+				<img src="/NYTRO/img/no-cover.jpg" alt="<%=list3.get(2).getTitolo()%>">
+			<%} %>
+			<section class="prezzo"><%if (list3.get(2) instanceof VideogiocoPagamentoBean){
+				VideogiocoPagamentoBean x = (VideogiocoPagamentoBean)list3.get(2);%><%=x.getPrezzo() %>€
+				<%} else { %>FREE <%} %></section>
+			<div class="info">
+				<iframe width="100%" height="40%" src="<%=list3.get(2).getTrailer()%>"></iframe>
+				<%=list3.get(2).toString() %><%=list3.get(2).getGenere().toString() %>
+			</div>
+		<%} %>
+	<%} else { %>	
 		<%if (list3.get(2).getImg() != null){%>
-			<img src="/NYTRO/image?codice=<%=list3.get(2).getCodice()%>" alt="<%=list3.get(0).getTitolo()%>">
+			<img src="/NYTRO/image?codice=<%=list3.get(2).getCodice()%>" alt="<%=list3.get(2).getTitolo()%>">
 		<%} else {%>
 			<img src="/NYTRO/img/no-cover.jpg" alt="<%=list3.get(2).getTitolo()%>">
 		<%} %>
@@ -281,6 +415,7 @@ if(account != null && account.getRuolo() == 2) {
 			<iframe width="100%" height="40%" src="<%=list3.get(2).getTrailer()%>"></iframe>
 			<%=list3.get(2).toString() %><%=list3.get(2).getGenere().toString() %>
 		</div>
+	<%} %>
 	</div>
 	<%} else if (account != null && account.getRuolo() == 2) { %>
 		<h1>Statistiche demografiche</h1>
