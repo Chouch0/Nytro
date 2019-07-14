@@ -114,3 +114,27 @@ table {
 #admin .admin:last-child h2, #admin .admin:last-child p{
 	text-align: left;
 }
+
+@media screen and (max-width: 950px) {
+	#informazioniAccount, #account, #admin, #insights, #insightsCasa, #modifiche1, #modifiche2, .admin, #in, #admin .admin{
+	display: inline-block;
+	width:100%;
+	padding: 0;
+	font-size: small;}
+	#account, #admin, #modifiche1, #modifiche2{
+	text-align: left;
+	padding:10px;}
+	#modifiche2 {
+	padding-bottom:50px;}
+	#informazioniAccount form input {
+		max-width: 30px;
+	}
+	 #admin .admin:last-child{
+	 text-align: left;}
+	 h2 {
+	 font-size: medium;
+	 }
+	 #account {
+	 padding-left:32%;
+	 padding-right: 50%;}
+}
