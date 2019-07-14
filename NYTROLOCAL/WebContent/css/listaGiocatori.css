@@ -74,3 +74,8 @@ tr:hover {
 #tabella {
 	overflow: scroll;
 }
+
+@media screen and (max-width: 1000px) {
+	#pagina {
+	padding-bottom: 20px;}
+}
