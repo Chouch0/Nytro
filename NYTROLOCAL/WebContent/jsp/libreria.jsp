@@ -59,7 +59,6 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 			</li>
 		</div>
 		</ul>
-	</div>
 			<%
 				}
 			%>

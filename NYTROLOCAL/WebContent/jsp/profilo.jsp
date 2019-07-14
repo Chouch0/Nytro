@@ -130,6 +130,32 @@ CasaEditriceBean x = (CasaEditriceBean) account;%>
 </form>
 <%}%>
 </div>
+<%if(account.getRuolo()==2){ %>
+<div id="insightsCasa">
+<h2>Contributo casa editrice</h2>
+<form action="<%=response.encodeURL("/NYTRO/Profilo")%>">
+<input type="hidden" name="contributoAnnualeCasaEditrice" value="true">
+<label>Dal giorno: &nbsp;<input type="date" name="startDate" min="2000-01-01" max="2032-12-31"></label>
+<label>Al giorno: &nbsp;<input type="date" name="endDate" min="2000-01-01" max="2032-12-31"></label>
+<input type="submit" value="Vai"/>
+</form>
+	<%int i = 0;
+	if(contributo!=null){ %>
+	<p>
+		<%for(String x : contributo) {
+			i++;
+		%>
+			<%=x.toString()%>
+			<%if(i%2==0){ %>
+				<br/>
+			<%} else { %>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<%} %>
+		<%} %>
+	</p>
+	<%} %>
+<%} %>
+</div>
 <%if(account.getRuolo()==0){ %>
 <div id="insights">
 <div id="in">
@@ -139,25 +165,36 @@ CasaEditriceBean x = (CasaEditriceBean) account;%>
 <h2>Ricavi piattaforma</h2>
 <form action="<%=response.encodeURL("/NYTRO/Profilo")%>">
 <input type="hidden" name="contributoAnnuale" value="true">
-<label>Data di inizio<input type="date" name="startDate" min="2000-01-01" max="2032-12-31"  required></label>
-<label>Data di fine<input type="date" name="endDate" min="2000-01-01" max="2032-12-31"  required></label>
+<label>Dal giorno: &nbsp;<input type="date" name="startDate" min="2000-01-01" max="2032-12-31"  required></label>
+<label>Al giorno: &nbsp;<input type="date" name="endDate" min="2000-01-01" max="2032-12-31"  required></label>
 <input type="submit" value="Vai"/>
 </form>
 
-	<%int i = 0;
+	<%int i = 1;
 	if(contributo!=null){ %>
-	<p>
+	<table>
+		<tr>
+			<th>ISIN</th>
+			<th>Incassi</th>
+			<th>Contributi</th>
+			<th></th>
+		</tr>
+		<tr>
 		<%for(String x : contributo) {
 			i++;
+			if(x.equals("Incassi") || x.equals("Contributi_Annuali") || x.equals("ISIN")) {
+				
+			}else {
 		%>
-			<%=x.toString()%>
-			<%if(i%3==0){ %>
-				<br/>
+			<td><%=x.toString()%></td>
+			<%if(x.length() == 12 && i%3==0){ %>
+			</tr>
 			<%} else { %>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<%} %>
+			<%} %>
 		<%} %>
-	</p>
+	</table>
 	<%} %>
 </div>
 <div id ="admin">
@@ -220,34 +257,8 @@ if(videogiocoPiuGiocatoDa!=null){%>
 	<%=videogiocoPiuGiocatoDa.toString() %> 
 <%} %>	
 
-<%} %>
 </div>
-<%if(account.getRuolo()==2){ %>
-<div id="insights">
-<h2>Contributo casa editrice</h2>
-<form action="<%=response.encodeURL("/NYTRO/Profilo")%>">
-<input type="hidden" name="contributoAnnualeCasaEditrice" value="true">
-<label>Data di inizio<input type="date" name="startDate" min="2000-01-01" max="2032-12-31"></label>
-<label>Data di fine<input type="date" name="endDate" min="2000-01-01" max="2032-12-31"></label>
-<input type="submit" value="Vai"/>
-</form>
-	<%int i = 0;
-	if(contributo!=null){ %>
-	<p>
-		<%for(String x : contributo) {
-			i++;
-		%>
-			<%=x.toString()%>
-			<%if(i%2==0){ %>
-				<br/>
-			<%} else { %>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<%} %>
-		<%} %>
-	</p>
-	<%} %>
 <%} %>
-</div>
 </div>
 <script type="text/javascript">
 		

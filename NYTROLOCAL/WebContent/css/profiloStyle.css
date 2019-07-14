@@ -56,6 +56,20 @@
 	color: #155e63;
 }
 
+#insightsCasa{
+	display: table-caption;
+	caption-side: bottom;
+	text-align: center;
+	margin-top:-50px;
+	color: #155e63;
+	background-color: #74b49b;
+	padding-bottom: 30px;	
+}
+
+#contriCasa {
+	background-color: #f9f8eb;
+}
+
 #in {	
 	margin-top: -23px;
 	background-color: #74b49b;
