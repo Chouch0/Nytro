@@ -3,10 +3,11 @@
 import="nytro.model.VideogiocoPagamentoBean, nytro.model.Cart, nytro.model.AccountBean, java.util.Collection, java.util.List"%>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Carrello"/>	</jsp:include>
-<link href="/NYTRO/css/libreriaStyle.css" type="text/css" rel="stylesheet">	
+<link href="/NYTRO/css/cartStyle.css" type="text/css" rel="stylesheet">	
 
 <%	
-	Cart cart = (Cart) session.getAttribute("carrello");
+	Cart cart = null;
+	cart = (Cart) session.getAttribute("carrello");
 	String message = (String) request.getAttribute("message");
 	AccountBean account = (AccountBean) session.getAttribute("account");
 	
@@ -21,12 +22,10 @@ import="nytro.model.VideogiocoPagamentoBean, nytro.model.Cart, nytro.model.Accou
 		List<VideogiocoPagamentoBean> carrelloVideogiochi = cart.getItems();
 		if(carrelloVideogiochi.size()>0){
 	%>
-			<div id="ordina">
-			<a href="<%=response.encodeURL("GestoreCarrello?action=clearCart")%>">Svuota carrello</a><br/>
-			
+			<div id="ordina">			
 			<form action="<%=response.encodeURL("/NYTRO/GestoreCarrello")%>" method="post">
 				<input type="hidden" name="action" value="buy">
-				<label>Inserisci carta di pagamento<input type="text" name="cartaDiPagamento" placeholder="Carta di pagamento*" required></label>
+				<label>Inserisci una carta di pagamento: <input type="text" name="cartaDiPagamento" placeholder="Carta di pagamento*" required></label>
 				<input type="submit" value="Effettua l'acquisto">
 			</form>
 			</div>
@@ -49,20 +48,23 @@ import="nytro.model.VideogiocoPagamentoBean, nytro.model.Cart, nytro.model.Accou
 			<li><a id="download" href="<%=response.encodeURL("GestoreCarrello?action=deleteCart&codiceVideogioco="+x.getCodice())%>">Rimuovi dal carrello</a></li>
 		</div>
 		</ul>
+		
+	</div>
 			<%
 				}
 		}
 			%>
 		
-	<%} else { %>
+	<%} else if (cart == null || (cart!= null && cart.getItems().size() < 1) || (cart != null && cart.getItems().isEmpty())){ %>
 		<div id="vuoto">
 		<h1>Nessun videogioco presente nel carrello.</h1>
 		<p>Cosa aspetti? Compra nuovi videogiochi!</p>
 		</div>
 	<%} %>
-</div>
-
-	<%
+<div id="svuota">
+		<%if(cart != null || (cart != null && cart.getItems().size() > 0)) {%>
+			<a href="<%=response.encodeURL("GestoreCarrello?action=clearCart")%>">Svuota carrello</a><br/>
+	<%}
 		if(message != null && !message.equals("")) {
 	%>
 		
@@ -71,5 +73,5 @@ import="nytro.model.VideogiocoPagamentoBean, nytro.model.Cart, nytro.model.Accou
 	<%
 		}
 	%>
-
+</div>
 <%@include file="footer.jsp"%>	
