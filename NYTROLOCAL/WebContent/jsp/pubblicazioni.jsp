@@ -101,7 +101,6 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 			<input type="submit" value="Aggiungi">
 		</form>
 	</div>
-	
 	<script>
 	
 	function show(elem) {

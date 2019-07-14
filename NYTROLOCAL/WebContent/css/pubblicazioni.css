@@ -7,7 +7,9 @@
 	margin: -20px;
 	color: #155e63;	
 }
-
+#tabella a {
+	color: #b33f3f;
+}
 #aggiungi {	
 	text-align: center;
 	padding: 1%;
@@ -133,4 +135,12 @@ tr:hover {
 
 #tabella {
 	overflow: scroll;
+}
+
+@media screen and (max-width: 1000px) {
+	#pagina {
+	padding-bottom: 20px;}
+	#aggiungi {
+	display:none;}
+	
 }
