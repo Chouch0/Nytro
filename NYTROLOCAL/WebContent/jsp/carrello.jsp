@@ -1,20 +1,27 @@
 <%@page import="nytro.model.VideogiocoPagamentoBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
-import="nytro.model.VideogiocoPagamentoBean, nytro.model.Cart, java.util.Collection, java.util.List"%>
+import="nytro.model.VideogiocoPagamentoBean, nytro.model.Cart, nytro.model.AccountBean, java.util.Collection, java.util.List"%>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Carrello"/>	</jsp:include>
+<link href="/NYTRO/css/libreriaStyle.css" type="text/css" rel="stylesheet">	
 
 <%	
 	Cart cart = (Cart) session.getAttribute("carrello");
 	String message = (String) request.getAttribute("message");
+	AccountBean account = (AccountBean) session.getAttribute("account");
 	
 %>
-<%if(cart!=null) {%>
-	<h2>Cart</h2>
+
+<div id="lista">
+	<div id="pagina">
+	<h1>Carrello - <%=account.getUsername() %>	</h1>
+	</div>
+	<%if(cart!=null) {%>
 	<%
 		List<VideogiocoPagamentoBean> carrelloVideogiochi = cart.getItems();
 		if(carrelloVideogiochi.size()>0){
 	%>
+			<div id="ordina">
 			<a href="<%=response.encodeURL("GestoreCarrello?action=clearCart")%>">Svuota carrello</a><br/>
 			
 			<form action="<%=response.encodeURL("/NYTRO/GestoreCarrello")%>" method="post">
@@ -22,33 +29,38 @@ import="nytro.model.VideogiocoPagamentoBean, nytro.model.Cart, java.util.Collect
 				<label>Inserisci carta di pagamento<input type="text" name="cartaDiPagamento" placeholder="Carta di pagamento*" required></label>
 				<input type="submit" value="Effettua l'acquisto">
 			</form>
-	<%
-		}
-	%>
-	<table>
-		<tr>
-			<th>Titolo</th>
-			<th>Action</th>
-		</tr>
+			</div>
+		
+		<div id="tabella">
 			<%
-				if(carrelloVideogiochi.size()>0){
-					for(VideogiocoPagamentoBean x:carrelloVideogiochi){
+				for(VideogiocoPagamentoBean x:carrelloVideogiochi){
+					System.out.println("\t\t"+x);
 			%>
-		<tr>
-			<td><%=x.getTitolo()%></td>
-			<td><a href="<%=response.encodeURL("GestoreCarrello?action=deleteCart&codiceVideogioco="+x.getCodice())%>">Rimuovi dal carrello</a></td>
-		</tr>	
-			<%
-					}
-				} else {
-			%>
-		<tr>
-			<td colspan="2"> Nessun prodotto disponibile nel carrello </td>
-		</tr>		
+		<ul>
+		<div class="gioco">
+			<li><div class="copertina">
+			<%if (x.getImg() != null){%>
+					<img src="/NYTRO/image?codice=<%= x.getCodice()%>" alt="<%=x.getTitolo()%>">
+			<%} else {%>
+					<img src="/NYTRO/img/no-cover.jpg" alt="<%=x.getTitolo()%>">
+			<%} %></div></li>
+			<li class="titolo"><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+x.getCodice())%>"><%=x.getTitolo()%></a></li>
+			<li>Prezzo: <%=x.getPrezzo()%></li>
+			<li><a id="download" href="<%=response.encodeURL("GestoreCarrello?action=deleteCart&codiceVideogioco="+x.getCodice())%>">Rimuovi dal carrello</a></li>
+		</div>
+		</ul>
 			<%
 				}
+		}
 			%>
-	</table>
+		
+	<%} else { %>
+		<div id="vuoto">
+		<h1>Nessun videogioco presente nel carrello.</h1>
+		<p>Cosa aspetti? Compra nuovi videogiochi!</p>
+		</div>
+	<%} %>
+</div>
 
 	<%
 		if(message != null && !message.equals("")) {
@@ -59,7 +71,5 @@ import="nytro.model.VideogiocoPagamentoBean, nytro.model.Cart, java.util.Collect
 	<%
 		}
 	%>
-<%} else {%>
-	<h4>Carrello vuoto</h4>
-<%} %>
+
 <%@include file="footer.jsp"%>	
