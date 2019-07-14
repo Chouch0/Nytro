@@ -61,8 +61,7 @@ if(account != null && account.getRuolo() == 2) {
 	<%} %>
 <%} else if(account != null && account.getRuolo() == 0) {%>
 	<h1>Bentornato Amministratore!</h1>
-	<p>Dai un'occhiata all'andamento della tua piattaforma.</p>
-<%} else if(account != null && account.getRuolo() == 1) {%>
+	<p>Dai un'occhiata all'andamento della tua piattaforma.</p>h3<%} else if(account != null && account.getRuolo() == 1) {%>
 	<h1>Bentornato <%=account.getUsername() %>!</h1>
 	<p>Dai un'occhiata ai giochi migliori selezionati per te.</p>
 <%} else if(account != null && account.getRuolo() == 2) {%>
@@ -82,7 +81,9 @@ if(account != null && account.getRuolo() == 2) {
 		<section class="prezzo"><%=list.get(0).getPrezzo() %>€</section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list.get(0).getTrailer()%>"></iframe>
-			<%=list.get(0).toString() %><%=list.get(0).getGenere().toString() %>
+			<h2><%=list.get(0).getTitolo() %></h2>
+			<h3><%=list.get(0).getGenere().toString().substring(1, list.get(0).getGenere().toString().length()-1) %></h3>
+			<h3><%=list.get(0).getVotoMedio() %> ★</h3>
 		</div>
 	</div>
 	<div id="gioco2">
@@ -94,7 +95,9 @@ if(account != null && account.getRuolo() == 2) {
 		<section class="prezzo"><%=list.get(1).getPrezzo() %>€</section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list.get(1).getTrailer()%>"></iframe>
-			<%=list.get(1).toString() %><%=list.get(1).getGenere().toString() %>
+			<h2><%=list.get(1).getTitolo() %></h2>
+			<h3><%=list.get(1).getGenere().toString().substring(1, list.get(1).getGenere().toString().length()-1) %></h3>
+			<h3><%=list.get(1).getVotoMedio() %> ★</h3>
 		</div>
 	</div>
 	<div id="gioco3">
@@ -106,7 +109,9 @@ if(account != null && account.getRuolo() == 2) {
 		<section class="prezzo"><%=list.get(2).getPrezzo() %>€</section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list.get(2).getTrailer()%>"></iframe>
-			<%=list.get(2).toString() %><%=list.get(2).getGenere().toString() %>
+			<h2><%=list.get(2).getTitolo() %></h2>
+			<h3><%=list.get(2).getGenere().toString().substring(1, list.get(2).getGenere().toString().length()-1) %></h3>
+			<h3><%=list.get(2).getVotoMedio() %> ★</h3>
 		</div>
 	</div>
 	<%} else if (account != null && account.getRuolo() == 2) { %>
@@ -120,7 +125,9 @@ if(account != null && account.getRuolo() == 2) {
 		<%} %>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list4.get(0).getTrailer()%>"></iframe>
-			<%=list4.get(0).toString() %><%=list4.get(0).getGenere().toString() %>
+			<h2><%=list4.get(0).getTitolo() %></h2>
+			<h3><%=list4.get(0).getGenere().toString().substring(1, list4.get(0).getGenere().toString().length()-1) %></h3>
+			<h3><%=list4.get(0).getVotoMedio() %> ★</h3>
 		</div>
 	</div>
 	<%} if(list4 != null && list4.size() > 1 && list4.get(1) != null) { %>
@@ -132,7 +139,9 @@ if(account != null && account.getRuolo() == 2) {
 		<%} %>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list4.get(1).getTrailer()%>"></iframe>
-			<%=list4.get(1).toString() %><%=list4.get(1).getGenere().toString() %>
+			<h2><%=list4.get(1).getTitolo() %></h2>
+			<h3><%=list4.get(1).getGenere().toString().substring(1, list4.get(1).getGenere().toString().length()-1) %></h3>
+			<h3><%=list4.get(1).getVotoMedio() %> ★</h3>
 		</div>
 	</div>
 	<%} if(list4 != null && list4.size() > 2 && list4.get(2) != null) { %>
@@ -144,7 +153,9 @@ if(account != null && account.getRuolo() == 2) {
 		<%} %>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list4.get(2).getTrailer()%>"></iframe>
-			<%=list4.get(2).toString() %><%=list4.get(2).getGenere().toString() %>
+			<h2><%=list4.get(2).getTitolo() %></h2>
+			<h3><%=list4.get(2).getGenere().toString().substring(1, list4.get(2).getGenere().toString().length()-1) %></h3>
+			<h3><%=list4.get(2).getVotoMedio() %> ★</h3>
 		</div>
 	</div>
 	<%} else if(list4 == null || list4.isEmpty() || list4.size() <= 0) { %>
@@ -166,7 +177,9 @@ if(account != null && account.getRuolo() == 2) {
 			<%} else { %>FREE <%} %></section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list2.get(0).getTrailer()%>"></iframe>
-			<%=list2.get(0).toString() %><%=list2.get(0).getGenere().toString() %>
+			<h2><%=list2.get(0).getTitolo() %></h2>
+			<h3><%=list2.get(0).getGenere().toString().substring(1, list2.get(0).getGenere().toString().length()-1) %></h3>
+			<h3><%=list2.get(0).getVotoMedio() %> ★</h3>
 		</div>
 	</div>
 	<div id="gioco5">
@@ -180,7 +193,9 @@ if(account != null && account.getRuolo() == 2) {
 			<%} else { %>FREE <%} %></section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list2.get(1).getTrailer()%>"></iframe>
-			<%=list2.get(1).toString() %><%=list2.get(1).getGenere().toString() %>
+			<h2><%=list2.get(1).getTitolo() %></h2>
+			<h3><%=list2.get(1).getGenere().toString().substring(1, list2.get(1).getGenere().toString().length()-1) %></h3>
+			<h3><%=list2.get(1).getVotoMedio() %> ★</h3>
 		</div>
 	</div>
 	<div id="gioco6">
@@ -194,7 +209,9 @@ if(account != null && account.getRuolo() == 2) {
 			<%} else { %>FREE <%} %></section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list2.get(2).getTrailer()%>"></iframe>
-			<%=list2.get(2).toString() %><%=list2.get(2).getGenere().toString() %>
+			<h2><%=list2.get(2).getTitolo() %></h2>
+			<h3><%=list2.get(2).getGenere().toString().substring(1, list2.get(2).getGenere().toString().length()-1) %></h3>
+			<h3><%=list2.get(2).getVotoMedio() %> ★</h3>
 		</div>
 	</div>
 	<%} else if (account != null && account.getRuolo() == 2) { %>
@@ -208,7 +225,9 @@ if(account != null && account.getRuolo() == 2) {
 		<%} %>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list5.get(0).getTrailer()%>"></iframe>
-			<%=list5.get(0).toString() %><%=list5.get(0).getGenere().toString() %>
+			<h2><%=list5.get(0).getTitolo() %></h2>
+			<h3><%=list5.get(0).getGenere().toString().substring(1, list5.get(0).getGenere().toString().length()-1) %></h3>
+			<h3><%=list5.get(0).getVotoMedio() %> ★</h3>
 		</div>
 	</div>
 	<%} if(list5 != null && list5.size() > 1 && list5.get(1) != null) { %>
@@ -220,7 +239,9 @@ if(account != null && account.getRuolo() == 2) {
 		<%} %>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list5.get(1).getTrailer()%>"></iframe>
-			<%=list5.get(1).toString() %><%=list5.get(1).getGenere().toString() %>
+			<h2><%=list5.get(1).getTitolo() %></h2>
+			<h3><%=list5.get(1).getGenere().toString().substring(1, list5.get(1).getGenere().toString().length()-1) %></h3>
+			<h3><%=list5.get(1).getVotoMedio() %> ★</h3>
 		</div>
 	</div>
 	<%} if(list5 != null && list5.size() > 2 && list5.get(2) != null) { %>
@@ -232,7 +253,9 @@ if(account != null && account.getRuolo() == 2) {
 		<%} %>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list5.get(2).getTrailer()%>"></iframe>
-			<%=list5.get(2).toString() %><%=list5.get(2).getGenere().toString() %>
+			<h2><%=list5.get(2).getTitolo() %></h2>
+			<h3><%=list5.get(2).getGenere().toString().substring(1, list5.get(2).getGenere().toString().length()-1) %></h3>
+			<h3><%=list5.get(2).getVotoMedio() %> ★</h3>
 		</div>
 	</div>
 	<%} else if(list5 == null || list5.isEmpty() || list5.size() <= 0) { %> { %>
@@ -257,7 +280,9 @@ if(account != null && account.getRuolo() == 2) {
 				<%} else { %>FREE <%} %></section>
 			<div class="info">
 				<iframe width="100%" height="40%" src="<%=mas.get(0).getTrailer()%>"></iframe>
-				<%=mas.get(0).toString() %><%=mas.get(0).getGenere().toString() %>
+				<h2><%=mas.get(0).getTitolo() %></h2>
+				<h3><%=mas.get(0).getGenere().toString().substring(1, mas.get(0).getGenere().toString().length()-1) %></h3>
+				<h3><%=mas.get(0).getVotoMedio() %> ★</h3>
 			</div>
 		<%} else if (g.getGenere() != null && g.getGenere().equalsIgnoreCase("F") && fem.get(0) != null) {%>
 			<%if (fem.get(0) != null && fem.get(0).getImg() != null){%>
@@ -270,7 +295,9 @@ if(account != null && account.getRuolo() == 2) {
 				<%} else { %>FREE <%} %></section>
 			<div class="info">
 				<iframe width="100%" height="40%" src="<%=fem.get(0).getTrailer()%>"></iframe>
-				<%=fem.get(0).toString() %><%=fem.get(0).getGenere().toString() %>
+				<h2><%=fem.get(0).getTitolo() %></h2>
+				<h3><%=fem.get(0).getGenere().toString().substring(1, fem.get(0).getGenere().toString().length()-1) %></h3>
+				<h3><%=fem.get(0).getVotoMedio() %> ★</h3>
 			</div>
 		<%} else { %>	
 			<%if (list3.get(0).getImg() != null){%>
@@ -283,7 +310,9 @@ if(account != null && account.getRuolo() == 2) {
 				<%} else { %>FREE <%} %></section>
 			<div class="info">
 				<iframe width="100%" height="40%" src="<%=list3.get(0).getTrailer()%>"></iframe>
-				<%=list3.get(0).toString() %><%=list3.get(0).getGenere().toString() %>
+				<h2><%=list3.get(0).getTitolo() %></h2>
+				<h3><%=list3.get(0).getGenere().toString().substring(1, list3.get(0).getGenere().toString().length()-1) %></h3>
+				<h3><%=list3.get(0).getVotoMedio() %> ★</h3>
 			</div>
 		<%} %>
 	<%} else { %>	
@@ -297,7 +326,9 @@ if(account != null && account.getRuolo() == 2) {
 			<%} else { %>FREE <%} %></section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list3.get(0).getTrailer()%>"></iframe>
-			<%=list3.get(0).toString() %><%=list3.get(0).getGenere().toString() %>
+			<h2><%=list3.get(0).getTitolo() %></h2>
+			<h3><%=list3.get(0).getGenere().toString().substring(1, list3.get(0).getGenere().toString().length()-1) %></h3>
+			<h3><%=list3.get(0).getVotoMedio() %> ★</h3>
 		</div>
 	<%} %>
 	</div>
@@ -315,7 +346,9 @@ if(account != null && account.getRuolo() == 2) {
 				<%} else { %>FREE <%} %></section>
 			<div class="info">
 				<iframe width="100%" height="40%" src="<%=mas.get(1).getTrailer()%>"></iframe>
-				<%=mas.get(1).toString() %><%=mas.get(1).getGenere().toString() %>
+				<h2><%=mas.get(1).getTitolo() %></h2>
+				<h3><%=mas.get(1).getGenere().toString().substring(1, mas.get(1).getGenere().toString().length()-1) %></h3>
+				<h3><%=mas.get(1).getVotoMedio() %> ★</h3>
 			</div>
 		<%} else if (g.getGenere() != null && g.getGenere().equalsIgnoreCase("F") && fem.get(1) != null) {%>
 			<%if (fem.get(1) != null && fem.get(1).getImg() != null){%>
@@ -328,7 +361,9 @@ if(account != null && account.getRuolo() == 2) {
 				<%} else { %>FREE <%} %></section>
 			<div class="info">
 				<iframe width="100%" height="40%" src="<%=fem.get(1).getTrailer()%>"></iframe>
-				<%=fem.get(1).toString() %><%=fem.get(1).getGenere().toString() %>
+				<h2><%=fem.get(1).getTitolo() %></h2>
+				<h3><%=fem.get(1).getGenere().toString().substring(1, fem.get(1).getGenere().toString().length()-1) %></h3>
+				<h3><%=fem.get(1).getVotoMedio() %> ★</h3>
 			</div>
 		<%} else { %>	
 			<%if (list3.get(1).getImg() != null){%>
@@ -341,7 +376,9 @@ if(account != null && account.getRuolo() == 2) {
 				<%} else { %>FREE <%} %></section>
 			<div class="info">
 				<iframe width="100%" height="40%" src="<%=list3.get(1).getTrailer()%>"></iframe>
-				<%=list3.get(1).toString() %><%=list3.get(1).getGenere().toString() %>
+				<h2><%=list3.get(1).getTitolo() %></h2>
+				<h3><%=list3.get(1).getGenere().toString().substring(1, list3.get(1).getGenere().toString().length()-1) %></h3>
+				<h3><%=list3.get(1).getVotoMedio() %> ★</h3>
 			</div>
 		<%} %>
 	<%} else { %>	
@@ -355,7 +392,9 @@ if(account != null && account.getRuolo() == 2) {
 			<%} else { %>FREE <%} %></section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list3.get(1).getTrailer()%>"></iframe>
-			<%=list3.get(1).toString() %><%=list3.get(1).getGenere().toString() %>
+			<h2><%=list3.get(1).getTitolo() %></h2>
+			<h3><%=list3.get(1).getGenere().toString().substring(1, list3.get(1).getGenere().toString().length()-1) %></h3>
+			<h3><%=list3.get(1).getVotoMedio() %> ★</h3>
 		</div>
 	<%} %>
 	</div>
@@ -373,7 +412,9 @@ if(account != null && account.getRuolo() == 2) {
 				<%} else { %>FREE <%} %></section>
 			<div class="info">
 				<iframe width="100%" height="40%" src="<%=mas.get(2).getTrailer()%>"></iframe>
-				<%=mas.get(2).toString() %><%=mas.get(2).getGenere().toString() %>
+				<h2><%=mas.get(2).getTitolo() %></h2>
+				<h3><%=mas.get(2).getGenere().toString().substring(1, mas.get(2).getGenere().toString().length()-1) %></h3>
+				<h3><%=mas.get(2).getVotoMedio() %> ★</h3>
 			</div>
 		<%} else if (g.getGenere() != null && g.getGenere().equalsIgnoreCase("F") && fem.get(2) != null) {%>
 			<%if (fem.get(2) != null && fem.get(2).getImg() != null){%>
@@ -386,7 +427,9 @@ if(account != null && account.getRuolo() == 2) {
 				<%} else { %>FREE <%} %></section>
 			<div class="info">
 				<iframe width="100%" height="40%" src="<%=fem.get(2).getTrailer()%>"></iframe>
-				<%=fem.get(2).toString() %><%=fem.get(2).getGenere().toString() %>
+				<h2><%=fem.get(2).getTitolo() %></h2>
+				<h3><%=fem.get(2).getGenere().toString().substring(1, fem.get(2).getGenere().toString().length()-1) %></h3>
+				<h3><%=fem.get(2).getVotoMedio() %> ★</h3>
 			</div>
 		<%} else { %>	
 			<%if (list3.get(2).getImg() != null){%>
@@ -399,7 +442,9 @@ if(account != null && account.getRuolo() == 2) {
 				<%} else { %>FREE <%} %></section>
 			<div class="info">
 				<iframe width="100%" height="40%" src="<%=list3.get(2).getTrailer()%>"></iframe>
-				<%=list3.get(2).toString() %><%=list3.get(2).getGenere().toString() %>
+				<h2><%=list3.get(2).getTitolo() %></h2>
+				<h3><%=list3.get(2).getGenere().toString().substring(1, list3.get(2).getGenere().toString().length()-1) %></h3>
+				<h3><%=list3.get(2).getVotoMedio() %> ★</h3>
 			</div>
 		<%} %>
 	<%} else { %>	
@@ -413,7 +458,9 @@ if(account != null && account.getRuolo() == 2) {
 			<%} else { %>FREE <%} %></section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list3.get(2).getTrailer()%>"></iframe>
-			<%=list3.get(2).toString() %><%=list3.get(2).getGenere().toString() %>
+			<h2><%=list3.get(2).getTitolo() %></h2>
+			<h3><%=list3.get(2).getGenere().toString().substring(1, list3.get(2).getGenere().toString().length()-1) %></h3>
+			<h3><%=list3.get(2).getVotoMedio() %> ★</h3>
 		</div>
 	<%} %>
 	</div>

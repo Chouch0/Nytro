@@ -66,13 +66,19 @@ img {
 	height: 100%;
 	position: absolute;
 	top: 0;
-	background-color: #f9f8eb;  
-	color: #155e63;  
+	background-color: #ea5b5b;  
+	color: #f9f8eb;  
 	z-index: 1;
 	visibility:hidden;
     opacity:0;
     overflow: hidden;
 	margin-bottom: -10px;
+}
+
+.info h2 {
+	background-color: #b33f3f;
+	padding: 10px;
+	color: #f9f8eb;
 }
 
 #gioco1:hover .info, #gioco2:hover .info, #gioco3:hover .info, #gioco4:hover .info, #gioco5:hover .info, #gioco6:hover .info, #gioco7:hover .info, #gioco8:hover .info, #gioco9:hover .info {
