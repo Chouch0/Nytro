@@ -1,28 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Contatti"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->
-	<section>
+	<div id="contattiPagina">
 		<h1>Contatti</h1>
+		</div>
+		<div id="contatti">	
+		<section>
+		<img id="imgContatti" alt="Nytro" src="/NYTRO/img/logo.png">
 		<pre>
-		Sede principale
+		<b>Sede principale</b>
 		Via Vittoria, 01 - 84001 Altopiano Blu
 		
-		Sedi secondarie
+		<b>Sedi secondarie</b>
 		Via Vulcanica, 03 – 84003 Primisola
 		Via Gelata, 02 - 84002 Ebanopoli
 		
-		Telefono
+		<b>Telefono</b>
 		+39 089 0101 010
 		+39 089 0303 030
 		+39 089 0202 020
 		
-		Fax:
+		<b>Fax:</b>
 		+39 089 123321
 		
-		Email
+		<b>Email</b>
 		info@nytro.it
 		</pre>
-	</section>
+		</section>
+	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
 		$("document").ready(function prova(){

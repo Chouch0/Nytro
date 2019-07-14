@@ -235,6 +235,32 @@ nav li a:hover {
 	display:none;
 }
 
+#contattiPagina {
+	text-align: center;
+	background-color: #f9f8eb;
+	margin: -20px;
+	color: #155e63;	
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#contatti section {
+	background-color: #a7d7c5;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#contatti pre {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-size: 1.4em;
+}
+
+#imgContatti {
+	float:right;
+	width: 30%;
+}
+
 @media screen and (max-width: 1310px) {
 	nav ul li:first-child {
 		margin:0;
