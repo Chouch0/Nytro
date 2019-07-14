@@ -93,16 +93,14 @@ img {
 }
   
 @media screen and (max-width: 1000px) {
-	.evidenza {
-		margin-right: 10%;
-		margin-left: 10%;
-	}
+	.info {
+	font-size: x-small;}
 }
 @media screen and (max-width: 805px) {
-	.evidenza {
-		margin-right: -10px;
-		margin-left: -10px;
-	}
+	.info h3{
+	display:none;}
+	.info {
+	font-size: xx-small;}
 }
 @keyframes slide-up {
   from {
