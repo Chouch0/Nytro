@@ -71,11 +71,16 @@ table {
 	text-align: left;
 }
 
-#tabContri {
+#tabContri, #tabCasa {
 	margin-top: 30px;
 	background-color: #f9f8eb;
 	margin-bottom: -30px;;
 	padding-bottom: 20px;
+}
+
+#giocatore {
+	background-color: #74b49b;
+	height: 300px;
 }
 
 #in {	
