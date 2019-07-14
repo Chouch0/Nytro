@@ -61,7 +61,7 @@ if(account != null && account.getRuolo() == 2) {
 	<%} %>
 <%} else if(account != null && account.getRuolo() == 0) {%>
 	<h1>Bentornato Amministratore!</h1>
-	<p>Dai un'occhiata all'andamento della tua piattaforma.</p>h3<%} else if(account != null && account.getRuolo() == 1) {%>
+	<p>Dai un'occhiata all'andamento della tua piattaforma.</p><%} else if(account != null && account.getRuolo() == 1) {%>
 	<h1>Bentornato <%=account.getUsername() %>!</h1>
 	<p>Dai un'occhiata ai giochi migliori selezionati per te.</p>
 <%} else if(account != null && account.getRuolo() == 2) {%>
@@ -81,7 +81,7 @@ if(account != null && account.getRuolo() == 2) {
 		<section class="prezzo"><%=list.get(0).getPrezzo() %>€</section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list.get(0).getTrailer()%>"></iframe>
-			<h2><%=list.get(0).getTitolo() %></h2>
+			<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+list.get(0).getCodice())%>"><%=list.get(0).getTitolo() %></a></h2>
 			<h3><%=list.get(0).getGenere().toString().substring(1, list.get(0).getGenere().toString().length()-1) %></h3>
 			<h3><%=list.get(0).getVotoMedio() %> ★</h3>
 		</div>
@@ -95,7 +95,7 @@ if(account != null && account.getRuolo() == 2) {
 		<section class="prezzo"><%=list.get(1).getPrezzo() %>€</section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list.get(1).getTrailer()%>"></iframe>
-			<h2><%=list.get(1).getTitolo() %></h2>
+			<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+list.get(1).getCodice())%>"><%=list.get(1).getTitolo() %></a></h2>
 			<h3><%=list.get(1).getGenere().toString().substring(1, list.get(1).getGenere().toString().length()-1) %></h3>
 			<h3><%=list.get(1).getVotoMedio() %> ★</h3>
 		</div>
@@ -109,7 +109,7 @@ if(account != null && account.getRuolo() == 2) {
 		<section class="prezzo"><%=list.get(2).getPrezzo() %>€</section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list.get(2).getTrailer()%>"></iframe>
-			<h2><%=list.get(2).getTitolo() %></h2>
+			<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+list.get(2).getCodice())%>"><%=list.get(2).getTitolo() %></a></h2>
 			<h3><%=list.get(2).getGenere().toString().substring(1, list.get(2).getGenere().toString().length()-1) %></h3>
 			<h3><%=list.get(2).getVotoMedio() %> ★</h3>
 		</div>
@@ -125,7 +125,7 @@ if(account != null && account.getRuolo() == 2) {
 		<%} %>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list4.get(0).getTrailer()%>"></iframe>
-			<h2><%=list4.get(0).getTitolo() %></h2>
+			<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+list4.get(0).getCodice())%>"><%=list4.get(0).getTitolo() %></a></h2>
 			<h3><%=list4.get(0).getGenere().toString().substring(1, list4.get(0).getGenere().toString().length()-1) %></h3>
 			<h3><%=list4.get(0).getVotoMedio() %> ★</h3>
 		</div>
@@ -139,7 +139,7 @@ if(account != null && account.getRuolo() == 2) {
 		<%} %>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list4.get(1).getTrailer()%>"></iframe>
-			<h2><%=list4.get(1).getTitolo() %></h2>
+			<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+list4.get(1).getCodice())%>"><%=list4.get(1).getTitolo() %></a></h2>
 			<h3><%=list4.get(1).getGenere().toString().substring(1, list4.get(1).getGenere().toString().length()-1) %></h3>
 			<h3><%=list4.get(1).getVotoMedio() %> ★</h3>
 		</div>
@@ -153,7 +153,7 @@ if(account != null && account.getRuolo() == 2) {
 		<%} %>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list4.get(2).getTrailer()%>"></iframe>
-			<h2><%=list4.get(2).getTitolo() %></h2>
+			<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+list4.get(2).getCodice())%>"><%=list4.get(2).getTitolo() %></a></h2>
 			<h3><%=list4.get(2).getGenere().toString().substring(1, list4.get(2).getGenere().toString().length()-1) %></h3>
 			<h3><%=list4.get(2).getVotoMedio() %> ★</h3>
 		</div>
@@ -177,7 +177,7 @@ if(account != null && account.getRuolo() == 2) {
 			<%} else { %>FREE <%} %></section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list2.get(0).getTrailer()%>"></iframe>
-			<h2><%=list2.get(0).getTitolo() %></h2>
+			<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+list2.get(0).getCodice())%>"><%=list2.get(0).getTitolo() %></a></h2>
 			<h3><%=list2.get(0).getGenere().toString().substring(1, list2.get(0).getGenere().toString().length()-1) %></h3>
 			<h3><%=list2.get(0).getVotoMedio() %> ★</h3>
 		</div>
@@ -193,7 +193,7 @@ if(account != null && account.getRuolo() == 2) {
 			<%} else { %>FREE <%} %></section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list2.get(1).getTrailer()%>"></iframe>
-			<h2><%=list2.get(1).getTitolo() %></h2>
+			<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+list2.get(1).getCodice())%>"><%=list2.get(1).getTitolo() %></a></h2>
 			<h3><%=list2.get(1).getGenere().toString().substring(1, list2.get(1).getGenere().toString().length()-1) %></h3>
 			<h3><%=list2.get(1).getVotoMedio() %> ★</h3>
 		</div>
@@ -209,7 +209,7 @@ if(account != null && account.getRuolo() == 2) {
 			<%} else { %>FREE <%} %></section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list2.get(2).getTrailer()%>"></iframe>
-			<h2><%=list2.get(2).getTitolo() %></h2>
+			<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+list2.get(2).getCodice())%>"><%=list2.get(2).getTitolo() %></a></h2>
 			<h3><%=list2.get(2).getGenere().toString().substring(1, list2.get(2).getGenere().toString().length()-1) %></h3>
 			<h3><%=list2.get(2).getVotoMedio() %> ★</h3>
 		</div>
@@ -225,7 +225,7 @@ if(account != null && account.getRuolo() == 2) {
 		<%} %>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list5.get(0).getTrailer()%>"></iframe>
-			<h2><%=list5.get(0).getTitolo() %></h2>
+			<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+list5.get(0).getCodice())%>"><%=list5.get(0).getTitolo() %></a></h2>
 			<h3><%=list5.get(0).getGenere().toString().substring(1, list5.get(0).getGenere().toString().length()-1) %></h3>
 			<h3><%=list5.get(0).getVotoMedio() %> ★</h3>
 		</div>
@@ -239,7 +239,7 @@ if(account != null && account.getRuolo() == 2) {
 		<%} %>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list5.get(1).getTrailer()%>"></iframe>
-			<h2><%=list5.get(1).getTitolo() %></h2>
+			<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+list5.get(1).getCodice())%>"><%=list5.get(1).getTitolo() %></a></h2>
 			<h3><%=list5.get(1).getGenere().toString().substring(1, list5.get(1).getGenere().toString().length()-1) %></h3>
 			<h3><%=list5.get(1).getVotoMedio() %> ★</h3>
 		</div>
@@ -253,7 +253,7 @@ if(account != null && account.getRuolo() == 2) {
 		<%} %>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list5.get(2).getTrailer()%>"></iframe>
-			<h2><%=list5.get(2).getTitolo() %></h2>
+			<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+list5.get(2).getCodice())%>"><%=list5.get(2).getTitolo() %></a></h2>
 			<h3><%=list5.get(2).getGenere().toString().substring(1, list5.get(2).getGenere().toString().length()-1) %></h3>
 			<h3><%=list5.get(2).getVotoMedio() %> ★</h3>
 		</div>
@@ -280,7 +280,7 @@ if(account != null && account.getRuolo() == 2) {
 				<%} else { %>FREE <%} %></section>
 			<div class="info">
 				<iframe width="100%" height="40%" src="<%=mas.get(0).getTrailer()%>"></iframe>
-				<h2><%=mas.get(0).getTitolo() %></h2>
+				<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+mas.get(0).getCodice())%>"><%=mas.get(0).getTitolo() %></a></h2>
 				<h3><%=mas.get(0).getGenere().toString().substring(1, mas.get(0).getGenere().toString().length()-1) %></h3>
 				<h3><%=mas.get(0).getVotoMedio() %> ★</h3>
 			</div>
@@ -295,7 +295,7 @@ if(account != null && account.getRuolo() == 2) {
 				<%} else { %>FREE <%} %></section>
 			<div class="info">
 				<iframe width="100%" height="40%" src="<%=fem.get(0).getTrailer()%>"></iframe>
-				<h2><%=fem.get(0).getTitolo() %></h2>
+				<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+fem.get(0).getCodice())%>"><%=fem.get(0).getTitolo() %></a></h2>
 				<h3><%=fem.get(0).getGenere().toString().substring(1, fem.get(0).getGenere().toString().length()-1) %></h3>
 				<h3><%=fem.get(0).getVotoMedio() %> ★</h3>
 			</div>
@@ -310,7 +310,7 @@ if(account != null && account.getRuolo() == 2) {
 				<%} else { %>FREE <%} %></section>
 			<div class="info">
 				<iframe width="100%" height="40%" src="<%=list3.get(0).getTrailer()%>"></iframe>
-				<h2><%=list3.get(0).getTitolo() %></h2>
+				<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+list3.get(0).getCodice())%>"><%=list3.get(0).getTitolo() %></a></h2>
 				<h3><%=list3.get(0).getGenere().toString().substring(1, list3.get(0).getGenere().toString().length()-1) %></h3>
 				<h3><%=list3.get(0).getVotoMedio() %> ★</h3>
 			</div>
@@ -326,7 +326,7 @@ if(account != null && account.getRuolo() == 2) {
 			<%} else { %>FREE <%} %></section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list3.get(0).getTrailer()%>"></iframe>
-			<h2><%=list3.get(0).getTitolo() %></h2>
+			<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+list3.get(0).getCodice())%>"><%=list3.get(0).getTitolo() %></a></h2>
 			<h3><%=list3.get(0).getGenere().toString().substring(1, list3.get(0).getGenere().toString().length()-1) %></h3>
 			<h3><%=list3.get(0).getVotoMedio() %> ★</h3>
 		</div>
@@ -346,7 +346,7 @@ if(account != null && account.getRuolo() == 2) {
 				<%} else { %>FREE <%} %></section>
 			<div class="info">
 				<iframe width="100%" height="40%" src="<%=mas.get(1).getTrailer()%>"></iframe>
-				<h2><%=mas.get(1).getTitolo() %></h2>
+				<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+mas.get(1).getCodice())%>"><%=mas.get(1).getTitolo() %></a></h2>
 				<h3><%=mas.get(1).getGenere().toString().substring(1, mas.get(1).getGenere().toString().length()-1) %></h3>
 				<h3><%=mas.get(1).getVotoMedio() %> ★</h3>
 			</div>
@@ -361,7 +361,7 @@ if(account != null && account.getRuolo() == 2) {
 				<%} else { %>FREE <%} %></section>
 			<div class="info">
 				<iframe width="100%" height="40%" src="<%=fem.get(1).getTrailer()%>"></iframe>
-				<h2><%=fem.get(1).getTitolo() %></h2>
+				<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+fem.get(1).getCodice())%>"><%=fem.get(1).getTitolo() %></a></h2>
 				<h3><%=fem.get(1).getGenere().toString().substring(1, fem.get(1).getGenere().toString().length()-1) %></h3>
 				<h3><%=fem.get(1).getVotoMedio() %> ★</h3>
 			</div>
@@ -376,7 +376,7 @@ if(account != null && account.getRuolo() == 2) {
 				<%} else { %>FREE <%} %></section>
 			<div class="info">
 				<iframe width="100%" height="40%" src="<%=list3.get(1).getTrailer()%>"></iframe>
-				<h2><%=list3.get(1).getTitolo() %></h2>
+				<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+list3.get(1).getCodice())%>"><%=list3.get(1).getTitolo() %></a></h2>
 				<h3><%=list3.get(1).getGenere().toString().substring(1, list3.get(1).getGenere().toString().length()-1) %></h3>
 				<h3><%=list3.get(1).getVotoMedio() %> ★</h3>
 			</div>
@@ -392,7 +392,7 @@ if(account != null && account.getRuolo() == 2) {
 			<%} else { %>FREE <%} %></section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list3.get(1).getTrailer()%>"></iframe>
-			<h2><%=list3.get(1).getTitolo() %></h2>
+			<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+list3.get(1).getCodice())%>"><%=list3.get(1).getTitolo() %></a></h2>
 			<h3><%=list3.get(1).getGenere().toString().substring(1, list3.get(1).getGenere().toString().length()-1) %></h3>
 			<h3><%=list3.get(1).getVotoMedio() %> ★</h3>
 		</div>
@@ -412,7 +412,7 @@ if(account != null && account.getRuolo() == 2) {
 				<%} else { %>FREE <%} %></section>
 			<div class="info">
 				<iframe width="100%" height="40%" src="<%=mas.get(2).getTrailer()%>"></iframe>
-				<h2><%=mas.get(2).getTitolo() %></h2>
+				<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+mas.get(2).getCodice())%>"><%=mas.get(2).getTitolo() %></a></h2>
 				<h3><%=mas.get(2).getGenere().toString().substring(1, mas.get(2).getGenere().toString().length()-1) %></h3>
 				<h3><%=mas.get(2).getVotoMedio() %> ★</h3>
 			</div>
@@ -427,7 +427,7 @@ if(account != null && account.getRuolo() == 2) {
 				<%} else { %>FREE <%} %></section>
 			<div class="info">
 				<iframe width="100%" height="40%" src="<%=fem.get(2).getTrailer()%>"></iframe>
-				<h2><%=fem.get(2).getTitolo() %></h2>
+				<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+fem.get(2).getCodice())%>"><%=fem.get(2).getTitolo() %></a></h2>
 				<h3><%=fem.get(2).getGenere().toString().substring(1, fem.get(2).getGenere().toString().length()-1) %></h3>
 				<h3><%=fem.get(2).getVotoMedio() %> ★</h3>
 			</div>
@@ -442,7 +442,7 @@ if(account != null && account.getRuolo() == 2) {
 				<%} else { %>FREE <%} %></section>
 			<div class="info">
 				<iframe width="100%" height="40%" src="<%=list3.get(2).getTrailer()%>"></iframe>
-				<h2><%=list3.get(2).getTitolo() %></h2>
+				<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+list3.get(2).getCodice())%>"><%=list3.get(2).getTitolo() %></a></h2>
 				<h3><%=list3.get(2).getGenere().toString().substring(1, list3.get(2).getGenere().toString().length()-1) %></h3>
 				<h3><%=list3.get(2).getVotoMedio() %> ★</h3>
 			</div>
@@ -458,7 +458,7 @@ if(account != null && account.getRuolo() == 2) {
 			<%} else { %>FREE <%} %></section>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=list3.get(2).getTrailer()%>"></iframe>
-			<h2><%=list3.get(2).getTitolo() %></h2>
+			<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+list3.get(2).getCodice())%>"><%=list3.get(2).getTitolo() %></a></h2>
 			<h3><%=list3.get(2).getGenere().toString().substring(1, list3.get(2).getGenere().toString().length()-1) %></h3>
 			<h3><%=list3.get(2).getVotoMedio() %> ★</h3>
 		</div>
@@ -475,7 +475,9 @@ if(account != null && account.getRuolo() == 2) {
 		<%} %>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=masCasa.get(0).getTrailer()%>"></iframe>
-			<%=masCasa.get(0).toString() %><%=masCasa.get(0).getGenere().toString() %>
+			<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+masCasa.get(0).getCodice())%>"><%=masCasa.get(0).getTitolo() %></a></h2>
+			<h3><%=masCasa.get(0).getGenere().toString().substring(1, masCasa.get(0).getGenere().toString().length()-1) %></h3>
+			<h3><%=masCasa.get(0).getVotoMedio() %> ★</h3>
 		</div>
 	</div>
 	<%} if(femCasa != null && femCasa.size() > 0 && femCasa.get(0) != null) { %>
@@ -487,7 +489,9 @@ if(account != null && account.getRuolo() == 2) {
 		<%} %>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=femCasa.get(0).getTrailer()%>"></iframe>
-			<%=femCasa.get(0).toString() %><%=femCasa.get(0).getGenere().toString() %>
+			<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+femCasa.get(0).getCodice())%>"><%=femCasa.get(0).getTitolo() %></a></h2>
+			<h3><%=femCasa.get(0).getGenere().toString().substring(1, femCasa.get(0).getGenere().toString().length()-1) %></h3>
+			<h3><%=femCasa.get(0).getVotoMedio() %> ★</h3>
 		</div>
 	</div>
 	<%} if(genCasa != null && genCasa.size() > 0 && genCasa.get(0) != null) { %>
@@ -499,7 +503,9 @@ if(account != null && account.getRuolo() == 2) {
 		<%} %>
 		<div class="info">
 			<iframe width="100%" height="40%" src="<%=genCasa.get(0).getTrailer()%>"></iframe>
-			<%=genCasa.get(0).toString() %><%=genCasa.get(0).getGenere().toString() %>
+			<h2><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+genCasa.get(0).getCodice())%>"><%=genCasa.get(0).getTitolo() %></a></h2>
+			<h3><%=genCasa.get(0).getGenere().toString().substring(1, genCasa.get(0).getGenere().toString().length()-1) %></h3>
+			<h3><%=genCasa.get(0).getVotoMedio() %> ★</h3>
 		</div>
 	</div>
 	<%} else if((masCasa == null || masCasa.isEmpty() || masCasa.size() <= 0) && (femCasa == null || femCasa.isEmpty() || femCasa.size() <= 0) && (genCasa == null || genCasa.isEmpty() || genCasa.size() <= 0)) { %>

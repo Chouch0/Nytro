@@ -55,14 +55,15 @@ import="nytro.model.VideogiocoPagamentoBean, nytro.model.Cart, nytro.model.Accou
 		}
 			%>
 		
-	<%} else if (cart == null || (cart!= null && cart.getItems().size() < 1) || (cart != null && cart.getItems().isEmpty())){ %>
+	<%} 
+	if (cart == null || (cart!= null && cart.getItems().size() < 1) || (cart != null && cart.getItems().isEmpty())){ %>
 		<div id="vuoto">
 		<h1>Nessun videogioco presente nel carrello.</h1>
 		<p>Cosa aspetti? Compra nuovi videogiochi!</p>
 		</div>
 	<%} %>
 <div id="svuota">
-		<%if(cart != null || (cart != null && cart.getItems().size() > 0)) {%>
+		<%if(cart != null && (cart != null && cart.getItems().size() > 0)) {%>
 			<a href="<%=response.encodeURL("GestoreCarrello?action=clearCart")%>">Svuota carrello</a><br/>
 	<%}
 		if(message != null && !message.equals("")) {

@@ -4,6 +4,11 @@ header, footer {
 	padding-bottom: 18px;
 }
 
+.info a {
+text-decoration: none;
+color: #f9f8eb;
+}
+
 .evidenza {
 	text-align: center;
 	background-color: #f2f4f6;

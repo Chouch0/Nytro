@@ -83,6 +83,14 @@ public class LogFilter implements Filter {
 			}
 		}
 		
+		if(account==null || account.getUsername()==null) {
+			if(dest.contains("Videogioco")){
+				System.out.println("(2 1/2) Destinazione (filtro): rindirizzamento a LoginForm");
+				((HttpServletResponse) response).sendRedirect("/NYTRO/LoginForm");	
+				return ;
+			}
+		}
+		
 		System.out.println("(2) Destinazione (filtro): rindirizzamento ad index.jsp");
 		((HttpServletResponse) response).sendRedirect("/NYTRO/jsp/index.jsp");
 		//((HttpServletRequest) request).getRequestDispatcher("jsp/index.jsp").forward((HttpServletRequest) request, (HttpServletResponse) response);
