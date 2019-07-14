@@ -293,6 +293,11 @@ nav li a:hover {
 	#nytro {
 		max-width: 250px;
 	}
+	#contatti, #errore {
+		font-size: small;
+	}
+	#imgContatti {
+	display:none;}
 }
 @media screen and (max-width: 605px) {
 	nav ul a {

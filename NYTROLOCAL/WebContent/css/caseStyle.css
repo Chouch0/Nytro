@@ -90,14 +90,13 @@ ul .casa:hover, ul .casa:hover a{
 	color: #155e63;
 	text-align: right;
 	border-bottom: 1px solid lightgrey;
+	position: relative;
+	height: 50px;
+	padding-right: 170px;
 }
 
-#ordina input[type=text]{
-	background-color: white;
-	border: 1px solid lightgrey;
-	border-radius: 4px;	
-	padding: 5px 0px 5px 5px;
-	margin-left: 1%;
+#ordina select{
+	margin-top: 15px;
 }
 
 #ordina input[type=submit] {
@@ -112,4 +111,17 @@ ul .casa:hover, ul .casa:hover a{
 	background-color: #b33f3f;
 	height:50px;
 	margin-left: 1%;
+	position: absolute;
+	top:0;
+	right:0;
+}
+
+
+@media screen and (max-width: 1000px) {
+	#ordina{
+	font-size: small;
+	}
+	#ordina select {
+		margin-top:0;
+	}
 }
