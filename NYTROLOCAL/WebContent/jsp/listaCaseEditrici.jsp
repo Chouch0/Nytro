@@ -7,8 +7,10 @@ import="nytro.model.AccountBean, java.util.Collection, nytro.model.CasaEditriceB
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Lista Case Editrici"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
 	<link href="/NYTRO/css/listaGiocatori.css" type="text/css" rel="stylesheet">
+	<div id="pagina">
 	<h1>Lista case editrici</h1>
-		<div id="select">
+	</div>
+		<div id="ordina">
 			<form action="<%=response.encodeURL("/NYTRO/ListaCaseEditrici")%>" method="get">
 			<label>Seleziona un criterio di ordinamento
 			 <select name="order">

@@ -6,7 +6,9 @@ import="nytro.model.AccountBean, java.util.Collection"%>
 %>
 <link href="/NYTRO/css/listaGiocatori.css" type="text/css" rel="stylesheet">
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Lista Giocatori"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
+	<div id="pagina">
 	<h1>Lista giocatori</h1>
+	</div>
 	<div id="select">
 		<form action="<%=response.encodeURL("/NYTRO/ListaGiocatori")%>" method="get">
 		<label>Seleziona un criterio di ordinamento

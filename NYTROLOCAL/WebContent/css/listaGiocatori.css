@@ -1,4 +1,13 @@
 @charset "ISO-8859-1";
+
+#pagina {
+	text-align: center;
+	padding: 1%;
+	background-color: #f9f8eb;
+	margin: -20px;
+	color: #155e63;	
+}
+
 table {
 	border-collapse: collapse;
 	borer-radius: 4px;
@@ -20,56 +29,48 @@ th {
 
 td {
 	padding: 10px;
+	color: #155e63;
+}
+
+td a {
+	color: #b33f3f;
 }
 
 tr:hover {
 	background-color: #a7d7c5;
 }
 
-#select form input[type=button], input[type=submit], input[type=reset] {
-	width:10%
-}
-
-h1 {
-	text-align: center;
-}
-
-#select form {
-	margin: auto;
-	width: 50%;
-}
-
-#select select {
-	padding: 0px;
-	margin: 0px;
-	font-size: 1.2em;
-	border: 1px solid lightgrey;
-}
-
 #select {
-	color: #666;
-	background-color: #f3f3f3;
-	padding:10px;
+	background-color: #a7d7c5;
+	color: #155e63;
+	text-align: right;
+	margin-bottom:-20px;
+}
+
+#ordina {
+	background-color: #a7d7c5;
+	color: #155e63;
+	text-align: right;
+}
+
+#select input[type=submit], #ordina input[type=submit] {
+	border: none;
+	text-decoration: none;
+	color: #f9f8eb;
+	padding: 12px 35.5px;
+	text-align: center;
+	cursor: pointer;
+	font-family: inherit;
+	background-color: #b33f3f;
+	height:50px;
+	margin-left: 1%;
+}
+
+#select input[type=submit]:hover, #ordina input[type=submit]:hover {
+	background-color: #ea5b5b;
+	color: #f9f8eb;
 }
 
 #tabella {
 	overflow: scroll;
-}
-
-#select form input[type=button], #select form input[type=submit], #select form input[type=reset] {
-	border: none;
-	text-decoration: none;
-	display: inline-block;
-	color: #666;
-	padding: 14px 16px;
-	text-align: center;
-	cursor: pointer;
-	width: 10%;
-	font-family: inherit;
-	font-size: inherit;
-	background-color: #ddd;
-}
-
-#select form input[type=button]:hover, #select form input[type=submit]:hover, #select form input[type=reset]:hover {
-	background-color: #ddd;
 }
