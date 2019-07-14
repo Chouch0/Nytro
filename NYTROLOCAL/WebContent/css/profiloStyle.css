@@ -46,6 +46,7 @@
 	background-color: #a7d7c5;
 	color: #155e63;
 	padding-left: 30px;
+	padding-bottom: 20px;
 }
 
 #insights {
@@ -66,8 +67,15 @@
 	padding-bottom: 30px;	
 }
 
-#contriCasa {
+table {
+	text-align: left;
+}
+
+#tabContri {
+	margin-top: 30px;
 	background-color: #f9f8eb;
+	margin-bottom: -30px;;
+	padding-bottom: 20px;
 }
 
 #in {	
@@ -98,6 +106,6 @@
 	padding-right: 10%;
 }
 
-#admin .admin:last-child h2{
+#admin .admin:last-child h2, #admin .admin:last-child p{
 	text-align: left;
 }

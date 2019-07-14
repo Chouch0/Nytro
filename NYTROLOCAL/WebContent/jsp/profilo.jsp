@@ -141,18 +141,30 @@ CasaEditriceBean x = (CasaEditriceBean) account;%>
 </form>
 	<%int i = 0;
 	if(contributo!=null){ %>
-	<p>
+	<div id="">
+	<table align="center" width ="400px">
+		<tr>
+			<th>Incassi</th>
+			<th>Contributi</th>
+			<th></th>
+		</tr>
+		<tr>
 		<%for(String x : contributo) {
 			i++;
+			if(x.equals("Incassi") || x.equals("Contributi_Annuali") || x.equals("ISIN")) {
+				
+			}else {
 		%>
-			<%=x.toString()%>
+			<td><%=x.toString()%></td>
 			<%if(i%2==0){ %>
-				<br/>
+				</tr>
 			<%} else { %>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<%} %>
+			<%} %>
 		<%} %>
-	</p>
+	</table>
+	</div>
 	<%} %>
 <%} %>
 </div>
@@ -170,11 +182,11 @@ CasaEditriceBean x = (CasaEditriceBean) account;%>
 <input type="submit" value="Vai"/>
 </form>
 
-	<%int i = 1;
+	<%int i = 0;
 	if(contributo!=null){ %>
-	<table>
+	<table align="center" width ="400px">
 		<tr>
-			<th>ISIN</th>
+			<th>Casa Editrice</th>
 			<th>Incassi</th>
 			<th>Contributi</th>
 			<th></th>
@@ -187,7 +199,7 @@ CasaEditriceBean x = (CasaEditriceBean) account;%>
 			}else {
 		%>
 			<td><%=x.toString()%></td>
-			<%if(x.length() == 12 && i%3==0){ %>
+			<%if((x.substring(2, 3).equals(".") || x.substring(1, 2).equals(".")) && i % 3 == 0){ %>
 			</tr>
 			<%} else { %>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -220,7 +232,7 @@ CasaEditriceBean x = (CasaEditriceBean) account;%>
 <h2>Videogiochi rimossi in un determinato anno</h2>	
 <form action="<%=response.encodeURL("/NYTRO/Profilo")%>">
 <input type="hidden" name="listaVideogiochiRimossi" value="true">
-<label>Anno di rimozione<input type="number" name="annoRimozione" min="2000" step="1" required></label>
+<label>Anno di rimozione: <input type="number" name="annoRimozione" min="2000" step="1" required></label>
 <input type="submit" value="Vai"/>
 </form>
 
@@ -234,29 +246,31 @@ if(videogiochiRimossiInAnno!=null){
 <h2>Numero di giocatori compreso entro un certo range di età</h2>	
 <form action="<%=response.encodeURL("/NYTRO/Profilo")%>">
 <input type="hidden" name="rangeEtaGiocatori" value="true">
-<label>Età minima:<input type="number" name="minEta" min="0" step="1" required></label>
-<label>Età massima:<input type="number" name="maxEta" min="0" step="1" required></label>
+<label>Età minima: <input type="number" name="minEta" min="0" step="1" required></label>
+<label>Età massima: <input type="number" name="maxEta" min="0" step="1" required></label>
 <input type="submit" value="Vai"/>
 </form>
 
 <%String quantiGiocatori = (String) request.getAttribute("quantiGiocatori");
 if(quantiGiocatori!=null && !quantiGiocatori.equals("")){%>
-	<%=quantiGiocatori %> <!-- Sto passando una stringa complessa, con testo e numero, in modo tale da mantenere minEta e maxEta -->
+	<p><%=quantiGiocatori %></p> <!-- Sto passando una stringa complessa, con testo e numero, in modo tale da mantenere minEta e maxEta -->
 <%} %>
 <h2>Videogioco più giocato dai giocatori di età compreso entro un certo range</h2>	
 <form action="<%=response.encodeURL("/NYTRO/Profilo")%>">
 <input type="hidden" name="rangeEtaGiocatoriVideogioco" value="true">
-<label>Età minima:<input type="number" name="minEtaVideogioco" min="0" step="1" required></label>
-<label>Età massima:<input type="number" name="maxEtaVideogioco" min="0" step="1" required></label>
+<label>Età minima: <input type="number" name="minEtaVideogioco" min="0" step="1" required></label>
+<label>Età massima: <input type="number" name="maxEtaVideogioco" min="0" step="1" required></label>
 <input type="submit" value="Vai"/>
 </form>
 	
-</div>
 <%VideogiocoBean videogiocoPiuGiocatoDa = (VideogiocoBean) request.getAttribute("videogiocoPiuGiocatoDa");
 if(videogiocoPiuGiocatoDa!=null){%>
-	<%=videogiocoPiuGiocatoDa.toString() %> 
+	<p><b><%=videogiocoPiuGiocatoDa.getTitolo()%></b></p>
+	<p><%=videogiocoPiuGiocatoDa.getGenere().toString().substring(1, videogiocoPiuGiocatoDa.getGenere().toString().length()-1) %></p>
+
 <%} %>	
 
+</div>
 </div>
 <%} %>
 </div>

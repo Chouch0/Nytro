@@ -209,11 +209,8 @@ public class AccountDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		String selectSQL = "call piattaforma_videogiochi_tsw.calcolo_contributo(?, ?)";
+		String selectSQL = "call piattaforma_videogiochi_tsw.calcolo_contributo_admin(?, ?)";
 		ArrayList<String> contributo = new ArrayList<String>();
-		contributo.add("ISIN");
-		contributo.add("Incassi");
-		contributo.add("Contributi_Annuali");
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
