@@ -97,9 +97,8 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 					<input type="radio" name="tipologia" value="demo" onclick="addDemoFields()" required> Videogioco demo <br/> 
 				</label>
 			</div>
-			<div id="aggiungiVideogiocoForm">
+			<div id="aggiungiVideogiocoForm"></div>
 			<input type="submit" value="Aggiungi">
-			</div>
 		</form>
 	</div>
 	
