@@ -231,6 +231,7 @@ if(videogiocoPiuGiocatoDa!=null){%>
 <label>Data di fine<input type="date" name="endDate" min="2000-01-01" max="2032-12-31"></label>
 <input type="submit" value="Vai"/>
 </form>
+
 	<%int i = 0;
 	if(contributo!=null){ %>
 	<p>
