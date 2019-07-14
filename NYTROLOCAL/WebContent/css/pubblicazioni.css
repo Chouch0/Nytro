@@ -1,10 +1,24 @@
 @charset "ISO-8859-1";
 
+#pagina {
+	text-align: center;
+	padding: 1%;
+	background-color: #f9f8eb;
+	margin: -20px;
+	color: #155e63;	
+}
+
+#aggiungi {	
+	text-align: center;
+	padding: 1%;
+	background-color: #a7d7c5;
+	color: #155e63;	
+}
+
 #ordina {
-	background-color: #f3f3f3;;
-	color: #666;
+	background-color: #a7d7c5;
+	color: #155e63;
 	text-align: right;
-	border-bottom: 1px solid lightgrey;
 }
 
 #ordina input[type=text]{
@@ -34,8 +48,12 @@ table {
 	borer-radius: 4px;
 	width: 100%;
 }
+#ordina form input[type=submit]:hover, #formVideogioco form input[type=submit]:hover{
+	background-color: #ea5b5b;
+	color: #f9f8eb; 
+}
 
-table, th, td {
+table, td {
   border-bottom: 1px solid grey;
 }
 
@@ -43,7 +61,8 @@ th {
 	font-size: 1em;
 	font-weight: bold;
 	padding: 10px;
-	background-color: #f6f6f6;
+	background-color: #74b49b;
+	color: #f9f8eb; 
 	text-align: left;
 }
 
@@ -52,7 +71,7 @@ td {
 }
 
 tr:hover {
-	background-color: #ddd;
+	background-color: #a7d7c5;
 }
 
 .img {
@@ -68,16 +87,6 @@ tr:hover {
 	height:100px;
 }
 
-#formVideogioco {
-	background-color: #f3f3f3;;
-	color: #666;	
-	border: 1px solid lightgrey;
-	border-radius: 4px;	
-	padding: 5px 0px 5px 5px;
-	margin-left: 1%;
-	margin-right: 1%;
-}
-
 #formVideogioco input[type=submit] {
 	border: none;
 	text-decoration: none;
@@ -88,18 +97,34 @@ tr:hover {
 	font-family: inherit;
 	font-size: 0.8;
 	background-color: #b33f3f;
-	height:50px;
+	height: 140px;
 	margin-left: 1%;
 }
 
 #campiFormVideogiocoObbligatori {
-	text-align:left;
+	display:table-cell;
+	padding: 20px;
+	width: 30%;
 }
 
 #aggiungiVideogiocoForm {
-	
+	display: table-cell;
+	vertical-align: bottom;
+	padding-top: -20px;
 }
 
 #radioButtonsScelta{
-	text-align:right;
+	display: table-cell;
+	vertical-align: top;
+	color: inherit;
+}
+
+#formVideogioco form {
+	margin-left: 10%;
+	display: table;
+	width: 100%;
+}
+
+#tabella {
+	overflow: scroll;
 }

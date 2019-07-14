@@ -7,9 +7,9 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Pubblicazioni"/>	</jsp:include>	<!-- Inclusione dinamica di header.jsp" -->	
 <link href="/NYTRO/css/pubblicazioni.css" type="text/css" rel="stylesheet">
-
-	<h1>Lista videogiochi</h1>
-	
+	<div id="pagina">
+	<h1>Videogiochi pubblicati</h1>
+	</div>
 	<div id="ordina">
 		<form action="<%=response.encodeURL("/NYTRO/Pubblicazioni")%>" method="get">
 		<label>Seleziona un criterio di ordinamento
@@ -37,13 +37,13 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 		<div id="tabella">
 		<table>
 			<tr>
+				<th>Immagine</th>
 				<th>Codice</th>
 				<th>Titolo</th>
 				<th>Data di rilascio</th>
 				<th>Data di rimozione</th>				
 				<th>Voto medio</th>
 				<th>PEGI</th>
-				<th>Immagine</th>
 				<th>Trailer</th>
 				<th>Azioni</th>
 			</tr>
@@ -51,12 +51,6 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 				for(VideogiocoBean x : videogiochi){
 			%>
 			<tr>
-				<td><%=x.getCodice() %></td>
-				<td><%=x.getTitolo() %></td>
-				<td><%=x.getDataRilascio() %></td>
-				<td><%=x.getDataRimozione() %></td>
-				<td><%=x.getVotoMedio() %></td>
-				<td><%=x.getPEGI() %></td>
 				<td><div class="img">
 					<%if(x.getImg()!= null) {%>
 						<img id="img" src="<%=response.encodeURL("/NYTRO/image?codice="+x.getCodice())%>" alt="<%=x.getTitolo()%>">
@@ -64,6 +58,12 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 						<img id="img" src="/NYTRO/img/no-cover.jpg" alt="<%=x.getTitolo()%>">
 					<%} %></div>
 				</td>
+				<td><%=x.getCodice() %></td>
+				<td><%=x.getTitolo() %></td>
+				<td><%=x.getDataRilascio() %></td>
+				<td><%=x.getDataRimozione() %></td>
+				<td><%=x.getVotoMedio() %></td>
+				<td><%=x.getPEGI() %></td>
 				<td><%=x.getTrailer()%></td>
 				<td>
 					<span class = "buttonLink"><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+x.getCodice())%>">Informazioni</a></span>
@@ -78,6 +78,30 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 		</table>
 		</div>
 	<%} %>
+	<div id="aggiungi">
+	<h2>Aggiungi un nuovo videogioco</h2>
+	</div>
+	<div id="formVideogioco">
+		<form action="<%=response.encodeURL("/NYTRO/Pubblicazioni")%>" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="aggiungiVideogioco" value="true">
+			<div id="campiFormVideogiocoObbligatori">
+			<label>Titolo: <input type="text" name="aggTitolo" placeholder="Titolo*" required></label><br/>
+			<label>PEGI: <input type="number" name="aggPegi" min="1" max="18" step="1" required></label><br/>
+			<label>Genere: <input type="text" name="aggGenere" placeholder="Genere*" required></label><br/>
+			<label>Inserisci immagine:<input type="file" name="photo" size="50"></label><br/>
+			</div>
+			<div id="radioButtonsScelta">
+				<label><br/>Tipologia:<br/>
+					<input type="radio" name="tipologia" value="aPagamento" onclick="addPagamentoFields()" required> Videogioco a pagamento<br/>
+					<input type="radio" name="tipologia" value="freeToPlay" onclick="addFreeToPlayFields()" required> Videogioco free to play<br/>
+					<input type="radio" name="tipologia" value="demo" onclick="addDemoFields()" required> Videogioco demo <br/> 
+				</label>
+			</div>
+			<div id="aggiungiVideogiocoForm">
+			<input type="submit" value="Aggiungi">
+			</div>
+		</form>
+	</div>
 	
 	<script>
 	
@@ -159,28 +183,6 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 		container.appendChild(document.createElement("br"));
 	}
 	</script>
-	
-	<h2>Aggiungi un nuovo videogioco</h2>
-	<div id="formVideogioco">
-		<form action="<%=response.encodeURL("/NYTRO/Pubblicazioni")%>" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="aggiungiVideogioco" value="true">
-			<div id="campiFormVideogiocoObbligatori">
-			<label>Titolo: <input type="text" name="aggTitolo" placeholder="Titolo*" required></label><br/>
-			<label>PEGI: <input type="number" name="aggPegi" min="1" max="18" step="1" required></label><br/>
-			<label>Genere: <input type="text" name="aggGenere" placeholder="Genere*" required></label><br/>
-			<label>Inserisci immagine:<input type="file" name="photo" size="50"></label><br/>
-			<div id="radioButtonsScelta">
-				<label><br/>Tipologia:<br/>
-					<input type="radio" name="tipologia" value="aPagamento" onclick="addPagamentoFields()" required> Videogioco a pagamento<br/>
-					<input type="radio" name="tipologia" value="freeToPlay" onclick="addFreeToPlayFields()" required> Videogioco free to play<br/>
-					<input type="radio" name="tipologia" value="demo" onclick="addDemoFields()" required> Videogioco demo <br/> 
-				</label>
-			</div>
-			</div>
-			<div id="aggiungiVideogiocoForm"></div>
-			<input type="submit" value="Aggiungi">
-		</form>
-	</div>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>

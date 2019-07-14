@@ -120,7 +120,7 @@ li #download:only-child {
 .gioco form input[type=button], .gioco input[type=submit], .gioco input[type=reset] {
 	border: none;
 	text-decoration: none;
-	color: #666;
+	color: #155e63;
 	padding: 0px;
 	cursor: pointer;
 	font-family: inherit;
