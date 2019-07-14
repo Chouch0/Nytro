@@ -78,7 +78,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 		</table>
 		</div>
 	<%} %>
-	<div id="aggiungi">
+	<div id="aggiungi" onclick='show(document.getElementById("formVideogioco"))'>
 	<h2>Aggiungi un nuovo videogioco</h2>
 	</div>
 	<div id="formVideogioco">
@@ -104,6 +104,13 @@ import="nytro.model.VideogiocoBean, java.util.Collection"%>
 	</div>
 	
 	<script>
+	
+	function show(elem) {
+		if(elem.style.display == "none")
+			elem.style.display ="block";
+		else
+			elem.style.display ="none";	
+	}
 	
 	function addPagamentoFields() {
 		var container = document.getElementById("aggiungiVideogiocoForm");

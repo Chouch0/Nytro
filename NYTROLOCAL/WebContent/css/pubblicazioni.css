@@ -13,6 +13,7 @@
 	padding: 1%;
 	background-color: #a7d7c5;
 	color: #155e63;	
+	cursor: pointer;
 }
 
 #ordina {
@@ -117,6 +118,10 @@ tr:hover {
 	display: table-cell;
 	vertical-align: top;
 	color: inherit;
+}
+
+#formVideogioco {
+	display: none;
 }
 
 #formVideogioco form {
