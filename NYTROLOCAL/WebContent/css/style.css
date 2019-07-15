@@ -152,7 +152,7 @@ nav li a:hover {
 	position: absolute;
 	text align: center;
 	background-color: #155e63;
-  	min-width: 160px;
+  	width: 160px;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	z-index: 1;
 	visibility:hidden;
@@ -299,14 +299,16 @@ nav li a:hover {
 	#imgContatti {
 	display:none;}
 }
-@media screen and (max-width: 605px) {
+@media screen and (max-width: 620px) {
 	nav ul a {
 		padding: 5px;
 	}
 }
 @media screen and (max-width: 500px) {
 	nav ul a {
-		padding: 5px;
+		padding-left: 2px;
+		padding-right:2px;
+		font-size:xx-small;
 	}
 	#opzioni {
 		display:none;
@@ -320,5 +322,15 @@ nav li a:hover {
 	#contattiTesto pre{
 		font-size: xx-small;
 		margin-left: -30px;
+	}
+	.elementoLogin a, .elementoEsplora a, .elementoUser a,.elementoLogin form input[type=text], .elementoLogin form input[type=password],.elementoLogin form input[type=button], .elementoLogin form input[type=submit], .elementoLogin form input[type=reset] {
+		padding:5px;
+		font-size: small;
+	}
+	.elementoLogin, .elementoEsplora, .elementoUser {
+		width:100px;
+	}.elementoUser {
+		width:100px;
+		right:20px;
 	}
 }

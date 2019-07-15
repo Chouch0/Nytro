@@ -98,3 +98,11 @@
     -ms-transform: scale(1.08,1.08);
     transform: scale(1.08,1.08);
 }
+
+
+@media screen and (max-width: 500px) {
+	.registrazione, .login, .sub, #sub{
+	width: 130px;}
+	.registrazione:focus, .login:focus, .sub:hover, #sub:hover{
+	width: 170px;}
+}
