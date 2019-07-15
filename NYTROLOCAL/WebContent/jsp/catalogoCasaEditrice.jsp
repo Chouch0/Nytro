@@ -3,6 +3,7 @@ import="nytro.model.VideogiocoBean, nytro.model.AccountBean, java.util.Collectio
 <%
 	Collection<VideogiocoBean> catalogoCasaEditrice = (Collection<VideogiocoBean>) request.getAttribute("catalogoCasaEditrice");
 	String isinCasaEditrice = (String) request.getAttribute("isinCasaEditrice");
+	String nome = (String) request.getAttribute("nomeCasaEditrice");
 	ArrayList<String> generiPresenti = (ArrayList<String>) request.getAttribute("generiPresenti");
 	
 %>
@@ -55,7 +56,7 @@ import="nytro.model.VideogiocoBean, nytro.model.AccountBean, java.util.Collectio
 			<%} %></div></li>		
 				
 			<li class="titolo"><a href="<%=response.encodeURL("/NYTRO/Videogioco?codiceVideogioco="+x.getCodice())%>"><%=x.getTitolo()%></a></li>
-			<li><%= isinCasaEditrice%></li>
+			<li><%= nome%></li>
 			<li><%=x.getGenere().toString()%></li>
 			<li>Voto: <%=x.getVotoMedio() %></li>
 			<td>PEGI: <%=x.getPEGI()%></td>

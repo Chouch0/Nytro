@@ -33,22 +33,27 @@ public class Catalogo extends HttpServlet {
 		String categoria = request.getParameter("categoria");
 		
 		Collection<VideogiocoBean> catalogo = null;
+		Collection<VideogiocoBean> catalogoTmp = null;
 		
 		try {
-			if(categoria==null || categoria.equals(""))
+			if(categoria==null || categoria.equals("")) {
 				catalogo = videogiocoDAO.doRetrieveAll(order, "");
-			else if(categoria.equalsIgnoreCase("Demo"))
+				catalogoTmp = videogiocoDAO.doRetrieveAll(order, "");
+			}else if(categoria.equalsIgnoreCase("Demo")) {
 				catalogo = videogiocoDAO.doRetrieveAllDemo(order, "");
-			else if(categoria.equalsIgnoreCase("A pagamento"))
+				catalogoTmp = videogiocoDAO.doRetrieveAllDemo(order, "");
+			}else if(categoria.equalsIgnoreCase("A pagamento")) {
 				catalogo = videogiocoDAO.doRetrieveAllPagamento(order, "");
-			else if(categoria.equalsIgnoreCase("Free to play"))
+				catalogoTmp = videogiocoDAO.doRetrieveAllPagamento(order, "");
+			}else if(categoria.equalsIgnoreCase("Free to play")) {
 				catalogo = videogiocoDAO.doRetrieveAllFreeToPlay(order, "");
-			
+				catalogoTmp = videogiocoDAO.doRetrieveAllFreeToPlay(order, "");
+			}
 		} catch (SQLException e) {
 			throw new MyException("Errore estrazione videogiochi.");
 		}
 		
-		for(VideogiocoBean x : catalogo) {
+		for(VideogiocoBean x : catalogoTmp) {
 			if(x.getDataRimozione()!=null)
 				catalogo.remove(x);
 		}

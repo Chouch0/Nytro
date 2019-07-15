@@ -49,10 +49,10 @@ import="java.util.Collection, nytro.model.AccountBean"%>
 		<div id="aggiungi">
 		<form action="<%=response.encodeURL("/NYTRO/Friendlist")%>" method="post">
 		<label>
-			Inserisci l'username del giocatore da aggiungere:
+			Inserisci l'username del giocatore da aggiungere:</label>
 			<input type="text" name="futuroAmico" placeholder="Username">
 			<input type="submit" value="Aggiungi">
-		</label>
+		
 		</form>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script>

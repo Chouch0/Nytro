@@ -333,4 +333,7 @@ nav li a:hover {
 		width:100px;
 		right:20px;
 	}
+	footer {
+		font-size: xx-small;
+	}
 }

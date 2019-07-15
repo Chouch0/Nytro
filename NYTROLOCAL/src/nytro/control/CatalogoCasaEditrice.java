@@ -33,15 +33,16 @@ public class CatalogoCasaEditrice extends HttpServlet {
 		
 		ArrayList<String> generiPresenti = new ArrayList<String>();
 		
-		Collection<VideogiocoBean> catalogoCasaEditrice = null;
+		Collection<VideogiocoBean> catalogoCasaEditrice = null, catalogoTmp = null;
 		
 		try {
-			catalogoCasaEditrice = videogiocoDAO.doRetrieveAll(order, isinCasaEditrice);			
+			catalogoCasaEditrice = videogiocoDAO.doRetrieveAll(order, isinCasaEditrice);
+			catalogoTmp = videogiocoDAO.doRetrieveAll(order, isinCasaEditrice);
 		} catch (SQLException e) {
 			throw new MyException("Errore estrazione videogiochi.");
 		}
 		
-		for(VideogiocoBean x : catalogoCasaEditrice) {
+		for(VideogiocoBean x : catalogoTmp) {
 			if(x.getDataRimozione()!=null)
 				catalogoCasaEditrice.remove(x);
 		}
@@ -79,12 +80,10 @@ public class CatalogoCasaEditrice extends HttpServlet {
 			}
 		}
 		
-		
+		request.setAttribute("isinCasaEditrice", isinCasaEditrice);
 		request.setAttribute("generiPresenti", generiPresenti);
-		
 		request.setAttribute("catalogoCasaEditrice", catalogoRichiesto);
-		request.removeAttribute("isinCasaEditrice");
-		request.setAttribute("isinCasaEditrice", nome);
+		request.setAttribute("nomeCasaEditrice", nome);
 
 		String url = response.encodeURL("jsp/catalogoCasaEditrice.jsp");
 		request.getRequestDispatcher(url).forward(request, response);

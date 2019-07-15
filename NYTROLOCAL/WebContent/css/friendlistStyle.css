@@ -120,3 +120,36 @@ ul .amico:hover{
 	height:100px;
 	margin-left: 1%;
 }
+
+@media screen and (max-width: 1000px) {
+	#aggiungi{
+	font-size: small;
+	}
+	#aggiungi select {
+		margin-top:0;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.amico form input[type=button], .amico input[type=submit], .amico input[type=reset]  {
+		width:45px;
+		padding-left: 3px;
+		padding-right: 3px;
+		overflow: visible;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.amico{
+	font-size: xx-small;
+	}
+	
+	#aggiungi label {
+	display:none;}
+	
+	.amico a {
+		font-size: xx-small;
+	}
+
+}
+

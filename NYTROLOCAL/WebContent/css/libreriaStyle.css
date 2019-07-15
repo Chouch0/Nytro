@@ -151,3 +151,13 @@ li #download:only-child {
 	font-size: small;
 	}	
 }
+@media screen and (max-width: 450px) {
+	#ordina {
+		display:none;
+	}
+	#download {
+		padding-left: 3px;
+		padding-right: 3px;
+	}
+}
+

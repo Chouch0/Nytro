@@ -125,3 +125,20 @@ ul .casa:hover, ul .casa:hover a{
 		margin-top:0;
 	}
 }
+@media screen and (max-width: 450px) {
+	#ordina {
+		display:none;
+	}
+	.casa{
+	font-size: xx-small;
+	}
+	.casa a {
+		font-size: xx-small;
+	}
+	.casa form input[type=button], .casa input[type=submit], .casa input[type=reset]  {
+		width:48px;
+		padding-left: 3px;
+		padding-right: 3px;
+		overflow: visible;
+	}
+}
