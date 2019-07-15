@@ -131,12 +131,9 @@ ul .amico:hover{
 }
 
 @media screen and (max-width: 800px) {
-	.amico form input[type=button], .amico input[type=submit], .amico input[type=reset]  {
-		width:45px;
-		padding-left: 3px;
-		padding-right: 3px;
-		overflow: visible;
-	}
+
+	#aggiungi label {
+	display:none;}
 }
 
 @media screen and (max-width: 450px) {
@@ -150,6 +147,12 @@ ul .amico:hover{
 	.amico a {
 		font-size: xx-small;
 	}
-
+		.amico form input[type=button], .amico input[type=submit], .amico input[type=reset]  {
+		width:45px;
+		padding-left: 3px;
+		padding-right: 3px;
+		overflow: visible;
+	}
+	
 }
 
