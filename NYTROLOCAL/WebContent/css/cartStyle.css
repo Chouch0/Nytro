@@ -161,8 +161,12 @@ ul .gioco:hover, ul .gioco:hover a{
 		display:none;
 	}
 	#rimuovi {
-	width:50px;
+		width:100px;
 		padding-left: 3px;
 		padding-right: 3px;
 	}
+	.copertina {
+	display:none;}
+	.gioco {
+	padding-left: 20px;}
 }

@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="nytro.model.VideogiocoBean, java.util.List"%>
 <jsp:include page="header.jsp">	<jsp:param name="pageTitle" value="Ricerca"/>	</jsp:include>
+<link href="/NYTRO/css/RegStyle.css" type="text/css" rel="stylesheet">
 
-<section>
+<div id="pagina">
 	<h2>Lista videogiochi trovati</h2>
+	</div>
+	
+<div id="risultati">
 <%
 	List<VideogiocoBean> listaVideogiochi = (List<VideogiocoBean>) request.getAttribute("listaVideogiochi");
 	if(listaVideogiochi!=null){
@@ -17,6 +21,6 @@
 	Nessun videogioco trovato
 <%} %>
 
-</section>
+</div>
 
 <%@include file="footer.jsp"%>						

@@ -156,8 +156,14 @@ li #download:only-child {
 		display:none;
 	}
 	#download {
+		width:50px; 	
 		padding-left: 3px;
 		padding-right: 3px;
+		font-size: xx-small;
+	}
+	#pagina {
+		padding-left:35px;
+		padding-right:35px;
 	}
 }
 
