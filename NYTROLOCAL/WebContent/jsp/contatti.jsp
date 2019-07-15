@@ -4,7 +4,7 @@
 	<div id="contattiPagina">
 		<h1>Contatti</h1>
 		</div>
-		<div id="contatti">	
+		<div id="contattiTesto">	
 		<section>
 		<img id="imgContatti" alt="Nytro" src="/NYTRO/img/logo.png">
 		<pre>

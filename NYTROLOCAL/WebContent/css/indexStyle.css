@@ -102,6 +102,20 @@ img {
 	.info {
 	font-size: xx-small;}
 }
+
+@media screen and (max-width: 450px) {
+	#welcome {
+		padding:25px;
+	}
+	#welcome p {
+		font-size: small;
+		margin-bottom: 30px;
+	}
+	.info h3{
+		margin-top: -20px;
+	}
+}
+
 @keyframes slide-up {
   from {
     margin-top: 100%;

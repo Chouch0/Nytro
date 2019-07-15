@@ -244,7 +244,7 @@ nav li a:hover {
 	padding-bottom: 20px;
 }
 
-#contatti section, #errore {
+#contattiTesto section, #errore {
 	background-color: #a7d7c5;
 	padding-top: 20px;
 	padding-bottom: 20px;
@@ -255,7 +255,7 @@ nav li a:hover {
 	color: #155e63;
 }
 
-#contatti pre, #errore {
+#contattiTesto pre, #errore {
 	padding-top: 20px;
 	padding-bottom: 20px;
 	font-size: 1.4em;
@@ -293,7 +293,7 @@ nav li a:hover {
 	#nytro {
 		max-width: 250px;
 	}
-	#contatti, #errore {
+	#contattiTesto, #errore {
 		font-size: small;
 	}
 	#imgContatti {
@@ -303,4 +303,17 @@ nav li a:hover {
 	nav ul a {
 		padding: 5px;
 	}
+}
+@media screen and (max-width: 500px) {
+	nav ul a {
+		padding: 5px;
+	}
+	#opzioni {
+		display:none;
+	}
+	#logoHeader{
+		display:none;
+	}
+	#nytro {
+	padding-left: 20px;
 }
