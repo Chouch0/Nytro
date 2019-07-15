@@ -68,6 +68,7 @@ public class Pubblicazioni extends HttpServlet {
 						
 						try {
 							videogiocoDAO.doSaveVideogiocoPagamento(bean,aggGenere);
+							videogiocoDAO.doRetrieveAll(null, isin);
 							if(request.getPart("photo") != null && request.getPart("photo").getSize() > 0)
 								videogiocoDAO.doUploadImage(bean);
 							while(videogiocoDAO.doRetrieveByCodice(bean.getCodice(), "")==null)

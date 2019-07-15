@@ -155,3 +155,14 @@ ul .gioco:hover, ul .gioco:hover a{
 		margin-top:0;
 	}
 }
+
+@media screen and (max-width: 450px) {
+	#ordina {
+		display:none;
+	}
+	#rimuovi {
+	width:50px;
+		padding-left: 3px;
+		padding-right: 3px;
+	}
+}
