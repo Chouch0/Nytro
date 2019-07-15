@@ -239,7 +239,7 @@ import="nytro.model.AccountBean, java.util.ArrayList, nytro.model.VideogiocoBean
 				<%ArrayList<VideogiocoBean> videogiochiRimossiInAnno = (ArrayList<VideogiocoBean>) request.getAttribute("videogiochiRimossiInAnno");
 				if(videogiochiRimossiInAnno!=null){
 					for(VideogiocoBean x : videogiochiRimossiInAnno){%>
-					<%=x.toString()%>
+					<p><b><%=x.getTitolo()%></b></p>
 				<%}
 				} %>
 				

@@ -32,6 +32,7 @@ public class DriverManagerConnectionPool {
 					port+"/"+ db + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false", username, password);
 
 		System.out.println("Create a new DB connection");
+		newConnection.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
 		newConnection.setAutoCommit(false);
 		return newConnection;
 	}	
