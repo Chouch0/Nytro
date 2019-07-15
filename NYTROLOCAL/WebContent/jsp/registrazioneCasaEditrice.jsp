@@ -2,9 +2,10 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="header.jsp"><jsp:param name="pageTitle" value="Registrazione casa editrice"/></jsp:include>
 <link href="/NYTRO/css/RegStyle.css" type="text/css" rel="stylesheet">
-
+<div id="pagina">
 <h1>Registrazione casa editrice</h1>
-
+</div>
+<div id="registrazioneCasa">
 <form class="box" name="registrazione" action="<%=response.encodeURL("/NYTRO/RegistrazioneCasaEditrice")%>" method="post" enctype="multipart/form-data">
 	<input class="registrazione" name="nomeCasaEditrice" type="text" placeholder="Nome Azienda*" onblur="checkName()">
 	<input class="registrazione" name="ISIN" type="text" placeholder="ISIN*" oninput="validaISIN()">
@@ -23,12 +24,13 @@
 	<p id="errorPhone"></p>
 	<input class="registrazione" name="sitoWeb" type="text" placeholder="Sito Web*" onblur="checkSite()" required>
 	<p id="errorSite"></p>
-	
+	<p>Se vuoi, inserisci un'immagine del profilo (max 16MB)</p>  
+    <input type="file" name="photo" size="50">
 	<p id="errorSub">Compila tutti i campi obbligatori</p>
-    <input type="file" name="photo" size="50">	
 	<input type="submit" value="Registra" id="sub" disabled>
 
 </form>
+</div>
 
 
 <script type="text/javascript">
