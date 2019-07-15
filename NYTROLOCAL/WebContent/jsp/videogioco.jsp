@@ -47,33 +47,89 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 	<%}%>
 	<p>Rilasciato il <%=videogiocoDetailed.getDataRilascio() %></p>
 	<h2>
-		<%if(account.getRuolo()==1){
+	
+	<%
+		if(account.getRuolo()==1){
 			GiocatoreBean giocatore = (GiocatoreBean) request.getAttribute("account");
-			if(videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoPagamentoBean")){
-				if(possibileAggiungereAgliAcquisti!=null && possibileAggiungereAgliAcquisti.equalsIgnoreCase("true")){
-					String url = response.encodeURL("GestoreCarrello?action=addCart&codiceVideogioco="+videogiocoDetailed.getCodice());
-					if(giocatore.getDataNascita() == null && videogiocoDetailed.getPEGI() >= 18){
-						%><a href="<%=response.encodeURL("/NYTRO/Profilo")%>">È necessario inserire la data di nascita per procedere all'acquisto.</a><%
-					} else if(giocatore.getDataNascita()!= null && videogiocoDetailed.getPEGI() >= 18){
-						LocalDate data = LocalDate.parse(giocatore.getDataNascita());
-						if (LocalDate.now().getYear() - data.getYear() < 18) {
-						%>È necessario avere 18+ anni per procedere all'acquisto. <%
-						}
-					}else {
-						%><a href="<%=url%>">Inserisci nel carrello</a><br/><%
+			String url = response.encodeURL("GestoreCarrello?action=addCart&codiceVideogioco="+videogiocoDetailed.getCodice());
+			if(!videogiocoDetailed.getClass().getSimpleName().equals("VideogiocoPagamentoBean")){
+				if(possibileAggiungereAllaLibreria!=null && possibileAggiungereAllaLibreria.equalsIgnoreCase("true")){
+					if(videogiocoDetailed.getPEGI()<18){
+						%><a href="<%=response.encodeURL("Libreria?aggiungiVideogioco="+videogiocoDetailed.getCodice())%>">Inserisci nella libreria</a><br/><%
+					} else {
+						if(giocatore.getDataNascita()==null){
+							%><a href="<%=response.encodeURL("/NYTRO/Profilo")%>">È necessario inserire la data di nascita per procedere all'acquisto.</a><%
+						}  else {
+							LocalDate data = LocalDate.parse(giocatore.getDataNascita());
+							if (LocalDate.now().getYear() - data.getYear() < 18) {
+								%>È necessario avere 18+ anni per aggiungerlo alla libreria. <br/><%
+							} else {
+								%><a href="<%=response.encodeURL("Libreria?aggiungiVideogioco="+videogiocoDetailed.getCodice())%>">Inserisci nella libreria</a><br/><%
+							}
 						}
 					}
-				} else {
-					if(possibileAggiungereAllaLibreria!=null && possibileAggiungereAllaLibreria.equalsIgnoreCase("true")){
-						%><a href="<%=response.encodeURL("Libreria?aggiungiVideogioco="+videogiocoDetailed.getCodice())%>">Inserisci nella libreria</a><br/><%
-					} 
 				}
+				
 			} else {
-				if(possibileAggiungereAllaLibreria!=null && possibileAggiungereAllaLibreria.equalsIgnoreCase("true")){
-					 %><a href="<%=response.encodeURL("Libreria?aggiungiVideogioco="+videogiocoDetailed.getCodice())%>">Inserisci nella libreria</a><br/><%
-				} 			
+				if(!(possibileAggiungereAgliAcquisti!=null && possibileAggiungereAgliAcquisti.equalsIgnoreCase("true"))){
+					if(!(possibileAggiungereAllaLibreria!=null && possibileAggiungereAllaLibreria.equalsIgnoreCase("true"))){
+						;
+					} else {
+						if(videogiocoDetailed.getPEGI()<18){
+							%><a href="<%=response.encodeURL("Libreria?aggiungiVideogioco="+videogiocoDetailed.getCodice())%>">Inserisci nella libreria</a><br/><%
+						} else {
+							if(giocatore.getDataNascita()==null){
+								%><a href="<%=response.encodeURL("/NYTRO/Profilo")%>">È necessario inserire la data di nascita per procedere all'acquisto.</a><%
+							}  else {
+								LocalDate data = LocalDate.parse(giocatore.getDataNascita());
+								if (LocalDate.now().getYear() - data.getYear() < 18) {
+									%>È necessario avere 18+ anni per procedere all'acquisto. <br/><%
+								} else {
+									%><a href="<%=response.encodeURL("Libreria?aggiungiVideogioco="+videogiocoDetailed.getCodice())%>">Inserisci nella libreria</a><br/><%
+								}
+							}
+						}
+					}
+					
+				} else {
+					if(videogiocoDetailed.getPEGI()<18){
+						%><a href="<%=url%>">Inserisci nel carrello</a><br/><%
+					} else {
+						if(giocatore.getDataNascita()==null){
+							%><a href="<%=response.encodeURL("/NYTRO/Profilo")%>">È necessario inserire la data di nascita per procedere all'acquisto.</a><%
+						}  else {
+							LocalDate data = LocalDate.parse(giocatore.getDataNascita());
+							if (LocalDate.now().getYear() - data.getYear() < 18) {
+								%>È necessario avere 18+ anni per procedere all'acquisto. <br/><%
+							} else {
+								%><a href="<%=url%>">Inserisci nel carrello</a><br/><%
+							}
+						}
+					}
+				}				
 			}
-		%>
+		}
+	%>
+	
+	
+	
+				
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	</h2>
 	</div>
 	<div id="recensioni">
@@ -138,7 +194,7 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		 <input type="submit" value="Inserisci" id="insert">
 		</form>
 				
-		<%} %>
+	<%} %>
 		
 	<%if(account.getRuolo()==2) {
 		CasaEditriceBean casa = (CasaEditriceBean) request.getAttribute("account");
@@ -187,8 +243,8 @@ import="nytro.model.VideogiocoBean, java.util.Collection, nytro.model.AccountBea
 		 	 <input type="number" name="newDurataDemo" min="1" step="1" required/>
 			 <input type="submit" value="Vai">
 			</form>
-		<%} 
-		}%>		
+		<%}%> 
+		 <%}%>		
 	<%} %>
 	</div>
 	</div>

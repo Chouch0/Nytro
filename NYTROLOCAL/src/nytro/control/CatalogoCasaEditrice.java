@@ -41,6 +41,11 @@ public class CatalogoCasaEditrice extends HttpServlet {
 			throw new MyException("Errore estrazione videogiochi.");
 		}
 		
+		for(VideogiocoBean x : catalogoCasaEditrice) {
+			if(x.getDataRimozione()!=null)
+				catalogoCasaEditrice.remove(x);
+		}
+		
 		Collection<VideogiocoBean> catalogoRichiesto = new LinkedList<VideogiocoBean>();
 		
 		String genere = request.getParameter("genere");
