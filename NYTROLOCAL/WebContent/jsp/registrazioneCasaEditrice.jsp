@@ -28,7 +28,6 @@
     <input type="file" name="photo" size="50">
 	<p id="errorSub">Compila tutti i campi obbligatori</p>
 	<input type="submit" value="Registra" id="sub" disabled>
-
 </form>
 </div>
 
