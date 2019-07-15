@@ -97,8 +97,10 @@ img {
 	font-size: x-small;}
 }
 @media screen and (max-width: 805px) {
-	.info h3{
-	display:none;}
+	
+	.info iframe{
+	display:none;
+	}
 	.info {
 	font-size: xx-small;}
 }
@@ -111,9 +113,11 @@ img {
 		font-size: small;
 		margin-bottom: 30px;
 	}
-	.info h3{
-		margin-top: -20px;
-	}
+	.info h3 {
+	display:none;}
+	.prezzo {
+	font-size: small;}
+
 }
 
 @keyframes slide-up {
