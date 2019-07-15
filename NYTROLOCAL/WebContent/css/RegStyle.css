@@ -23,7 +23,7 @@
 	padding-bottom: 10px;
 }
 
-#loginForm, #registrazioneForm, #registrazioneCasa {
+#loginForm, #registrazioneForm, #registrazioneCasa, #rimozioneForm {
 	padding-top: 30px;
 	width:100%;
 	text-align:center;
@@ -71,7 +71,7 @@
 	width:480px;
 }
 
-#sub, .sub{
+#sub, .sub, #button{
 	border: none;
 	text-decoration: none;
 	display: block;
@@ -89,8 +89,10 @@
     -o-transition: all 250ms ease-in-out;
     transition: all 250ms ease-in-out;
 }
-
-#sub:hover, .sub:hover{
+#button {
+	margin-bottom: 10px;
+}
+#sub:hover, .sub:hover, #button:hover{
 	background-color: #ea5b5b;    
 	-webkit-transform: scale(1.08,1.08);
     -moz-transform: scale(1.08,1.08);
@@ -101,8 +103,8 @@
 
 
 @media screen and (max-width: 500px) {
-	.registrazione, .login, .sub, #sub{
+	.registrazione, .login, .sub, #sub, #button{
 	width: 130px;}
-	.registrazione:focus, .login:focus, .sub:hover, #sub:hover{
+	.registrazione:focus, .login:focus, .sub:hover, #sub:hover, #button:hover{
 	width: 170px;}
 }
